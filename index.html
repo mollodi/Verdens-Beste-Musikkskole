@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Verdens Beste Musikkskole – juksebøker og lytteguider</title>
+<meta name="description" content="Gratis ressurser i musikkteori og øretrening fra Verdens Beste Musikklærer.">
+<style>
+:root{
+  --ink:#12151A; --ink-soft:#1B2027;
+  --paper:#F6F1E7; --text-on-paper:#211F1A; --text-muted:#6B6355;
+  --brass:#C08A28; --note:#211F1A;
+  --rule:rgba(33,31,26,0.14); --rule-dark:rgba(246,241,231,0.14);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --ink:#12151A; --paper:#F6F1E7; } }
+:root[data-theme="dark"]{ --ink:#12151A; --paper:#F6F1E7; }
+html{ scroll-padding-top:env(safe-area-inset-top,0px); background:var(--ink); -webkit-text-size-adjust:100%; }
+*,*::before,*::after{ box-sizing:border-box; }
+body{ margin:0; background:var(--ink); color:var(--paper);
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+a{ color:inherit; }
+a:focus-visible{ outline:2px solid var(--brass); outline-offset:3px; border-radius:4px; }
+.serif{ font-family:Charter,"Iowan Old Style","Palatino Linotype",Georgia,serif; }
+.mono{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+
+/* The banner is the book cover, printed on paper */
+.hero{ max-width:980px; margin:0 auto; padding:40px 20px 8px; }
+.cover{ background:var(--paper); color:var(--text-on-paper); border-radius:14px;
+  text-align:center; padding:34px 24px 30px; }
+.cover-top,.cover-bottom{ font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin:0; }
+.cover-staff{ display:block; width:min(78%,560px); height:auto; margin:30px auto 26px; }
+.cover-title{ font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif; font-weight:400;
+  font-size:clamp(32px,6.4vw,54px); line-height:1.1; margin:0; }
+.cover-sub{ font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif; font-style:italic;
+  font-size:clamp(18px,3.4vw,26px); color:var(--text-muted); margin:8px 0 22px; }
+.cover-meta{ font-size:14px; color:var(--text-muted); margin:0 0 30px; letter-spacing:.3px; }
+
+main{ max-width:980px; margin:0 auto; padding:0 20px 80px; }
+section{ padding-top:44px; }
+.eyebrow{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12.5px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--brass); margin:0 0 10px; }
+h2{ font-family:Charter,"Iowan Old Style","Palatino Linotype",Georgia,serif; font-weight:700;
+  font-size:clamp(26px,4vw,34px); line-height:1.1; letter-spacing:-.01em; margin:0 0 8px; }
+h2 em{ font-style:italic; font-weight:500; color:var(--brass); }
+.lede{ max-width:560px; font-size:16px; line-height:1.6; color:rgba(246,241,231,.72); margin:0 0 20px; }
+.grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
+.card{ position:relative; background:var(--paper); color:var(--text-on-paper); border-radius:14px;
+  padding:20px 20px 16px; display:flex; flex-direction:column; }
+.card-eyebrow{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:10.5px;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); margin:0 0 10px; }
+.card h3{ font-family:Charter,"Iowan Old Style","Palatino Linotype",Georgia,serif; font-weight:700;
+  font-size:21px; line-height:1.25; letter-spacing:-.01em; margin:0 0 8px; }
+.card-link{ text-decoration:none; }
+.card-link::after{ content:""; position:absolute; inset:0; border-radius:14px; }
+.card-desc{ font-size:14.5px; line-height:1.5; color:#3E3A32; margin:0 0 16px; flex:1; }
+.card-foot{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  border-top:1px solid var(--rule); padding-top:12px; }
+.open{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12px; font-weight:600;
+  letter-spacing:.04em; text-transform:uppercase; color:var(--text-on-paper); }
+.card:hover .open{ color:var(--brass); }
+.card:hover .open.two{ color:var(--text-on-paper); }
+a.open{ position:relative; z-index:1; text-decoration:none; }
+a.open.two:hover,a.open.two:focus-visible{ color:var(--brass); }
+.card-extra{ position:relative; z-index:1; font-size:13px; color:var(--text-muted); text-underline-offset:3px; }
+.card-extra:hover{ color:var(--text-on-paper); }
+
+footer{ max-width:980px; margin:0 auto; padding:28px 20px 48px; border-top:1px solid var(--rule-dark);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12px; color:rgba(246,241,231,.5);
+  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+@media (max-width:520px){ .hero{ padding-top:20px; } .cover{ padding:26px 16px 22px; } .cover-staff{ width:92%; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="cover">
+    <p class="cover-top">Verdens Beste Musikkskole</p>
+    <svg class="cover-staff" viewBox="0 62 380 104" role="img" aria-label="Notelinje med g-nøkkel og noter"><defs><path id="gclef" d="M434 2Q464 -103 464 -170Q464 -223 427.0 -257.0Q390 -291 337 -291Q287 -291 250.0 -261.5Q213 -232 213 -190Q213 -160 233.5 -133.5Q254 -107 283.5 -107.0Q313 -107 331.5 -128.5Q350 -150 350 -178Q350 -240 280 -240Q298 -268 338 -268Q353 -268 368.5 -263.5Q384 -259 401.0 -248.0Q418 -237 428.5 -213.5Q439 -190 439 -157Q439 -136 411 -6Q389 -12 356 -12Q259 -12 189.5 60.0Q120 132 120 232Q120 267 131.5 303.0Q143 339 157.5 366.5Q172 394 200.5 428.5Q229 463 248.5 483.5Q268 504 303 539Q280 621 280 689Q280 779 313.0 839.5Q346 900 379 900Q389 900 401.5 887.0Q414 874 426.0 851.0Q438 828 446.5 790.5Q455 753 455 710Q455 551 342 447L368 329Q384 332 397 332Q458 332 500.0 282.5Q542 233 542 162Q542 44 434 2ZM426 746Q426 801 394 801Q358 801 333.0 748.0Q308 695 308 630Q308 588 321 557Q359 580 392.5 639.5Q426 699 426 746ZM498 128Q498 183 466.0 216.0Q434 249 383 249L428 23Q498 52 498 128ZM407 17 361 247Q334 241 311.5 214.0Q289 187 289 158Q289 143 295.0 128.5Q301 114 309.5 104.0Q318 94 327.0 86.0Q336 78 342.0 74.5Q348 71 348 71L340 66Q307 75 277.5 106.0Q248 137 248 184Q248 231 277.5 270.5Q307 310 343 323L325 430Q168 299 168 177Q168 104 223.0 55.0Q278 6 348 6Q365 6 407 17Z"/></defs><line x1="10" y1="88" x2="370" y2="88" stroke="var(--note)" stroke-width="1.3"/><line x1="10" y1="101" x2="370" y2="101" stroke="var(--note)" stroke-width="1.3"/><line x1="10" y1="114" x2="370" y2="114" stroke="var(--note)" stroke-width="1.3"/><line x1="10" y1="127" x2="370" y2="127" stroke="var(--note)" stroke-width="1.3"/><line x1="10" y1="140" x2="370" y2="140" stroke="var(--note)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--note)"/><line x1="90.5" y1="153" x2="111.5" y2="153" stroke="var(--note)" stroke-width="1.3"/><ellipse cx="85.0" cy="140" rx="7.2" ry="5.6" fill="var(--note)" transform="rotate(-18 85.0 140)"/><ellipse cx="101.0" cy="153" rx="7.2" ry="5.6" fill="var(--note)" transform="rotate(-18 101.0 153)"/><line x1="144.5" y1="153" x2="165.5" y2="153" stroke="var(--note)" stroke-width="1.3"/><ellipse cx="155.0" cy="153" rx="7.2" ry="5.6" fill="var(--note)" transform="rotate(-18 155.0 153)"/><ellipse cx="171.0" cy="140" rx="7.2" ry="5.6" fill="var(--note)" transform="rotate(-18 171.0 140)"/><line x1="230.5" y1="153" x2="251.5" y2="153" stroke="var(--note)" stroke-width="1.3"/><line x1="246.5" y1="153" x2="267.5" y2="153" stroke="var(--note)" stroke-width="1.3"/><ellipse cx="225.0" cy="140" rx="7.2" ry="5.6" fill="var(--note)" transform="rotate(-18 225.0 140)"/><ellipse cx="241.0" cy="153" rx="7.2" ry="5.6" fill="var(--note)" transform="rotate(-18 241.0 153)"/><ellipse cx="257.0" cy="153" rx="7.2" ry="5.6" fill="var(--note)" transform="rotate(-18 257.0 153)"/><ellipse cx="273.0" cy="114" rx="7.2" ry="5.6" fill="var(--note)" transform="rotate(-18 273.0 114)"/><ellipse cx="327.0" cy="140" rx="7.2" ry="5.6" fill="var(--note)" transform="rotate(-18 327.0 140)"/><ellipse cx="343.0" cy="120.5" rx="7.2" ry="5.6" fill="var(--note)" transform="rotate(-18 343.0 120.5)"/><ellipse cx="359.0" cy="114" rx="7.2" ry="5.6" fill="var(--note)" transform="rotate(-18 359.0 114)"/></svg>
+    <h1 class="cover-title">Juksebøker og lytteguider</h1>
+    <p class="cover-sub">for musikkteori og øretrening</p>
+    <p class="cover-meta">Ekte notasjon, lyd og Spotify-lenker</p>
+    <p class="cover-bottom">Verdens Beste Musikklærer</p>
+  </div>
+</header>
+
+<main>
+<section>
+  <p class="eyebrow">Juksebøker</p>
+  <h2>Bøker til <em>oppslag</em></h2>
+  <p class="lede">Oppslagsverk med ekte noter i C. Trykk på spill-knappen for å høre.</p>
+  <div class="grid">
+    <article class="card">
+  <p class="card-eyebrow">25 intervaller</p>
+  <h3><a class="card-link" href="intervaller.html">Intervall-jukseboka</a></h3>
+  <p class="card-desc">Alle intervaller fra ren prim til dobbel oktav, med begge navn over oktaven.</p>
+  <div class="card-foot"><span class="open">Åpne i farger</span><a class="open two" href="intervaller-svart-hvitt.html">Åpne i svart-hvitt</a></div>
+</article>
+    <article class="card">
+  <p class="card-eyebrow">34 akkorder</p>
+  <h3><a class="card-link" href="akkorder-og-intervaller.html">Den ultimate jukseboka for akkorder og intervaller</a></h3>
+  <p class="card-desc">Fire kapitler, fra treklanger til 13-akkorder, kvartalakkorder og mer.</p>
+  <div class="card-foot"><span class="open">Åpne i farger</span><a class="open two" href="akkorder-og-intervaller-svart-hvitt.html">Åpne i svart-hvitt</a></div>
+</article>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Øretrening</p>
+  <h2>Hør og <em>lytt</em></h2>
+  <p class="lede">Kjente sanger og verk som viser lyden av intervaller og akkorder.</p>
+  <div class="grid">
+    <article class="card">
+  <p class="card-eyebrow">Intervaller</p>
+  <h3><a class="card-link" href="intervaller-og-sanger.html">Intervaller &amp; sanger</a></h3>
+  <p class="card-desc">Hvert intervall oppover og nedover, med eksempelsanger og Spotify-lenker.</p>
+  <div class="card-foot"><span class="open">Åpne</span></div>
+</article>
+    <article class="card">
+  <p class="card-eyebrow">Lytteguide, på engelsk</p>
+  <h3><a class="card-link" href="lytteguide-septim-og-nonakkorder.html">Dominant &amp; Major 7th/9th Chords</a></h3>
+  <p class="card-desc">Septim- og nonakkorder hos Chopin, Debussy, Hendrix og James Brown.</p>
+  <div class="card-foot"><span class="open">Åpne</span></div>
+</article>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Elevhefter</p>
+  <h2>Hefter til <em>timen</em></h2>
+  <p class="lede">Arbeidshefter til bruk i undervisningen.</p>
+  <div class="grid">
+    <article class="card">
+  <p class="card-eyebrow">Treklanger</p>
+  <h3><a class="card-link" href="akkordhefte.html">Akkordhefte</a></h3>
+  <p class="card-desc">Treklanger, trinnakkorder og diatonisk harmoni, med harmonisk moll.</p>
+  <div class="card-foot"><span class="open">Åpne</span></div>
+</article>
+  </div>
+</section>
+</main>
+
+<footer><span>Levert av Verdens Beste Musikklærer</span><span>&copy; 2026 Verdens Beste Musikkskole</span></footer>
+</body>
+</html>

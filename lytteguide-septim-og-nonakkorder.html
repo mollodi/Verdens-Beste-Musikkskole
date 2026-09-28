@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dominant &amp; Major — 7th &amp; 9th Chords</title>
+<style>
+  :root{
+    --ink: #12151A;
+    --ink-soft: #1B2027;
+    --paper: #F6F1E7;
+    --text-on-paper: #211F1A;
+    --text-muted: #6B6355;
+    --brass: #C08A28;
+    --brass-dim: #8C6620;
+    --slate-dim: #37506B;
+    --rule: rgba(33,31,26,0.14);
+    --rule-dark: rgba(246,241,231,0.14);
+  }
+  * { box-sizing: border-box; }
+  body{
+    margin:0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  header.hero{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 72px 28px 40px;
+    border-bottom: 1px solid var(--rule-dark);
+  }
+  .eyebrow{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 18px;
+  }
+  h1{
+    font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(34px, 5.4vw, 56px);
+    line-height: 1.05;
+    margin: 0 0 16px;
+    letter-spacing: -0.01em;
+  }
+  h1 em{ font-style: italic; font-weight: 500; color: var(--brass); }
+  .hero p.lede{
+    max-width: 560px;
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: rgba(246,241,231,0.72);
+    margin: 0 0 30px;
+  }
+  .hero-staff{ display:flex; align-items:center; gap: 22px; flex-wrap: wrap; }
+  .hero-staff .staff-caption{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: rgba(246,241,231,0.55);
+    max-width: 300px;
+    line-height: 1.5;
+  }
+  .controls{ max-width: 980px; margin: 0 auto; padding: 28px 16px 0; display:flex; flex-direction:column; align-items:center; width:100%; box-sizing:border-box; }
+  .tabs{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    background: var(--ink-soft);
+    padding: 4px;
+    border-radius: 10px;
+    max-width: 100%;
+    margin: 0 auto 6px;
+  }
+  .tab-option{ position: relative; display: inline-block; cursor: pointer; }
+  .tab-option input{ position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+  .tab-option span{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: rgba(246,241,231,0.55);
+    padding: 8px 10px;
+    border-radius: 7px;
+    display: inline-block;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .tab-option input:checked + span{ background: var(--brass); color: var(--ink); }
+  .hint{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11.5px;
+    color: rgba(246,241,231,0.4);
+    margin: 10px 0 0;
+    text-align: center;
+  }
+  main{ max-width: 980px; margin: 0 auto; padding: 20px 28px 100px; }
+  .panel{
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .panel-dom7{ display: grid; }
+  body:has(#tab-dom9:checked) .panel-maj9{ display: grid; }
+  body:has(#tab-dom9:checked) .panel-dom7{ display: none; }
+  body:has(#tab-maj7:checked) .panel-dom7{ display: none; }
+  body:has(#tab-maj7:checked) .panel-maj7{ display: grid; }
+  body:has(#tab-maj9real:checked) .panel-dom7{ display: none; }
+  body:has(#tab-maj9real:checked) .panel-maj9real{ display: grid; }
+
+  .card{
+    background: var(--paper);
+    color: var(--text-on-paper);
+    border-radius: 14px;
+    padding: 20px 20px 16px;
+  }
+  .card-head{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+  }
+  .card-head h2{
+    font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-weight: 700;
+    font-size: 21px;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .semitone-label{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .note-caption{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin: 4px 0 10px;
+  }
+  ul.songs{ list-style: none; margin: 0; padding: 0; }
+  ul.songs li{
+    display:flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  ul.songs li:last-child{ border-bottom: none; }
+  .song-title{ font-size: 14.5px; font-weight: 500; line-height: 1.35; }
+  .song-meta{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .spotify-link{
+    flex-shrink: 0;
+    display:inline-flex;
+    align-items:center;
+    gap: 5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 10.5px;
+    text-decoration: none;
+    color: var(--brass-dim);
+    border: 1px solid rgba(140,102,32,0.35);
+    padding: 5px 9px;
+    border-radius: 999px;
+  }
+  footer{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 28px 60px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11.5px;
+    color: rgba(246,241,231,0.4);
+    line-height: 1.7;
+  }
+  @media (max-width: 560px){ .panel{ grid-template-columns: 1fr; } }
+</style>
+</head>
+<body><style>.vbm-back{max-width:60rem;margin:0 auto;padding:.9rem 1.25rem 0;font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.vbm-back{color:inherit;position:relative;z-index:5}.vbm-back a{color:inherit;opacity:.8;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}.vbm-back a:hover,.vbm-back a:focus-visible{opacity:1}@media print{.vbm-back{display:none!important}}</style><nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; All resources</a></nav>
+
+<header class="hero">
+  <div class="eyebrow">Harmony · chord reference</div>
+  <h1>Dominant &amp; <em>Major</em> — 7ths &amp; 9ths</h1>
+  <p class="lede">Ten chords across four categories — dominant and major, sevenths and ninths — each with real staff notation and a recording where the chord is doing real, audible work. Every song links to a Spotify search.</p>
+  <div class="hero-staff">
+    <div style="color:var(--brass)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="46" y1="15.0" x2="46" y2="64.6" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="48" cy="64.6" rx="5.2" ry="3.7" transform="rotate(-18 48 64.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="52.2" rx="5.2" ry="3.7" transform="rotate(-18 48 52.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="39.8" rx="5.2" ry="3.7" transform="rotate(-18 48 39.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="27.4" rx="5.2" ry="3.7" transform="rotate(-18 48 27.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+    <div class="staff-caption">Each card shows the chord as real notation from middle C — correct note height, ledger lines and accidentals (♭/♯) where needed.</div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="tabs">
+    <label class="tab-option">
+      <input type="radio" name="type" id="tab-dom7" checked>
+      <span>Dom 7</span>
+    </label>
+    <label class="tab-option">
+      <input type="radio" name="type" id="tab-dom9">
+      <span>Dom 9</span>
+    </label>
+    <label class="tab-option">
+      <input type="radio" name="type" id="tab-maj7">
+      <span>Maj 7</span>
+    </label>
+    <label class="tab-option">
+      <input type="radio" name="type" id="tab-maj9real">
+      <span>Maj 9</span>
+    </label>
+  </div>
+</div>
+
+<main>
+
+  <!-- DOMINANT 7 -->
+  <div class="panel panel-dom7">
+
+    <div class="card c-c7">
+      <div class="card-head">
+        <div>
+          <h2>C7</h2>
+          <div class="semitone-label">1 · 3 · 5 · ♭7 — the blues workhorse</div>
+        </div>
+        <div style="color:var(--brass-dim)"><svg width="96" height="129.2" viewBox="0 0 96 129.2" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="40.0" y1="77.0" x2="56.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="48" y1="39.8" x2="48" y2="77.0" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="48" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 48 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="64.6" rx="5.2" ry="3.7" transform="rotate(-18 48 64.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="52.2" rx="5.2" ry="3.7" transform="rotate(-18 48 52.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="39.8" rx="5.2" ry="3.7" transform="rotate(-18 48 39.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><text x="30" y="43.5" font-size="11" font-family="Georgia, serif" fill="currentColor">&#9837;</text></svg></div>
+      </div>
+      <div class="note-caption">C · E · G · B♭</div>
+      <ul class="songs">
+        <li>
+          <div class="song-info">
+            <div class="song-title">Sweet Home Chicago</div>
+            <div class="song-meta">Robert Johnson — the whole tune rides on the I–IV–V7 blues turnaround; you can hear the dominant 7th resolve every time the band lands back on the "one" chord at the end of each verse line</div>
+          </div>
+          <a class="spotify-link" href="https://open.spotify.com/search/Robert%20Johnson%20Sweet%20Home%20Chicago" target="_blank" rel="noopener">Spotify ↗</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card c-e7s9">
+      <div class="card-head">
+        <div>
+          <h2>E7(♯9)</h2>
+          <div class="semitone-label">1 · 3 · 5 · ♭7 · ♯9 — the Hendrix chord</div>
+        </div>
+        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="48" y1="27.4" x2="48" y2="64.6" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="48" cy="64.6" rx="5.2" ry="3.7" transform="rotate(-18 48 64.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="52.2" rx="5.2" ry="3.7" transform="rotate(-18 48 52.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="39.8" rx="5.2" ry="3.7" transform="rotate(-18 48 39.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="27.4" rx="5.2" ry="3.7" transform="rotate(-18 48 27.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><text x="30" y="56.0" font-size="11" font-family="Georgia, serif" fill="currentColor">&#9839;</text></svg></div>
+      </div>
+      <div class="note-caption">E · G♯ · B · D (♯9 heard as a bent minor third against the major third)</div>
+      <ul class="songs">
+        <li>
+          <div class="song-info">
+            <div class="song-title">Purple Haze</div>
+            <div class="song-meta">Jimi Hendrix, 1967 — the very first chord of the song, hit hard on guitar before the riff even starts; it repeats under the whole intro and verse</div>
+          </div>
+          <a class="spotify-link" href="https://open.spotify.com/search/Jimi%20Hendrix%20Purple%20Haze" target="_blank" rel="noopener">Spotify ↗</a>
+        </li>
+        <li>
+          <div class="song-info">
+            <div class="song-title">Foxy Lady</div>
+            <div class="song-meta">Jimi Hendrix, 1967 — the song opens cold on F♯7♯9 with no lead-in, so it's the first sound you hear before the drums even come in</div>
+          </div>
+          <a class="spotify-link" href="https://open.spotify.com/search/Jimi%20Hendrix%20Foxy%20Lady" target="_blank" rel="noopener">Spotify ↗</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card c-g7">
+      <div class="card-head">
+        <div>
+          <h2>G7</h2>
+          <div class="semitone-label">1 · 3 · 5 · ♭7 — secondary dominant</div>
+        </div>
+        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="48" y1="15.0" x2="48" y2="52.2" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="48" cy="52.2" rx="5.2" ry="3.7" transform="rotate(-18 48 52.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="39.8" rx="5.2" ry="3.7" transform="rotate(-18 48 39.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="27.4" rx="5.2" ry="3.7" transform="rotate(-18 48 27.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="15.0" rx="5.2" ry="3.7" transform="rotate(-18 48 15.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+      </div>
+      <div class="note-caption">G · B · D · F</div>
+      <ul class="songs">
+        <li>
+          <div class="song-info">
+            <div class="song-title">Ballade No. 1 in G minor, Op. 23</div>
+            <div class="song-meta">Chopin — listen through the piece's big transitional passages: the harmony keeps pulling toward new keys through dominant 7ths like this one before each new theme resolves</div>
+          </div>
+          <a class="spotify-link" href="https://open.spotify.com/search/Chopin%20Ballade%20No%201%20G%20minor%20Op%2023" target="_blank" rel="noopener">Spotify ↗</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- MAJOR 9 -->
+  <div class="panel panel-maj9">
+
+    <div class="card c-e9">
+      <div class="card-head">
+        <div>
+          <h2>E9</h2>
+          <div class="semitone-label">1 · 3 · 5 · ♭7 · 9</div>
+        </div>
+        <div style="color:var(--slate-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="48" y1="15.0" x2="48" y2="64.6" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="48" cy="64.6" rx="5.2" ry="3.7" transform="rotate(-18 48 64.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="52.2" rx="5.2" ry="3.7" transform="rotate(-18 48 52.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="39.8" rx="5.2" ry="3.7" transform="rotate(-18 48 39.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="27.4" rx="5.2" ry="3.7" transform="rotate(-18 48 27.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="15.0" rx="5.2" ry="3.7" transform="rotate(-18 48 15.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><text x="30" y="56.0" font-size="11" font-family="Georgia, serif" fill="currentColor">&#9839;</text><text x="30" y="19.0" font-size="11" font-family="Georgia, serif" fill="currentColor">&#9839;</text></svg></div>
+      </div>
+      <div class="note-caption">E · G♯ · B · D · F♯</div>
+      <ul class="songs">
+        <li>
+          <div class="song-info">
+            <div class="song-title">Papa's Got a Brand New Bag</div>
+            <div class="song-meta">James Brown, 1965 — the rhythm guitar comps this jazzy E9 shape (not a plain E7) under the horn hits every time the band answers the "brand new bag" vocal line</div>
+          </div>
+          <a class="spotify-link" href="https://open.spotify.com/search/James%20Brown%20Papas%20Got%20a%20Brand%20New%20Bag" target="_blank" rel="noopener">Spotify ↗</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card c-a9">
+      <div class="card-head">
+        <div>
+          <h2>A9</h2>
+          <div class="semitone-label">1 · 3 · 5 · ♭7 · 9</div>
+        </div>
+        <div style="color:var(--slate-dim)"><svg width="96" height="110" viewBox="0 0 96 110" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="21.0" x2="84" y2="21.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="33.4" x2="84" y2="33.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="45.8" x2="84" y2="45.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="58.2" x2="84" y2="58.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="70.6" x2="84" y2="70.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="40" y1="8.6" x2="56" y2="8.6" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="48" y1="2.4" x2="48" y2="52.0" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="48" cy="52.0" rx="5.2" ry="3.7" transform="rotate(-18 48 52.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="39.6" rx="5.2" ry="3.7" transform="rotate(-18 48 39.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="27.2" rx="5.2" ry="3.7" transform="rotate(-18 48 27.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="14.8" rx="5.2" ry="3.7" transform="rotate(-18 48 14.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="2.4" rx="5.2" ry="3.7" transform="rotate(-18 48 2.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><text x="30" y="43.5" font-size="11" font-family="Georgia, serif" fill="currentColor">&#9839;</text></svg></div>
+      </div>
+      <div class="note-caption">A · C♯ · E · G · B</div>
+      <ul class="songs">
+        <li>
+          <div class="song-info">
+            <div class="song-title">Papa's Got a Brand New Bag</div>
+            <div class="song-meta">James Brown, 1965 — the guitar alternates between E9 and this A9 shape through the vamp sections, the two chords trading off as the horns punch in and out</div>
+          </div>
+          <a class="spotify-link" href="https://open.spotify.com/search/James%20Brown%20Papas%20Got%20a%20Brand%20New%20Bag" target="_blank" rel="noopener">Spotify ↗</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card c-d9">
+      <div class="card-head">
+        <div>
+          <h2>D9</h2>
+          <div class="semitone-label">1 · 3 · 5 · ♭7 · 9</div>
+        </div>
+        <div style="color:var(--slate-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="48" y1="21.2" x2="48" y2="70.8" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="48" cy="70.8" rx="5.2" ry="3.7" transform="rotate(-18 48 70.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="58.4" rx="5.2" ry="3.7" transform="rotate(-18 48 58.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="46.0" rx="5.2" ry="3.7" transform="rotate(-18 48 46.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="33.6" rx="5.2" ry="3.7" transform="rotate(-18 48 33.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="21.2" rx="5.2" ry="3.7" transform="rotate(-18 48 21.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><text x="30" y="62.0" font-size="11" font-family="Georgia, serif" fill="currentColor">&#9839;</text></svg></div>
+      </div>
+      <div class="note-caption">D · F♯ · A · C · E</div>
+      <ul class="songs">
+        <li>
+          <div class="song-info">
+            <div class="song-title">I Got You (I Feel Good)</div>
+            <div class="song-meta">James Brown, 1965 — the entire 12-bar blues is comped in D9 instead of a plain D7, so every single chord change in the song carries that extra major 9th brightness</div>
+          </div>
+          <a class="spotify-link" href="https://open.spotify.com/search/James%20Brown%20I%20Got%20You%20I%20Feel%20Good" target="_blank" rel="noopener">Spotify ↗</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- MAJOR 7 -->
+  <div class="panel panel-maj7">
+
+    <div class="card c-fmaj7">
+      <div class="card-head">
+        <div>
+          <h2>Fmaj7</h2>
+          <div class="semitone-label">1 · 3 · 5 · 7</div>
+        </div>
+        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="48" y1="21.2" x2="48" y2="58.4" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="48" cy="58.4" rx="5.2" ry="3.7" transform="rotate(-18 48 58.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="46.0" rx="5.2" ry="3.7" transform="rotate(-18 48 46.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="33.6" rx="5.2" ry="3.7" transform="rotate(-18 48 33.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="21.2" rx="5.2" ry="3.7" transform="rotate(-18 48 21.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+      </div>
+      <div class="note-caption">F · A · C · E</div>
+      <ul class="songs">
+        <li>
+          <div class="song-info">
+            <div class="song-title">The Girl from Ipanema</div>
+            <div class="song-meta">Antônio Carlos Jobim — the tune opens on this exact chord (in the standard's home key of F) and keeps returning to it every time the melody comes back to "tall and tan and young and lovely"</div>
+          </div>
+          <a class="spotify-link" href="https://open.spotify.com/search/Getz%20Gilberto%20Girl%20From%20Ipanema" target="_blank" rel="noopener">Spotify ↗</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- MAJOR 9 -->
+  <div class="panel panel-maj9real">
+
+    <div class="card c-gmaj9">
+      <div class="card-head">
+        <div>
+          <h2>Gmaj9</h2>
+          <div class="semitone-label">1 · 3 · 5 · 7 · 9</div>
+        </div>
+        <div style="color:var(--slate-dim)"><svg width="96" height="107.6" viewBox="0 0 96 107.6" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="40.0" y1="2.6" x2="56.0" y2="2.6" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="48" y1="2.6" x2="48" y2="52.2" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="48" cy="52.2" rx="5.2" ry="3.7" transform="rotate(-18 48 52.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="39.8" rx="5.2" ry="3.7" transform="rotate(-18 48 39.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="27.4" rx="5.2" ry="3.7" transform="rotate(-18 48 27.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="15.0" rx="5.2" ry="3.7" transform="rotate(-18 48 15.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="2.6" rx="5.2" ry="3.7" transform="rotate(-18 48 2.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><text x="30" y="19.0" font-size="11" font-family="Georgia, serif" fill="currentColor">&#9839;</text></svg></div>
+      </div>
+      <div class="note-caption">G · B · D · F♯ · A</div>
+      <ul class="songs">
+        <li>
+          <div class="song-info">
+            <div class="song-title">Peg</div>
+            <div class="song-meta">Steely Dan, 1977 — right at the top of the intro, before the vocal comes in: the keyboard walks Gmaj9 down chromatically through F♯7alt, Fmaj9, and further, per Donald Fagen's own breakdown of the voicings</div>
+          </div>
+          <a class="spotify-link" href="https://open.spotify.com/search/Steely%20Dan%20Peg" target="_blank" rel="noopener">Spotify ↗</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card c-cmaj9">
+      <div class="card-head">
+        <div>
+          <h2>Cmaj9</h2>
+          <div class="semitone-label">1 · 3 · 5 · 7 · 9</div>
+        </div>
+        <div style="color:var(--slate-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="48" y1="21.2" x2="48" y2="64.6" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="48" cy="64.6" rx="5.2" ry="3.7" transform="rotate(-18 48 64.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="52.2" rx="5.2" ry="3.7" transform="rotate(-18 48 52.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="39.8" rx="5.2" ry="3.7" transform="rotate(-18 48 39.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="27.4" rx="5.2" ry="3.7" transform="rotate(-18 48 27.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="21.2" rx="5.2" ry="3.7" transform="rotate(-18 48 21.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+      </div>
+      <div class="note-caption">E · G · B · D · (C bass) — added-9th color, not a strict jazz stack</div>
+      <ul class="songs">
+        <li>
+          <div class="song-info">
+            <div class="song-title">Clair de Lune</div>
+            <div class="song-meta">Debussy — listen to the arpeggiated right-hand figures in the middle section: the melody note sitting a 9th above the bass, left ringing rather than resolved, is the signature impressionist "added 9th" haze this piece is known for</div>
+          </div>
+          <a class="spotify-link" href="https://open.spotify.com/search/Debussy%20Clair%20de%20Lune" target="_blank" rel="noopener">Spotify ↗</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card c-ebmaj9">
+      <div class="card-head">
+        <div>
+          <h2>E♭maj9</h2>
+          <div class="semitone-label">1 · 3 · 5 · 7 · 9</div>
+        </div>
+        <div style="color:var(--slate-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="48" y1="15.0" x2="48" y2="64.6" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="48" cy="64.6" rx="5.2" ry="3.7" transform="rotate(-18 48 64.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="52.2" rx="5.2" ry="3.7" transform="rotate(-18 48 52.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="39.8" rx="5.2" ry="3.7" transform="rotate(-18 48 39.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="27.4" rx="5.2" ry="3.7" transform="rotate(-18 48 27.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="48" cy="15.0" rx="5.2" ry="3.7" transform="rotate(-18 48 15.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><text x="30" y="68.5" font-size="11" font-family="Georgia, serif" fill="currentColor">&#9837;</text><text x="30" y="43.5" font-size="11" font-family="Georgia, serif" fill="currentColor">&#9837;</text></svg></div>
+      </div>
+      <div class="note-caption">E♭ · G · B♭ · D · F — 9th-like color from suspensions, not a strict jazz stack</div>
+      <ul class="songs">
+        <li>
+          <div class="song-info">
+            <div class="song-title">Nocturne in E♭ major, Op. 9 No. 2</div>
+            <div class="song-meta">Chopin — near the end of each phrase, the melody leans on an ornamental turn that hangs above the harmony as an unresolved 9th before settling back down — that lingering, singing dissonance is the Romantic-era ancestor of the jazz maj9 sound</div>
+          </div>
+          <a class="spotify-link" href="https://open.spotify.com/search/Chopin%20Nocturne%20Op%209%20No%202" target="_blank" rel="noopener">Spotify ↗</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  Note: notation shows chord tones in root position for clarity — actual voicings in the recordings are usually inverted, spread across octaves, or further altered. Spotify links go to a search for the piece, not a confirmed direct link to one specific recording — click through to the version you want.
+</footer>
+
+</body>
+</html>
