@@ -240,19 +240,39 @@
     line-height: 1.7;
   }
   @media (max-width: 560px){ .panel{ grid-template-columns: 1fr; } }
+
+  /* Notasjon og lyd i samme stil som juksebøkene */
+  :root{ --note-ink:#1E1E1A;--red:#AD2534;--red-dk:#7A1822;--red-lt:#D9707B;--orange:#D06730;--orange-dk:#9E4A1C;--orange-lt:#E9A177;--yellow:#C79A1E;--yellow-dk:#8F6B12;--yellow-lt:#E6C764;--green:#42945E;--green-dk:#2C6B42;--green-lt:#86C79B;--blue:#3579B0;--blue-dk:#24567F;--blue-lt:#7FB3DB;--indigo:#3F4B9E;--indigo-dk:#2A3470;--indigo-lt:#8590CF;--violet:#7650A6;--violet-dk:#563A7C;--violet-lt:#B49AD4; }
+  .staff{ margin:4px 0 2px; }
+  .play-btn{ flex:none; display:flex; align-items:center; background:#FFFFFF; border:1.5px solid rgba(33,31,26,0.18);
+    color:var(--text-on-paper); border-radius:20px; padding:7px 14px 7px 12px; font-size:13.5px; cursor:pointer; font-family:inherit; }
+  .play-btn span{ margin-left:6px; }
+  .play-btn.playing{ border-color:var(--brass); color:var(--brass-dim); }
+  .hero-staff .staff-box{ width:220px; max-width:100%; }
+  @media print{ .play-btn{ display:none; } }
+  /* Kontrastmodus (Windows): alt blir lesbart og likt */
+  @media (forced-colors: active){
+    .staff svg [fill], .hero-staff svg [fill]{ fill:CanvasText; }
+    .staff svg [stroke], .hero-staff svg [stroke]{ stroke:CanvasText; }
+    .card{ border:1px solid CanvasText; }
+    .tab-option input:checked + span, .chip-option input:checked + span{ forced-color-adjust:none; background:Highlight; color:HighlightText; }
+    .tab-option input:focus-visible + span, .chip-option input:focus-visible + span{ outline:2px solid Highlight; }
+    .play-btn.playing{ border-color:Highlight; }
+  }
 </style>
 <style>.vbm-back{max-width:60rem;margin:0 auto;padding:.9rem 1.25rem 0;position:relative;z-index:5;color:inherit;font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.vbm-back a{color:inherit;opacity:.8;text-underline-offset:3px;text-decoration-thickness:1px}.vbm-back a:hover,.vbm-back a:focus-visible{opacity:1}.vbm-back--book{max-width:none;margin:0 0 32px;padding:0;font-size:15px}@media print{.vbm-back{display:none!important}}</style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="acc-flat"><rect x="-3.6" y="-15.5" width="1.3" height="20.8"/><path d="M-2.3,-1.5C0,-4.8 5.6,-5 5.3,-1.6C5,1.3 1.2,3.6 -2.3,5.3L-2.3,3.4C0.3,1.8 2.8,0.1 2.8,-1.7C2.8,-3.5 -0.1,-3.1 -2.3,-0.3Z"/></g><g id="acc-sharp"><rect x="-2.8" y="-9.5" width="1.2" height="20"/><rect x="1.6" y="-10.5" width="1.2" height="20"/><path d="M-5,-2.1L5,-5.1L5,-2.5L-5,0.5Z"/><path d="M-5,4.7L5,1.7L5,4.3L-5,7.3Z"/></g><g id="acc-dflat"><use href="#acc-flat" x="-4.4"/><use href="#acc-flat" x="4.4"/></g><path id="gclef" d="M434 2Q464 -103 464 -170Q464 -223 427.0 -257.0Q390 -291 337 -291Q287 -291 250.0 -261.5Q213 -232 213 -190Q213 -160 233.5 -133.5Q254 -107 283.5 -107.0Q313 -107 331.5 -128.5Q350 -150 350 -178Q350 -240 280 -240Q298 -268 338 -268Q353 -268 368.5 -263.5Q384 -259 401.0 -248.0Q418 -237 428.5 -213.5Q439 -190 439 -157Q439 -136 411 -6Q389 -12 356 -12Q259 -12 189.5 60.0Q120 132 120 232Q120 267 131.5 303.0Q143 339 157.5 366.5Q172 394 200.5 428.5Q229 463 248.5 483.5Q268 504 303 539Q280 621 280 689Q280 779 313.0 839.5Q346 900 379 900Q389 900 401.5 887.0Q414 874 426.0 851.0Q438 828 446.5 790.5Q455 753 455 710Q455 551 342 447L368 329Q384 332 397 332Q458 332 500.0 282.5Q542 233 542 162Q542 44 434 2ZM426 746Q426 801 394 801Q358 801 333.0 748.0Q308 695 308 630Q308 588 321 557Q359 580 392.5 639.5Q426 699 426 746ZM498 128Q498 183 466.0 216.0Q434 249 383 249L428 23Q498 52 498 128ZM407 17 361 247Q334 241 311.5 214.0Q289 187 289 158Q289 143 295.0 128.5Q301 114 309.5 104.0Q318 94 327.0 86.0Q336 78 342.0 74.5Q348 71 348 71L340 66Q307 75 277.5 106.0Q248 137 248 184Q248 231 277.5 270.5Q307 310 343 323L325 430Q168 299 168 177Q168 104 223.0 55.0Q278 6 348 6Q365 6 407 17Z"/><g id="acc-dsharp"><rect x="-0.85" y="-5.2" width="1.7" height="10.4" transform="rotate(45)"/><rect x="-0.85" y="-5.2" width="1.7" height="10.4" transform="rotate(-45)"/><rect x="-4.9" y="-4.9" width="3" height="3"/><rect x="1.9" y="-4.9" width="3" height="3"/><rect x="-4.9" y="1.9" width="3" height="3"/><rect x="1.9" y="1.9" width="3" height="3"/></g></defs></svg>
 <nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
 
 <header class="hero">
-  <div class="eyebrow">Øretrening · intervallreferanse</div>
+  <div class="eyebrow">Øretrening og intervaller</div>
   <h1>Intervaller &amp; <em>sanger</em></h1>
   <p class="lede">Trettien velkjente sanger organisert etter musikalsk intervall, oppover og nedover, til bruk i øretreningen. Hver linje har en lenke til Spotify-søk.</p>
   <div class="hero-staff">
-    <div style="color:var(--brass)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="52.2" rx="5.2" ry="3.7" transform="rotate(-18 68 52.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
-    <div class="staff-caption">Hvert kort viser intervallet som ekte notasjon fra midten C, med korrekt notehøyde, hjelpelinjer og fortegn (♭/♯) der det trengs.</div>
+    <div class="staff-box"><svg viewBox="0 62 360 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="330" y2="140" stroke="var(--paper)" stroke-width="1.3"/><line x1="10" y1="127" x2="330" y2="127" stroke="var(--paper)" stroke-width="1.3"/><line x1="10" y1="114" x2="330" y2="114" stroke="var(--paper)" stroke-width="1.3"/><line x1="10" y1="101" x2="330" y2="101" stroke="var(--paper)" stroke-width="1.3"/><line x1="10" y1="88" x2="330" y2="88" stroke="var(--paper)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--paper)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--paper)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--paper)" stroke="var(--paper)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="127.0" rx="7.2" ry="5.6" fill="var(--paper)" stroke="var(--paper)" stroke-width="0" transform="rotate(-18 250 127.0)"/></svg></div>
+    <div class="staff-caption">Hvert kort viser intervallet med ekte noter, i samme notestil som juksebøkene. Oppover starter på midten C, nedover på C en oktav høyere. Trykk på spill for å høre intervallet.</div>
   </div>
 </header>
 
@@ -334,45 +354,46 @@
       <div class="card-head">
         <div>
           <h2>Ren prim</h2>
-          <div class="semitone-label">0 halvtoner · oppover</div>
+          <div class="semitone-label">0 halvtoner oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="77.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 68 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,60" aria-label="Spill av Ren prim oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="236" y1="153.0" x2="264" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 153.0)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">God Save the Queen</div>
             <div class="song-meta">John Bull, 1745</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/God%20Save%20the%20Queen%20John%20Bull" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/God%20Save%20the%20Queen%20John%20Bull" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Jingle Bells</div>
             <div class="song-meta">James Lord Pierpont, 1857</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Jingle%20Bells%20James%20Lord%20Pierpont" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Jingle%20Bells%20James%20Lord%20Pierpont" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Happy Birthday to You</div>
             <div class="song-meta">Mildred Hill, 1893</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Happy%20Birthday%20to%20You%20Mildred%20Hill" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Happy%20Birthday%20to%20You%20Mildred%20Hill" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Let It Be</div>
             <div class="song-meta">The Beatles, 1970</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Let%20It%20Be%20The%20Beatles" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Let%20It%20Be%20The%20Beatles" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Candle in the Wind</div>
             <div class="song-meta">Elton John, 1973</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Candle%20in%20the%20Wind%20Elton%20John" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Candle%20in%20the%20Wind%20Elton%20John" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -380,45 +401,46 @@
       <div class="card-head">
         <div>
           <h2>Liten sekund</h2>
-          <div class="semitone-label">1 halvtone · oppover</div>
+          <div class="semitone-label">1 halvtone oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="70.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><line x1="54.0" y1="61.8" x2="54.0" y2="72.8" stroke="currentColor" stroke-width="1.4"/><path d="M 54.0 67.8 C 59.0 67.8 59.0 73.8 54.0 73.8 Z" fill="currentColor"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="70.8" rx="5.2" ry="3.7" transform="rotate(-18 68 70.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,61" aria-label="Spill av Liten sekund oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="146.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 146.5)"/><use href="#acc-flat" transform="translate(228 146.5)" fill="var(--brass-dim)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Mazurek Dąbrowskiego (Polens nasjonalsang)</div>
             <div class="song-meta">Józef Wybicki, 1797</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Mazurek%20D%C4%85browskiego%20Polens%20nasjonalsang%20J%C3%B3zef%20Wybicki" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Mazurek%20D%C4%85browskiego%20Polens%20nasjonalsang%20J%C3%B3zef%20Wybicki" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">White Christmas</div>
             <div class="song-meta">Irving Berlin, 1954</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/White%20Christmas%20Irving%20Berlin" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/White%20Christmas%20Irving%20Berlin" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">A Hard Day’s Night</div>
             <div class="song-meta">The Beatles, 1964</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/A%20Hard%20Days%20Night%20The%20Beatles" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/A%20Hard%20Days%20Night%20The%20Beatles" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Jaws (temamusikk)</div>
             <div class="song-meta">John Williams, 1975</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Jaws%20temamusikk%20John%20Williams" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Jaws%20temamusikk%20John%20Williams" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Isn’t She Lovely</div>
             <div class="song-meta">Stevie Wonder, 1976</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Isnt%20She%20Lovely%20Stevie%20Wonder" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Isnt%20She%20Lovely%20Stevie%20Wonder" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -426,45 +448,46 @@
       <div class="card-head">
         <div>
           <h2>Stor sekund</h2>
-          <div class="semitone-label">2 halvtoner · oppover</div>
+          <div class="semitone-label">2 halvtoner oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="70.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="70.8" rx="5.2" ry="3.7" transform="rotate(-18 68 70.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,62" aria-label="Spill av Stor sekund oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="146.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 146.5)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Fader Jakob (Frère Jacques)</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Fader%20Jakob%20Fr%C3%A8re%20Jacques" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Fader%20Jakob%20Fr%C3%A8re%20Jacques" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Silent Night (Glade jul)</div>
             <div class="song-meta">Franz Xaver Gruber, 1818</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Silent%20Night%20Glade%20jul%20Franz%20Xaver%20Gruber" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Silent%20Night%20Glade%20jul%20Franz%20Xaver%20Gruber" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Rudolph the Red-Nosed Reindeer</div>
             <div class="song-meta">J. Marks, 1939</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Rudolph%20the%20Red-Nosed%20Reindeer%20J.%20Marks" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Rudolph%20the%20Red-Nosed%20Reindeer%20J.%20Marks" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Autumn Leaves</div>
             <div class="song-meta">Joseph Kosma, 1945</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Autumn%20Leaves%20Joseph%20Kosma" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Autumn%20Leaves%20Joseph%20Kosma" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Never Gonna Give You Up</div>
             <div class="song-meta">Rick Astley, 1987</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Never%20Gonna%20Give%20You%20Up%20Rick%20Astley" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Never%20Gonna%20Give%20You%20Up%20Rick%20Astley" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -472,45 +495,46 @@
       <div class="card-head">
         <div>
           <h2>Liten ters</h2>
-          <div class="semitone-label">3 halvtoner · oppover</div>
+          <div class="semitone-label">3 halvtoner oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><line x1="54.0" y1="55.6" x2="54.0" y2="66.6" stroke="currentColor" stroke-width="1.4"/><path d="M 54.0 61.6 C 59.0 61.6 59.0 67.6 54.0 67.6 Z" fill="currentColor"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="64.6" rx="5.2" ry="3.7" transform="rotate(-18 68 64.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,63" aria-label="Spill av Liten ters oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="140.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 140.0)"/><use href="#acc-flat" transform="translate(228 140)" fill="var(--brass-dim)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Greensleeves</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Greensleeves" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Greensleeves" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">O Canada</div>
             <div class="song-meta">Calixa Lavallée, 1880</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/O%20Canada%20Calixa%20Lavall%C3%A9e" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/O%20Canada%20Calixa%20Lavall%C3%A9e" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Georgia on My Mind</div>
             <div class="song-meta">Hoagy Carmichael, 1930</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Georgia%20on%20My%20Mind%20Hoagy%20Carmichael" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Georgia%20on%20My%20Mind%20Hoagy%20Carmichael" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">What the World Needs Now</div>
             <div class="song-meta">Burt Bacharach, 1965</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/What%20the%20World%20Needs%20Now%20Burt%20Bacharach" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/What%20the%20World%20Needs%20Now%20Burt%20Bacharach" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Axel F</div>
             <div class="song-meta">Harold Faltermeyer, 1985</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Axel%20F%20Harold%20Faltermeyer" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Axel%20F%20Harold%20Faltermeyer" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -518,45 +542,46 @@
       <div class="card-head">
         <div>
           <h2>Stor ters</h2>
-          <div class="semitone-label">4 halvtoner · oppover</div>
+          <div class="semitone-label">4 halvtoner oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="64.6" rx="5.2" ry="3.7" transform="rotate(-18 68 64.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,64" aria-label="Spill av Stor ters oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="140.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 140.0)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Våren (fra Årstidene)</div>
             <div class="song-meta">Antonio Vivaldi, 1721–25</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/V%C3%A5ren%20fra%20%C3%85rstidene%20Antonio%20Vivaldi" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/V%C3%A5ren%20fra%20%C3%85rstidene%20Antonio%20Vivaldi" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">For He’s a Jolly Good Fellow</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/For%20Hes%20a%20Jolly%20Good%20Fellow" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/For%20Hes%20a%20Jolly%20Good%20Fellow" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Oh, When the Saints</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Oh%2C%20When%20the%20Saints" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Oh%2C%20When%20the%20Saints" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Morning Has Broken</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Morning%20Has%20Broken" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Morning%20Has%20Broken" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">What a Wonderful World</div>
             <div class="song-meta">George Douglas, 1967</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/What%20a%20Wonderful%20World%20George%20Douglas" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/What%20a%20Wonderful%20World%20George%20Douglas" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -564,45 +589,46 @@
       <div class="card-head">
         <div>
           <h2>Ren kvart</h2>
-          <div class="semitone-label">5 halvtoner · oppover</div>
+          <div class="semitone-label">5 halvtoner oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="58.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="58.4" rx="5.2" ry="3.7" transform="rotate(-18 68 58.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,65" aria-label="Spill av Ren kvart oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="133.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 133.5)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">We Wish You a Merry Christmas</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/We%20Wish%20You%20a%20Merry%20Christmas" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/We%20Wish%20You%20a%20Merry%20Christmas" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Amazing Grace</div>
             <div class="song-meta">John Newton, 1773</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Amazing%20Grace%20John%20Newton" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Amazing%20Grace%20John%20Newton" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Someday My Prince Will Come</div>
             <div class="song-meta">F. Churchill, 1937</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Someday%20My%20Prince%20Will%20Come%20F.%20Churchill" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Someday%20My%20Prince%20Will%20Come%20F.%20Churchill" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Love Me Tender</div>
             <div class="song-meta">Elvis Presley, 1956</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Love%20Me%20Tender%20Elvis%20Presley" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Love%20Me%20Tender%20Elvis%20Presley" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Black or White</div>
             <div class="song-meta">Michael Jackson, 1991</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Black%20or%20White%20Michael%20Jackson" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Black%20or%20White%20Michael%20Jackson" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -610,31 +636,32 @@
       <div class="card-head">
         <div>
           <h2>Tritonus</h2>
-          <div class="semitone-label">6 halvtoner · oppover</div>
+          <div class="semitone-label">6 halvtoner oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="58.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><line x1="51.5" y1="50.4" x2="51.5" y2="66.4" stroke="currentColor" stroke-width="1.2"/><line x1="56.5" y1="50.4" x2="56.5" y2="66.4" stroke="currentColor" stroke-width="1.2"/><line x1="49.5" y1="54.9" x2="58.5" y2="52.9" stroke="currentColor" stroke-width="1.8"/><line x1="49.5" y1="63.9" x2="58.5" y2="61.9" stroke="currentColor" stroke-width="1.8"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="58.4" rx="5.2" ry="3.7" transform="rotate(-18 68 58.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,66" aria-label="Spill av Tritonus oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="133.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 133.5)"/><use href="#acc-sharp" transform="translate(228 133.5)" fill="var(--brass-dim)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Maria (refreng)</div>
             <div class="song-meta">Leonard Bernstein, 1956</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Maria%20refreng%20Leonard%20Bernstein" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Maria%20refreng%20Leonard%20Bernstein" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">The Simpsons Theme</div>
             <div class="song-meta">Danny Elfman, 1989</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/The%20Simpsons%20Theme%20Danny%20Elfman" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/The%20Simpsons%20Theme%20Danny%20Elfman" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">The Saint</div>
             <div class="song-meta">Edwin Astley, 1997</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/The%20Saint%20Edwin%20Astley" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/The%20Saint%20Edwin%20Astley" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -642,45 +669,46 @@
       <div class="card-head">
         <div>
           <h2>Ren kvint</h2>
-          <div class="semitone-label">7 halvtoner · oppover</div>
+          <div class="semitone-label">7 halvtoner oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="52.2" rx="5.2" ry="3.7" transform="rotate(-18 68 52.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,67" aria-label="Spill av Ren kvint oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="127.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 127.0)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Scarborough Fair</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Scarborough%20Fair" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Scarborough%20Fair" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Byssan Lull</div>
             <div class="song-meta">tradisjonell, svensk</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Byssan%20Lull" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Byssan%20Lull" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Can’t Help Falling in Love</div>
             <div class="song-meta">Elvis Presley, 1961</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Cant%20Help%20Falling%20in%20Love%20Elvis%20Presley" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Cant%20Help%20Falling%20in%20Love%20Elvis%20Presley" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Perhaps Love</div>
             <div class="song-meta">John Denver, 1981</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Perhaps%20Love%20John%20Denver" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Perhaps%20Love%20John%20Denver" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Top Gun Anthem</div>
             <div class="song-meta">Harold Faltermeyer, 1986</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Top%20Gun%20Anthem%20Harold%20Faltermeyer" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Top%20Gun%20Anthem%20Harold%20Faltermeyer" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -688,45 +716,46 @@
       <div class="card-head">
         <div>
           <h2>Liten sekst</h2>
-          <div class="semitone-label">8 halvtoner · oppover</div>
+          <div class="semitone-label">8 halvtoner oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="46.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><line x1="54.0" y1="37.0" x2="54.0" y2="48.0" stroke="currentColor" stroke-width="1.4"/><path d="M 54.0 43.0 C 59.0 43.0 59.0 49.0 54.0 49.0 Z" fill="currentColor"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="46.0" rx="5.2" ry="3.7" transform="rotate(-18 68 46.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,68" aria-label="Spill av Liten sekst oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="120.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 120.5)"/><use href="#acc-flat" transform="translate(228 120.5)" fill="var(--brass-dim)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Go Down Moses</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Go%20Down%20Moses" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Go%20Down%20Moses" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Vals i ciss-moll</div>
             <div class="song-meta">Frédéric Chopin, 1847</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Vals%20i%20ciss-moll%20Fr%C3%A9d%C3%A9ric%20Chopin" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Vals%20i%20ciss-moll%20Fr%C3%A9d%C3%A9ric%20Chopin" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">In My Life</div>
             <div class="song-meta">The Beatles, 1965</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/In%20My%20Life%20The%20Beatles" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/In%20My%20Life%20The%20Beatles" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">A Town with an Ocean View</div>
             <div class="song-meta">Joe Hisaishi, 1989</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/A%20Town%20with%20an%20Ocean%20View%20Joe%20Hisaishi" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/A%20Town%20with%20an%20Ocean%20View%20Joe%20Hisaishi" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Close Every Door</div>
             <div class="song-meta">Andrew Lloyd Webber, 1991</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Close%20Every%20Door%20Andrew%20Lloyd%20Webber" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Close%20Every%20Door%20Andrew%20Lloyd%20Webber" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -734,45 +763,46 @@
       <div class="card-head">
         <div>
           <h2>Stor sekst</h2>
-          <div class="semitone-label">9 halvtoner · oppover</div>
+          <div class="semitone-label">9 halvtoner oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="46.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="46.0" rx="5.2" ry="3.7" transform="rotate(-18 68 46.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,69" aria-label="Spill av Stor sekst oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="120.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 120.5)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">My Bonnie Lies over the Ocean</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/My%20Bonnie%20Lies%20over%20the%20Ocean" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/My%20Bonnie%20Lies%20over%20the%20Ocean" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Nocturne i Ess-dur</div>
             <div class="song-meta">Frédéric Chopin, 1830</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Nocturne%20i%20Ess-dur%20Fr%C3%A9d%C3%A9ric%20Chopin" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Nocturne%20i%20Ess-dur%20Fr%C3%A9d%C3%A9ric%20Chopin" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Take the “A” Train</div>
             <div class="song-meta">Billy Strayhorn, 1939</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Take%20the%20A%20Train%20Billy%20Strayhorn" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Take%20the%20A%20Train%20Billy%20Strayhorn" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">My Way</div>
             <div class="song-meta">Frank Sinatra, 1969</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/My%20Way%20Frank%20Sinatra" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/My%20Way%20Frank%20Sinatra" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Only Love</div>
             <div class="song-meta">Nana Mouskouri, 1985</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Only%20Love%20Nana%20Mouskouri" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Only%20Love%20Nana%20Mouskouri" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -780,38 +810,39 @@
       <div class="card-head">
         <div>
           <h2>Liten septim</h2>
-          <div class="semitone-label">10 halvtoner · oppover</div>
+          <div class="semitone-label">10 halvtoner oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><line x1="54.0" y1="30.8" x2="54.0" y2="41.8" stroke="currentColor" stroke-width="1.4"/><path d="M 54.0 36.8 C 59.0 36.8 59.0 42.8 54.0 42.8 Z" fill="currentColor"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="39.8" rx="5.2" ry="3.7" transform="rotate(-18 68 39.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,70" aria-label="Spill av Liten septim oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="114.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 114.0)"/><use href="#acc-flat" transform="translate(228 114)" fill="var(--brass-dim)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Maman les p’tits bateaux</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Maman%20les%20ptits%20bateaux" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Maman%20les%20ptits%20bateaux" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Somewhere</div>
             <div class="song-meta">Leonard Bernstein, 1957</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Somewhere%20Leonard%20Bernstein" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Somewhere%20Leonard%20Bernstein" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Theme from Star Trek</div>
             <div class="song-meta">Alexander Courage, 1966</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Theme%20from%20Star%20Trek%20Alexander%20Courage" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Theme%20from%20Star%20Trek%20Alexander%20Courage" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">The Winner Takes It All (refreng)</div>
             <div class="song-meta">ABBA, 1980</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/The%20Winner%20Takes%20It%20All%20refreng%20ABBA" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/The%20Winner%20Takes%20It%20All%20refreng%20ABBA" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -819,38 +850,39 @@
       <div class="card-head">
         <div>
           <h2>Stor septim</h2>
-          <div class="semitone-label">11 halvtoner · oppover</div>
+          <div class="semitone-label">11 halvtoner oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="39.8" rx="5.2" ry="3.7" transform="rotate(-18 68 39.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,71" aria-label="Spill av Stor septim oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="114.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 114.0)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Fantasy Island Theme</div>
             <div class="song-meta">John Ottman, 1977</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Fantasy%20Island%20Theme%20John%20Ottman" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Fantasy%20Island%20Theme%20John%20Ottman" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Take on Me (refreng)</div>
             <div class="song-meta">A-ha, 1984</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Take%20on%20Me%20refreng%20A-ha" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Take%20on%20Me%20refreng%20A-ha" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Popular</div>
             <div class="song-meta">Nada Surf, 1996</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Popular%20Nada%20Surf" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Popular%20Nada%20Surf" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Don’t Know Why</div>
             <div class="song-meta">Norah Jones, 2002</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Dont%20Know%20Why%20Norah%20Jones" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Dont%20Know%20Why%20Norah%20Jones" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -858,45 +890,46 @@
       <div class="card-head">
         <div>
           <h2>Ren oktav</h2>
-          <div class="semitone-label">12 halvtoner · oppover</div>
+          <div class="semitone-label">12 halvtoner oppover</div>
         </div>
-        <div style="color:var(--brass-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="33.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="33.6" rx="5.2" ry="3.7" transform="rotate(-18 68 33.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="60,72" aria-label="Spill av Ren oktav oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="107.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 107.5)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Singin’ in the Rain</div>
             <div class="song-meta">Nacio Brown, 1929</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Singin%20in%20the%20Rain%20Nacio%20Brown" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Singin%20in%20the%20Rain%20Nacio%20Brown" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Over the Rainbow</div>
             <div class="song-meta">Harold Arlen, 1939</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Over%20the%20Rainbow%20Harold%20Arlen" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Over%20the%20Rainbow%20Harold%20Arlen" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">The Christmas Song</div>
             <div class="song-meta">Robert Wells, 1945</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/The%20Christmas%20Song%20Robert%20Wells" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/The%20Christmas%20Song%20Robert%20Wells" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Blue Bossa</div>
             <div class="song-meta">Kenny Dorham, 1963</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Blue%20Bossa%20Kenny%20Dorham" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Blue%20Bossa%20Kenny%20Dorham" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Ironic</div>
             <div class="song-meta">Alanis Morissette, 1996</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Ironic%20Alanis%20Morissette" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Ironic%20Alanis%20Morissette" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -906,45 +939,46 @@
       <div class="card-head">
         <div>
           <h2>Ren prim</h2>
-          <div class="semitone-label">0 halvtoner · nedover</div>
+          <div class="semitone-label">0 halvtoner nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="92.0" viewBox="0 0 96 92.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="77.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 68 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,72" aria-label="Spill av Ren prim nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 107.5)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">God Save the Queen</div>
             <div class="song-meta">John Bull, 1745</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/God%20Save%20the%20Queen%20John%20Bull" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/God%20Save%20the%20Queen%20John%20Bull" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Jingle Bells</div>
             <div class="song-meta">James Lord Pierpont, 1857</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Jingle%20Bells%20James%20Lord%20Pierpont" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Jingle%20Bells%20James%20Lord%20Pierpont" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Happy Birthday to You</div>
             <div class="song-meta">Mildred Hill, 1893</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Happy%20Birthday%20to%20You%20Mildred%20Hill" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Happy%20Birthday%20to%20You%20Mildred%20Hill" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Let It Be</div>
             <div class="song-meta">The Beatles, 1970</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Let%20It%20Be%20The%20Beatles" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Let%20It%20Be%20The%20Beatles" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Candle in the Wind</div>
             <div class="song-meta">Elton John, 1973</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Candle%20in%20the%20Wind%20Elton%20John" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Candle%20in%20the%20Wind%20Elton%20John" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -952,45 +986,46 @@
       <div class="card-head">
         <div>
           <h2>Liten sekund</h2>
-          <div class="semitone-label">1 halvtone · nedover</div>
+          <div class="semitone-label">1 halvtone nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="98.2" viewBox="0 0 96 98.2" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="83.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="83.2" rx="5.2" ry="3.7" transform="rotate(-18 68 83.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,71" aria-label="Spill av Liten sekund nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="114.0" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 114.0)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Joy to the World</div>
             <div class="song-meta">Isaac Watts, 1719</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Joy%20to%20the%20World%20Isaac%20Watts" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Joy%20to%20the%20World%20Isaac%20Watts" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Für Elise</div>
             <div class="song-meta">Ludwig van Beethoven, 1810</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/F%C3%BCr%20Elise%20Ludwig%20van%20Beethoven" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/F%C3%BCr%20Elise%20Ludwig%20van%20Beethoven" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Fly Me to the Moon</div>
             <div class="song-meta">Frank Sinatra, 1954</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Fly%20Me%20to%20the%20Moon%20Frank%20Sinatra" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Fly%20Me%20to%20the%20Moon%20Frank%20Sinatra" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">All My Loving</div>
             <div class="song-meta">The Beatles, 1963</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/All%20My%20Loving%20The%20Beatles" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/All%20My%20Loving%20The%20Beatles" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Fields of Gold</div>
             <div class="song-meta">Sting, 1993</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Fields%20of%20Gold%20Sting" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Fields%20of%20Gold%20Sting" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -998,45 +1033,46 @@
       <div class="card-head">
         <div>
           <h2>Stor sekund</h2>
-          <div class="semitone-label">2 halvtoner · nedover</div>
+          <div class="semitone-label">2 halvtoner nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="98.2" viewBox="0 0 96 98.2" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="83.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><line x1="54.0" y1="74.2" x2="54.0" y2="85.2" stroke="currentColor" stroke-width="1.4"/><path d="M 54.0 80.2 C 59.0 80.2 59.0 86.2 54.0 86.2 Z" fill="currentColor"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="83.2" rx="5.2" ry="3.7" transform="rotate(-18 68 83.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,70" aria-label="Spill av Stor sekund nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="114.0" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 114.0)"/><use href="#acc-flat" transform="translate(228 114)" fill="var(--slate-dim)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">The First Noel</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/The%20First%20Noel" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/The%20First%20Noel" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Mary Had a Little Lamb</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Mary%20Had%20a%20Little%20Lamb" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Mary%20Had%20a%20Little%20Lamb" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Eight Days a Week</div>
             <div class="song-meta">The Beatles, 1964</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Eight%20Days%20a%20Week%20The%20Beatles" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Eight%20Days%20a%20Week%20The%20Beatles" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Yesterday</div>
             <div class="song-meta">The Beatles, 1965</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Yesterday%20The%20Beatles" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Yesterday%20The%20Beatles" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Wonderwall</div>
             <div class="song-meta">Oasis, 1995</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Wonderwall%20Oasis" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Wonderwall%20Oasis" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -1044,45 +1080,46 @@
       <div class="card-head">
         <div>
           <h2>Liten ters</h2>
-          <div class="semitone-label">3 halvtoner · nedover</div>
+          <div class="semitone-label">3 halvtoner nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="104.4" viewBox="0 0 96 104.4" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="89.4" x2="76.0" y2="89.4" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="89.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="89.4" rx="5.2" ry="3.7" transform="rotate(-18 68 89.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,69" aria-label="Spill av Liten ters nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="120.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 120.5)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">The Star-Spangled Banner</div>
             <div class="song-meta">Francis Key, 1814</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/The%20Star-Spangled%20Banner%20Francis%20Key" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/The%20Star-Spangled%20Banner%20Francis%20Key" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Morgenstemning (Peer Gynt)</div>
             <div class="song-meta">Edvard Grieg, 1875</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Morgenstemning%20Peer%20Gynt%20Edvard%20Grieg" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Morgenstemning%20Peer%20Gynt%20Edvard%20Grieg" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Frosty the Snowman</div>
             <div class="song-meta">Walter Rollins, 1950</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Frosty%20the%20Snowman%20Walter%20Rollins" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Frosty%20the%20Snowman%20Walter%20Rollins" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Hey Jude</div>
             <div class="song-meta">The Beatles, 1968</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Hey%20Jude%20The%20Beatles" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Hey%20Jude%20The%20Beatles" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">They Don’t Care About Us</div>
             <div class="song-meta">Michael Jackson, 1996</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/They%20Dont%20Care%20About%20Us%20Michael%20Jackson" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/They%20Dont%20Care%20About%20Us%20Michael%20Jackson" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -1090,45 +1127,46 @@
       <div class="card-head">
         <div>
           <h2>Stor ters</h2>
-          <div class="semitone-label">4 halvtoner · nedover</div>
+          <div class="semitone-label">4 halvtoner nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="104.4" viewBox="0 0 96 104.4" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="89.4" x2="76.0" y2="89.4" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="89.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><line x1="54.0" y1="80.4" x2="54.0" y2="91.4" stroke="currentColor" stroke-width="1.4"/><path d="M 54.0 86.4 C 59.0 86.4 59.0 92.4 54.0 92.4 Z" fill="currentColor"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="89.4" rx="5.2" ry="3.7" transform="rotate(-18 68 89.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,68" aria-label="Spill av Stor ters nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="120.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 120.5)"/><use href="#acc-flat" transform="translate(228 120.5)" fill="var(--slate-dim)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Swing Low, Sweet Chariot</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Swing%20Low%2C%20Sweet%20Chariot" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Swing%20Low%2C%20Sweet%20Chariot" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Symfoni nr. 5</div>
             <div class="song-meta">Ludwig van Beethoven, 1804</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Symfoni%20nr.%205%20Ludwig%20van%20Beethoven" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Symfoni%20nr.%205%20Ludwig%20van%20Beethoven" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Summertime</div>
             <div class="song-meta">George Gershwin, 1935</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Summertime%20George%20Gershwin" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Summertime%20George%20Gershwin" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Giant Steps</div>
             <div class="song-meta">John Coltrane, 1960</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Giant%20Steps%20John%20Coltrane" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Giant%20Steps%20John%20Coltrane" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Tears in Heaven</div>
             <div class="song-meta">Eric Clapton, 1991</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Tears%20in%20Heaven%20Eric%20Clapton" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Tears%20in%20Heaven%20Eric%20Clapton" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -1136,45 +1174,46 @@
       <div class="card-head">
         <div>
           <h2>Ren kvart</h2>
-          <div class="semitone-label">5 halvtoner · nedover</div>
+          <div class="semitone-label">5 halvtoner nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="110.6" viewBox="0 0 96 110.6" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="89.4" x2="76.0" y2="89.4" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="95.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="95.6" rx="5.2" ry="3.7" transform="rotate(-18 68 95.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,67" aria-label="Spill av Ren kvart nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="127.0" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 127.0)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">O Come, All Ye Faithful</div>
             <div class="song-meta">John Wade, 1751</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/O%20Come%2C%20All%20Ye%20Faithful%20John%20Wade" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/O%20Come%2C%20All%20Ye%20Faithful%20John%20Wade" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Eine kleine Nachtmusik</div>
             <div class="song-meta">W.A. Mozart, 1787</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Eine%20kleine%20Nachtmusik%20W.A.%20Mozart" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Eine%20kleine%20Nachtmusik%20W.A.%20Mozart" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">I’ve Been Working on the Railroad</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Ive%20Been%20Working%20on%20the%20Railroad" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Ive%20Been%20Working%20on%20the%20Railroad" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Shave and a Haircut</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Shave%20and%20a%20Haircut" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Shave%20and%20a%20Haircut" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">All of Me</div>
             <div class="song-meta">Gerald Marks, 1931</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/All%20of%20Me%20Gerald%20Marks" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/All%20of%20Me%20Gerald%20Marks" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -1182,38 +1221,39 @@
       <div class="card-head">
         <div>
           <h2>Tritonus</h2>
-          <div class="semitone-label">6 halvtoner · nedover</div>
+          <div class="semitone-label">6 halvtoner nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="110.6" viewBox="0 0 96 110.6" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="89.4" x2="76.0" y2="89.4" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="95.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><line x1="54.0" y1="86.6" x2="54.0" y2="97.6" stroke="currentColor" stroke-width="1.4"/><path d="M 54.0 92.6 C 59.0 92.6 59.0 98.6 54.0 98.6 Z" fill="currentColor"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="95.6" rx="5.2" ry="3.7" transform="rotate(-18 68 95.6)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,66" aria-label="Spill av Tritonus nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="133.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 133.5)"/><use href="#acc-sharp" transform="translate(228 133.5)" fill="var(--slate-dim)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Blue 7</div>
             <div class="song-meta">Sonny Rollins, 1956</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Blue%207%20Sonny%20Rollins" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Blue%207%20Sonny%20Rollins" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Turn Back, O Man</div>
             <div class="song-meta">Godspell, 1971</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Turn%20Back%2C%20O%20Man%20Godspell" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Turn%20Back%2C%20O%20Man%20Godspell" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">YYZ</div>
             <div class="song-meta">Rush, 1981</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/YYZ%20Rush" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/YYZ%20Rush" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Even Flow</div>
             <div class="song-meta">Pearl Jam, 1991</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Even%20Flow%20Pearl%20Jam" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Even%20Flow%20Pearl%20Jam" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -1221,45 +1261,46 @@
       <div class="card-head">
         <div>
           <h2>Ren kvint</h2>
-          <div class="semitone-label">7 halvtoner · nedover</div>
+          <div class="semitone-label">7 halvtoner nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="116.8" viewBox="0 0 96 116.8" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="89.4" x2="76.0" y2="89.4" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="101.8" x2="76.0" y2="101.8" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="101.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="101.8" rx="5.2" ry="3.7" transform="rotate(-18 68 101.8)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,65" aria-label="Spill av Ren kvint nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="133.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 133.5)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Menuett i G-dur</div>
             <div class="song-meta">Christian Petzold, 1725</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Menuett%20i%20G-dur%20Christian%20Petzold" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Menuett%20i%20G-dur%20Christian%20Petzold" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">The Way You Look Tonight</div>
             <div class="song-meta">Dorothy Fields, 1936</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/The%20Way%20You%20Look%20Tonight%20Dorothy%20Fields" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/The%20Way%20You%20Look%20Tonight%20Dorothy%20Fields" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Have You Met Miss Jones?</div>
             <div class="song-meta">Richard Rodgers, 1937</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Have%20You%20Met%20Miss%20Jones%3F%20Richard%20Rodgers" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Have%20You%20Met%20Miss%20Jones%3F%20Richard%20Rodgers" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Flintstones Theme</div>
             <div class="song-meta">Hoyt Curtin, 1961</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Flintstones%20Theme%20Hoyt%20Curtin" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Flintstones%20Theme%20Hoyt%20Curtin" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Love Will Keep You Warm</div>
             <div class="song-meta">Swan Lee, 2004</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Love%20Will%20Keep%20You%20Warm%20Swan%20Lee" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Love%20Will%20Keep%20You%20Warm%20Swan%20Lee" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -1267,38 +1308,39 @@
       <div class="card-head">
         <div>
           <h2>Liten sekst</h2>
-          <div class="semitone-label">8 halvtoner · nedover</div>
+          <div class="semitone-label">8 halvtoner nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="123.0" viewBox="0 0 96 123.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="89.4" x2="76.0" y2="89.4" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="101.8" x2="76.0" y2="101.8" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="108.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="108.0" rx="5.2" ry="3.7" transform="rotate(-18 68 108.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,64" aria-label="Spill av Liten sekst nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="140.0" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 140.0)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Forêts paisibles</div>
             <div class="song-meta">Jean-Philippe Rameau, 1735</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/For%C3%AAts%20paisibles%20Jean-Philippe%20Rameau" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/For%C3%AAts%20paisibles%20Jean-Philippe%20Rameau" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Chega de Saudade</div>
             <div class="song-meta">Antonio Carlos Jobim, 1957</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Chega%20de%20Saudade%20Antonio%20Carlos%20Jobim" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Chega%20de%20Saudade%20Antonio%20Carlos%20Jobim" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Love Story Theme</div>
             <div class="song-meta">Francis Lai, 1970</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Love%20Story%20Theme%20Francis%20Lai" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Love%20Story%20Theme%20Francis%20Lai" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">You’re Everything</div>
             <div class="song-meta">Chick Corea, 1973</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Youre%20Everything%20Chick%20Corea" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Youre%20Everything%20Chick%20Corea" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -1306,45 +1348,46 @@
       <div class="card-head">
         <div>
           <h2>Stor sekst</h2>
-          <div class="semitone-label">9 halvtoner · nedover</div>
+          <div class="semitone-label">9 halvtoner nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="123.0" viewBox="0 0 96 123.0" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="89.4" x2="76.0" y2="89.4" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="101.8" x2="76.0" y2="101.8" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="108.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><line x1="54.0" y1="99.0" x2="54.0" y2="110.0" stroke="currentColor" stroke-width="1.4"/><path d="M 54.0 105.0 C 59.0 105.0 59.0 111.0 54.0 111.0 Z" fill="currentColor"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="108.0" rx="5.2" ry="3.7" transform="rotate(-18 68 108.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,63" aria-label="Spill av Stor sekst nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="140.0" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 140.0)"/><use href="#acc-flat" transform="translate(228 140)" fill="var(--slate-dim)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Nobody Knows the Trouble I’ve Seen</div>
             <div class="song-meta">tradisjonell</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Nobody%20Knows%20the%20Trouble%20Ive%20Seen" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Nobody%20Knows%20the%20Trouble%20Ive%20Seen" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">A Weaver of Dreams</div>
             <div class="song-meta">Nat King Cole, 1925</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/A%20Weaver%20of%20Dreams%20Nat%20King%20Cole" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/A%20Weaver%20of%20Dreams%20Nat%20King%20Cole" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">The Music of the Night</div>
             <div class="song-meta">Andrew Lloyd Webber, 1986</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/The%20Music%20of%20the%20Night%20Andrew%20Lloyd%20Webber" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/The%20Music%20of%20the%20Night%20Andrew%20Lloyd%20Webber" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Man in the Mirror (refreng)</div>
             <div class="song-meta">Michael Jackson, 1988</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Man%20in%20the%20Mirror%20refreng%20Michael%20Jackson" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Man%20in%20the%20Mirror%20refreng%20Michael%20Jackson" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">No Surprises</div>
             <div class="song-meta">Radiohead, 1997</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/No%20Surprises%20Radiohead" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/No%20Surprises%20Radiohead" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -1352,31 +1395,32 @@
       <div class="card-head">
         <div>
           <h2>Liten septim</h2>
-          <div class="semitone-label">10 halvtoner · nedover</div>
+          <div class="semitone-label">10 halvtoner nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="129.2" viewBox="0 0 96 129.2" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="89.4" x2="76.0" y2="89.4" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="101.8" x2="76.0" y2="101.8" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="114.2" x2="76.0" y2="114.2" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="114.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="114.2" rx="5.2" ry="3.7" transform="rotate(-18 68 114.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,62" aria-label="Spill av Liten septim nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="146.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 146.5)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">An American in Paris</div>
             <div class="song-meta">George Gershwin, 1951</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/An%20American%20in%20Paris%20George%20Gershwin" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/An%20American%20in%20Paris%20George%20Gershwin" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Watermelon Man</div>
             <div class="song-meta">Herbie Hancock, 1962</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Watermelon%20Man%20Herbie%20Hancock" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Watermelon%20Man%20Herbie%20Hancock" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Lady Jane (refreng)</div>
             <div class="song-meta">Rolling Stones, 1966</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Lady%20Jane%20refreng%20Rolling%20Stones" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Lady%20Jane%20refreng%20Rolling%20Stones" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -1384,17 +1428,18 @@
       <div class="card-head">
         <div>
           <h2>Stor septim</h2>
-          <div class="semitone-label">11 halvtoner · nedover</div>
+          <div class="semitone-label">11 halvtoner nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="129.2" viewBox="0 0 96 129.2" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="89.4" x2="76.0" y2="89.4" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="101.8" x2="76.0" y2="101.8" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="114.2" x2="76.0" y2="114.2" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="114.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><line x1="54.0" y1="105.2" x2="54.0" y2="116.2" stroke="currentColor" stroke-width="1.4"/><path d="M 54.0 111.2 C 59.0 111.2 59.0 117.2 54.0 117.2 Z" fill="currentColor"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="114.2" rx="5.2" ry="3.7" transform="rotate(-18 68 114.2)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,61" aria-label="Spill av Stor septim nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="146.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 146.5)"/><use href="#acc-flat" transform="translate(228 146.5)" fill="var(--slate-dim)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">I Love You</div>
             <div class="song-meta">Cole Porter, 1944</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/I%20Love%20You%20Cole%20Porter" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/I%20Love%20You%20Cole%20Porter" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -1402,38 +1447,39 @@
       <div class="card-head">
         <div>
           <h2>Ren oktav</h2>
-          <div class="semitone-label">12 halvtoner · nedover</div>
+          <div class="semitone-label">12 halvtoner nedover</div>
         </div>
-        <div style="color:var(--slate-dim)"><svg width="96" height="135.4" viewBox="0 0 96 135.4" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="64.6" x2="84" y2="64.6" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="52.2" x2="84" y2="52.2" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="39.8" x2="84" y2="39.8" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="27.4" x2="84" y2="27.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="12" y1="15.0" x2="84" y2="15.0" stroke="currentColor" stroke-opacity="0.4" stroke-width="1"/><line x1="20.0" y1="77.0" x2="36.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="77.0" x2="76.0" y2="77.0" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="89.4" x2="76.0" y2="89.4" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="101.8" x2="76.0" y2="101.8" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="60.0" y1="114.2" x2="76.0" y2="114.2" stroke="currentColor" stroke-opacity="0.55" stroke-width="1"/><line x1="35" y1="77.0" x2="61" y2="120.4" stroke="currentColor" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 2"/><ellipse cx="28" cy="77.0" rx="5.2" ry="3.7" transform="rotate(-18 28 77.0)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/><ellipse cx="68" cy="120.4" rx="5.2" ry="3.7" transform="rotate(-18 68 120.4)" fill="#F6F1E7" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <button class="play-btn" data-notes="72,60" aria-label="Spill av Ren oktav nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
+      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><line x1="236" y1="153.0" x2="264" y2="153.0" stroke="var(--slate-dim)" stroke-width="1.3"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="153.0" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 153.0)"/></svg></div>
       <ul class="songs">
         <li>
           <div class="song-info">
             <div class="song-title">Willow Weep for Me</div>
             <div class="song-meta">Ann Ronell, 1932</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Willow%20Weep%20for%20Me%20Ann%20Ronell" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Willow%20Weep%20for%20Me%20Ann%20Ronell" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Doogie Howser Theme</div>
             <div class="song-meta">Mike Post, 1989</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Doogie%20Howser%20Theme%20Mike%20Post" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Doogie%20Howser%20Theme%20Mike%20Post" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">Todos los días un poco</div>
             <div class="song-meta">León Gieco, 1993</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/Todos%20los%20d%C3%ADas%20un%20poco%20Le%C3%B3n%20Gieco" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/Todos%20los%20d%C3%ADas%20un%20poco%20Le%C3%B3n%20Gieco" target="_blank" rel="noopener">Spotify</a>
         </li>
         <li>
           <div class="song-info">
             <div class="song-title">To Zanarkand</div>
             <div class="song-meta">Nobuo Uematsu, 2002</div>
           </div>
-          <a class="spotify-link" href="https://open.spotify.com/search/To%20Zanarkand%20Nobuo%20Uematsu" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="spotify-link" href="https://open.spotify.com/search/To%20Zanarkand%20Nobuo%20Uematsu" target="_blank" rel="noopener">Spotify</a>
         </li>
       </ul>
     </div>
@@ -1444,5 +1490,7 @@
   Merk: Spotify-lenkene fører til søk på tittel/komponist, ikke bekreftede direktelenker til én bestemt innspilling. Klikk deg videre til riktig versjon i søkeresultatet.
 </footer>
 
+<script>window.VBM_LYD={step:0.70,noteDur:1.4,chordDur:3.2,gap1:0.35,gap2:0.55};</script>
+<script src="lyd.js"></script>
 </body>
 </html>

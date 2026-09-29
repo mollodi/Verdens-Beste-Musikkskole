@@ -209,6 +209,7 @@
     + '.vbm-instr-float{position:fixed;z-index:50;right:max(14px,env(safe-area-inset-right,0px));'
     + 'bottom:calc(14px + env(safe-area-inset-bottom,0px));box-shadow:0 4px 18px rgba(0,0,0,.18)}'
     + '.play-btn.loading{opacity:.65}'
+    + '@media (forced-colors: active){.vbm-instr button[aria-pressed="true"]{forced-color-adjust:none;background:Highlight;color:HighlightText}.vbm-instr button[aria-pressed="true"] span{filter:none}}'
     + '@media print{.vbm-instr{display:none!important}}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
