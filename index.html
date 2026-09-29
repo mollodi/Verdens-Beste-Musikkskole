@@ -61,11 +61,13 @@ h2 em{ font-style:italic; font-weight:500; color:var(--brass); }
 .open{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12px; font-weight:600;
   letter-spacing:.04em; text-transform:uppercase; color:var(--text-on-paper); }
 .card:hover span.open{ color:var(--brass); }
-.card:hover .open.two{ color:var(--text-on-paper); }
 a.open{ position:relative; z-index:1; text-decoration:none; }
 a.open.two:hover,a.open.two:focus-visible{ color:var(--brass); }
-.card-extra{ position:relative; z-index:1; font-size:13px; color:var(--text-muted); text-underline-offset:3px; }
-.card-extra:hover{ color:var(--text-on-paper); }
+.card-top{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+.new{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:10.5px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--paper); background:var(--brass);
+  border-radius:999px; padding:3px 8px; margin:0 0 10px; white-space:nowrap; }
+.empty{ color:rgba(246,241,231,.72); font-size:15px; line-height:1.6; padding-top:44px; }
 
 footer .credits{ flex-basis:100%; font-size:11px; opacity:.8; }
 footer{ max-width:980px; margin:0 auto; padding:28px 20px 48px; border-top:1px solid var(--rule-dark);
@@ -87,61 +89,47 @@ footer{ max-width:980px; margin:0 auto; padding:28px 20px 48px; border-top:1px s
   </div>
 </header>
 
-<main>
-<section>
-  <p class="eyebrow">Juksebøker</p>
-  <h2>Bøker til <em>oppslag</em></h2>
-  <p class="lede">Oppslagsverk med ekte noter i C. Trykk på spill-knappen for å høre, på piano, gitar eller strykere.</p>
-  <div class="grid">
-    <article class="card">
-  <p class="card-eyebrow">25 intervaller</p>
-  <h3>Intervall-jukseboka</h3>
-  <p class="card-desc">Alle intervaller fra ren prim til dobbel oktav, med begge navn over oktaven.</p>
-  <div class="card-foot"><a class="open two" href="intervaller.html">Åpne i farger</a><a class="open two" href="intervaller-svart-hvitt.html">Åpne i svart-hvitt</a></div>
-</article>
-    <article class="card">
-  <p class="card-eyebrow">34 akkorder</p>
-  <h3>Den ultimate jukseboka for akkorder og intervaller</h3>
-  <p class="card-desc">Fire kapitler, fra treklanger til 13-akkorder, kvartalakkorder og mer.</p>
-  <div class="card-foot"><a class="open two" href="akkorder-og-intervaller.html">Åpne i farger</a><a class="open two" href="akkorder-og-intervaller-svart-hvitt.html">Åpne i svart-hvitt</a></div>
-</article>
-  </div>
-</section>
-
-<section>
-  <p class="eyebrow">Øretrening</p>
-  <h2>Hør og <em>lytt</em></h2>
-  <p class="lede">Kjente sanger og verk som viser lyden av intervaller og akkorder.</p>
-  <div class="grid">
-    <article class="card">
-  <p class="card-eyebrow">Intervaller</p>
-  <h3><a class="card-link" href="intervaller-og-sanger.html">Intervaller &amp; sanger</a></h3>
-  <p class="card-desc">Hvert intervall oppover og nedover, med eksempelsanger og Spotify-lenker.</p>
-  <div class="card-foot"><span class="open">Åpne</span></div>
-</article>
-    <article class="card">
-  <p class="card-eyebrow">Lytteguide, på engelsk</p>
-  <h3><a class="card-link" href="lytteguide-septim-og-nonakkorder.html">Dominant &amp; Major 7th/9th Chords</a></h3>
-  <p class="card-desc">Septim- og nonakkorder hos Chopin, Debussy, Hendrix og James Brown.</p>
-  <div class="card-foot"><span class="open">Åpne</span></div>
-</article>
-  </div>
-</section>
-
-<section>
-  <p class="eyebrow">Elevhefter</p>
-  <h2>Hefter til <em>timen</em></h2>
-  <p class="lede">Arbeidshefter til bruk i undervisningen.</p>
-  <div class="grid">
-    <article class="card">
-  <p class="card-eyebrow">Treklanger</p>
-  <h3><a class="card-link" href="akkordhefte.html">Akkordhefte</a></h3>
-  <p class="card-desc">Treklanger, trinnakkorder og diatonisk harmoni, med harmonisk moll.</p>
-  <div class="card-foot"><span class="open">Åpne</span></div>
-</article>
-  </div>
-</section>
+<main id="innhold">
+<noscript><p class="empty">Slå på JavaScript i nettleseren for å se innholdet.</p></noscript>
 </main>
+<!-- Innholdet på startsiden kommer fra materialer.js. Denne filen trenger du ikke endre. -->
+<script src="materialer.js"></script>
+<script>
+(function(){
+  var main = document.getElementById('innhold');
+  var data = window.VBM;
+  if (!data) { main.insertAdjacentHTML('beforeend', '<p class="empty">Fant ikke materialer.js. Sjekk at filen ligger på GitHub ved siden av index.html.</p>'); return; }
+  function esc(t){ return String(t == null ? '' : t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function isNew(d){
+    if (!d) return false;
+    var t = new Date(d + 'T00:00:00').getTime();
+    return !isNaN(t) && Date.now() - t < 30 * 864e5 && Date.now() >= t;
+  }
+  function card(m){
+    var top = '<div class="card-top"><p class="card-eyebrow">' + esc(m.merke) + '</p>' + (isNew(m.lagtTil) ? '<p class="new">Nytt</p>' : '') + '</div>';
+    var fil = encodeURI(m.fil);
+    if (m.svartHvitt) {
+      return '<article class="card">' + top + '<h3>' + esc(m.tittel) + '</h3>' +
+        '<p class="card-desc">' + esc(m.beskrivelse) + '</p>' +
+        '<div class="card-foot"><a class="open two" href="' + fil + '">Åpne i farger</a>' +
+        '<a class="open two" href="' + fil + '?svart-hvitt">Åpne i svart-hvitt</a></div></article>';
+    }
+    return '<article class="card">' + top + '<h3><a class="card-link" href="' + fil + '">' + esc(m.tittel) + '</a></h3>' +
+      '<p class="card-desc">' + esc(m.beskrivelse) + '</p>' +
+      '<div class="card-foot"><span class="open">Åpne</span></div></article>';
+  }
+  var html = '';
+  (data.seksjoner || []).forEach(function(sek){
+    var items = (data.materialer || []).filter(function(m){ return m.seksjon === sek.id && !m.skjult; });
+    if (!items.length) return;
+    html += '<section><p class="eyebrow">' + esc(sek.overskrift) + '</p>' +
+      '<h2>' + esc(sek.tittel) + (sek.uthevet ? ' <em>' + esc(sek.uthevet) + '</em>' : '') + '</h2>' +
+      (sek.ingress ? '<p class="lede">' + esc(sek.ingress) + '</p>' : '') +
+      '<div class="grid">' + items.map(card).join('') + '</div></section>';
+  });
+  main.insertAdjacentHTML('beforeend', html);
+})();
+</script>
 
 <footer><span>Levert av Verdens Beste Musikklærer</span><span>&copy; 2026 Verdens Beste Musikkskole</span><span class="credits">Lyd: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Gitar, fiolin og cello fra tonejs-instruments av Nicholas Brosowsky (CC BY 3.0).</span></footer>
 </body>

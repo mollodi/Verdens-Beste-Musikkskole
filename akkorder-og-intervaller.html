@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="no" data-svart-hvitt>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -212,6 +212,60 @@
   }
 </style>
 <style>.vbm-back{max-width:60rem;margin:0 auto;padding:.9rem 1.25rem 0;position:relative;z-index:5;color:inherit;font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.vbm-back a{color:inherit;opacity:.8;text-underline-offset:3px;text-decoration-thickness:1px}.vbm-back a:hover,.vbm-back a:focus-visible{opacity:1}.vbm-back--book{max-width:none;margin:0 0 32px;padding:0;font-size:15px}@media print{.vbm-back{display:none!important}}</style>
+<style>
+  /* Svart-hvitt-versjon (slås på av side.js med ?svart-hvitt) */
+  html.sh{
+    --blue:var(--ink-soft) !important;
+    --blue-dk:var(--ink-soft) !important;
+    --blue-lt:var(--ink-soft) !important;
+    --crimson:var(--ink-soft) !important;
+    --green:var(--ink-soft) !important;
+    --green-dk:var(--ink-soft) !important;
+    --green-lt:var(--ink-soft) !important;
+    --indigo:var(--ink-soft) !important;
+    --indigo-dk:var(--ink-soft) !important;
+    --indigo-lt:var(--ink-soft) !important;
+    --magenta:var(--ink-soft) !important;
+    --octave:var(--ink-soft) !important;
+    --orange:var(--ink-soft) !important;
+    --orange-dk:var(--ink-soft) !important;
+    --orange-lt:var(--ink-soft) !important;
+    --purple:var(--ink-soft) !important;
+    --red:var(--ink-soft) !important;
+    --red-dk:var(--ink-soft) !important;
+    --red-lt:var(--ink-soft) !important;
+    --rose:var(--ink-soft) !important;
+    --taupe:var(--ink-soft) !important;
+    --teal:var(--ink-soft) !important;
+    --violet:var(--ink-soft) !important;
+    --violet-dk:var(--ink-soft) !important;
+    --violet-lt:var(--ink-soft) !important;
+    --yellow:var(--ink-soft) !important;
+    --yellow-dk:var(--ink-soft) !important;
+    --yellow-lt:var(--ink-soft) !important;
+    --blue-ink:var(--ink) !important;
+    --crimson-ink:var(--ink) !important;
+    --green-ink:var(--ink) !important;
+    --indigo-dk-ink:var(--ink) !important;
+    --indigo-ink:var(--ink) !important;
+    --magenta-ink:var(--ink) !important;
+    --octave-ink:var(--ink) !important;
+    --orange-dk-ink:var(--ink) !important;
+    --orange-ink:var(--ink) !important;
+    --purple-ink:var(--ink) !important;
+    --red-ink:var(--ink) !important;
+    --rose-ink:var(--ink) !important;
+    --taupe-ink:var(--ink) !important;
+    --teal-ink:var(--ink) !important;
+    --violet-dk-ink:var(--ink) !important;
+    --violet-ink:var(--ink) !important;
+    --yellow-dk-ink:var(--ink) !important;
+    --yellow-ink:var(--ink) !important;
+  }
+  html.sh svg ellipse{ fill:var(--ink) !important; }
+  html.sh .legend, html.sh .cover-band{ display:none !important; }
+</style>
+<script src="side.js"></script>
 </head>
 <body>
 <main>
@@ -231,13 +285,13 @@
   <div class="cover-bottom">Verdens Beste Musikklærer &nbsp;·&nbsp; 2026</div>
 </section>
   <h1>Den ultimate jukseboka for akkorder og intervaller</h1>
-  <p class="lede">Hver akkord under vises på tre måter: ekte notasjon i C, en halvtone-for-halvtone-linjal som viser nøyaktig hvordan hvert intervall måles, og — der det er relevant — de mindre akkordene som gjemmer seg inni den store. Fargene følger Newtons fargespekter, utvidet med lysere nyanser for ♯ og mørkere nyanser for ♭. Det engelske navnet står i parentes ved siden av hvert akkordnavn, så boka fungerer på begge språk.</p>
+  <p class="lede">Hver akkord under vises på tre måter: ekte notasjon i C, en halvtone-for-halvtone-linjal som viser nøyaktig hvordan hvert intervall måles, og — der det er relevant — de mindre akkordene som gjemmer seg inni den store. <span class="kun-farge">Fargene følger Newtons fargespekter, utvidet med lysere nyanser for ♯ og mørkere nyanser for ♭. </span>Det engelske navnet står i parentes ved siden av hvert akkordnavn, så boka fungerer på begge språk.</p>
   <p class="lede" style="margin-top:-14px;"><strong>Om tonenavn:</strong> boka bruker skandinavisk/tysk navnebruk — H er tonen engelsktalende kaller B (h-moll = B minor), mens B hos oss betyr B♭ (B-dur = B♭ major). Altså: engelsk B = norsk H, og engelsk B♭ = norsk B.</p>
-  <p class="lede" style="margin-top:-14px;"><strong>Om fargene:</strong> hver tone har sin farge fra Newtons regnbue, slik solresol bruker dem: C rød, D oransje, E gul, F grønn, G blå, A indigo og H fiolett. Spekteret er utvidet med nyanser: ♯ gir en lysere og ♭ en mørkere utgave av fargen. Intervallene får fargen til tonen de lander på fra C — en ters (C–E) er gul, en kvint (C–G) blå. På samme måte er liten variant mørkere enn stor, og over oktaven gjentas fargene.</p>
+  <p class="lede kun-farge" style="margin-top:-14px;"><strong>Om fargene:</strong> hver tone har sin farge fra Newtons regnbue, slik solresol bruker dem: C rød, D oransje, E gul, F grønn, G blå, A indigo og H fiolett. Spekteret er utvidet med nyanser: ♯ gir en lysere og ♭ en mørkere utgave av fargen. Intervallene får fargen til tonen de lander på fra C — en ters (C–E) er gul, en kvint (C–G) blå. På samme måte er liten variant mørkere enn stor, og over oktaven gjentas fargene.</p>
 
   <section class="group">
     <h2 class="group-title">Slik virker linjalen</h2>
-    <p class="group-note">En halvtone er det minste trinnet i vestlig musikk — ett bånd på en gitar, én tangent over på et piano, svart eller hvit. Linjen under viser alle 12 halvtonene fra en grunntone opp til oktaven; de små prikkene markerer halvtonene mellom notene. Hver fargede stolpe lenger ned i boka er bygget på akkurat denne linjalen.</p>
+    <p class="group-note">En halvtone er det minste trinnet i vestlig musikk — ett bånd på en gitar, én tangent over på et piano, svart eller hvit. Linjen under viser alle 12 halvtonene fra en grunntone opp til oktaven; de små prikkene markerer halvtonene mellom notene. Hver <span class="kun-farge">fargede </span>stolpe lenger ned i boka er bygget på akkurat denne linjalen.</p>
     <svg viewBox="0 0 660 228" style="width:100%;height:auto;display:block;margin-top:10px;"><text class="deg" x="40" y="37">1</text><text class="deg" x="176" y="37">3</text><text class="deg" x="278" y="37">5</text><text class="deg" x="448" y="37">8</text><line x1="40" y1="52" x2="176" y2="52" stroke="var(--yellow)" stroke-width="13" stroke-linecap="round"/><circle class="tick" cx="74" cy="52" r="3"/><circle class="tick" cx="108" cy="52" r="3"/><circle class="tick" cx="142" cy="52" r="3"/><line x1="176" y1="52" x2="278" y2="52" stroke="var(--yellow-dk)" stroke-width="13" stroke-linecap="round"/><circle class="tick" cx="210" cy="52" r="3"/><circle class="tick" cx="244" cy="52" r="3"/><line x1="278" y1="52" x2="448" y2="52" stroke="var(--green)" stroke-width="13" stroke-linecap="round"/><circle class="tick" cx="312" cy="52" r="3"/><circle class="tick" cx="346" cy="52" r="3"/><circle class="tick" cx="380" cy="52" r="3"/><circle class="tick" cx="414" cy="52" r="3"/><circle class="note" cx="40" cy="52" r="8"/><circle class="note" cx="176" cy="52" r="8"/><circle class="note" cx="278" cy="52" r="8"/><circle class="note" cx="448" cy="52" r="8"/><path class="bracket" stroke="var(--yellow)" d="M40 90 L40 97 L176 97 L176 90"/><text class="blabel" x="108.0" y="116" fill="var(--yellow-ink)">stor ters — 4 halvtoner</text><path class="bracket" stroke="var(--blue)" d="M40 126 L40 133 L278 133 L278 126"/><text class="blabel" x="159.0" y="152" fill="var(--blue-ink)">ren kvint — 7 halvtoner</text><path class="bracket" stroke="var(--red)" d="M40 162 L40 169 L448 169 L448 162"/><text class="blabel" x="244.0" y="188" fill="var(--red-ink)">ren oktav — 12 halvtoner</text></svg>
   </section>
 

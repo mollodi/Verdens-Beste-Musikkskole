@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="no" data-svart-hvitt>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -100,6 +100,60 @@
   @media print { .play-btn{display:none;} body{padding:20px;} }
 </style>
 <style>.vbm-back{max-width:60rem;margin:0 auto;padding:.9rem 1.25rem 0;position:relative;z-index:5;color:inherit;font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.vbm-back a{color:inherit;opacity:.8;text-underline-offset:3px;text-decoration-thickness:1px}.vbm-back a:hover,.vbm-back a:focus-visible{opacity:1}.vbm-back--book{max-width:none;margin:0 0 32px;padding:0;font-size:15px}@media print{.vbm-back{display:none!important}}</style>
+<style>
+  /* Svart-hvitt-versjon (slås på av side.js med ?svart-hvitt) */
+  html.sh{
+    --blue:var(--ink-soft) !important;
+    --blue-dk:var(--ink-soft) !important;
+    --blue-lt:var(--ink-soft) !important;
+    --crimson:var(--ink-soft) !important;
+    --green:var(--ink-soft) !important;
+    --green-dk:var(--ink-soft) !important;
+    --green-lt:var(--ink-soft) !important;
+    --indigo:var(--ink-soft) !important;
+    --indigo-dk:var(--ink-soft) !important;
+    --indigo-lt:var(--ink-soft) !important;
+    --magenta:var(--ink-soft) !important;
+    --octave:var(--ink-soft) !important;
+    --orange:var(--ink-soft) !important;
+    --orange-dk:var(--ink-soft) !important;
+    --orange-lt:var(--ink-soft) !important;
+    --purple:var(--ink-soft) !important;
+    --red:var(--ink-soft) !important;
+    --red-dk:var(--ink-soft) !important;
+    --red-lt:var(--ink-soft) !important;
+    --rose:var(--ink-soft) !important;
+    --taupe:var(--ink-soft) !important;
+    --teal:var(--ink-soft) !important;
+    --violet:var(--ink-soft) !important;
+    --violet-dk:var(--ink-soft) !important;
+    --violet-lt:var(--ink-soft) !important;
+    --yellow:var(--ink-soft) !important;
+    --yellow-dk:var(--ink-soft) !important;
+    --yellow-lt:var(--ink-soft) !important;
+    --blue-ink:var(--ink) !important;
+    --crimson-ink:var(--ink) !important;
+    --green-ink:var(--ink) !important;
+    --indigo-dk-ink:var(--ink) !important;
+    --indigo-ink:var(--ink) !important;
+    --magenta-ink:var(--ink) !important;
+    --octave-ink:var(--ink) !important;
+    --orange-dk-ink:var(--ink) !important;
+    --orange-ink:var(--ink) !important;
+    --purple-ink:var(--ink) !important;
+    --red-ink:var(--ink) !important;
+    --rose-ink:var(--ink) !important;
+    --taupe-ink:var(--ink) !important;
+    --teal-ink:var(--ink) !important;
+    --violet-dk-ink:var(--ink) !important;
+    --violet-ink:var(--ink) !important;
+    --yellow-dk-ink:var(--ink) !important;
+    --yellow-ink:var(--ink) !important;
+  }
+  html.sh svg ellipse{ fill:var(--ink) !important; }
+  html.sh .legend, html.sh .cover-band{ display:none !important; }
+</style>
+<script src="side.js"></script>
 </head>
 <body>
 <main>
@@ -108,8 +162,8 @@
 
 
   <h1>Intervall-jukseboka</h1>
-  <p class="lede">Alle intervaller fra ren prim til dobbel oktav — to oktaver, 25 avstander i alt. Samme fargesystem, samme linjal-stil og samme H/B-navnebruk som i akkordboka: engelsk B = norsk H, engelsk B♭ = norsk B. Trykk på spill-knappen for å høre intervallet.</p>
-  <p class="lede" style="margin-top:-14px;"><strong>Om fargene:</strong> hver tone har sin farge fra Newtons regnbue, slik solresol bruker dem: C rød, D oransje, E gul, F grønn, G blå, A indigo og H fiolett. Spekteret er utvidet med nyanser: ♯ gir en lysere og ♭ en mørkere utgave av fargen. Intervallene får fargen til tonen de lander på fra C — en ters (C–E) er gul, en kvint (C–G) blå. På samme måte er liten variant mørkere enn stor, og over oktaven gjentas fargene.</p>
+  <p class="lede">Alle intervaller fra ren prim til dobbel oktav — to oktaver, 25 avstander i alt. <span class="kun-farge">Samme fargesystem, samme</span><span class="kun-sh">Samme</span> linjal-stil og samme H/B-navnebruk som i akkordboka: engelsk B = norsk H, engelsk B♭ = norsk B. Trykk på spill-knappen for å høre intervallet.</p>
+  <p class="lede kun-farge" style="margin-top:-14px;"><strong>Om fargene:</strong> hver tone har sin farge fra Newtons regnbue, slik solresol bruker dem: C rød, D oransje, E gul, F grønn, G blå, A indigo og H fiolett. Spekteret er utvidet med nyanser: ♯ gir en lysere og ♭ en mørkere utgave av fargen. Intervallene får fargen til tonen de lander på fra C — en ters (C–E) er gul, en kvint (C–G) blå. På samme måte er liten variant mørkere enn stor, og over oktaven gjentas fargene.</p>
 
   <div class="legend">
     <p class="legend-label">Intervallfarger (stolper og klammer)</p>
