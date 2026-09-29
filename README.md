@@ -20,10 +20,10 @@ Gratis undervisningsmateriell i musikkteori for elever og lærere. Alt har ekte 
 - **Akkordhefte**: treklanger, trinnakkorder og diatonisk harmoni, med harmonisk moll.
 
 ## Lyd
-I juksebøkene kan du velge mellom **piano** og **gitar** med knappen nederst til høyre. Når du trykker på en ny spill-knapp, stopper lyden som spiller. Trykk på samme knapp igjen for å stoppe.
+I juksebøkene kan du velge mellom **piano**, **gitar** og **strykere** med knappen nederst til høyre. Når du trykker på en ny spill-knapp, stopper lyden som spiller. Trykk på samme knapp igjen for å stoppe.
 
 - Piano: Salamander Grand Piano av Alexander Holm, CC BY 3.0
-- Gitar: akustisk gitar fra [tonejs-instruments](https://github.com/nbrosowsky/tonejs-instruments) av Nicholas Brosowsky
+- Gitar og strykere: akustisk gitar, fiolin og cello fra [tonejs-instruments](https://github.com/nbrosowsky/tonejs-instruments) av Nicholas Brosowsky, CC BY 3.0
 
 ## Om navnene på tonene
 Materiellet bruker norsk tonenavn: **H** er engelsk B, og **B** er engelsk B♭.
