@@ -25,8 +25,24 @@ I juksebøkene kan du velge mellom **piano**, **gitar** og **strykere** med knap
 - Piano: Salamander Grand Piano av Alexander Holm, CC BY 3.0
 - Gitar og strykere: akustisk gitar, fiolin og cello fra [tonejs-instruments](https://github.com/nbrosowsky/tonejs-instruments) av Nicholas Brosowsky, CC BY 3.0
 
+## Farger og svart-hvitt
+Juksebøkene har en bryter øverst: **Farger | Svart-hvitt**. Svart-hvitt passer godt til utskrift. Lenke rett til svart-hvitt: legg til `?svart-hvitt` bak filnavnet, for eksempel `intervaller.html?svart-hvitt`.
+
 ## Om navnene på tonene
 Materiellet bruker norsk tonenavn: **H** er engelsk B, og **B** er engelsk B♭.
+
+## Slik er nettsiden bygget (for vedlikehold)
+
+| Fil | Hva den gjør | Endres |
+|---|---|---|
+| `materialer.js` | Listen over alt materiell. Startsiden lages ut fra denne. | Hver gang noe nytt legges til |
+| `index.html` | Startsiden (forsiden med notelinjen). | Sjelden |
+| `lyd.js` | Felles lyd: piano, gitar og strykere. | Sjelden |
+| `side.js` | Felles bryter for farger og svart-hvitt. | Sjelden |
+| `*.html` | Ett materiell per fil. | Når materiellet endres |
+| `*-svart-hvitt.html` | Små filer som sender gamle lenker videre. Ikke slett dem. | Aldri |
+
+**Legge til nytt materiell:** last opp den nye `.html`-filen, og last opp den nye `materialer.js`. Ingen andre filer trenger å endres.
 
 ---
 
