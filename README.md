@@ -4,7 +4,7 @@
 
 👉 **Åpne nettsiden:** https://mollodi.github.io/Verdens-Beste-Musikkskole/
 
-Gratis undervisningsmateriell i musikkteori for elever og lærere. Alt har ekte notasjon, og mye kan spilles av direkte i nettleseren eller høres på Spotify.
+Gratis undervisningsmateriell i musikkteori for elever og lærere. Juksebøkene og lytteguidene har ekte notasjon. Juksebøkene kan spilles av direkte i nettleseren, og lytteguidene har Spotify-lenker til hver sang.
 
 ## Innhold
 
@@ -30,19 +30,6 @@ Juksebøkene har en bryter øverst: **Farger | Svart-hvitt**. Svart-hvitt passer
 
 ## Om navnene på tonene
 Materiellet bruker norsk tonenavn: **H** er engelsk B, og **B** er engelsk B♭.
-
-## Slik er nettsiden bygget (for vedlikehold)
-
-| Fil | Hva den gjør | Endres |
-|---|---|---|
-| `materialer.js` | Listen over alt materiell. Startsiden lages ut fra denne. | Hver gang noe nytt legges til |
-| `index.html` | Startsiden (forsiden med notelinjen). | Sjelden |
-| `lyd.js` | Felles lyd: piano, gitar og strykere. | Sjelden |
-| `side.js` | Felles bryter for farger og svart-hvitt. | Sjelden |
-| `*.html` | Ett materiell per fil. | Når materiellet endres |
-| `*-svart-hvitt.html` | Små filer som sender gamle lenker videre. Ikke slett dem. | Aldri |
-
-**Legge til nytt materiell:** last opp den nye `.html`-filen, og last opp den nye `materialer.js`. Ingen andre filer trenger å endres.
 
 ---
 
