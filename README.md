@@ -25,9 +25,6 @@ I juksebøkene kan du velge mellom **piano**, **gitar** og **strykere** med knap
 - Piano: Salamander Grand Piano av Alexander Holm, CC BY 3.0
 - Gitar og strykere: akustisk gitar, fiolin og cello fra [tonejs-instruments](https://github.com/nbrosowsky/tonejs-instruments) av Nicholas Brosowsky, CC BY 3.0
 
-## Farger og svart-hvitt
-Juksebøkene har en bryter øverst: **Farger | Svart-hvitt**. Svart-hvitt passer godt til utskrift. Lenke rett til svart-hvitt: legg til `?svart-hvitt` bak filnavnet, for eksempel `intervaller.html?svart-hvitt`.
-
 ## Om navnene på tonene
 Materiellet bruker norsk tonenavn: **H** er engelsk B, og **B** er engelsk B♭.
 
