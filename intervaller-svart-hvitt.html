@@ -403,63 +403,7 @@
   </footer>
 
 </main>
-<script>
-(function(){
-  var AudioCtx = window.AudioContext || window.webkitAudioContext;
-  var ctx = null;
-  var pianoWave = null;
-  function ensureCtx(){
-    if(!ctx){
-      ctx = new AudioCtx();
-      var real = new Float32Array(8);
-      var imag = new Float32Array([0, 1, 0.42, 0.20, 0.10, 0.05, 0.025, 0.012]);
-      pianoWave = ctx.createPeriodicWave(real, imag, {disableNormalization:false});
-    }
-    return ctx;
-  }
-  function freq(midi){ return 440 * Math.pow(2, (midi-69)/12); }
-  function tone(c, m, t0, dur, gainPeak){
-    var osc = c.createOscillator();
-    var filt = c.createBiquadFilter();
-    var g = c.createGain();
-    osc.setPeriodicWave(pianoWave);
-    osc.frequency.value = freq(m);
-    filt.type = 'highpass'; filt.frequency.value = 180; filt.Q.value = 0.6;
-    osc.connect(filt); filt.connect(g); g.connect(c.destination);
-    g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(gainPeak, t0+0.012);
-    g.gain.exponentialRampToValueAtTime(Math.max(gainPeak*0.16, 0.0005), t0+dur*0.4);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0+dur);
-    osc.start(t0); osc.stop(t0+dur+0.03);
-  }
-  function playChord(notes, btn){
-    var c = ensureCtx();
-    if (c.state === 'suspended') c.resume();
-    var t = c.currentTime + 0.05;
-    var step = 0.70; var noteDur = 1.4;
-    var g = 0.20;
-    notes.forEach(function(m,i){ tone(c, m, t + i*step, noteDur, g); });
-    var t2 = t + notes.length*step + 0.35;
-    var rev = notes.slice().reverse();
-    rev.forEach(function(m,i){ tone(c, m, t2 + i*step, noteDur, g); });
-    var t3 = t2 + rev.length*step + 0.55;
-    notes.forEach(function(m){ tone(c, m, t3, 3.2, g*0.9); });
-    var total = (t3 + 3.3) - c.currentTime;
-    if (btn){ btn.classList.add('playing'); setTimeout(function(){ btn.classList.remove('playing'); }, total*1000); }
-  }
-  document.addEventListener('click', function(e){
-    var btn = e.target.closest('.play-btn');
-    if(!btn) return;
-    var notes = btn.getAttribute('data-notes').split(',').map(Number);
-    playChord(notes, btn);
-  });
-  function unlockAudio(){
-    var c = ensureCtx();
-    if (c.state === 'suspended') c.resume();
-    document.removeEventListener('touchstart', unlockAudio);
-  }
-  document.addEventListener('touchstart', unlockAudio, {once:true});
-})();
-</script>
+<script>window.VBM_LYD={step:0.70,noteDur:1.4,chordDur:3.2,gap1:0.35,gap2:0.55};</script>
+<script src="lyd.js"></script>
 </body>
 </html>
