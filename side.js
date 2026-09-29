@@ -35,6 +35,7 @@
     + '.vbm-modus button[aria-pressed="true"]{background:currentColor}'
     + '.vbm-modus button[aria-pressed="true"] span{filter:invert(1)}'
     + '.vbm-modus button:focus-visible{outline:2px solid currentColor;outline-offset:-4px}'
+    + '@media (forced-colors: active){.vbm-modus button[aria-pressed="true"]{forced-color-adjust:none;background:Highlight;color:HighlightText}.vbm-modus button[aria-pressed="true"] span{filter:none}.swatch{forced-color-adjust:none}}'
     + '@media print{.vbm-modus{display:none!important}}';
   var st = document.createElement('style'); st.textContent = css;
   (document.head || root).appendChild(st);
