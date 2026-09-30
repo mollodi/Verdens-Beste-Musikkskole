@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html lang="no">
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-VZFC
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-vbm="K7Q4-VZFC">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Verdens Beste Musikkskole: juksebøker og lytteguider</title>
 <meta name="description" content="Gratis ressurser i musikkteori og øretrening fra Verdens Beste Musikklærer.">
 <style>
+:root{ --vbm-verk:"K7Q4-VZFC"; }
 :root{
   --ink:#12151A; --ink-soft:#1B2027;
   --paper:#F6F1E7; --text-on-paper:#211F1A; --text-muted:#6B6355;
@@ -94,7 +104,7 @@ footer{ max-width:980px; margin:0 auto; padding:28px 20px 48px; border-top:1px s
 </main>
 <!-- Innholdet på startsiden kommer fra materialer.js. Denne filen trenger du ikke endre. -->
 <script src="materialer.js"></script>
-<script>
+<script>/* VBM K7Q4-VZFC */
 (function(){
   var main = document.getElementById('innhold');
   var data = window.VBM;
@@ -132,5 +142,21 @@ footer{ max-width:980px; margin:0 auto; padding:28px 20px 48px; border-top:1px s
 </script>
 
 <footer><span>Levert av Verdens Beste Musikklærer</span><span>&copy; 2026 Verdens Beste Musikkskole</span><span class="credits">Lyd: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Gitar, fiolin og cello fra tonejs-instruments av Nicholas Brosowsky (CC BY 3.0).</span></footer>
+<script>
+/* Hvis siden ligger et annet sted enn på Verdens Beste Musikkskole, vises en liten lenke til originalen. Alt annet virker som vanlig. */
+(function(){
+  if (location.hostname === 'mollodi.github.io') return;
+  var fil = location.pathname.split('/').pop() || '';
+  var url = 'https://mollodi.github.io/Verdens-Beste-Musikkskole/' + fil;
+  var en = document.documentElement.lang === 'en';
+  var d = document.createElement('div');
+  d.setAttribute('role', 'note');
+  d.style.cssText = 'background:#C08A28;color:#12151A;border-bottom:1px solid #12151A;padding:9px 16px;text-align:center;'
+    + 'font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;position:relative;z-index:60';
+  d.innerHTML = (en ? 'The original of this page is at ' : 'Originalen av denne siden finnes på ')
+    + '<a href="' + url + '" style="color:inherit;font-weight:700;text-underline-offset:3px">Verdens Beste Musikkskole</a>.';
+  document.body.insertBefore(d, document.body.firstChild);
+})();
+</script>
 </body>
 </html>

@@ -15,6 +15,7 @@ Gratis undervisningsmateriell i musikkteori for elever og lærere. Juksebøkene 
 ### Øretrening og lytting
 - **Intervaller & sanger**: hvert intervall oppover og nedover, med kjente sanger og Spotify-lenker.
 - **Dominant & Major 7th/9th Chords** (på engelsk): lytteguide til septim- og nonakkorder hos Chopin, Debussy, Hendrix, James Brown og flere.
+- **Gehørlekser med mikrointervaller**: seks øvelser i små forskjeller i tonehøyde, med sinustoner eller piano, som forberedelse til opptaksprøven på pianostemmerutdanningen ved NMH.
 
 ### Elevhefter
 - **Akkordhefte**: treklanger, trinnakkorder og diatonisk harmoni, med harmonisk moll.

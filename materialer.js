@@ -1,3 +1,4 @@
+/* © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt. Verk-ID: VBM-K7Q4-QU4H. Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9 */
 /* =====================================================================
    Verdens Beste Musikkskole – LISTEN OVER ALT MATERIELL
    ---------------------------------------------------------------------
@@ -68,6 +69,15 @@ window.VBM = {
       fil: "lytteguide-septim-og-nonakkorder.html",
       svartHvitt: false,
       lagtTil: ""
+    },
+    {
+      seksjon: "oretrening",
+      merke: "Mikrointervaller",
+      tittel: "Gehørlekser med mikrointervaller",
+      beskrivelse: "Seks øvelser i små forskjeller i tonehøyde, som forberedelse til pianostemmerutdanningen ved NMH.",
+      fil: "gehorlekser-mikrointervaller.html",
+      svartHvitt: false,
+      lagtTil: "2026-09-30"
     },
     {
       seksjon: "elevhefter",

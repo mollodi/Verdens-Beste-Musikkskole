@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-5B6M
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="en" data-vbm="K7Q4-5B6M">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Dominant &amp; Major 7th &amp; 9th Chords</title>
 <style>
+:root{ --vbm-verk:"K7Q4-5B6M"; }
   :root{
     --ink: #12151A;
     --ink-soft: #1B2027;
@@ -488,7 +498,23 @@
   Note: notation shows chord tones in root position for clarity. Actual voicings in the recordings are usually inverted, spread across octaves, or further altered. Spotify links go to a search for the piece, not a confirmed direct link to one specific recording. Click through to the version you want.
 </footer>
 
-<script>window.VBM_LYD={step:0.62,noteDur:1.3,chordDur:3.0,gap1:0.30,gap2:0.50};</script>
+<script>/* VBM K7Q4-5B6M */window.VBM_LYD={step:0.62,noteDur:1.3,chordDur:3.0,gap1:0.30,gap2:0.50};</script>
 <script src="lyd.js"></script>
+<script>
+/* Hvis siden ligger et annet sted enn på Verdens Beste Musikkskole, vises en liten lenke til originalen. Alt annet virker som vanlig. */
+(function(){
+  if (location.hostname === 'mollodi.github.io') return;
+  var fil = location.pathname.split('/').pop() || '';
+  var url = 'https://mollodi.github.io/Verdens-Beste-Musikkskole/' + fil;
+  var en = document.documentElement.lang === 'en';
+  var d = document.createElement('div');
+  d.setAttribute('role', 'note');
+  d.style.cssText = 'background:#C08A28;color:#12151A;border-bottom:1px solid #12151A;padding:9px 16px;text-align:center;'
+    + 'font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;position:relative;z-index:60';
+  d.innerHTML = (en ? 'The original of this page is at ' : 'Originalen av denne siden finnes på ')
+    + '<a href="' + url + '" style="color:inherit;font-weight:700;text-underline-offset:3px">Verdens Beste Musikkskole</a>.';
+  document.body.insertBefore(d, document.body.firstChild);
+})();
+</script>
 </body>
 </html>

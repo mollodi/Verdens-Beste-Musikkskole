@@ -1,3 +1,4 @@
+/* © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt. Verk-ID: VBM-K7Q4-KCX8. Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9 */
 /* Verdens Beste Musikkskole – felles lydmotor for juksebøkene.
    Ekte opptak av piano, akustisk gitar og strykere (fiolin + cello).
    Bare én lyd spiller om gangen: et nytt trykk stopper den forrige,

@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-J9W5
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-vbm="K7Q4-J9W5">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Gehørlekser med mikrointervaller: forberedelse til pianostemmerutdanningen</title>
+<style>
+:root{ --vbm-verk:"K7Q4-J9W5"; }
+  :root{
+    --ink: #12151A;
+    --ink-soft: #1B2027;
+    --paper: #F6F1E7;
+    --text-on-paper: #211F1A;
+    --text-muted: #6B6355;
+    --brass: #C08A28;
+    --brass-dim: #8C6620;
+    --green-dk: #2C6B42;
+    --red-dk: #7A1822;
+    --rule: rgba(33,31,26,0.14);
+    --rule-dark: rgba(246,241,231,0.14);
+  }
+  * { box-sizing: border-box; }
+  body{
+    margin:0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  header.hero{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 72px 28px 40px;
+    border-bottom: 1px solid var(--rule-dark);
+  }
+  .eyebrow{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 18px;
+  }
+  h1{
+    font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(34px, 5.4vw, 56px);
+    line-height: 1.05;
+    margin: 0 0 16px;
+    letter-spacing: -0.01em;
+  }
+  h1 em{ font-style: italic; font-weight: 500; color: var(--brass); }
+  .hero p.lede{
+    max-width: 580px;
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: rgba(246,241,231,0.72);
+    margin: 0 0 14px;
+  }
+  .hero p.lede:last-child{ margin-bottom: 0; }
+  .notice{
+    max-width: 980px; margin: 0 auto; padding: 18px 28px 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--brass);
+  }
+  .notice[hidden]{ display:none; }
+  main{
+    max-width: 980px; margin: 0 auto; padding: 28px 28px 100px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 16px;
+    align-items: start;
+  }
+  .card{
+    background: var(--paper);
+    color: var(--text-on-paper);
+    border-radius: 14px;
+    padding: 20px 20px 18px;
+  }
+  .card-head{
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+  }
+  .card-head h2{
+    font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-weight: 700;
+    font-size: 21px;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .step-label{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .card p.task{ font-size: 14.5px; line-height: 1.55; margin: 0 0 14px; color: #3E3A32; }
+  .label{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11px; color: var(--text-muted); margin: 0 0 6px;
+  }
+  .forskjell{ font-size: 14.5px; margin: 0 0 14px; }
+  .forskjell strong{ font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 19px; }
+  .row{ display:flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 12px; }
+  .btn{
+    display:inline-flex; align-items:center; background:#FFFFFF; border:1.5px solid rgba(33,31,26,0.18);
+    color:var(--text-on-paper); border-radius:20px; padding:8px 15px; font-size:14px; cursor:pointer; font-family:inherit;
+  }
+  .btn span{ margin-left:6px; }
+  .btn:focus-visible{ outline: 2px solid var(--brass-dim); outline-offset: 2px; }
+  .btn:disabled{ opacity: .45; cursor: default; }
+  .btn.playing{ border-color:var(--brass); color:var(--brass-dim); }
+  .btn.loading{ opacity:.65; }
+  .btn[aria-pressed="true"]{ background: var(--text-on-paper); color: var(--paper); border-color: var(--text-on-paper); opacity: 1; }
+  .btn[hidden]{ display:none; }
+  .answers .btn{ flex: 1 1 130px; justify-content: center; }
+  .answers.tre .btn{ flex: 1 1 90px; }
+  .feedback{ font-size: 14.5px; line-height: 1.5; min-height: 1.5em; margin: 2px 0 10px; }
+  .feedback strong{ font-weight: 700; }
+  .feedback .ok{ color: var(--green-dk); }
+  .feedback .nei{ color: var(--red-dk); }
+  .feedback .delvis{ color: var(--brass-dim); }
+  .feedback .motiv{ display:block; margin-top: 4px; font-style: italic; color: var(--text-muted); }
+  .card.resultat{ grid-column: 1 / -1; }
+  .fremgang{ list-style: none; margin: 0 0 12px; padding: 0; }
+  .fremgang li{ padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 14.5px; }
+  .fremgang li > span{ display: block; }
+  .fremgang li:last-child{ border-bottom: none; }
+  .fremgang .tall{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--text-muted); }
+  .fremgang .klar{ font-weight: 700; color: var(--green-dk); }
+  .total{ font-size: 15px; margin: 0; padding-top: 10px; border-top: 1px solid var(--rule); }
+  .perfekt{ margin: 14px 0 0; padding: 14px 16px; border-radius: 10px; background: var(--text-on-paper); color: var(--paper);
+    font-size: 15px; line-height: 1.5; }
+  .perfekt strong{ font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 22px; display:block; color: var(--brass); }
+  .perfekt[hidden]{ display:none; }
+  .cents .btn{ padding: 7px 12px; font-size: 13px; }
+  .stats{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11px; color: var(--text-muted); line-height: 1.6;
+    border-top: 1px solid var(--rule); padding-top: 10px; margin: 0;
+  }
+  .slider-wrap{ margin: 4px 0 16px; }
+  .slider-wrap input[type="range"]{ width: 100%; margin: 0; height: 34px; accent-color: var(--brass-dim); cursor: pointer; }
+  .slider-ends{
+    display:flex; justify-content: space-between;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; color: var(--text-muted);
+  }
+  footer{
+    max-width: 980px; margin: 0 auto; padding: 28px 28px 90px; border-top: 1px solid var(--rule-dark);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: rgba(246,241,231,0.5);
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  footer .credits{ flex-basis: 100%; font-size: 11px; opacity: .8; }
+  @media (max-width: 560px){
+    header.hero{ padding: 48px 20px 32px; }
+    main{ padding: 24px 16px 100px; }
+    .notice{ padding: 16px 20px 0; }
+    footer{ padding: 24px 20px 90px; }
+  }
+  @media print{ .btn, .slider-wrap{ display:none; } }
+  /* Kontrastmodus (Windows): alt blir lesbart, og valgte knapper vises tydelig */
+  @media (forced-colors: active){
+    .card{ border:1px solid CanvasText; }
+    .card-head, .stats, .fremgang li, .total{ border-color: CanvasText; }
+    .perfekt{ border: 2px solid CanvasText; }
+    .btn{ border-color: ButtonText; }
+    .btn:disabled{ opacity: 1; color: GrayText; border-color: GrayText; }
+    .btn.playing{ border-color: Highlight; outline: 2px solid Highlight; }
+    .btn[aria-pressed="true"]{ forced-color-adjust:none; background:Highlight; color:HighlightText; border-color:Highlight; }
+    .btn:focus-visible{ outline:2px solid Highlight; }
+  }
+</style>
+<style>.vbm-back{max-width:60rem;margin:0 auto;padding:.9rem 1.25rem 0;position:relative;z-index:5;color:inherit;font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.vbm-back a{color:inherit;opacity:.8;text-underline-offset:3px;text-decoration-thickness:1px}.vbm-back a:hover,.vbm-back a:focus-visible{opacity:1}.vbm-back--book{max-width:none;margin:0 0 32px;padding:0;font-size:15px}@media print{.vbm-back{display:none!important}}</style>
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Øretrening for pianostemmere</div>
+  <h1>Gehørlekser med <em>mikrointervaller</em></h1>
+  <p class="lede">Seks øvelser som trener øret på svært små forskjeller i tonehøyde, som forberedelse til opptaksprøven på pianostemmerutdanningen ved Norges musikkhøgskole. En cent er en hundredel av en halvtone.</p>
+  <p class="lede">Velg sinustoner eller piano nederst til høyre. Bruk gjerne hodetelefoner.</p>
+</header>
+<p class="notice" id="notice" hidden>Pianolyden kunne ikke lastes, så sinustoner brukes i stedet.</p>
+
+<main>
+  <!-- Samlet resultat -->
+  <section class="card resultat" id="resultat" aria-live="polite">
+    <div class="card-head">
+      <div class="step-label">Samlet resultat</div>
+      <h2>Din fremgang</h2>
+    </div>
+    <p class="task">Målet er fem riktige svar på rad i hver øvelse. I øvelse 3 teller det som riktig når du stemmer innenfor 5 cent. I øvelse 5 må begge valgene være riktige. I øvelse 6 teller det også som riktig når du bare bommer med ett trinn, for eksempel 15 i stedet for 20 cent. Resultatet nullstilles når du laster siden på nytt.</p>
+    <ul class="fremgang" id="fremgang"></ul>
+    <p class="total" id="total"></p>
+    <p class="perfekt" id="perfekt" hidden><strong>Perfekt!</strong>Du har klart fem riktige på rad i alle seks øvelsene. Du har et helt eksepsjonelt gehør for små forskjeller i tonehøyde.</p>
+  </section>
+
+  <!-- Øvelse 1 -->
+  <section class="card" id="ov1">
+    <div class="card-head">
+      <div class="step-label">Øvelse 1</div>
+      <h2>Høyere eller lavere</h2>
+    </div>
+    <p class="task">Du hører to toner etter hverandre. Er den andre tonen høyere eller lavere enn den første? Forskjellen velges tilfeldig for hver oppgave, fra 50 ned til 5 cent, og står over spill-knappen.</p>
+    <p class="forskjell">Forskjell: <strong id="ov1-cent">50 cent</strong></p>
+    <div class="row">
+      <button type="button" class="btn" data-spill aria-label="Spill oppgaven">&#9658;&#xFE0E; <span>spill</span></button>
+      <button type="button" class="btn" data-neste hidden>Neste oppgave</button>
+    </div>
+    <div class="row answers">
+      <button type="button" class="btn" data-svar="opp" disabled>Høyere</button>
+      <button type="button" class="btn" data-svar="ned" disabled>Lavere</button>
+    </div>
+    <p class="feedback" aria-live="polite"></p>
+    <p class="stats"></p>
+  </section>
+
+  <!-- Øvelse 2 -->
+  <section class="card" id="ov2">
+    <div class="card-head">
+      <div class="step-label">Øvelse 2</div>
+      <h2>Hører du svevninger?</h2>
+    </div>
+    <p class="task">To toner klinger samtidig. Enten er de helt like, eller så er den ene litt ustemt. Når tonene ikke er like, hører du at lyden bølger, som et sakte vibrato. Det kalles svevninger.</p>
+    <div class="row">
+      <button type="button" class="btn" data-spill aria-label="Spill oppgaven">&#9658;&#xFE0E; <span>spill</span></button>
+      <button type="button" class="btn" data-neste hidden>Neste oppgave</button>
+    </div>
+    <div class="row answers">
+      <button type="button" class="btn" data-svar="ja" disabled>Ja, svevninger</button>
+      <button type="button" class="btn" data-svar="nei" disabled>Nei, helt rent</button>
+    </div>
+    <p class="feedback" aria-live="polite"></p>
+    <p class="stats"></p>
+  </section>
+
+  <!-- Øvelse 3 -->
+  <section class="card" id="ov3">
+    <div class="card-head">
+      <div class="step-label">Øvelse 3</div>
+      <h2>Stem selv</h2>
+    </div>
+    <p class="task">To toner klinger samtidig, og den ene er ustemt. Dra i glidebryteren mens du lytter. Svevningene blir langsommere jo nærmere du kommer, og forsvinner når tonene er helt like. Bruk knappene «Litt ned» og «Litt opp» til å finjustere. Slik stemmer man et kor av strenger på pianoet.</p>
+    <div class="row">
+      <button type="button" class="btn" data-spill aria-label="Spill tonene">&#9658;&#xFE0E; <span>spill</span></button>
+    </div>
+    <div class="slider-wrap">
+      <input type="range" id="ov3-slider" min="-30" max="30" step="0.1" value="0" aria-label="Stem den andre tonen">
+      <div class="slider-ends" aria-hidden="true"><span>Lavere</span><span>Høyere</span></div>
+    </div>
+    <div class="row answers">
+      <button type="button" class="btn" data-fin="-0.5">Litt ned</button>
+      <button type="button" class="btn" data-fin="0.5">Litt opp</button>
+    </div>
+    <div class="row">
+      <button type="button" class="btn" data-sjekk>Ferdig, sjekk</button>
+      <button type="button" class="btn" data-neste hidden>Ny oppgave</button>
+    </div>
+    <p class="feedback" aria-live="polite"></p>
+  </section>
+
+  <!-- Øvelse 4 -->
+  <section class="card" id="ov4">
+    <div class="card-head">
+      <div class="step-label">Øvelse 4</div>
+      <h2>Rent eller surt intervall</h2>
+    </div>
+    <p class="task">Du hører en oktav, en kvint eller en kvart. Er intervallet rent (oktav 2:1, kvint 3:2, kvart 4:3), eller er det litt surt? Med piano hører du et surt intervall som svevninger. Med sinustoner er svevningene svake, så lytt etter om samklangen er rolig eller urolig.</p>
+    <div class="row">
+      <button type="button" class="btn" data-spill aria-label="Spill oppgaven">&#9658;&#xFE0E; <span>spill</span></button>
+      <button type="button" class="btn" data-neste hidden>Neste oppgave</button>
+    </div>
+    <div class="row answers">
+      <button type="button" class="btn" data-svar="rent" disabled>Rent</button>
+      <button type="button" class="btn" data-svar="surt" disabled>Surt</button>
+    </div>
+    <p class="feedback" aria-live="polite"></p>
+    <p class="stats"></p>
+  </section>
+  <!-- Øvelse 5 -->
+  <section class="card" id="ov5">
+    <div class="card-head">
+      <div class="step-label">Øvelse 5</div>
+      <h2>Hvor mye høyere eller lavere?</h2>
+    </div>
+    <p class="task">Du hører to toner etter hverandre, med en tilfeldig forskjell mellom 50 og 5 cent. Velg om den andre tonen er høyere eller lavere, og hvor mange cent forskjellen er. Svaret vises når du har valgt begge deler.</p>
+    <div class="row">
+      <button type="button" class="btn" data-spill aria-label="Spill oppgaven">&#9658;&#xFE0E; <span>spill</span></button>
+      <button type="button" class="btn" data-neste hidden>Neste oppgave</button>
+    </div>
+    <p class="label" id="ov5-retning-label">Retning</p>
+    <div class="row answers" role="group" aria-labelledby="ov5-retning-label">
+      <button type="button" class="btn" data-retning="opp" disabled>Høyere</button>
+      <button type="button" class="btn" data-retning="ned" disabled>Lavere</button>
+    </div>
+    <p class="label" id="ov5-cent-label">Forskjell</p>
+    <div class="row cents" role="group" aria-labelledby="ov5-cent-label"></div>
+    <p class="feedback" aria-live="polite"></p>
+  </section>
+  <!-- Øvelse 6 -->
+  <section class="card" id="ov6">
+    <div class="card-head">
+      <div class="step-label">Øvelse 6</div>
+      <h2>For lite eller for stort intervall?</h2>
+    </div>
+    <p class="task">Du hører et intervall, først den nederste tonen og så den øverste. Er intervallet riktig, for lite eller for stort? Er det feil, velger du også hvor mange cent. Riktig betyr likesvevende temperert, slik et piano er stemt. Svaret vises når du har valgt.</p>
+    <p class="forskjell">Intervall: <strong id="ov6-navn">Ren kvint</strong> <span id="ov6-eng"></span></p>
+    <div class="row">
+      <button type="button" class="btn" data-spill aria-label="Spill oppgaven">&#9658;&#xFE0E; <span>spill</span></button>
+      <button type="button" class="btn" data-neste hidden>Neste oppgave</button>
+    </div>
+    <p class="label" id="ov6-storrelse-label">Intervallet er</p>
+    <div class="row answers tre" role="group" aria-labelledby="ov6-storrelse-label">
+      <button type="button" class="btn" data-storrelse="lite" disabled>For lite</button>
+      <button type="button" class="btn" data-storrelse="riktig" disabled>Riktig</button>
+      <button type="button" class="btn" data-storrelse="stort" disabled>For stort</button>
+    </div>
+    <p class="label" id="ov6-cent-label">Hvor mye</p>
+    <div class="row cents" role="group" aria-labelledby="ov6-cent-label"></div>
+    <p class="feedback" aria-live="polite"></p>
+  </section>
+</main>
+
+<footer><span>Levert av Verdens Beste Musikklærer</span><span>&copy; 2026 Verdens Beste Musikkskole</span><span class="credits">Lyd: Salamander Grand Piano av Alexander Holm (CC BY 3.0).</span></footer>
+
+<script>/* VBM K7Q4-J9W5 */
+(function(){
+  'use strict';
+
+  /* =================== Lyd =================== */
+  var B = window.VBM_LYD_BASE || {};
+  var PIANO = B.piano || 'https://tonejs.github.io/audio/salamander/';
+  var PC = ['C','Cs','D','Ds','E','F','Fs','G','Gs','A','As','B'];
+  function nameOf(m){ return PC[m % 12] + (Math.floor(m / 12) - 1); }
+  function hz(m){ return 440 * Math.pow(2, (m - 69) / 12); }
+  /* Opptakene finnes for hver tredje halvtone (A, C, Diss, Fiss). Øvelsene bruker bare disse,
+     så pianoklangen strekkes så lite som mulig. */
+  var SAMPLES = [57, 60, 63, 66, 69, 72];   // A3, C4, Diss4, Fiss4, A4, C5
+
+  var LYDER = { sinus: 'Sinustoner', piano: 'Piano' };
+  var mode = 'piano';
+  try { var lagret = localStorage.getItem('vbm-mikro-lyd'); if (LYDER[lagret]) mode = lagret; } catch(e){}
+
+  var AC = window.AudioContext || window.webkitAudioContext;
+  var ctx = null, out = null;
+  function ensureCtx(){
+    if (!ctx) { ctx = new AC(); out = ctx.createGain(); out.gain.value = 0.9; out.connect(ctx.destination); }
+    if (ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+
+  var cache = {};
+  function decode(data){
+    return new Promise(function(res, rej){
+      var p = ctx.decodeAudioData(data, res, rej);
+      if (p && p.then) p.then(res, rej);
+    });
+  }
+  function load(s){
+    var url = PIANO + nameOf(s) + '.mp3';
+    if (!cache[url]) {
+      cache[url] = fetch(url).then(function(r){ if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); }).then(decode);
+      cache[url].catch(function(){ delete cache[url]; });
+    }
+    return cache[url];
+  }
+
+  /* Bare én lyd om gangen: alt som spiller, samles her og stoppes før noe nytt starter. */
+  var voices = [], token = 0, activeBtn = null, timer = null;
+  function stopAll(){
+    token++;
+    if (ctx) {
+      var now = ctx.currentTime;
+      voices.forEach(function(v){
+        try {
+          v.gain.gain.cancelScheduledValues(now);
+          v.gain.gain.setValueAtTime(v.gain.gain.value, now);
+          v.gain.gain.linearRampToValueAtTime(0, now + 0.06);
+          v.src.stop(now + 0.08);
+        } catch(e){}
+      });
+    }
+    voices = [];
+    if (timer) { clearTimeout(timer); timer = null; }
+    if (activeBtn) { activeBtn.classList.remove('playing', 'loading'); activeBtn = null; }
+  }
+
+  /* Én tone. m = tonehøyde i halvtoner (MIDI) med desimaler, s = opptaket som brukes. */
+  function voice(m, s, buf, t0, dur, level){
+    var g = ctx.createGain(), src, v;
+    g.connect(out);
+    if (buf) {
+      src = ctx.createBufferSource(); src.buffer = buf;
+      src.playbackRate.value = Math.pow(2, (m - s) / 12);
+      src.connect(g);
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.linearRampToValueAtTime(level, t0 + 0.005);
+      g.gain.setValueAtTime(level, t0 + dur);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur + 0.35);
+      src.start(t0); src.stop(t0 + dur + 0.4);
+    } else {
+      src = ctx.createOscillator(); src.type = 'sine'; src.frequency.value = hz(m);
+      src.connect(g);
+      g.gain.setValueAtTime(0, t0);
+      g.gain.linearRampToValueAtTime(level * 0.8, t0 + 0.03);
+      g.gain.setValueAtTime(level * 0.8, t0 + dur);
+      g.gain.linearRampToValueAtTime(0, t0 + dur + 0.2);
+      src.start(t0); src.stop(t0 + dur + 0.25);
+    }
+    v = { src: src, gain: g, set: function(nm){
+      var now = ctx.currentTime;
+      if (buf) src.playbackRate.setTargetAtTime(Math.pow(2, (nm - s) / 12), now, 0.015);
+      else src.frequency.setTargetAtTime(hz(nm), now, 0.015);
+    }};
+    voices.push(v);
+    src.onended = function(){ var i = voices.indexOf(v); if (i > -1) voices.splice(i, 1); };
+    return v;
+  }
+
+  /* Spiller en liste med toner: {m, s, t (start), d (lengde)}. d = 0 betyr så lenge opptaket varer. */
+  function spill(btn, toner, ferdig){
+    stopAll();
+    var my = token;
+    activeBtn = btn; btn.classList.add('playing');
+    function start(bufs){
+      if (my !== token) return;
+      btn.classList.remove('loading');
+      var t0 = ctx.currentTime + 0.05, slutt = 0, vs = [];
+      toner.forEach(function(n, i){
+        var buf = bufs ? bufs[i] : null;
+        var d = n.d || (buf ? buf.duration / Math.pow(2, (n.m - n.s) / 12) - 0.5 : 60);
+        vs.push(voice(n.m, n.s, buf, t0 + n.t, d, 0.3));
+        slutt = Math.max(slutt, n.t + d + 0.4);
+      });
+      if (ferdig) ferdig(vs);
+      timer = setTimeout(function(){
+        if (my === token && activeBtn === btn) { btn.classList.remove('playing'); activeBtn = null; }
+      }, (slutt + 0.1) * 1000);
+    }
+    if (mode === 'piano') {
+      btn.classList.add('loading');
+      Promise.all(toner.map(function(n){ return load(n.s); })).then(start).catch(function(){
+        if (my !== token) return;
+        velgLyd('sinus', true);
+        document.getElementById('notice').hidden = false;
+        start(null);
+      });
+    } else start(null);
+  }
+
+  /* Velger for lyd nederst til høyre, i samme stil som på resten av nettsiden */
+  var css = '.vbm-instr{display:inline-flex;border:1px solid currentColor;border-radius:999px;overflow:hidden;'
+    + 'font:13px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}'
+    + '.vbm-instr button{appearance:none;-webkit-appearance:none;background:transparent;color:inherit;border:0;'
+    + 'padding:7px 13px;font:inherit;cursor:pointer}'
+    + '.vbm-instr button[aria-pressed="true"]{background:currentColor}'
+    + '.vbm-instr button[aria-pressed="true"] span{filter:invert(1)}'
+    + '.vbm-instr button:focus-visible{outline:2px solid currentColor;outline-offset:-4px}'
+    + '.vbm-instr-float{position:fixed;z-index:50;right:max(14px,env(safe-area-inset-right,0px));'
+    + 'bottom:calc(14px + env(safe-area-inset-bottom,0px));box-shadow:0 4px 18px rgba(0,0,0,.18)}'
+    + '@media (forced-colors: active){.vbm-instr button[aria-pressed="true"]{forced-color-adjust:none;background:Highlight;color:HighlightText}.vbm-instr button[aria-pressed="true"] span{filter:none}}'
+    + '@media print{.vbm-instr{display:none!important}}';
+  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+
+  var velger = document.createElement('div');
+  velger.className = 'vbm-instr vbm-instr-float';
+  velger.setAttribute('role', 'group'); velger.setAttribute('aria-label', 'Velg lyd');
+  velger.style.background = '#12151A'; velger.style.color = '#F6F1E7';
+  Object.keys(LYDER).forEach(function(k){
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('data-lyd', k);
+    b.innerHTML = '<span>' + LYDER[k] + '</span>';
+    b.addEventListener('click', function(){
+      if (k === mode) return;
+      stopAll(); velgLyd(k);
+      if (k === 'piano') document.getElementById('notice').hidden = true;
+    });
+    velger.appendChild(b);
+  });
+  document.body.appendChild(velger);
+  function velgLyd(k, ikkeLagre){
+    mode = k;
+    if (!ikkeLagre) { try { localStorage.setItem('vbm-mikro-lyd', k); } catch(e){} }
+    velger.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', x.getAttribute('data-lyd') === k ? 'true' : 'false'); });
+  }
+  velgLyd(mode, true);
+  document.addEventListener('touchstart', function(){ ensureCtx(); }, {once: true, passive: true});
+
+  /* =================== Samlet resultat og motivasjon =================== */
+  var OVELSER = [['ov1', 'Høyere eller lavere'], ['ov2', 'Hører du svevninger?'], ['ov3', 'Stem selv'],
+                 ['ov4', 'Rent eller surt intervall'], ['ov5', 'Hvor mye høyere eller lavere?'], ['ov6', 'For lite eller for stort intervall?']];
+  var MAL = 5, P = {}, allePerfekt = false;
+  OVELSER.forEach(function(x){ P[x[0]] = { riktige: 0, totalt: 0, paRad: 0, klar: false }; });
+  var FEIL_MELDINGER = [
+    'Ikke gi opp. Øret blir bedre for hver oppgave.',
+    'Små forskjeller er vanskelige for alle. Prøv igjen!',
+    'Hør gjerne en gang til før du går videre.',
+    'Selv pianostemmere trenger mange års trening. Du er på vei!',
+    'Pust rolig, lytt godt, og prøv neste.'
+  ];
+  function visFremgang(){
+    var html = '', r = 0, t = 0, klare = 0;
+    OVELSER.forEach(function(x, i){
+      var p = P[x[0]]; r += p.riktige; t += p.totalt; if (p.klar) klare++;
+      html += '<li><span>Øvelse ' + (i + 1) + ': ' + x[1] + '</span><span class="tall">' + p.riktige + ' av ' + p.totalt + ' riktige. '
+        + (p.klar ? '<span class="klar">Fullført</span>' : 'På rad: ' + p.paRad + ' av ' + MAL) + '</span></li>';
+    });
+    document.getElementById('fremgang').innerHTML = html;
+    document.getElementById('total').innerHTML = '<strong>Totalt: ' + r + ' av ' + t + ' riktige'
+      + (t ? ' (' + Math.round(100 * r / t) + ' %)' : '') + '.</strong> Fullførte øvelser: ' + klare + ' av ' + OVELSER.length + '.';
+    document.getElementById('perfekt').hidden = klare < OVELSER.length;
+  }
+  /* Registrerer et svar og gir tilbake en motiverende melding til tilbakemeldingen. */
+  function motiv(id, riktig){
+    var p = P[id], m = '';
+    p.totalt++;
+    if (riktig) {
+      p.riktige++; p.paRad++;
+      if (p.paRad === MAL && !p.klar) { p.klar = true; m = 'Fem riktige på rad. Denne øvelsen er fullført!'; }
+      else if (p.paRad === 3) m = 'Tre riktige på rad. Bra jobbet!';
+      else if (p.paRad === 10) m = 'Ti riktige på rad. Imponerende!';
+    } else {
+      p.paRad = 0;
+      m = tilfeldig(FEIL_MELDINGER);
+    }
+    m += (m ? ' ' : '') + 'Totalt i alle øvelsene: ' + samletTekst() + '.';
+    var ferdig = OVELSER.every(function(x){ return P[x[0]].klar; });
+    if (ferdig && !allePerfekt) { allePerfekt = true; m = '<strong>Perfekt!</strong> Fem riktige på rad i alle seks øvelsene. Du har et helt eksepsjonelt gehør for små forskjeller i tonehøyde.'; }
+    visFremgang();
+    return '<span class="motiv">' + m + '</span>';
+  }
+  function samletTekst(){
+    var r = 0, t = 0;
+    OVELSER.forEach(function(x){ r += P[x[0]].riktige; t += P[x[0]].totalt; });
+    return r + ' av ' + t + ' riktige';
+  }
+  visFremgang();
+
+  /* =================== Hjelpere =================== */
+  function tilfeldig(a){ return a[Math.floor(Math.random() * a.length)]; }
+  function mellom(a, b){ return a + Math.floor(Math.random() * (b - a + 1)); }
+  function tall(x, des){ return x.toFixed(des).replace('.', ','); }
+  /* Svevninger i sekundet mellom to toner (i MIDI med desimaler) */
+  function svevning(m1, m2){ return Math.abs(hz(m1) - hz(m2)); }
+  function svevTekst(f){
+    if (f < 0.05) return 'Det gir ingen hørbare svevninger.';
+    if (f < 0.6) return 'Det gir omtrent én svevning hvert ' + tall(1 / f, 0) + '. sekund.';
+    return 'Det gir omtrent ' + tall(f, 1) + ' svevninger i sekundet.';
+  }
+
+  /* Felles oppsett for øvelsene med to svar (1, 2 og 4) */
+  function quiz(id, lag, toner, vurder, statsTekst){
+    var kort = document.getElementById(id);
+    var spillBtn = kort.querySelector('[data-spill]'), neste = kort.querySelector('[data-neste]');
+    var svar = kort.querySelectorAll('[data-svar]'), fb = kort.querySelector('.feedback'), stats = kort.querySelector('.stats');
+    var q = { oppgave: null, besvart: false, riktige: 0, totalt: 0 };
+    function nyOppgave(){
+      q.oppgave = lag(); q.besvart = false;
+      fb.innerHTML = ''; neste.hidden = true;
+      svar.forEach(function(b){ b.disabled = true; b.removeAttribute('aria-pressed'); });
+    }
+    function spillNa(){
+      ensureCtx();
+      if (spillBtn === activeBtn) { stopAll(); return; }
+      spill(spillBtn, toner(q.oppgave));
+      if (!q.besvart) svar.forEach(function(b){ b.disabled = false; });
+    }
+    spillBtn.addEventListener('click', spillNa);
+    neste.addEventListener('click', function(){ stopAll(); nyOppgave(); spillNa(); neste.blur(); spillBtn.focus(); });
+    svar.forEach(function(b){
+      b.addEventListener('click', function(){
+        if (q.besvart) return;
+        q.besvart = true; q.totalt++;
+        var r = vurder(q.oppgave, b.getAttribute('data-svar'));
+        if (r.riktig) q.riktige++;
+        svar.forEach(function(x){ x.disabled = true; });
+        b.disabled = false; b.setAttribute('aria-pressed', 'true');
+        fb.innerHTML = (r.riktig ? '<strong class="ok">Riktig.</strong> ' : '<strong class="nei">Feil.</strong> ') + r.tekst + motiv(id, r.riktig);
+        neste.hidden = false;
+        oppdater();
+      });
+    });
+    function oppdater(){ stats.textContent = statsTekst(q); }
+    q.ny = nyOppgave; q.oppdater = oppdater;
+    nyOppgave(); oppdater();
+    return q;
+  }
+
+  /* =================== Øvelse 1: Høyere eller lavere =================== */
+  var NIVAER = [50, 40, 30, 20, 15, 10, 5];
+  quiz('ov1',
+    function(){
+      var c = tilfeldig(NIVAER);   // tilfeldig forskjell for hver oppgave
+      document.getElementById('ov1-cent').textContent = c + ' cent';
+      return { s: tilfeldig(SAMPLES), retning: Math.random() < 0.5 ? 1 : -1, c: c };
+    },
+    function(o){
+      var halv = o.retning * o.c / 200;   // tonene ligger like langt over og under opptaket
+      return [{ m: o.s - halv, s: o.s, t: 0, d: 1.0 }, { m: o.s + halv, s: o.s, t: 1.35, d: 1.0 }];
+    },
+    function(o, svar){
+      var riktig = (svar === 'opp') === (o.retning > 0);
+      var tekst = 'Den andre tonen var ' + o.c + ' cent ' + (o.retning > 0 ? 'høyere' : 'lavere') + '.';
+      return { riktig: riktig, tekst: tekst };
+    },
+    function(q){
+      return 'Totalt: ' + q.riktige + ' av ' + q.totalt + ' riktige.';
+    }
+  );
+
+  /* =================== Øvelse 2: Hører du svevninger? =================== */
+  quiz('ov2',
+    function(){
+      var ren = Math.random() < 0.5;
+      return { s: tilfeldig(SAMPLES.slice(1)), ren: ren, c: ren ? 0 : mellom(3, 12) };
+    },
+    function(o){
+      var halv = o.c / 200;
+      return [{ m: o.s - halv, s: o.s, t: 0, d: 4.5 }, { m: o.s + halv, s: o.s, t: 0, d: 4.5 }];
+    },
+    function(o, svar){
+      var riktig = (svar === 'ja') === !o.ren;
+      var tekst = o.ren ? 'Tonene var helt like, uten svevninger.'
+        : 'Tonene var ' + o.c + ' cent fra hverandre. ' + svevTekst(svevning(o.s - o.c / 200, o.s + o.c / 200));
+      return { riktig: riktig, tekst: tekst };
+    },
+    function(q){ return 'Totalt: ' + q.riktige + ' av ' + q.totalt + ' riktige.'; }
+  );
+
+  /* =================== Øvelse 3: Stem selv =================== */
+  (function(){
+    var kort = document.getElementById('ov3');
+    var spillBtn = kort.querySelector('[data-spill]'), sjekk = kort.querySelector('[data-sjekk]'), neste = kort.querySelector('[data-neste]');
+    var slider = document.getElementById('ov3-slider'), fb = kort.querySelector('.feedback');
+    var o, stemt = null;
+    function ny(){
+      // Startavviket er tilfeldig, så midten på glidebryteren er ikke svaret.
+      o = { s: tilfeldig(SAMPLES.slice(0, 5)), start: (Math.random() < 0.5 ? 1 : -1) * mellom(8, 25) + Math.random() - 0.5 };
+      slider.value = 0; fb.innerHTML = ''; neste.hidden = true; sjekk.disabled = false;
+    }
+    function avvik(){ return o.start + parseFloat(slider.value); }   // cent over referansetonen
+    spillBtn.addEventListener('click', function(){
+      ensureCtx();
+      if (spillBtn === activeBtn) { stopAll(); return; }
+      stemt = null;
+      spill(spillBtn, [{ m: o.s, s: o.s, t: 0, d: 0 }, { m: o.s + avvik() / 100, s: o.s, t: 0, d: 0 }], function(vs){ stemt = vs[1]; });
+    });
+    function oppdaterTone(){ if (stemt && activeBtn === spillBtn) stemt.set(o.s + avvik() / 100); }
+    slider.addEventListener('input', oppdaterTone);
+    // Finjustering: et halvt cent om gangen, mer presist enn en finger på glidebryteren.
+    kort.querySelectorAll('[data-fin]').forEach(function(b){
+      b.addEventListener('click', function(){
+        var v = parseFloat(slider.value) + parseFloat(b.getAttribute('data-fin'));
+        slider.value = Math.max(-30, Math.min(30, v)); oppdaterTone();
+      });
+    });
+    sjekk.addEventListener('click', function(){
+      var a = avvik(), abs = Math.abs(a);
+      var dom = abs < 1 ? '<strong class="ok">Svært godt.</strong> ' : abs < 2.5 ? '<strong class="ok">Godt.</strong> '
+        : abs < 5 ? '<strong class="ok">Nesten rent.</strong> ' : '<strong class="nei">Ikke helt rent ennå.</strong> ';
+      var hvor = abs < 0.05 ? 'Du stemte helt rent.' : 'Du stemte ' + tall(abs, 1) + ' cent for ' + (a > 0 ? 'høyt' : 'lavt') + '.';
+      fb.innerHTML = dom + hvor + ' ' + svevTekst(svevning(o.s, o.s + a / 100)) + motiv('ov3', abs < 5);
+      neste.hidden = false; sjekk.disabled = true;
+    });
+    neste.addEventListener('click', function(){ stopAll(); ny(); neste.blur(); spillBtn.focus(); });
+    ny();
+  })();
+
+  /* =================== Øvelse 4: Rent eller surt intervall =================== */
+  var INTERVALLER = [
+    { navn: 'oktav', cent: 1200 },
+    { navn: 'kvint', cent: 1200 * Math.log(3 / 2) / Math.LN2 },
+    { navn: 'kvart', cent: 1200 * Math.log(4 / 3) / Math.LN2 }
+  ];
+  quiz('ov4',
+    function(){
+      var ren = Math.random() < 0.5;
+      return { s: tilfeldig([60, 63, 66]), iv: tilfeldig(INTERVALLER), ren: ren,
+               c: ren ? 0 : (Math.random() < 0.5 ? 1 : -1) * mellom(5, 15) };
+    },
+    function(o){
+      // Begge tonene hentes fra samme opptak, likt strukket ned og opp, så klangen blir lik.
+      var under = o.s - o.iv.cent / 200;
+      return [{ m: under, s: o.s, t: 0, d: 4.5 }, { m: under + (o.iv.cent + o.c) / 100, s: o.s, t: 0, d: 4.5 }];
+    },
+    function(o, svar){
+      var riktig = (svar === 'rent') === o.ren;
+      var navn = o.iv.navn.charAt(0).toUpperCase() + o.iv.navn.slice(1);
+      var tekst = o.ren ? navn + ', helt ren.'
+        : navn + ', der den øverste tonen var ' + Math.abs(o.c) + ' cent for ' + (o.c > 0 ? 'høy' : 'lav') + '.';
+      return { riktig: riktig, tekst: tekst };
+    },
+    function(q){ return 'Totalt: ' + q.riktige + ' av ' + q.totalt + ' riktige.'; }
+  );
+  /* =================== Øvelse 5: Hvor mye høyere eller lavere? =================== */
+  (function(){
+    var kort = document.getElementById('ov5');
+    var spillBtn = kort.querySelector('[data-spill]'), neste = kort.querySelector('[data-neste]');
+    var fb = kort.querySelector('.feedback');
+    var retningBtns = kort.querySelectorAll('[data-retning]'), centRad = kort.querySelector('.cents');
+    NIVAER.forEach(function(c){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'btn';
+      b.setAttribute('data-cent', c); b.disabled = true; b.textContent = c + ' cent';
+      centRad.appendChild(b);
+    });
+    var centBtns = centRad.querySelectorAll('[data-cent]');
+    var alleValg = [].slice.call(retningBtns).concat([].slice.call(centBtns));
+    var o, valgtRetning = null, valgtCent = null, besvart = false;
+    function velg(liste, b){ liste.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); }
+    function ny(){
+      o = { s: tilfeldig(SAMPLES), retning: Math.random() < 0.5 ? 1 : -1, c: tilfeldig(NIVAER) };
+      valgtRetning = null; valgtCent = null; besvart = false;
+      fb.innerHTML = ''; neste.hidden = true;
+      alleValg.forEach(function(b){ b.disabled = true; b.removeAttribute('aria-pressed'); });
+    }
+    function spillNa(){
+      ensureCtx();
+      if (spillBtn === activeBtn) { stopAll(); return; }
+      var halv = o.retning * o.c / 200;   // tonene ligger like langt over og under opptaket
+      spill(spillBtn, [{ m: o.s - halv, s: o.s, t: 0, d: 1.0 }, { m: o.s + halv, s: o.s, t: 1.35, d: 1.0 }]);
+      if (!besvart) alleValg.forEach(function(b){ b.disabled = false; });
+    }
+    spillBtn.addEventListener('click', spillNa);
+    [].forEach.call(retningBtns, function(b){ b.addEventListener('click', function(){
+      if (besvart) return; valgtRetning = b.getAttribute('data-retning'); velg([].slice.call(retningBtns), b);
+      sjekk();
+    }); });
+    [].forEach.call(centBtns, function(b){ b.addEventListener('click', function(){
+      if (besvart) return; valgtCent = parseInt(b.getAttribute('data-cent'), 10); velg([].slice.call(centBtns), b);
+      sjekk();
+    }); });
+    // Svaret vises med en gang begge deler er valgt.
+    function sjekk(){
+      if (besvart || !valgtRetning || !valgtCent) return;
+      besvart = true;
+      var retningOk = (valgtRetning === 'opp') === (o.retning > 0), centOk = valgtCent === o.c;
+      var riktigRetning = o.retning > 0 ? 'høyere' : 'lavere', dinRetning = valgtRetning === 'opp' ? 'høyere' : 'lavere';
+      var tekst;
+      if (retningOk && centOk) tekst = '<strong class="ok">Riktig.</strong> Den andre tonen var ' + o.c + ' cent ' + riktigRetning + '.';
+      else if (retningOk) tekst = '<strong class="delvis">Delvis riktig.</strong> Retningen var riktig, men forskjellen var ' + o.c + ' cent, ikke ' + valgtCent + ' cent.';
+      else if (centOk) tekst = '<strong class="delvis">Delvis riktig.</strong> Forskjellen var riktig, men den andre tonen var ' + riktigRetning + ', ikke ' + dinRetning + '.';
+      else tekst = '<strong class="nei">Feil.</strong> Den andre tonen var ' + o.c + ' cent ' + riktigRetning + '.';
+      fb.innerHTML = tekst + motiv('ov5', retningOk && centOk);
+      alleValg.forEach(function(b){ if (b.getAttribute('aria-pressed') !== 'true') b.disabled = true; });
+      neste.hidden = false;
+    }
+    neste.addEventListener('click', function(){ stopAll(); ny(); spillNa(); neste.blur(); spillBtn.focus(); });
+    ny();
+  })();
+  /* =================== Øvelse 6: For lite eller for stort intervall? =================== */
+  (function(){
+    var IV = [
+      ['Liten sekund', 'minor 2nd'], ['Stor sekund', 'major 2nd'], ['Liten ters', 'minor 3rd'], ['Stor ters', 'major 3rd'],
+      ['Ren kvart', 'perfect 4th'], ['Tritonus', 'tritone'], ['Ren kvint', 'perfect 5th'], ['Liten sekst', 'minor 6th'],
+      ['Stor sekst', 'major 6th'], ['Liten septim', 'minor 7th'], ['Stor septim', 'major 7th'], ['Ren oktav', 'octave']
+    ];
+    var kort = document.getElementById('ov6');
+    var spillBtn = kort.querySelector('[data-spill]'), neste = kort.querySelector('[data-neste]'), fb = kort.querySelector('.feedback');
+    var storBtns = [].slice.call(kort.querySelectorAll('[data-storrelse]')), centRad = kort.querySelector('.cents');
+    NIVAER.forEach(function(c){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'btn';
+      b.setAttribute('data-cent', c); b.disabled = true; b.textContent = c + ' cent';
+      centRad.appendChild(b);
+    });
+    var centBtns = [].slice.call(centRad.querySelectorAll('[data-cent]')), alleValg = storBtns.concat(centBtns);
+    var o, valgtStr = null, valgtCent = null, besvart = false;
+    function velg(liste, b){ liste.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); }
+    function ny(){
+      // Omtrent hver tredje oppgave er riktig. Ellers er den øverste tonen 5 til 50 cent for høy eller for lav.
+      var halvtoner = mellom(1, 12), avvik = Math.random() < 1 / 3 ? 0 : (Math.random() < 0.5 ? 1 : -1) * tilfeldig(NIVAER);
+      o = { s: tilfeldig([60, 63, 66]), iv: halvtoner, c: avvik };
+      document.getElementById('ov6-navn').textContent = IV[halvtoner - 1][0];
+      document.getElementById('ov6-eng').textContent = '(' + IV[halvtoner - 1][1] + ')';
+      valgtStr = null; valgtCent = null; besvart = false;
+      fb.innerHTML = ''; neste.hidden = true;
+      alleValg.forEach(function(b){ b.disabled = true; b.removeAttribute('aria-pressed'); });
+    }
+    function spillNa(){
+      ensureCtx();
+      if (spillBtn === activeBtn) { stopAll(); return; }
+      // Begge tonene hentes fra samme opptak, likt strukket ned og opp, så klangen blir lik.
+      var under = o.s - o.iv / 2;
+      spill(spillBtn, [{ m: under, s: o.s, t: 0, d: 1.2 }, { m: under + o.iv + o.c / 100, s: o.s, t: 1.5, d: 1.2 }]);
+      if (!besvart) alleValg.forEach(function(b){ b.disabled = false; });
+    }
+    function sjekk(){
+      if (besvart || !valgtStr || (valgtStr !== 'riktig' && !valgtCent)) return;
+      besvart = true;
+      var fasit = o.c === 0 ? 'riktig' : o.c > 0 ? 'stort' : 'lite', abs = Math.abs(o.c);
+      var fasitTekst = o.c === 0 ? 'Intervallet var helt riktig.' : 'Intervallet var ' + abs + ' cent for ' + fasit + '.';
+      // Svarene ligger på en skala fra 50 cent for lite til 50 cent for stort. Ett trinn unna teller også som riktig.
+      var SKALA = [-50, -40, -30, -20, -15, -10, -5, 0, 5, 10, 15, 20, 30, 40, 50];
+      var ditt = valgtStr === 'riktig' ? 0 : (valgtStr === 'stort' ? 1 : -1) * valgtCent;
+      var trinn = Math.abs(SKALA.indexOf(ditt) - SKALA.indexOf(o.c));
+      var dittTekst = ditt === 0 ? 'helt riktig' : valgtCent + ' cent for ' + valgtStr;
+      var tekst;
+      if (trinn === 0) tekst = '<strong class="ok">Riktig.</strong> ' + fasitTekst;
+      else if (trinn === 1) tekst = '<strong class="ok">Nesten riktig.</strong> ' + fasitTekst + ' Du svarte ' + dittTekst + ', bare ett trinn unna.';
+      else if (valgtStr === fasit) tekst = '<strong class="delvis">Delvis riktig.</strong> Intervallet var for ' + fasit + ', men ' + abs + ' cent, ikke ' + valgtCent + ' cent.';
+      else if (fasit !== 'riktig' && valgtStr !== 'riktig' && valgtCent === abs) tekst = '<strong class="delvis">Delvis riktig.</strong> Antall cent var riktig, men intervallet var for ' + fasit + ', ikke for ' + valgtStr + '.';
+      else tekst = '<strong class="nei">Feil.</strong> ' + fasitTekst;
+      fb.innerHTML = tekst + motiv('ov6', trinn <= 1);
+      alleValg.forEach(function(b){ if (b.getAttribute('aria-pressed') !== 'true') b.disabled = true; });
+      neste.hidden = false;
+    }
+    spillBtn.addEventListener('click', spillNa);
+    storBtns.forEach(function(b){ b.addEventListener('click', function(){
+      if (besvart) return; valgtStr = b.getAttribute('data-storrelse'); velg(storBtns, b);
+      if (valgtStr === 'riktig') { valgtCent = null; centBtns.forEach(function(x){ x.removeAttribute('aria-pressed'); }); }
+      sjekk();
+    }); });
+    centBtns.forEach(function(b){ b.addEventListener('click', function(){
+      if (besvart) return; valgtCent = parseInt(b.getAttribute('data-cent'), 10); velg(centBtns, b); sjekk();
+    }); });
+    neste.addEventListener('click', function(){ stopAll(); ny(); spillNa(); neste.blur(); spillBtn.focus(); });
+    ny();
+  })();
+})();
+</script>
+<script>
+/* Hvis siden ligger et annet sted enn på Verdens Beste Musikkskole, vises en liten lenke til originalen. Alt annet virker som vanlig. */
+(function(){
+  if (location.hostname === 'mollodi.github.io') return;
+  var fil = location.pathname.split('/').pop() || '';
+  var url = 'https://mollodi.github.io/Verdens-Beste-Musikkskole/' + fil;
+  var en = document.documentElement.lang === 'en';
+  var d = document.createElement('div');
+  d.setAttribute('role', 'note');
+  d.style.cssText = 'background:#C08A28;color:#12151A;border-bottom:1px solid #12151A;padding:9px 16px;text-align:center;'
+    + 'font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;position:relative;z-index:60';
+  d.innerHTML = (en ? 'The original of this page is at ' : 'Originalen av denne siden finnes på ')
+    + '<a href="' + url + '" style="color:inherit;font-weight:700;text-underline-offset:3px">Verdens Beste Musikkskole</a>.';
+  document.body.insertBefore(d, document.body.firstChild);
+})();
+</script>
+</body>
+</html>
