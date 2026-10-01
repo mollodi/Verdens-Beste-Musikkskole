@@ -200,23 +200,11 @@
   document.addEventListener('touchstart', function(){ ensureCtx(); }, {once: true, passive: true});
 
   /* ---------- velger for instrument (nederst til høyre) ---------- */
-  var css = '.vbm-instr{display:inline-flex;border:1px solid currentColor;border-radius:999px;overflow:hidden;'
-    + 'font:13px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}'
-    + '.vbm-instr button{appearance:none;-webkit-appearance:none;background:transparent;color:inherit;border:0;'
-    + 'padding:7px 13px;font:inherit;cursor:pointer}'
-    + '.vbm-instr button[aria-pressed="true"]{background:currentColor}'
-    + '.vbm-instr button[aria-pressed="true"] span{filter:invert(1)}'
-    + '.vbm-instr button:focus-visible{outline:2px solid currentColor;outline-offset:-4px}'
-    + '.vbm-instr-float{position:fixed;z-index:50;right:max(14px,env(safe-area-inset-right,0px));'
-    + 'bottom:calc(14px + env(safe-area-inset-bottom,0px));box-shadow:0 4px 18px rgba(0,0,0,.18)}'
-    + '.play-btn.loading{opacity:.65}'
-    + '@media (forced-colors: active){.vbm-instr button[aria-pressed="true"]{forced-color-adjust:none;background:Highlight;color:HighlightText}.vbm-instr button[aria-pressed="true"] span{filter:none}}'
-    + '@media print{.vbm-instr{display:none!important}}';
-  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+  /* Utseendet ligger i stil.css (.vbm-pille og .vbm-instr-float). */
 
   function buildPicker(){
     var wrap = document.createElement('div'), bs = getComputedStyle(document.body);
-    wrap.className = 'vbm-instr vbm-instr-float';
+    wrap.className = 'vbm-pille vbm-instr vbm-instr-float';
     wrap.setAttribute('role', 'group'); wrap.setAttribute('aria-label', 'Velg instrument');
     wrap.style.background = bs.backgroundColor && bs.backgroundColor !== 'rgba(0, 0, 0, 0)' ? bs.backgroundColor : '#fff';
     wrap.style.color = bs.color;

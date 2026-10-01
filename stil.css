@@ -1,0 +1,2053 @@
+/* © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt. Verk-ID: VBM-K7Q4-TRC8. Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9 */
+/* =====================================================================
+   Verdens Beste Musikkskole – ALL STIL FOR HELE NETTSIDEN
+   ---------------------------------------------------------------------
+   Hver side har data-side="filnavn.html" på <html>, og sider som deler
+   utseende har i tillegg data-stil="bok" (juksebøkene) eller
+   data-stil="mork" (de mørke lyttesidene).
+
+   Regler for én side skrives slik:
+     :where(html[data-side="min-side.html"]) .kort { ... }
+   :where() gjør at regelen ikke blir «sterkere» enn den står skrevet.
+
+   Innhold:
+     1. Felles komponenter for alle sider
+     2. Intervall-jukseboka og Den ultimate jukseboka (data-stil="bok"). Felles regler har data-stil, resten gjelder én side.
+     3. Intervaller & sanger og Lytteguiden (data-stil="mork"). Felles regler har data-stil, resten gjelder én side.
+     4. Startsiden (index.html)
+     5. Gehørlekser med mikrointervaller (gehorlekser-mikrointervaller.html)
+     6. Akkordhefte (akkordhefte.html)
+   ===================================================================== */
+
+
+/* =====================================================================
+   1. Felles komponenter for alle sider
+   ===================================================================== */
+
+/* ---------- Navigasjon øverst: «← Alle ressurser» og knapperaden ---------- */
+.vbm-back {
+  display: flex; justify-content: space-between; align-items: center; gap: 10px 16px; flex-wrap: wrap;
+  max-width: 60rem; margin: 0 auto; padding: .9rem 1.25rem 0; position: relative; z-index: 5; color: inherit;
+  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+.vbm-back a { color: inherit; opacity: .8; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.vbm-back a:hover, .vbm-back a:focus-visible { opacity: 1; }
+.vbm-back--book { max-width: none; margin: 0 0 32px; padding: 0; font-size: 15px; }
+.vbm-valg { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+/* ---------- Pilleknapper: Farger | Svart-hvitt, NO | EN | PL og instrumentvelgeren ---------- */
+.vbm-pille {
+  display: inline-flex; border: 1px solid currentColor; border-radius: 999px; overflow: hidden;
+  font: 13px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+.vbm-pille button {
+  appearance: none; -webkit-appearance: none; background: transparent; color: inherit; border: 0;
+  padding: 7px 13px; font: inherit; cursor: pointer;
+}
+.vbm-pille button[aria-pressed="true"] { background: currentColor; }
+.vbm-pille button[aria-pressed="true"] span { filter: invert(1); }
+.vbm-pille button:focus-visible { outline: 2px solid currentColor; outline-offset: -4px; }
+/* Språkknappene er litt smalere og har skillestrek */
+.vbm-sprak button { padding: 7px 11px; font-weight: 600; letter-spacing: .04em; min-width: 40px; }
+.vbm-sprak button + button { border-left: 1px solid currentColor; }
+/* Instrumentvelgeren flyter nederst til høyre */
+.vbm-instr-float {
+  position: fixed; z-index: 50; right: max(14px, env(safe-area-inset-right, 0px));
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px)); box-shadow: 0 4px 18px rgba(0,0,0,.18);
+}
+.play-btn.loading { opacity: .65; }
+@media (forced-colors: active) {
+  .vbm-sprak button { border-color: ButtonText; }
+  .vbm-pille button[aria-pressed="true"] { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+  .vbm-pille button[aria-pressed="true"] span { filter: none; }
+  .swatch { forced-color-adjust: none; }
+}
+@media print { .vbm-back, .vbm-pille { display: none !important; } }
+
+/* ---------- Lenke til originalen (vises bare når siden ligger et annet sted) ---------- */
+.vbm-original {
+  background: #C08A28; color: #12151A; border-bottom: 1px solid #12151A; padding: 9px 16px; text-align: center;
+  font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; position: relative; z-index: 60;
+}
+.vbm-original a { color: inherit; font-weight: 700; text-underline-offset: 3px; }
+
+/* ---------- Språk: siden holdes skjult et øyeblikk mens teksten byttes ---------- */
+html.vbm-oversetter body { visibility: hidden; }
+
+/* ---------- Farger / svart-hvitt ---------- */
+.kun-sh { display: none !important; }
+html.sh .kun-sh { display: revert !important; }
+html.sh .kun-farge { display: none !important; }
+/* Svart-hvitt-versjon (slås på av felles.js med ?svart-hvitt) */
+html.sh{
+  --blue:var(--ink-soft) !important;
+  --blue-dk:var(--ink-soft) !important;
+  --blue-lt:var(--ink-soft) !important;
+  --crimson:var(--ink-soft) !important;
+  --green:var(--ink-soft) !important;
+  --green-dk:var(--ink-soft) !important;
+  --green-lt:var(--ink-soft) !important;
+  --indigo:var(--ink-soft) !important;
+  --indigo-dk:var(--ink-soft) !important;
+  --indigo-lt:var(--ink-soft) !important;
+  --magenta:var(--ink-soft) !important;
+  --octave:var(--ink-soft) !important;
+  --orange:var(--ink-soft) !important;
+  --orange-dk:var(--ink-soft) !important;
+  --orange-lt:var(--ink-soft) !important;
+  --purple:var(--ink-soft) !important;
+  --red:var(--ink-soft) !important;
+  --red-dk:var(--ink-soft) !important;
+  --red-lt:var(--ink-soft) !important;
+  --rose:var(--ink-soft) !important;
+  --taupe:var(--ink-soft) !important;
+  --teal:var(--ink-soft) !important;
+  --violet:var(--ink-soft) !important;
+  --violet-dk:var(--ink-soft) !important;
+  --violet-lt:var(--ink-soft) !important;
+  --yellow:var(--ink-soft) !important;
+  --yellow-dk:var(--ink-soft) !important;
+  --yellow-lt:var(--ink-soft) !important;
+  --blue-ink:var(--ink) !important;
+  --crimson-ink:var(--ink) !important;
+  --green-ink:var(--ink) !important;
+  --indigo-dk-ink:var(--ink) !important;
+  --indigo-ink:var(--ink) !important;
+  --magenta-ink:var(--ink) !important;
+  --octave-ink:var(--ink) !important;
+  --orange-dk-ink:var(--ink) !important;
+  --orange-ink:var(--ink) !important;
+  --purple-ink:var(--ink) !important;
+  --red-ink:var(--ink) !important;
+  --rose-ink:var(--ink) !important;
+  --taupe-ink:var(--ink) !important;
+  --teal-ink:var(--ink) !important;
+  --violet-dk-ink:var(--ink) !important;
+  --violet-ink:var(--ink) !important;
+  --yellow-dk-ink:var(--ink) !important;
+  --yellow-ink:var(--ink) !important;
+}
+html.sh svg ellipse{ fill:var(--ink) !important; }
+html.sh .legend, html.sh .cover-band{ display:none !important; }
+
+
+/* =====================================================================
+   2. Intervall-jukseboka og Den ultimate jukseboka (data-stil="bok"). Felles regler har data-stil, resten gjelder én side.
+   ===================================================================== */
+:root:where([data-side="intervaller.html"]) { --vbm-verk: "K7Q4-95F9"; }
+:root:where([data-side="akkorder-og-intervaller.html"]) { --vbm-verk: "K7Q4-TEC2"; }
+:root:where([data-stil="bok"]) {
+  --bg: #FAF9F6;
+  --ink: #1E1E1A;
+  --ink-soft: #6B6A62;
+  --line: #DEDBD1;
+  --surface: #FFFFFF;
+  --crimson: #7A1F2B;
+  --crimson-ink: #4B131A;
+  --red: #AD2534;
+  --red-ink: #6B1620;
+  --orange: #D06730;
+  --orange-ink: #803F1D;
+  --yellow: #C79A1E;
+  --yellow-ink: #7B5F12;
+  --green: #42945E;
+  --green-ink: #285B3A;
+  --teal: #3E938F;
+  --teal-ink: #265B58;
+  --blue: #3579B0;
+  --blue-ink: #204B6D;
+  --purple: #543D6D;
+  --purple-ink: #342543;
+  --magenta: #8C3D65;
+  --magenta-ink: #56253E;
+  --taupe: #6B5B4A;
+  --taupe-ink: #42382D;
+  --indigo: #3F4B9E;
+  --indigo-ink: #262E62;
+  --violet: #7650A6;
+  --violet-ink: #48306A;
+  --rose: #B8577E;
+  --rose-ink: #733449;
+  --orange-dk: #9E4A1C;
+  --orange-dk-ink: #5E2C10;
+  --yellow-dk: #8F6B12;
+  --yellow-dk-ink: #5A430B;
+  --indigo-dk: #2A3470;
+  --indigo-dk-ink: #1B2148;
+  --violet-dk: #563A7C;
+  --violet-dk-ink: #36244E;
+  --red-dk: #7A1822;
+  --green-dk: #2C6B42;
+  --blue-dk: #24567F;
+  --red-lt: #D9707B;
+  --orange-lt: #E9A177;
+  --yellow-lt: #E6C764;
+  --green-lt: #86C79B;
+  --blue-lt: #7FB3DB;
+  --indigo-lt: #8590CF;
+  --violet-lt: #B49AD4;
+  --octave: #3A3934;
+  --octave-ink: #2A2925;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where([data-stil="bok"]) {
+    --bg: #17160F;
+    --ink: #EDEBE2;
+    --ink-soft: #A6A499;
+    --line: #3A382E;
+    --surface: #201F17;
+    --crimson-ink: #CCA9AE;
+    --red-ink: #DFACB1;
+    --orange-ink: #EDC5B0;
+    --yellow-ink: #E9D8A9;
+    --green-ink: #B7D6C1;
+    --teal-ink: #B5D5D4;
+    --blue-ink: #B2CCE0;
+    --purple-ink: #BEB5C7;
+    --magenta-ink: #D3B5C4;
+    --taupe-ink: #C6C0BA;
+    --indigo-ink: #B9C0E6;
+    --violet-ink: #D0C0E6;
+    --rose-ink: #EBC2D2;
+    --orange-dk-ink: #E4B89F;
+    --yellow-dk-ink: #DCC99A;
+    --indigo-dk-ink: #AEB5DC;
+    --violet-dk-ink: #C6B7DB;
+    --octave: #CFCBC1;
+    --octave-ink: #E4E1D8;
+  }
+}
+:where(html[data-stil="bok"]), :where(html[data-stil="bok"]) * { box-sizing: border-box; }
+:where(html[data-stil="bok"]) body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size: 17px;
+  padding: 40px 22px 60px;
+}
+:where(html[data-stil="bok"]) main {
+  max-width: 760px;
+  margin: 0 auto;
+}
+:where(html[data-side="intervaller.html"]) h1 {
+  font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  font-weight: 400;
+  font-size: 34px;
+  letter-spacing: 0.2px;
+  margin: 0 0 8px;
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) h1 {
+  font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  font-weight: 400;
+  font-size: 38px;
+  letter-spacing: 0.2px;
+  margin: 0 0 8px;
+}
+:where(html[data-stil="bok"]) .lede {
+  color: var(--ink-soft);
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 0 0 24px;
+  max-width: 62ch;
+}
+:where(html[data-stil="bok"]) .legend {
+  padding: 16px 0 28px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 32px;
+}
+:where(html[data-stil="bok"]) .legend-label {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin: 0 0 10px 0;
+}
+:where(html[data-stil="bok"]) .legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 14px;
+}
+:where(html[data-stil="bok"]) .legend-row:last-child { margin-bottom: 0; }
+:where(html[data-stil="bok"]) .legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin: 0 22px 6px 0;
+}
+:where(html[data-stil="bok"]) .swatch {
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  flex: none;
+  margin-right: 8px;
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) .chapter { margin-bottom: 8px; }
+:where(html[data-side="akkorder-og-intervaller.html"]) .chapter-title {
+  font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  font-size: 34px;
+  font-weight: 400;
+  margin: 0 0 8px;
+  color: var(--ink);
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--ink);
+  break-after: avoid;
+  page-break-after: avoid;
+}
+:where(html[data-stil="bok"]) section.group { margin-bottom: 28px; }
+:where(html[data-side="intervaller.html"]) .group-title {
+  font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  font-size: 23px;
+  font-weight: 400;
+  margin: 0 0 14px;
+  color: var(--ink);
+  padding-top: 6px;
+}
+:where(html[data-side="intervaller.html"]) .ivl {
+  padding: 14px 0 16px;
+  border-bottom: 1px solid var(--line);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+:where(html[data-side="intervaller.html"]) .ivl:last-child { border-bottom: none; }
+:where(html[data-side="intervaller.html"]) .ivl-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+:where(html[data-side="intervaller.html"]) .ivl-head > div { margin-right: 12px; }
+:where(html[data-side="intervaller.html"]) .ivl-name {
+  font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  font-size: 20px;
+  margin: 0 0 2px;
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) .group-title {
+  font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  font-size: 25px;
+  font-weight: 400;
+  margin: 0 0 14px;
+  color: var(--ink);
+  padding-top: 6px;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) .group-note {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) .chord {
+  padding: 14px 0 16px;
+  border-bottom: 1px solid var(--line);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) .chord:last-child { border-bottom: none; }
+:where(html[data-side="akkorder-og-intervaller.html"]) .chord-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) .chord-head > div { margin-right: 12px; }
+:where(html[data-side="akkorder-og-intervaller.html"]) .chord-name {
+  font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  font-size: 21px;
+  margin: 0 0 3px;
+}
+:where(html[data-stil="bok"]) .name-en {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+:where(html[data-side="intervaller.html"]) .ivl-sub {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) .chord-formula {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+:where(html[data-stil="bok"]) .play-btn {
+  flex: none;
+  display: flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  color: var(--ink);
+  border-radius: 20px;
+  padding: 7px 14px 7px 12px;
+  font-size: 13.5px;
+  cursor: pointer;
+  font-family: inherit;
+}
+:where(html[data-stil="bok"]) .play-btn span { margin-left: 6px; }
+:where(html[data-side="akkorder-og-intervaller.html"]) .play-btn:hover { border-color: var(--ink-soft); }
+:where(html[data-stil="bok"]) .play-btn.playing {
+  border-color: var(--blue);
+  color: var(--blue-ink);
+}
+:where(html[data-side="intervaller.html"]) .ivl svg { display: block; }
+:where(html[data-side="akkorder-og-intervaller.html"]) .chord svg { display: block; }
+:where(html[data-stil="bok"]) .note { fill: var(--ink); }
+:where(html[data-stil="bok"]) .tick {
+  fill: #FFFFFF;
+  opacity: 0.85;
+  stroke: none;
+}
+:where(html[data-side="intervaller.html"]) .deg {
+  font-size: 15px;
+  fill: var(--ink-soft);
+  text-anchor: middle;
+  font-family: inherit;
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) .deg {
+  font-size: 16px;
+  fill: var(--ink-soft);
+  text-anchor: middle;
+  font-family: inherit;
+}
+:where(html[data-stil="bok"]) .bracket {
+  fill: none;
+  stroke-width: 1.75;
+}
+:where(html[data-side="intervaller.html"]) .blabel {
+  font-size: 14.5px;
+  font-weight: 600;
+  text-anchor: middle;
+  font-family: inherit;
+}
+:where(html[data-side="intervaller.html"]) .caption {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  margin: 10px 0 0;
+  line-height: 1.6;
+}
+:where(html[data-side="intervaller.html"]) footer {
+  margin-top: 40px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) .blabel {
+  font-size: 15px;
+  font-weight: 600;
+  text-anchor: middle;
+  font-family: inherit;
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) .caption {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin: 10px 0 0;
+  line-height: 1.6;
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) footer {
+  margin-top: 48px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+:where(html[data-stil="bok"]) footer .vbm-kreditt {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+}
+@media print {
+  :where(html[data-stil="bok"]) .play-btn { display: none; }
+  :where(html[data-side="intervaller.html"]) body { padding: 20px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .chapter ~ .chapter {
+    break-before: page;
+    page-break-before: always;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .group-note {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) body { padding: 20px 20px 0; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) main { padding-bottom: 0; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) footer {
+    break-before: avoid;
+    page-break-before: avoid;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+:where(html[data-side="akkorder-og-intervaller.html"]) .cover { display: none; }
+@media print {
+  :where(html[data-side="akkorder-og-intervaller.html"]) .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 250mm;
+    break-after: page;
+    page-break-after: always;
+    padding: 10mm 0 6mm;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .cover-top,
+  :where(html[data-side="akkorder-og-intervaller.html"]) .cover-bottom {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .cover-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .cover-staff {
+    width: 78%;
+    height: auto;
+    display: block;
+    margin: 0 0 14mm;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .cover-title {
+    font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 1.1;
+    margin: 0;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .cover-sub {
+    font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--ink-soft);
+    margin: 8px 0 12mm;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .cover-band {
+    width: 62%;
+    height: 8px;
+    display: block;
+    margin: 0 0 7mm;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .cover-meta {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+  :root:where([data-side="akkorder-og-intervaller.html"]) { --bg: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) body { background: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .chord { padding: 10px 0 12px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .caption { margin-top: 6px; }
+  :root:where([data-side="akkorder-og-intervaller.html"]) { --bg: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) body { background: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .chord { padding: 10px 0 12px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .caption { margin-top: 6px; }
+  :root:where([data-side="akkorder-og-intervaller.html"]) { --bg: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) body { background: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .chord { padding: 10px 0 12px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .caption { margin-top: 6px; }
+  :root:where([data-side="akkorder-og-intervaller.html"]) { --bg: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) body { background: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .chord { padding: 10px 0 12px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .caption { margin-top: 6px; }
+  :root:where([data-side="akkorder-og-intervaller.html"]) { --bg: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) body { background: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .chord { padding: 10px 0 12px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .caption { margin-top: 6px; }
+  :root:where([data-side="akkorder-og-intervaller.html"]) { --bg: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) body { background: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .chord { padding: 10px 0 12px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .caption { margin-top: 6px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .legend {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding: 10px 0 16px;
+    margin-bottom: 20px;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .lede { margin-bottom: 14px; }
+  :root:where([data-side="akkorder-og-intervaller.html"]) { --bg: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) body { background: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .chord { padding: 10px 0 12px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .caption { margin-top: 6px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .legend {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding: 10px 0 16px;
+    margin-bottom: 20px;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .lede { margin-bottom: 14px; }
+  :root:where([data-side="akkorder-og-intervaller.html"]) { --bg: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) body { background: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .chord { padding: 10px 0 12px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .caption { margin-top: 6px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .legend {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding: 10px 0 16px;
+    margin-bottom: 20px;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .lede { margin-bottom: 14px; }
+  :root:where([data-side="akkorder-og-intervaller.html"]) { --bg: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) body { background: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .chord { padding: 10px 0 12px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .caption { margin-top: 6px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .legend {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding: 10px 0 16px;
+    margin-bottom: 20px;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .lede { margin-bottom: 14px; }
+  :root:where([data-side="akkorder-og-intervaller.html"]) { --bg: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) body { background: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .chord { padding: 10px 0 12px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .caption { margin-top: 6px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .legend {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding: 10px 0 16px;
+    margin-bottom: 20px;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .lede { margin-bottom: 14px; }
+  :root:where([data-side="akkorder-og-intervaller.html"]) { --bg: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) body { background: #FFFFFF; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .chord { padding: 10px 0 12px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .caption { margin-top: 6px; }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .legend {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding: 10px 0 16px;
+    margin-bottom: 20px;
+  }
+  :where(html[data-side="akkorder-og-intervaller.html"]) .lede { margin-bottom: 14px; }
+}
+
+/* =====================================================================
+   3. Intervaller & sanger og Lytteguiden (data-stil="mork"). Felles regler har data-stil, resten gjelder én side.
+   ===================================================================== */
+:root:where([data-side="intervaller-og-sanger.html"]) { --vbm-verk: "K7Q4-2YJ3"; }
+:root:where([data-side="lytteguide-septim-og-nonakkorder.html"]) { --vbm-verk: "K7Q4-5B6M"; }
+:root:where([data-stil="mork"]) {
+  --ink: #12151A;
+  --ink-soft: #1B2027;
+  --paper: #F6F1E7;
+  --text-on-paper: #211F1A;
+  --text-muted: #6B6355;
+  --brass: #C08A28;
+  --brass-dim: #8C6620;
+  --slate-dim: #37506B;
+  --rule: rgba(33,31,26,0.14);
+  --rule-dark: rgba(246,241,231,0.14);
+}
+:where(html[data-stil="mork"]), :where(html[data-stil="mork"]) * { box-sizing: border-box; }
+:where(html[data-stil="mork"]) body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+:where(html[data-stil="mork"]) a { color: inherit; }
+:where(html[data-stil="mork"]) header.hero {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 72px 28px 40px;
+  border-bottom: 1px solid var(--rule-dark);
+}
+:where(html[data-stil="mork"]) .eyebrow {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 18px;
+}
+:where(html[data-stil="mork"]) h1 {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 5.4vw, 56px);
+  line-height: 1.05;
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+}
+:where(html[data-stil="mork"]) h1 em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--brass);
+}
+:where(html[data-stil="mork"]) .hero p.lede {
+  max-width: 560px;
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: rgba(246,241,231,0.72);
+  margin: 0 0 30px;
+}
+:where(html[data-stil="mork"]) .hero-staff {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) .hero-staff .staff-caption {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: rgba(246,241,231,0.55);
+  max-width: 280px;
+  line-height: 1.5;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) .controls {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 28px 0;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) .tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--ink-soft);
+  padding: 4px;
+  border-radius: 10px;
+  width: fit-content;
+  margin-bottom: 6px;
+}
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) .hero-staff .staff-caption {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: rgba(246,241,231,0.55);
+  max-width: 300px;
+  line-height: 1.5;
+}
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) .controls {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) .tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  background: var(--ink-soft);
+  padding: 4px;
+  border-radius: 10px;
+  max-width: 100%;
+  margin: 0 auto 6px;
+}
+:where(html[data-stil="mork"]) .tab-option {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+:where(html[data-stil="mork"]) .tab-option input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) .tab-option span {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(246,241,231,0.55);
+  padding: 9px 16px;
+  border-radius: 7px;
+  display: inline-block;
+  pointer-events: none;
+}
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) .tab-option span {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(246,241,231,0.55);
+  padding: 8px 10px;
+  border-radius: 7px;
+  display: inline-block;
+  pointer-events: none;
+  white-space: nowrap;
+}
+:where(html[data-stil="mork"]) .tab-option input:checked + span {
+  background: var(--brass);
+  color: var(--ink);
+}
+:where(html[data-side="intervaller-og-sanger.html"]) .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 4px 0 2px;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) .chip-option {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) .chip-option input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) .chip-option span {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--rule-dark);
+  color: rgba(246,241,231,0.65);
+  display: inline-block;
+  pointer-events: none;
+  white-space: nowrap;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) .chip-option input:checked + span {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+:where(html[data-side="intervaller-og-sanger.html"]) .hint {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  color: rgba(246,241,231,0.55);
+  margin: 10px 0 0;
+}
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) .hint {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  color: rgba(246,241,231,0.55);
+  margin: 10px 0 0;
+  text-align: center;
+}
+:where(html[data-stil="mork"]) main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px 28px 100px;
+}
+:where(html[data-stil="mork"]) .panel {
+  display: none;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) .panel-up { display: grid; }
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#tab-down:checked) .panel-up { display: none; }
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#tab-down:checked) .panel-down { display: grid; }
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-prim:checked) .card:not(.iv-prim) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-sek2m:checked) .card:not(.iv-sek2m) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-sek2s:checked) .card:not(.iv-sek2s) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-ters3m:checked) .card:not(.iv-ters3m) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-ters3s:checked) .card:not(.iv-ters3s) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-kvart:checked) .card:not(.iv-kvart) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-trit:checked) .card:not(.iv-trit) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-kvint:checked) .card:not(.iv-kvint) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-sekst6m:checked) .card:not(.iv-sekst6m) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-sekst6s:checked) .card:not(.iv-sekst6s) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-sept7m:checked) .card:not(.iv-sept7m) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-sept7s:checked) .card:not(.iv-sept7s) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) body:has(#filter-okt:checked) .card:not(.iv-okt) {
+  display: none;
+}
+:where(html[data-side="intervaller-og-sanger.html"]) .empty-hint {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(246,241,231,0.4);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+}
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) .panel-dom7 { display: grid; }
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) body:has(#tab-dom9:checked) .panel-maj9 {
+  display: grid;
+}
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) body:has(#tab-dom9:checked) .panel-dom7 {
+  display: none;
+}
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) body:has(#tab-maj7:checked) .panel-dom7 {
+  display: none;
+}
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) body:has(#tab-maj7:checked) .panel-maj7 {
+  display: grid;
+}
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) body:has(#tab-maj9real:checked) .panel-dom7 {
+  display: none;
+}
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) body:has(#tab-maj9real:checked) .panel-maj9real {
+  display: grid;
+}
+:where(html[data-stil="mork"]) .card {
+  background: var(--paper);
+  color: var(--text-on-paper);
+  border-radius: 14px;
+  padding: 20px 20px 16px;
+}
+:where(html[data-stil="mork"]) .card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 14px;
+  margin-bottom: 6px;
+}
+:where(html[data-stil="mork"]) .card-head h2 {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-weight: 700;
+  font-size: 21px;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+:where(html[data-stil="mork"]) .semitone-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+:where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) .note-caption {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin: 4px 0 10px;
+}
+:where(html[data-stil="mork"]) ul.songs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+:where(html[data-stil="mork"]) ul.songs li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+}
+:where(html[data-stil="mork"]) ul.songs li:last-child { border-bottom: none; }
+:where(html[data-stil="mork"]) .song-title {
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+:where(html[data-stil="mork"]) .song-meta {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+:where(html[data-stil="mork"]) .spotify-link {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  text-decoration: none;
+  color: var(--brass-dim);
+  border: 1px solid rgba(140,102,32,0.35);
+  padding: 5px 9px;
+  border-radius: 999px;
+}
+:where(html[data-stil="mork"]) footer {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 28px 60px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  color: rgba(246,241,231,0.6);
+  line-height: 1.7;
+}
+:where(html[data-stil="mork"]) footer .vbm-signatur {
+  display: block;
+  margin: 14px 0 0;
+}
+:where(html[data-stil="mork"]) footer .vbm-kreditt {
+  display: block;
+  margin-top: 6px;
+  opacity: .85;
+}
+@media (max-width: 560px) {
+  :where(html[data-stil="mork"]) .panel { grid-template-columns: 1fr; }
+}
+/* Notasjon og lyd i samme stil som juksebøkene */
+:root:where([data-stil="mork"]) {
+  --note-ink: #1E1E1A;
+  --red: #AD2534;
+  --red-dk: #7A1822;
+  --red-lt: #D9707B;
+  --orange: #D06730;
+  --orange-dk: #9E4A1C;
+  --orange-lt: #E9A177;
+  --yellow: #C79A1E;
+  --yellow-dk: #8F6B12;
+  --yellow-lt: #E6C764;
+  --green: #42945E;
+  --green-dk: #2C6B42;
+  --green-lt: #86C79B;
+  --blue: #3579B0;
+  --blue-dk: #24567F;
+  --blue-lt: #7FB3DB;
+  --indigo: #3F4B9E;
+  --indigo-dk: #2A3470;
+  --indigo-lt: #8590CF;
+  --violet: #7650A6;
+  --violet-dk: #563A7C;
+  --violet-lt: #B49AD4;
+}
+:where(html[data-stil="mork"]) .staff { margin: 4px 0 2px; }
+:where(html[data-stil="mork"]) .play-btn {
+  flex: none;
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(33,31,26,0.18);
+  color: var(--text-on-paper);
+  border-radius: 20px;
+  padding: 7px 14px 7px 12px;
+  font-size: 13.5px;
+  cursor: pointer;
+  font-family: inherit;
+}
+:where(html[data-stil="mork"]) .play-btn span { margin-left: 6px; }
+:where(html[data-stil="mork"]) .play-btn.playing {
+  border-color: var(--brass);
+  color: var(--brass-dim);
+}
+:where(html[data-stil="mork"]) .hero-staff .staff-box {
+  width: 220px;
+  max-width: 100%;
+}
+@media print {
+  :where(html[data-stil="mork"]) .play-btn { display: none; }
+}
+/* Kontrastmodus (Windows): alt blir lesbart og likt */
+@media (forced-colors: active) {
+  :where(html[data-stil="mork"]) .staff svg [fill],
+  :where(html[data-stil="mork"]) .hero-staff svg [fill] {
+    fill: CanvasText;
+  }
+  :where(html[data-stil="mork"]) .staff svg [stroke],
+  :where(html[data-stil="mork"]) .hero-staff svg [stroke] {
+    stroke: CanvasText;
+  }
+  :where(html[data-stil="mork"]) .card { border: 1px solid CanvasText; }
+  :where(html[data-stil="mork"]) .tab-option input:checked + span,
+  :where(html[data-stil="mork"]) .chip-option input:checked + span {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+  }
+  :where(html[data-stil="mork"]) .tab-option input:focus-visible + span,
+  :where(html[data-stil="mork"]) .chip-option input:focus-visible + span {
+    outline: 2px solid Highlight;
+  }
+  :where(html[data-stil="mork"]) .play-btn.playing { border-color: Highlight; }
+}
+
+/* =====================================================================
+   4. Startsiden (index.html)
+   ===================================================================== */
+:root:where([data-side="index.html"]) { --vbm-verk: "K7Q4-VZFC"; }
+:root:where([data-side="index.html"]) {
+  --ink: #12151A;
+  --ink-soft: #1B2027;
+  --paper: #F6F1E7;
+  --text-on-paper: #211F1A;
+  --text-muted: #6B6355;
+  --brass: #C08A28;
+  --note: #211F1A;
+  --rule: rgba(33,31,26,0.14);
+  --rule-dark: rgba(246,241,231,0.14);
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:where([data-side="index.html"]):not([data-theme="light"]) {
+    --ink: #12151A;
+    --paper: #F6F1E7;
+  }
+}
+:root:where([data-side="index.html"])[data-theme="dark"] {
+  --ink: #12151A;
+  --paper: #F6F1E7;
+}
+html:where([data-side="index.html"]) {
+  scroll-padding-top: env(safe-area-inset-top,0px);
+  background: var(--ink);
+  -webkit-text-size-adjust: 100%;
+}
+:where(html[data-side="index.html"]), :where(html[data-side="index.html"]) *,
+:where(html[data-side="index.html"])::before, :where(html[data-side="index.html"]) *::before,
+:where(html[data-side="index.html"])::after, :where(html[data-side="index.html"]) *::after {
+  box-sizing: border-box;
+}
+:where(html[data-side="index.html"]) body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+:where(html[data-side="index.html"]) a { color: inherit; }
+:where(html[data-side="index.html"]) a:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+:where(html[data-side="index.html"]) .serif {
+  font-family: Charter,"Iowan Old Style","Palatino Linotype",Georgia,serif;
+}
+:where(html[data-side="index.html"]) .mono { font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+/* The banner is the book cover, printed on paper */
+:where(html[data-side="index.html"]) .hero {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 40px 20px 8px;
+}
+:where(html[data-side="index.html"]) .cover {
+  background: var(--paper);
+  color: var(--text-on-paper);
+  border-radius: 14px;
+  text-align: center;
+  padding: 34px 24px 30px;
+}
+:where(html[data-side="index.html"]) .cover-top,
+:where(html[data-side="index.html"]) .cover-bottom {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+:where(html[data-side="index.html"]) .sprakrad {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 12px;
+  color: var(--paper);
+}
+:where(html[data-side="index.html"]) .cover-staff {
+  display: block;
+  width: min(78%,560px);
+  height: auto;
+  margin: 30px auto 26px;
+}
+:where(html[data-side="index.html"]) .cover-title {
+  font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  font-weight: 400;
+  font-size: clamp(32px,6.4vw,54px);
+  line-height: 1.1;
+  margin: 0;
+}
+:where(html[data-side="index.html"]) .cover-sub {
+  font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  font-style: italic;
+  font-size: clamp(18px,3.4vw,26px);
+  color: var(--text-muted);
+  margin: 8px 0 22px;
+}
+:where(html[data-side="index.html"]) .cover-meta {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 30px;
+  letter-spacing: .3px;
+}
+:where(html[data-side="index.html"]) main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+:where(html[data-side="index.html"]) section { padding-top: 44px; }
+:where(html[data-side="index.html"]) .eyebrow {
+  font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size: 12.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 10px;
+}
+:where(html[data-side="index.html"]) h2 {
+  font-family: Charter,"Iowan Old Style","Palatino Linotype",Georgia,serif;
+  font-weight: 700;
+  font-size: clamp(26px,4vw,34px);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  margin: 0 0 8px;
+}
+:where(html[data-side="index.html"]) h2 em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--brass);
+}
+:where(html[data-side="index.html"]) .lede {
+  max-width: 560px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(246,241,231,.72);
+  margin: 0 0 20px;
+}
+:where(html[data-side="index.html"]) .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+  gap: 16px;
+}
+:where(html[data-side="index.html"]) .card {
+  position: relative;
+  background: var(--paper);
+  color: var(--text-on-paper);
+  border-radius: 14px;
+  padding: 20px 20px 16px;
+  display: flex;
+  flex-direction: column;
+}
+:where(html[data-side="index.html"]) .card-eyebrow {
+  font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size: 10.5px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+:where(html[data-side="index.html"]) .card h3 {
+  font-family: Charter,"Iowan Old Style","Palatino Linotype",Georgia,serif;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  margin: 0 0 8px;
+}
+:where(html[data-side="index.html"]) .card-link { text-decoration: none; }
+:where(html[data-side="index.html"]) .card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+}
+:where(html[data-side="index.html"]) .card-desc {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: #3E3A32;
+  margin: 0 0 16px;
+  flex: 1;
+}
+:where(html[data-side="index.html"]) .card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--rule);
+  padding-top: 12px;
+}
+:where(html[data-side="index.html"]) .open {
+  font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text-on-paper);
+}
+:where(html[data-side="index.html"]) .card:hover span.open { color: var(--brass); }
+:where(html[data-side="index.html"]) a.open {
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+}
+:where(html[data-side="index.html"]) a.open.two:hover,
+:where(html[data-side="index.html"]) a.open.two:focus-visible {
+  color: var(--brass);
+}
+:where(html[data-side="index.html"]) .card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+:where(html[data-side="index.html"]) .new {
+  font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--brass);
+  border-radius: 999px;
+  padding: 3px 8px;
+  margin: 0 0 10px;
+  white-space: nowrap;
+}
+:where(html[data-side="index.html"]) .empty {
+  color: rgba(246,241,231,.72);
+  font-size: 15px;
+  line-height: 1.6;
+  padding-top: 44px;
+}
+:where(html[data-side="index.html"]) footer .vbm-kreditt {
+  flex-basis: 100%;
+  font-size: 11px;
+}
+:where(html[data-side="index.html"]) footer {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+  border-top: 1px solid var(--rule-dark);
+  font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size: 12px;
+  color: rgba(246,241,231,.5);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+@media (forced-colors: active) {
+  :where(html[data-side="index.html"]) .cover-staff { --note: CanvasText; }
+  :where(html[data-side="index.html"]) .cover,
+  :where(html[data-side="index.html"]) .card {
+    border: 1px solid CanvasText;
+  }
+  :where(html[data-side="index.html"]) .card-foot { border-top-color: CanvasText; }
+}
+@media (max-width:520px) {
+  :where(html[data-side="index.html"]) .hero { padding-top: 14px; }
+  :where(html[data-side="index.html"]) .cover { padding: 26px 16px 22px; }
+  :where(html[data-side="index.html"]) .cover-staff { width: 92%; }
+}
+
+/* =====================================================================
+   5. Gehørlekser med mikrointervaller (gehorlekser-mikrointervaller.html)
+   ===================================================================== */
+:root:where([data-side="gehorlekser-mikrointervaller.html"]) { --vbm-verk: "K7Q4-J9W5"; }
+:root:where([data-side="gehorlekser-mikrointervaller.html"]) {
+  --ink: #12151A;
+  --ink-soft: #1B2027;
+  --paper: #F6F1E7;
+  --text-on-paper: #211F1A;
+  --text-muted: #6B6355;
+  --brass: #C08A28;
+  --brass-dim: #8C6620;
+  --green-dk: #2C6B42;
+  --red-dk: #7A1822;
+  --rule: rgba(33,31,26,0.14);
+  --rule-dark: rgba(246,241,231,0.14);
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]), :where(html[data-side="gehorlekser-mikrointervaller.html"]) * {
+  box-sizing: border-box;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) a { color: inherit; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) header.hero {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 72px 28px 40px;
+  border-bottom: 1px solid var(--rule-dark);
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .eyebrow {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 18px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) h1 {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 5.4vw, 56px);
+  line-height: 1.05;
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) h1 em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--brass);
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .hero p.lede {
+  max-width: 580px;
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: rgba(246,241,231,0.72);
+  margin: 0 0 14px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .hero p.lede:last-child { margin-bottom: 0; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .notice {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 28px 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  color: var(--brass);
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .notice[hidden] { display: none; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 28px 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 16px;
+  align-items: start;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card {
+  background: var(--paper);
+  color: var(--text-on-paper);
+  border-radius: 14px;
+  padding: 20px 20px 18px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card-head {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card-head h2 {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-weight: 700;
+  font-size: 21px;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .step-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card p.task {
+  font-size: 14.5px;
+  line-height: 1.55;
+  margin: 0 0 14px;
+  color: #3E3A32;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin: 0 0 6px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .forskjell {
+  font-size: 14.5px;
+  margin: 0 0 14px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .forskjell strong {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 19px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 0 0 12px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn {
+  display: inline-flex;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(33,31,26,0.18);
+  color: var(--text-on-paper);
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn span { margin-left: 6px; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn:focus-visible {
+  outline: 2px solid var(--brass-dim);
+  outline-offset: 2px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn:disabled {
+  opacity: .45;
+  cursor: default;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn.playing {
+  border-color: var(--brass);
+  color: var(--brass-dim);
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn.loading { opacity: .65; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn[aria-pressed="true"] {
+  background: var(--text-on-paper);
+  color: var(--paper);
+  border-color: var(--text-on-paper);
+  opacity: 1;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn[hidden] { display: none; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .answers .btn {
+  flex: 1 1 130px;
+  justify-content: center;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .answers.tre .btn { flex: 1 1 90px; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .feedback {
+  font-size: 14.5px;
+  line-height: 1.5;
+  min-height: 1.5em;
+  margin: 2px 0 10px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .feedback strong { font-weight: 700; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .feedback .ok { color: var(--green-dk); }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .feedback .nei { color: var(--red-dk); }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .feedback .delvis { color: var(--brass-dim); }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .feedback .motiv {
+  display: block;
+  margin-top: 4px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card.resultat { grid-column: 1 / -1; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14.5px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang li > span { display: block; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang li:last-child { border-bottom: none; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang .tall {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang .klar {
+  font-weight: 700;
+  color: var(--green-dk);
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .total {
+  font-size: 15px;
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .perfekt {
+  margin: 14px 0 0;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--text-on-paper);
+  color: var(--paper);
+  font-size: 15px;
+  line-height: 1.5;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .perfekt strong {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 22px;
+  display: block;
+  color: var(--brass);
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .perfekt[hidden] { display: none; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .cents .btn {
+  padding: 7px 12px;
+  font-size: 13px;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .stats {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  border-top: 1px solid var(--rule);
+  padding-top: 10px;
+  margin: 0;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .slider-wrap { margin: 4px 0 16px; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .slider-wrap input[type="range"] {
+  width: 100%;
+  margin: 0;
+  height: 34px;
+  accent-color: var(--brass-dim);
+  cursor: pointer;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .slider-ends {
+  display: flex;
+  justify-content: space-between;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) footer {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 28px 90px;
+  border-top: 1px solid var(--rule-dark);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: rgba(246,241,231,0.5);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) footer .vbm-kreditt {
+  flex-basis: 100%;
+  font-size: 11px;
+}
+@media (max-width: 560px) {
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) header.hero { padding: 48px 20px 32px; }
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) main { padding: 24px 16px 100px; }
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .notice { padding: 16px 20px 0; }
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) footer { padding: 24px 20px 90px; }
+}
+@media print {
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn,
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .slider-wrap {
+    display: none;
+  }
+}
+/* Kontrastmodus (Windows): alt blir lesbart, og valgte knapper vises tydelig */
+@media (forced-colors: active) {
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .card { border: 1px solid CanvasText; }
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .card-head,
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .stats,
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang li,
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .total {
+    border-color: CanvasText;
+  }
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .perfekt { border: 2px solid CanvasText; }
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn { border-color: ButtonText; }
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn:disabled {
+    opacity: 1;
+    color: GrayText;
+    border-color: GrayText;
+  }
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn.playing {
+    border-color: Highlight;
+    outline: 2px solid Highlight;
+  }
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn[aria-pressed="true"] {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+    border-color: Highlight;
+  }
+  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn:focus-visible { outline: 2px solid Highlight; }
+}
+
+/* =====================================================================
+   6. Akkordhefte (akkordhefte.html)
+   ===================================================================== */
+:root:where([data-side="akkordhefte.html"]) { --vbm-verk: "K7Q4-6YQA"; }
+/* Skrifter: Fraunces (overskrifter) og Lora (brødtekst) ligger på nettsiden selv.
+   Filene er uendret. Lisensene ligger i Fraunces-OFL.txt og Lora-OFL.txt. */
+@font-face { font-family: 'Fraunces'; src: url("Fraunces-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Lora'; src: url("Lora-Variable.ttf") format("truetype"); font-weight: 400 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Lora'; src: url("Lora-Italic-Variable.ttf") format("truetype"); font-weight: 400 700; font-style: italic; font-display: swap; }
+:root:where([data-side="akkordhefte.html"]) {
+  --paper: #F2EEE3;
+  --paper-raised: #FBF9F3;
+  --ink: #22252A;
+  --ink-soft: #5B5A54;
+  --rule: #D9D2BF;
+  --burgundy: #7C2D3B;
+  --burgundy-soft: #F4E4E3;
+  --teal: #385C51;
+  --teal-soft: #E2EBE4;
+  --slate: #4C5566;
+  --slate-soft: #E4E6EC;
+  --gold: #A9772C;
+  --gold-ink: #80591E;   /* mørkere gull til tekst, så den er lett å lese */
+  --gold-soft: #F1E4CB;
+  --max: 700px;
+}
+:where(html[data-side="akkordhefte.html"]), :where(html[data-side="akkordhefte.html"]) * {
+  box-sizing: border-box;
+  min-width: 0;
+}
+html:where([data-side="akkordhefte.html"]) {
+  background: #DCD6C6;
+  overflow-x: hidden;
+  color-scheme: light;
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+:root:where([data-side="akkordhefte.html"]) {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+:where(html[data-side="akkordhefte.html"]) body {
+  margin: 0;
+  background: #DCD6C6;
+  color: var(--ink);
+  font-family: 'Lora', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+:where(html[data-side="akkordhefte.html"]) .sheet,
+:where(html[data-side="akkordhefte.html"]) .card,
+:where(html[data-side="akkordhefte.html"]) table,
+:where(html[data-side="akkordhefte.html"]) .fillins,
+:where(html[data-side="akkordhefte.html"]) .cards {
+  max-width: 100%;
+}
+:where(html[data-side="akkordhefte.html"]) h1,
+:where(html[data-side="akkordhefte.html"]) h2,
+:where(html[data-side="akkordhefte.html"]) h3,
+:where(html[data-side="akkordhefte.html"]) .display {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+:where(html[data-side="akkordhefte.html"]) .sheet {
+  max-width: var(--max);
+  margin: 0 auto;
+  background: var(--paper);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 24px 60px -20px rgba(0,0,0,0.35);
+}
+/* ---------- Staff-line divider: a visual device from the subject itself ---------- */
+:where(html[data-side="akkordhefte.html"]) .staff {
+  height: 34px;
+  margin: 0 auto;
+  max-width: 340px;
+  background-image: repeating-linear-gradient(
+      var(--rule) 0, var(--rule) 1px,
+      transparent 1px, transparent 8px
+    );
+  background-size: 100% 100%;
+  opacity: 0.9;
+}
+:where(html[data-side="akkordhefte.html"]) .staff-wrap { padding: 6px 40px 26px; }
+/* ---------- Cover ---------- */
+:where(html[data-side="akkordhefte.html"]) .cover {
+  padding: 62px 44px 40px;
+  text-align: center;
+  border-bottom: 1px solid var(--rule);
+}
+:where(html[data-side="akkordhefte.html"]) .cover .clef {
+  font-size: 54px;
+  line-height: 1;
+  color: var(--burgundy);
+  margin-bottom: 6px;
+  font-family: Georgia, serif;
+}
+:where(html[data-side="akkordhefte.html"]) .cover .kicker {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+:where(html[data-side="akkordhefte.html"]) .cover h1 {
+  font-size: 38px;
+  line-height: 1.1;
+  margin: 0 0 14px;
+}
+:where(html[data-side="akkordhefte.html"]) .cover p.lede {
+  max-width: 440px;
+  margin: 0 auto;
+  color: var(--ink-soft);
+  font-size: 16px;
+}
+:where(html[data-side="akkordhefte.html"]) .fillins {
+  margin: 34px auto 0;
+  max-width: 420px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  text-align: left;
+}
+:where(html[data-side="akkordhefte.html"]) .fillins .field {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+:where(html[data-side="akkordhefte.html"]) .fillins .line {
+  margin-top: 22px;
+  border-bottom: 1px solid var(--ink-soft);
+  height: 1px;
+}
+/* ---------- Table of contents ---------- */
+:where(html[data-side="akkordhefte.html"]) .toc {
+  padding: 30px 44px;
+  border-bottom: 1px solid var(--rule);
+}
+:where(html[data-side="akkordhefte.html"]) .toc h2 {
+  font-size: 14px;
+  text-transform: none;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+  font-weight: 500;
+}
+:where(html[data-side="akkordhefte.html"]) .toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  columns: 2;
+  column-gap: 30px;
+}
+:where(html[data-side="akkordhefte.html"]) .toc li {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 15px;
+  padding: 6px 0;
+  border-bottom: 1px dotted var(--rule);
+  break-inside: avoid;
+}
+:where(html[data-side="akkordhefte.html"]) .toc a {
+  color: var(--ink);
+  text-decoration: none;
+}
+:where(html[data-side="akkordhefte.html"]) .toc .num {
+  color: var(--burgundy);
+  margin-right: 8px;
+}
+/* ---------- Page / section ---------- */
+:where(html[data-side="akkordhefte.html"]) .page {
+  padding: 46px 44px 40px;
+  border-bottom: 1px solid var(--rule);
+}
+:where(html[data-side="akkordhefte.html"]) .page:last-of-type { border-bottom: none; }
+:where(html[data-side="akkordhefte.html"]) .eyebrow {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 13px;
+  color: var(--burgundy);
+  margin-bottom: 6px;
+}
+:where(html[data-side="akkordhefte.html"]) .page h2 {
+  font-size: 27px;
+  margin: 0 0 18px;
+}
+:where(html[data-side="akkordhefte.html"]) .page h3 {
+  font-size: 18px;
+  margin: 30px 0 10px;
+}
+:where(html[data-side="akkordhefte.html"]) .page p { margin: 0 0 14px; }
+:where(html[data-side="akkordhefte.html"]) .page p:last-child { margin-bottom: 0; }
+/* ---------- Callouts ---------- */
+:where(html[data-side="akkordhefte.html"]) .tip {
+  border-left: 3px solid var(--gold);
+  background: var(--gold-soft);
+  padding: 14px 18px;
+  margin: 20px 0;
+  font-size: 15.5px;
+}
+:where(html[data-side="akkordhefte.html"]) .tip .label {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  color: var(--gold-ink);
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+/* ---------- Practice blanks ---------- */
+:where(html[data-side="akkordhefte.html"]) .blank-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 14px;
+  margin: 18px 0 6px;
+}
+:where(html[data-side="akkordhefte.html"]) .blank-row .q {
+  flex: 1 1 200px;
+  min-width: 0;
+  font-size: 15.5px;
+}
+:where(html[data-side="akkordhefte.html"]) .blank-row .line {
+  flex: 1 1 70px;
+  min-width: 50px;
+  border-bottom: 1px solid var(--ink-soft);
+  height: 1.6em;
+}
+:where(html[data-side="akkordhefte.html"]) .blank-block {
+  border-bottom: 1px solid var(--ink-soft);
+  height: 2.4em;
+  margin: 6px 0 22px;
+}
+/* ---------- Answer reveal (native <details>, no JS) ---------- */
+:where(html[data-side="akkordhefte.html"]) details.answer {
+  margin: 6px 0 24px;
+  font-size: 15px;
+}
+:where(html[data-side="akkordhefte.html"]) details.answer summary {
+  cursor: pointer;
+  font-family: 'Fraunces', Georgia, serif;
+  color: var(--teal);
+  font-size: 13.5px;
+  list-style: none;
+}
+:where(html[data-side="akkordhefte.html"]) details.answer summary::-webkit-details-marker { display: none; }
+:where(html[data-side="akkordhefte.html"]) details.answer summary::before { content: "Vis fasit ›"; }
+:where(html[data-side="akkordhefte.html"]) details.answer[open] summary::before { content: "Skjul fasit ⌄"; }
+html:where([data-side="akkordhefte.html"])[lang="en"] details.answer summary::before { content: "Show answer ›"; }
+html:where([data-side="akkordhefte.html"])[lang="en"] details.answer[open] summary::before {
+  content: "Hide answer ⌄";
+}
+html:where([data-side="akkordhefte.html"])[lang="pl"] details.answer summary::before {
+  content: "Pokaż odpowiedź ›";
+}
+html:where([data-side="akkordhefte.html"])[lang="pl"] details.answer[open] summary::before {
+  content: "Ukryj odpowiedź ⌄";
+}
+:where(html[data-side="akkordhefte.html"]) details.answer .inner {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: var(--teal-soft);
+  border-left: 3px solid var(--teal);
+}
+/* ---------- Triad quality cards ---------- */
+:where(html[data-side="akkordhefte.html"]) .cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 22px 0 8px;
+}
+:where(html[data-side="akkordhefte.html"]) .card {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-top: 4px solid var(--c, var(--ink));
+  padding: 16px 18px 18px;
+}
+:where(html[data-side="akkordhefte.html"]) .card.major { --c: var(--burgundy); }
+:where(html[data-side="akkordhefte.html"]) .card.minor { --c: var(--teal); }
+:where(html[data-side="akkordhefte.html"]) .card.dim { --c: var(--slate); }
+:where(html[data-side="akkordhefte.html"]) .card.aug { --c: var(--gold); }
+:where(html[data-side="akkordhefte.html"]) .card .qname {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--c);
+  margin-bottom: 2px;
+}
+:where(html[data-side="akkordhefte.html"]) .card.aug .qname { color: var(--gold-ink); }
+:where(html[data-side="akkordhefte.html"]) .card .qsym {
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+:where(html[data-side="akkordhefte.html"]) .card .formula {
+  font-size: 14.5px;
+  margin-bottom: 8px;
+}
+:where(html[data-side="akkordhefte.html"]) .card .character {
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-bottom: 10px;
+}
+:where(html[data-side="akkordhefte.html"]) .card .notes {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  padding: 8px 10px;
+  background: repeating-linear-gradient(var(--rule) 0, var(--rule) 1px, transparent 1px, transparent 7px);
+  background-color: var(--paper);
+  text-align: center;
+}
+/* ---------- Tables ---------- */
+:where(html[data-side="akkordhefte.html"]) .table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 18px 0 10px;
+}
+:where(html[data-side="akkordhefte.html"]) table {
+  width: 100%;
+  min-width: 380px;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 15px;
+}
+:where(html[data-side="akkordhefte.html"]) caption {
+  text-align: left;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+:where(html[data-side="akkordhefte.html"]) th,
+:where(html[data-side="akkordhefte.html"]) td {
+  text-align: left;
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--rule);
+}
+:where(html[data-side="akkordhefte.html"]) th {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--ink);
+}
+:where(html[data-side="akkordhefte.html"]) td.roman {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+}
+:where(html[data-side="akkordhefte.html"]) tr.major-row td.roman { color: var(--burgundy); }
+:where(html[data-side="akkordhefte.html"]) tr.minor-row td.roman { color: var(--teal); }
+:where(html[data-side="akkordhefte.html"]) tr.dim-row td.roman { color: var(--slate); }
+:where(html[data-side="akkordhefte.html"]) tr.aug-row td.roman { color: var(--gold-ink); }
+/* ---------- Footer ---------- */
+:where(html[data-side="akkordhefte.html"]) .colophon {
+  padding: 30px 44px 50px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+:where(html[data-side="akkordhefte.html"]) .colophon .clef {
+  font-family: Georgia, serif;
+  color: var(--burgundy);
+  font-size: 22px;
+  display: block;
+  margin-bottom: 8px;
+}
+/* ---------- Responsive ---------- */
+@media (max-width: 560px) {
+  :where(html[data-side="akkordhefte.html"]) .cover { padding: 44px 24px 30px; }
+  :where(html[data-side="akkordhefte.html"]) .cover h1 { font-size: 29px; }
+  :where(html[data-side="akkordhefte.html"]) .toc { padding: 24px 24px; }
+  :where(html[data-side="akkordhefte.html"]) .toc ol { columns: 1; }
+  :where(html[data-side="akkordhefte.html"]) .page { padding: 36px 24px 32px; }
+  :where(html[data-side="akkordhefte.html"]) .cards { grid-template-columns: 1fr; }
+  :where(html[data-side="akkordhefte.html"]) .fillins {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  :where(html[data-side="akkordhefte.html"]) table { font-size: 13.5px; }
+  :where(html[data-side="akkordhefte.html"]) th,
+  :where(html[data-side="akkordhefte.html"]) td {
+    padding: 7px 6px;
+  }
+}
+/* ---------- Print ---------- */
+@media print {
+  :where(html[data-side="akkordhefte.html"]) body { background: white; }
+  :where(html[data-side="akkordhefte.html"]) .sheet { box-shadow: none; }
+  :where(html[data-side="akkordhefte.html"]) .page { break-inside: avoid-page; }
+  :where(html[data-side="akkordhefte.html"]) details.answer summary { display: none; }
+  :where(html[data-side="akkordhefte.html"]) details.answer .inner { display: block !important; }
+  :where(html[data-side="akkordhefte.html"]) details.answer:not([open]) .inner { display: block; }
+}
