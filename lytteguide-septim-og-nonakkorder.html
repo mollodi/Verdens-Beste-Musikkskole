@@ -6,218 +6,16 @@
   Verk-ID: VBM-K7Q4-5B6M
   Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
 -->
-<html lang="en" data-vbm="K7Q4-5B6M">
+<html lang="en" data-side="lytteguide-septim-og-nonakkorder.html" data-stil="mork" data-vbm="K7Q4-5B6M">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Dominant &amp; Major 7th &amp; 9th Chords</title>
-<style>
-:root{ --vbm-verk:"K7Q4-5B6M"; }
-  :root{
-    --ink: #12151A;
-    --ink-soft: #1B2027;
-    --paper: #F6F1E7;
-    --text-on-paper: #211F1A;
-    --text-muted: #6B6355;
-    --brass: #C08A28;
-    --brass-dim: #8C6620;
-    --slate-dim: #37506B;
-    --rule: rgba(33,31,26,0.14);
-    --rule-dark: rgba(246,241,231,0.14);
-  }
-  * { box-sizing: border-box; }
-  body{
-    margin:0;
-    background: var(--ink);
-    color: var(--paper);
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; }
-  header.hero{
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 72px 28px 40px;
-    border-bottom: 1px solid var(--rule-dark);
-  }
-  .eyebrow{
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 12.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--brass);
-    margin-bottom: 18px;
-  }
-  h1{
-    font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-    font-weight: 700;
-    font-size: clamp(34px, 5.4vw, 56px);
-    line-height: 1.05;
-    margin: 0 0 16px;
-    letter-spacing: -0.01em;
-  }
-  h1 em{ font-style: italic; font-weight: 500; color: var(--brass); }
-  .hero p.lede{
-    max-width: 560px;
-    font-size: 16.5px;
-    line-height: 1.6;
-    color: rgba(246,241,231,0.72);
-    margin: 0 0 30px;
-  }
-  .hero-staff{ display:flex; align-items:center; gap: 22px; flex-wrap: wrap; }
-  .hero-staff .staff-caption{
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 12px;
-    color: rgba(246,241,231,0.55);
-    max-width: 300px;
-    line-height: 1.5;
-  }
-  .controls{ max-width: 980px; margin: 0 auto; padding: 28px 16px 0; display:flex; flex-direction:column; align-items:center; width:100%; box-sizing:border-box; }
-  .tabs{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px;
-    background: var(--ink-soft);
-    padding: 4px;
-    border-radius: 10px;
-    max-width: 100%;
-    margin: 0 auto 6px;
-  }
-  .tab-option{ position: relative; display: inline-block; cursor: pointer; }
-  .tab-option input{ position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
-  .tab-option span{
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: rgba(246,241,231,0.55);
-    padding: 8px 10px;
-    border-radius: 7px;
-    display: inline-block;
-    pointer-events: none;
-    white-space: nowrap;
-  }
-  .tab-option input:checked + span{ background: var(--brass); color: var(--ink); }
-  .hint{
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 11.5px;
-    color: rgba(246,241,231,0.4);
-    margin: 10px 0 0;
-    text-align: center;
-  }
-  main{ max-width: 980px; margin: 0 auto; padding: 20px 28px 100px; }
-  .panel{
-    display: none;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 16px;
-  }
-  .panel-dom7{ display: grid; }
-  body:has(#tab-dom9:checked) .panel-maj9{ display: grid; }
-  body:has(#tab-dom9:checked) .panel-dom7{ display: none; }
-  body:has(#tab-maj7:checked) .panel-dom7{ display: none; }
-  body:has(#tab-maj7:checked) .panel-maj7{ display: grid; }
-  body:has(#tab-maj9real:checked) .panel-dom7{ display: none; }
-  body:has(#tab-maj9real:checked) .panel-maj9real{ display: grid; }
-
-  .card{
-    background: var(--paper);
-    color: var(--text-on-paper);
-    border-radius: 14px;
-    padding: 20px 20px 16px;
-  }
-  .card-head{
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 14px;
-    margin-bottom: 6px;
-  }
-  .card-head h2{
-    font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-    font-weight: 700;
-    font-size: 21px;
-    margin: 0;
-    letter-spacing: -0.01em;
-  }
-  .semitone-label{
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 10.5px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-  .note-caption{
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    margin: 4px 0 10px;
-  }
-  ul.songs{ list-style: none; margin: 0; padding: 0; }
-  ul.songs li{
-    display:flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  ul.songs li:last-child{ border-bottom: none; }
-  .song-title{ font-size: 14.5px; font-weight: 500; line-height: 1.35; }
-  .song-meta{
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 2px;
-  }
-  .spotify-link{
-    flex-shrink: 0;
-    display:inline-flex;
-    align-items:center;
-    gap: 5px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 10.5px;
-    text-decoration: none;
-    color: var(--brass-dim);
-    border: 1px solid rgba(140,102,32,0.35);
-    padding: 5px 9px;
-    border-radius: 999px;
-  }
-  footer{
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 0 28px 60px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 11.5px;
-    color: rgba(246,241,231,0.4);
-    line-height: 1.7;
-  }
-  @media (max-width: 560px){ .panel{ grid-template-columns: 1fr; } }
-
-  /* Notasjon og lyd i samme stil som juksebøkene */
-  :root{ --note-ink:#1E1E1A;--red:#AD2534;--red-dk:#7A1822;--red-lt:#D9707B;--orange:#D06730;--orange-dk:#9E4A1C;--orange-lt:#E9A177;--yellow:#C79A1E;--yellow-dk:#8F6B12;--yellow-lt:#E6C764;--green:#42945E;--green-dk:#2C6B42;--green-lt:#86C79B;--blue:#3579B0;--blue-dk:#24567F;--blue-lt:#7FB3DB;--indigo:#3F4B9E;--indigo-dk:#2A3470;--indigo-lt:#8590CF;--violet:#7650A6;--violet-dk:#563A7C;--violet-lt:#B49AD4; }
-  .staff{ margin:4px 0 2px; }
-  .play-btn{ flex:none; display:flex; align-items:center; background:#FFFFFF; border:1.5px solid rgba(33,31,26,0.18);
-    color:var(--text-on-paper); border-radius:20px; padding:7px 14px 7px 12px; font-size:13.5px; cursor:pointer; font-family:inherit; }
-  .play-btn span{ margin-left:6px; }
-  .play-btn.playing{ border-color:var(--brass); color:var(--brass-dim); }
-  .hero-staff .staff-box{ width:220px; max-width:100%; }
-  @media print{ .play-btn{ display:none; } }
-  /* Kontrastmodus (Windows): alt blir lesbart og likt */
-  @media (forced-colors: active){
-    .staff svg [fill], .hero-staff svg [fill]{ fill:CanvasText; }
-    .staff svg [stroke], .hero-staff svg [stroke]{ stroke:CanvasText; }
-    .card{ border:1px solid CanvasText; }
-    .tab-option input:checked + span, .chip-option input:checked + span{ forced-color-adjust:none; background:Highlight; color:HighlightText; }
-    .tab-option input:focus-visible + span, .chip-option input:focus-visible + span{ outline:2px solid Highlight; }
-    .play-btn.playing{ border-color:Highlight; }
-  }
-</style>
-<style>.vbm-back{max-width:60rem;margin:0 auto;padding:.9rem 1.25rem 0;position:relative;z-index:5;color:inherit;font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.vbm-back a{color:inherit;opacity:.8;text-underline-offset:3px;text-decoration-thickness:1px}.vbm-back a:hover,.vbm-back a:focus-visible{opacity:1}.vbm-back--book{max-width:none;margin:0 0 32px;padding:0;font-size:15px}@media print{.vbm-back{display:none!important}}</style>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
 </head>
 <body>
 <nav class="vbm-back" aria-label="Site"><a href="index.html">&larr; All resources</a></nav><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="acc-flat"><rect x="-3.6" y="-15.5" width="1.3" height="20.8"/><path d="M-2.3,-1.5C0,-4.8 5.6,-5 5.3,-1.6C5,1.3 1.2,3.6 -2.3,5.3L-2.3,3.4C0.3,1.8 2.8,0.1 2.8,-1.7C2.8,-3.5 -0.1,-3.1 -2.3,-0.3Z"/></g><g id="acc-sharp"><rect x="-2.8" y="-9.5" width="1.2" height="20"/><rect x="1.6" y="-10.5" width="1.2" height="20"/><path d="M-5,-2.1L5,-5.1L5,-2.5L-5,0.5Z"/><path d="M-5,4.7L5,1.7L5,4.3L-5,7.3Z"/></g><g id="acc-dflat"><use href="#acc-flat" x="-4.4"/><use href="#acc-flat" x="4.4"/></g><path id="gclef" d="M434 2Q464 -103 464 -170Q464 -223 427.0 -257.0Q390 -291 337 -291Q287 -291 250.0 -261.5Q213 -232 213 -190Q213 -160 233.5 -133.5Q254 -107 283.5 -107.0Q313 -107 331.5 -128.5Q350 -150 350 -178Q350 -240 280 -240Q298 -268 338 -268Q353 -268 368.5 -263.5Q384 -259 401.0 -248.0Q418 -237 428.5 -213.5Q439 -190 439 -157Q439 -136 411 -6Q389 -12 356 -12Q259 -12 189.5 60.0Q120 132 120 232Q120 267 131.5 303.0Q143 339 157.5 366.5Q172 394 200.5 428.5Q229 463 248.5 483.5Q268 504 303 539Q280 621 280 689Q280 779 313.0 839.5Q346 900 379 900Q389 900 401.5 887.0Q414 874 426.0 851.0Q438 828 446.5 790.5Q455 753 455 710Q455 551 342 447L368 329Q384 332 397 332Q458 332 500.0 282.5Q542 233 542 162Q542 44 434 2ZM426 746Q426 801 394 801Q358 801 333.0 748.0Q308 695 308 630Q308 588 321 557Q359 580 392.5 639.5Q426 699 426 746ZM498 128Q498 183 466.0 216.0Q434 249 383 249L428 23Q498 52 498 128ZM407 17 361 247Q334 241 311.5 214.0Q289 187 289 158Q289 143 295.0 128.5Q301 114 309.5 104.0Q318 94 327.0 86.0Q336 78 342.0 74.5Q348 71 348 71L340 66Q307 75 277.5 106.0Q248 137 248 184Q248 231 277.5 270.5Q307 310 343 323L325 430Q168 299 168 177Q168 104 223.0 55.0Q278 6 348 6Q365 6 407 17Z"/><g id="acc-dsharp"><rect x="-0.85" y="-5.2" width="1.7" height="10.4" transform="rotate(45)"/><rect x="-0.85" y="-5.2" width="1.7" height="10.4" transform="rotate(-45)"/><rect x="-4.9" y="-4.9" width="3" height="3"/><rect x="1.9" y="-4.9" width="3" height="3"/><rect x="-4.9" y="1.9" width="3" height="3"/><rect x="1.9" y="1.9" width="3" height="3"/></g></defs></svg>
@@ -494,27 +292,11 @@
 
 </main>
 
-<footer>
+<footer data-lyd="alle">
   Note: notation shows chord tones in root position for clarity. Actual voicings in the recordings are usually inverted, spread across octaves, or further altered. Spotify links go to a search for the piece, not a confirmed direct link to one specific recording. Click through to the version you want.
 </footer>
 
 <script>/* VBM K7Q4-5B6M */window.VBM_LYD={step:0.62,noteDur:1.3,chordDur:3.0,gap1:0.30,gap2:0.50};</script>
 <script src="lyd.js"></script>
-<script>
-/* Hvis siden ligger et annet sted enn på Verdens Beste Musikkskole, vises en liten lenke til originalen. Alt annet virker som vanlig. */
-(function(){
-  if (location.hostname === 'mollodi.github.io') return;
-  var fil = location.pathname.split('/').pop() || '';
-  var url = 'https://mollodi.github.io/Verdens-Beste-Musikkskole/' + fil;
-  var en = document.documentElement.lang === 'en';
-  var d = document.createElement('div');
-  d.setAttribute('role', 'note');
-  d.style.cssText = 'background:#C08A28;color:#12151A;border-bottom:1px solid #12151A;padding:9px 16px;text-align:center;'
-    + 'font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;position:relative;z-index:60';
-  d.innerHTML = (en ? 'The original of this page is at ' : 'Originalen av denne siden finnes på ')
-    + '<a href="' + url + '" style="color:inherit;font-weight:700;text-underline-offset:3px">Verdens Beste Musikkskole</a>.';
-  document.body.insertBefore(d, document.body.firstChild);
-})();
-</script>
 </body>
 </html>

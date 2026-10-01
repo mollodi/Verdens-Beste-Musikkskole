@@ -20,6 +20,10 @@
 
    NY SEKSJON: legg til en blokk under «seksjoner». Den vises bare når
    minst ett materiell bruker den.
+
+   SPRÅK: skriv teksten her på norsk. Oversettelsene står i
+   sprak-en.js og sprak-pl.js, under 'index.html'. Legg inn nytt
+   materiell der også, ellers vises den norske teksten.
    ===================================================================== */
 
 window.VBM = {
@@ -63,8 +67,8 @@ window.VBM = {
     },
     {
       seksjon: "oretrening",
-      merke: "Lytteguide, på engelsk",
-      tittel: "Dominant & Major 7th/9th Chords",
+      merke: "Lytteguide",
+      tittel: "Dominant- og majorakkorder med septim og none",
       beskrivelse: "Septim- og nonakkorder hos Chopin, Debussy, Hendrix og James Brown.",
       fil: "lytteguide-septim-og-nonakkorder.html",
       svartHvitt: false,
