@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-KVSK
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="kvintsirkelen.html" data-stil="ovelse" data-vbm="K7Q4-KVSK">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Kvintsirkelen</title>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
+<meta name="description" content="Kvintsirkelen forklart: alle dur- og molltonearter med fortegn på ekte notelinje, rekkefølgen på kryss og b-er, og lyd for hver toneart.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Musikkteori</div>
+  <h1>Kvint<em>sirkelen</em></h1>
+  <p class="lede">Kvintsirkelen er kartet over alle tonearter. Den viser hvor mange kryss eller b-er hver toneart har, og hvilken molltoneart som hører sammen med hver durtoneart.</p>
+  <p class="lede">Trykk på en toneart i sirkelen for å se fortegnene på notelinjen og høre skalaen og treklangen. Velg piano, gitar eller strykere nederst til høyre.</p>
+</header>
+
+<main>
+  <section class="card sirkel-kort">
+    <div class="card-head">
+      <div class="step-label">Trykk på en toneart</div>
+      <h2>Kvintsirkelen</h2>
+    </div>
+    <div class="sirkel-oppsett">
+      <div class="sirkel-bilde" id="sirkel"></div>
+      <div class="toneart-info" aria-live="polite">
+        <p class="label" id="valgt-merke">Valgt toneart</p>
+        <h3 class="toneart-navn" id="valgt-navn"></h3>
+        <div class="row answers" id="valgt-enharm" role="group" aria-label="Velg stavemåte" hidden></div>
+        <p class="toneart-fortegn" id="valgt-fortegn"></p>
+        <div class="noter" id="valgt-noter"></div>
+        <div class="row lytt-rad">
+          <button type="button" class="btn" id="spill-durskala">&#9658;&#xFE0E; <span>Durskalaen</span></button>
+          <button type="button" class="btn" id="spill-durtreklang">&#9658;&#xFE0E; <span>Durtreklangen</span></button>
+        </div>
+        <div class="row lytt-rad">
+          <button type="button" class="btn" id="spill-mollskala">&#9658;&#xFE0E; <span>Mollskalaen</span></button>
+          <button type="button" class="btn" id="spill-molltreklang">&#9658;&#xFE0E; <span>Molltreklangen</span></button>
+        </div>
+        <p class="stats">Mollskalaen spilles som naturlig moll, med de samme tonene som durskalaen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <div class="step-label">Forklaring</div>
+      <h2>Slik leser du sirkelen</h2>
+    </div>
+    <p class="task">Med klokka blir hver toneart en ren kvint høyere og får ett kryss mer. Mot klokka blir hver toneart en ren kvint lavere, som er det samme som en ren kvart høyere, og får én b mer. C-dur øverst har ingen fortegn.</p>
+    <p class="task">I den indre ringen står parallelltonearten i moll. Den har de samme fortegnene og ligger en liten ters under durtonearten. Både C-dur og a-moll har for eksempel ingen fortegn.</p>
+    <h3 class="del-tittel">Like toner, ulike navn</h3>
+    <p class="task">Nederst i sirkelen møtes kryssene og b-ene. H-dur med 5 kryss klinger som Ces-dur med 7 b-er, Fiss-dur med 6 kryss som Gess-dur med 6 b-er, og Ciss-dur med 7 kryss som Dess-dur med 5 b-er. Slike par kalles enharmoniske tonearter. Trykk på dem i sirkelen for å se begge.</p>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <div class="step-label">Forklaring</div>
+      <h2>Rekkefølgen på fortegnene</h2>
+    </div>
+    <h3 class="del-tittel">Kryss</h3>
+    <div class="noter" id="alle-kryss"></div>
+    <p class="task">Fiss, Ciss, Giss, Diss, Aiss, Eiss, Hiss. Hvert nytt kryss ligger en ren kvint over det forrige. Huskeregel: det siste krysset ligger en liten sekund under durtonearten. Med Fiss, Ciss og Giss er det siste krysset Giss, og tonearten er A-dur.</p>
+    <h3 class="del-tittel">B-er</h3>
+    <div class="noter" id="alle-ber"></div>
+    <p class="task">B, Ess, Ass, Dess, Gess, Ces, Fes, altså kryssene baklengs. Huskeregel: den nest siste b-en er navnet på durtonearten. Med B, Ess og Ass er den nest siste Ess, og tonearten er Ess-dur. F-dur, med bare én b, må du huske.</p>
+  </section>
+
+  <section class="card ovelse-kort">
+    <div class="card-head">
+      <div class="step-label">Øv</div>
+      <h2>Test deg selv</h2>
+    </div>
+    <p class="task">Les fortegnene og finn tonearten, eller finn fortegnene til en toneart. Med øvemodus og en prøve med 20 oppgaver.</p>
+    <div class="row">
+      <a class="btn" href="quiz-kvintsirkelen.html">Gå til quizen</a>
+    </div>
+  </section>
+</main>
+
+<footer data-lyd="alle"></footer>
+
+<script src="tonearter.js"></script>
+<script>/* VBM K7Q4-KVSK */
+(function(){
+  'use strict';
+  var K = window.VBM_TONEARTER, T = K.T;
+  function $(id){ return document.getElementById(id); }
+
+  /* =================== Sirkelen =================== */
+  var CX = 200, CY = 200, R_UT = 192, R_MID = 132, R_INN = 80;
+  function punkt(r, grader){ var a = (grader - 90) * Math.PI / 180; return [CX + r * Math.cos(a), CY + r * Math.sin(a)]; }
+  function sektor(r1, r2, a1, a2){
+    var p1 = punkt(r2, a1), p2 = punkt(r2, a2), p3 = punkt(r1, a2), p4 = punkt(r1, a1);
+    return 'M' + p1.join(' ') + ' A' + r2 + ' ' + r2 + ' 0 0 1 ' + p2.join(' ') + ' L' + p3.join(' ') + ' A' + r1 + ' ' + r1 + ' 0 0 0 ' + p4.join(' ') + 'Z';
+  }
+  var valgtPlass = 0, valgtFortegn = 0;
+  function tekst(x, yy, t, klasse){ return '<text x="' + x.toFixed(1) + '" y="' + yy.toFixed(1) + '" class="' + klasse + '">' + t + '</text>'; }
+  function tegnSirkel(){
+    var s = '<svg viewBox="0 0 400 400" role="group" aria-label="' + T('Kvintsirkelen') + '">';
+    K.SIRKEL.forEach(function(plass, i){
+      var a1 = i * 30 - 15, a2 = i * 30 + 15, arter = plass.map(K.medFortegn);
+      var etikett = arter.map(function(a){ return T('{dur} og {moll}, {antall}', { dur: K.dur(a.dur), moll: K.moll(a.moll), antall: K.antall(a.fortegn) }); }).join(' / ');
+      s += '<g class="plass' + (i === valgtPlass ? ' valgt' : '') + '" data-plass="' + i + '" role="button" tabindex="0" aria-pressed="' + (i === valgtPlass) + '" aria-label="' + etikett + '">';
+      s += '<path class="ring-dur" d="' + sektor(R_MID, R_UT, a1, a2) + '"/>';
+      s += '<path class="ring-moll" d="' + sektor(R_INN, R_MID, a1, a2) + '"/>';
+      var pd = punkt((R_MID + R_UT) / 2, i * 30), pm = punkt((R_INN + R_MID) / 2, i * 30);
+      if (arter.length === 1) {
+        s += tekst(pd[0], pd[1] + 6, K.kortDur(arter[0].dur), 'navn-dur');
+        s += tekst(pm[0], pm[1] + 5, K.kortMoll(arter[0].moll), 'navn-moll');
+      } else {
+        s += tekst(pd[0], pd[1] - 3, K.kortDur(arter[0].dur), 'navn-dur liten');
+        s += tekst(pd[0], pd[1] + 15, K.kortDur(arter[1].dur), 'navn-dur liten');
+        s += tekst(pm[0], pm[1] - 2, K.kortMoll(arter[0].moll), 'navn-moll liten');
+        s += tekst(pm[0], pm[1] + 13, K.kortMoll(arter[1].moll), 'navn-moll liten');
+      }
+      s += '</g>';
+    });
+    var a = K.medFortegn(valgtFortegn);
+    s += '<circle class="midt" cx="200" cy="200" r="' + (R_INN - 4) + '"/>';
+    s += tekst(200, 196, K.kortDur(a.dur), 'midt-dur') + tekst(200, 222, K.kortMoll(a.moll), 'midt-moll');
+    $('sirkel').innerHTML = s + '</svg>';
+  }
+  function velg(plass, fortegn){
+    valgtPlass = plass; valgtFortegn = fortegn;
+    if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP();
+    tegnSirkel(); visInfo();
+  }
+  $('sirkel').addEventListener('click', function(e){
+    var g = e.target.closest && e.target.closest('[data-plass]');
+    if (!g) return;
+    var i = +g.getAttribute('data-plass');
+    velg(i, K.SIRKEL[i][0]);
+    var ny = $('sirkel').querySelector('[data-plass="' + i + '"]'); if (ny) ny.focus();
+  });
+  $('sirkel').addEventListener('keydown', function(e){
+    var g = e.target.closest && e.target.closest('[data-plass]');
+    if (!g) return;
+    var i = +g.getAttribute('data-plass'), ny = null;
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); velg(i, K.SIRKEL[i][0]); ny = i; }
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); ny = (i + 1) % 12; velg(ny, K.SIRKEL[ny][0]); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); ny = (i + 11) % 12; velg(ny, K.SIRKEL[ny][0]); }
+    if (ny !== null) { var el = $('sirkel').querySelector('[data-plass="' + ny + '"]'); if (el) el.focus(); }
+  });
+
+  /* =================== Valgt toneart =================== */
+  function visInfo(){
+    var a = K.medFortegn(valgtFortegn), plass = K.SIRKEL[valgtPlass];
+    $('valgt-navn').textContent = T('{dur} og {moll}', { dur: K.dur(a.dur), moll: K.moll(a.moll) });
+    var navn = K.fortegnNavn(a.fortegn);
+    $('valgt-fortegn').textContent = a.fortegn
+      ? T('{antall}: {liste}.', { antall: K.antall(a.fortegn).replace(/^./, function(c){ return c.toUpperCase(); }), liste: K.liste(navn) })
+      : T('Ingen fortegn.');
+    $('valgt-noter').innerHTML = K.fortegnSvg(a.fortegn);
+    var rad = $('valgt-enharm');
+    rad.innerHTML = '';
+    rad.hidden = plass.length < 2;
+    plass.forEach(function(f){
+      var x = K.medFortegn(f), b = document.createElement('button');
+      b.type = 'button'; b.className = 'btn';
+      b.textContent = K.dur(x.dur) + ' (' + K.antall(f) + ')';
+      b.setAttribute('aria-pressed', f === valgtFortegn ? 'true' : 'false');
+      b.addEventListener('click', function(){ velg(valgtPlass, f); });
+      rad.appendChild(b);
+    });
+  }
+  function aktiv(){ return K.medFortegn(valgtFortegn); }
+  $('spill-durskala').addEventListener('click', function(){ if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS(K.skala(aktiv().dur, false), this); });
+  $('spill-mollskala').addEventListener('click', function(){ if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS(K.skala(aktiv().moll, true), this); });
+  $('spill-durtreklang').addEventListener('click', function(){ if (window.VBM_LYD_SPILL) window.VBM_LYD_SPILL(K.treklang(aktiv().dur, false), this, 1); });
+  $('spill-molltreklang').addEventListener('click', function(){ if (window.VBM_LYD_SPILL) window.VBM_LYD_SPILL(K.treklang(aktiv().moll, true), this, 1); });
+
+  /* =================== Rekkefølgen på fortegnene =================== */
+  $('alle-kryss').innerHTML = K.fortegnSvg(7, T('Alle sju kryss i rekkefølge'));
+  $('alle-ber').innerHTML = K.fortegnSvg(-7, T('Alle sju b-er i rekkefølge'));
+
+  tegnSirkel(); visInfo();
+})();
+</script>
+<script src="lyd.js"></script>
+</body>
+</html>

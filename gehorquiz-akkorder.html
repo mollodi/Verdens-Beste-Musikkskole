@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-AKQZ
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="gehorquiz-akkorder.html" data-stil="ovelse" data-quiz data-vbm="K7Q4-AKQZ">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Gehørquiz: akkorder</title>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
+<meta name="description" content="Hør en akkord og finn navnet. Alle 34 akkordene fra Den ultimate jukseboka, i øvemodus og prøvemodus.">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="acc-flat"><rect x="-3.6" y="-15.5" width="1.3" height="20.8"/><path d="M-2.3,-1.5C0,-4.8 5.6,-5 5.3,-1.6C5,1.3 1.2,3.6 -2.3,5.3L-2.3,3.4C0.3,1.8 2.8,0.1 2.8,-1.7C2.8,-3.5 -0.1,-3.1 -2.3,-0.3Z"/></g><g id="acc-sharp"><rect x="-2.8" y="-9.5" width="1.2" height="20"/><rect x="1.6" y="-10.5" width="1.2" height="20"/><path d="M-5,-2.1L5,-5.1L5,-2.5L-5,0.5Z"/><path d="M-5,4.7L5,1.7L5,4.3L-5,7.3Z"/></g><g id="acc-dflat"><use href="#acc-flat" x="-4.4"/><use href="#acc-flat" x="4.4"/></g><path id="gclef" d="M434 2Q464 -103 464 -170Q464 -223 427.0 -257.0Q390 -291 337 -291Q287 -291 250.0 -261.5Q213 -232 213 -190Q213 -160 233.5 -133.5Q254 -107 283.5 -107.0Q313 -107 331.5 -128.5Q350 -150 350 -178Q350 -240 280 -240Q298 -268 338 -268Q353 -268 368.5 -263.5Q384 -259 401.0 -248.0Q418 -237 428.5 -213.5Q439 -190 439 -157Q439 -136 411 -6Q389 -12 356 -12Q259 -12 189.5 60.0Q120 132 120 232Q120 267 131.5 303.0Q143 339 157.5 366.5Q172 394 200.5 428.5Q229 463 248.5 483.5Q268 504 303 539Q280 621 280 689Q280 779 313.0 839.5Q346 900 379 900Q389 900 401.5 887.0Q414 874 426.0 851.0Q438 828 446.5 790.5Q455 753 455 710Q455 551 342 447L368 329Q384 332 397 332Q458 332 500.0 282.5Q542 233 542 162Q542 44 434 2ZM426 746Q426 801 394 801Q358 801 333.0 748.0Q308 695 308 630Q308 588 321 557Q359 580 392.5 639.5Q426 699 426 746ZM498 128Q498 183 466.0 216.0Q434 249 383 249L428 23Q498 52 498 128ZM407 17 361 247Q334 241 311.5 214.0Q289 187 289 158Q289 143 295.0 128.5Q301 114 309.5 104.0Q318 94 327.0 86.0Q336 78 342.0 74.5Q348 71 348 71L340 66Q307 75 277.5 106.0Q248 137 248 184Q248 231 277.5 270.5Q307 310 343 323L325 430Q168 299 168 177Q168 104 223.0 55.0Q278 6 348 6Q365 6 407 17Z"/></defs></svg>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Quiz</div>
+  <h1>Gehør<em>quiz</em>: akkorder</h1>
+  <p class="lede">Hør en akkord og finn navnet. Alle 34 akkordene fra Den ultimate jukseboka for akkorder og intervaller, i de samme fire kapitlene. Øv med C som grunntone slik som i boka, eller velg alle tonearter for et avansert nivå.</p>
+  <p class="lede">Akkorden spilles først tone for tone opp og ned, og til slutt samlet, eller bare samlet på superavansert nivå. Akkordene fra kapittel 4 som bare kan høres i sammenheng, spilles i tillegg i en kort kadens i moll. Velg piano, gitar eller strykere nederst til høyre.</p>
+</header>
+
+<main>
+  <!-- Valg av modus -->
+  <section class="card modus-kort">
+    <div class="card-head">
+      <div class="step-label">Modus</div>
+      <h2>Hva vil du gjøre?</h2>
+    </div>
+    <div class="row answers" role="group" aria-label="Velg modus">
+      <button type="button" class="btn" data-modus="ov" aria-pressed="true">Øvemodus</button>
+      <button type="button" class="btn" data-modus="prove" aria-pressed="false">Prøvemodus</button>
+    </div>
+    <p class="task modus-tekst" data-for="ov">Velg hvilke akkorder du vil øve på. Du kan høre hver akkord så mange ganger du vil, og får svaret med en gang.</p>
+    <p class="task modus-tekst" data-for="prove" hidden>Velg kapitlene du vil prøves i. 20 oppgaver, hvert lydeksempel spilles tre ganger uten pause, og du får resultatet til slutt.</p>
+    <p class="label" id="grunn-label">Grunntone</p>
+    <div class="row answers" role="group" aria-labelledby="grunn-label">
+      <button type="button" class="btn" data-grunn="c" aria-pressed="true">Alltid C</button>
+      <button type="button" class="btn" data-grunn="alle" aria-pressed="false">Alle tonearter (avansert)</button>
+    </div>
+    <p class="task grunn-tekst" data-for="c">Alle akkordene har C som grunntone, slik som i boka.</p>
+    <p class="task grunn-tekst" data-for="alle" hidden>Hver akkord får en tilfeldig grunntone, med riktig stavemåte på notelinjen. Akkordene fra kapittel 4 spilles i en tilfeldig molltoneart.</p>
+    <p class="label" id="avsp-label">Avspilling</p>
+    <div class="row answers" role="group" aria-labelledby="avsp-label">
+      <button type="button" class="btn" data-avsp="alle" aria-pressed="true">Opp, ned og samlet</button>
+      <button type="button" class="btn" data-avsp="samlet" aria-pressed="false">Bare samlet (superavansert)</button>
+    </div>
+    <p class="task avsp-tekst" data-for="alle">Akkorden spilles først tone for tone, opp og ned, og til slutt samlet. Det er best for å lære.</p>
+    <p class="task avsp-tekst" data-for="samlet" hidden>Akkorden spilles bare samlet, slik som på mange opptaksprøver. Kadensen i kapittel 4 spilles fortsatt etterpå. Det er mye vanskeligere.</p>
+  </section>
+
+  <!-- ===== Øvemodus ===== -->
+  <section class="card" id="ov-oppgave" data-modus-del="ov">
+    <div class="card-head">
+      <div class="step-label">Øvemodus</div>
+      <h2>Hvilken akkord hører du?</h2>
+    </div>
+    <div class="row">
+      <button type="button" class="btn" id="ov-spill" aria-label="Spill akkorden">&#9658;&#xFE0E; <span>spill</span></button>
+      <button type="button" class="btn" id="ov-neste" hidden>Neste oppgave</button>
+    </div>
+    <div class="svar-grupper" id="ov-svar"></div>
+    <p class="feedback" id="ov-fb" aria-live="polite"></p>
+    <div class="noter" id="ov-noter" hidden></div>
+  </section>
+
+  <section class="card" id="ov-valg" data-modus-del="ov">
+    <div class="card-head">
+      <div class="step-label">Øvemodus</div>
+      <h2>Akkorder du øver på</h2>
+    </div>
+    <p class="task">Trykk på en akkord for å slå den av eller på, eller velg et helt kapittel. Du må ha minst to.</p>
+    <div id="ov-brikker"></div>
+    <div class="row velg-alle">
+      <button type="button" class="btn" id="ov-alle">Velg alle kapitler</button>
+    </div>
+  </section>
+
+  <section class="card" id="ov-fremgang-kort" data-modus-del="ov" aria-live="polite">
+    <div class="card-head">
+      <div class="step-label">Øvemodus</div>
+      <h2>Din fremgang</h2>
+    </div>
+    <p class="task">Målet er fem riktige svar på rad. Resultatet nullstilles når du laster siden på nytt.</p>
+    <ul class="fremgang" id="ov-fremgang"></ul>
+    <p class="total" id="ov-total"></p>
+  </section>
+
+  <!-- ===== Prøvemodus ===== -->
+  <section class="card prove-kort" id="prove" data-modus-del="prove" hidden>
+    <div class="card-head">
+      <div class="step-label">Prøvemodus</div>
+      <h2 id="prove-tittel">Prøve med 20 oppgaver</h2>
+    </div>
+
+    <div id="prove-start">
+      <p class="label" id="prove-kap-label">Kapitler i prøven</p>
+      <div class="row brikker" id="prove-kapitler" role="group" aria-labelledby="prove-kap-label"></div>
+      <div class="row">
+        <button type="button" class="btn" id="prove-alle">Velg alle kapitler</button>
+      </div>
+      <p class="task">Hvert lydeksempel spilles tre ganger uten pause, og kan ikke spilles på nytt. Du kan svare mens lyden spiller, og endre svaret til du går videre. Bruk gjerne hodetelefoner.</p>
+      <div class="row">
+        <button type="button" class="btn" id="prove-start-btn">Start prøven</button>
+      </div>
+    </div>
+
+    <div id="prove-oppgave" hidden>
+      <p class="lytt" id="prove-lytt"><span class="lytt-na">Lydeksemplet spilles tre ganger</span><span class="lytt-ferdig">Lydeksemplet er ferdig</span></p>
+      <div class="svar-grupper" id="prove-svar"></div>
+      <div class="row">
+        <button type="button" class="btn" id="prove-neste" disabled>Neste oppgave</button>
+      </div>
+    </div>
+
+    <div id="prove-resultat" hidden>
+      <p class="poeng" id="prove-poeng"></p>
+      <p class="task" id="prove-melding"></p>
+      <p class="label">Gjennomgang. Trykk på spill for å høre akkorden igjen.</p>
+      <ol class="gjennomgang" id="prove-liste"></ol>
+      <div class="row">
+        <button type="button" class="btn" id="prove-igjen">Ta en ny prøve</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-lyd="alle"></footer>
+
+<script>/* VBM K7Q4-AKQZ */
+(function(){
+  'use strict';
+  var T = window.VBM_T || function(t, v){ return String(t).replace(/\{(\w+)\}/g, function(m, k){ return v && v[k] != null ? v[k] : m; }); };
+  var SPRAK = window.VBM_SPRAK || 'no';
+  function $(id){ return document.getElementById(id); }
+  function tilfeldig(a){ return a[Math.floor(Math.random() * a.length)]; }
+  function blandet(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
+  function spill(v, knapp, ganger){ if (window.VBM_LYD_SPILL) window.VBM_LYD_SPILL(v.toner, knapp, ganger, v.kadens, bareSamlet); }
+  function stopp(){ if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); }
+  function lag(tag, klasse, tekst){ var e = document.createElement(tag); if (klasse) e.className = klasse; if (tekst != null) e.textContent = tekst; return e; }
+
+  /* =================== Akkordene =================== */
+  /* Hentet fra Den ultimate jukseboka (akkorder-og-intervaller.html): samme navn, toner og noter. */
+  var KAPITLER = ['Kapittel 1: Grunnleggende', 'Kapittel 2: Pianostemmerens beste venner', 'Kapittel 3: Videregående', 'Kapittel 4: Eksepsjonell'];
+  var AKK = [{"kap": 1, "navn": "Durtreklang", "eng": "major triad", "formel": "1 – 3 – 5", "toner": [60, 64, 67], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/>"}, {"kap": 1, "navn": "Molltreklang", "eng": "minor triad", "formel": "1 – ♭3 – 5", "toner": [60, 63, 67], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 140)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/>"}, {"kap": 1, "navn": "Forminsket treklang", "eng": "diminished", "formel": "1 – ♭3 – ♭5", "toner": [60, 63, 66], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><use href=\"#acc-flat\" transform=\"translate(115 140)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 127)\" fill=\"currentColor\"/>"}, {"kap": 1, "navn": "Forstørret treklang", "eng": "augmented", "formel": "1 – 3 – ♯5", "toner": [60, 64, 68], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><use href=\"#acc-sharp\" transform=\"translate(128 127)\" fill=\"currentColor\"/>"}, {"kap": 1, "navn": "Sus2", "eng": "sus2", "formel": "1 – 2 – 5", "toner": [60, 62, 67], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"166\" cy=\"146.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 166 146.5)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/>"}, {"kap": 1, "navn": "Sus4", "eng": "sus4", "formel": "1 – 4 – 5", "toner": [60, 65, 67], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"133.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 133.5)\"/><ellipse cx=\"166\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 166 127.0)\"/>"}, {"kap": 1, "navn": "Sekstakkord, dur", "eng": "added 6th", "formel": "1 – 3 – 5 – 6", "toner": [60, 64, 67, 69], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"166\" cy=\"120.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 166 120.5)\"/>"}, {"kap": 1, "navn": "Majorseptimakkord", "eng": "major 7th", "formel": "1 – 3 – 5 – 7", "toner": [60, 64, 67, 71], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/>"}, {"kap": 1, "navn": "Dominantseptimakkord", "eng": "dominant 7th", "formel": "1 – 3 – 5 – ♭7", "toner": [60, 64, 67, 70], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 114)\" fill=\"currentColor\"/>"}, {"kap": 1, "navn": "Mollseptimakkord", "eng": "minor 7th", "formel": "1 – ♭3 – 5 – ♭7", "toner": [60, 63, 67, 70], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 140)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 114)\" fill=\"currentColor\"/>"}, {"kap": 2, "navn": "Kvart", "eng": "4th", "formel": "1 – 4", "toner": [60, 65], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"133.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 133.5)\"/>"}, {"kap": 2, "navn": "Kvint", "eng": "5th / power chord", "formel": "1 – 5", "toner": [60, 67], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/>"}, {"kap": 2, "navn": "Kvart + kvint", "eng": "4th + 5th", "formel": "1 – 4 – 8", "toner": [60, 65, 72], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"133.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 133.5)\"/><ellipse cx=\"150\" cy=\"107.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 107.5)\"/>"}, {"kap": 2, "navn": "Kvint + kvart", "eng": "5th + 4th", "formel": "1 – 5 – 8", "toner": [60, 67, 72], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"150\" cy=\"107.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 107.5)\"/>"}, {"kap": 2, "navn": "Kvartalakkord (stablede kvarter)", "eng": "quartal", "formel": "1 – 4 – ♭7", "toner": [60, 65, 70], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"133.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 133.5)\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 114)\" fill=\"currentColor\"/>"}, {"kap": 2, "navn": "Kvintalakkord (stablede kvinter)", "eng": "quintal", "formel": "1 – 5 – 9", "toner": [60, 67, 74], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"150\" cy=\"101.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 101.0)\"/>"}, {"kap": 3, "navn": "Sekstakkord, moll", "eng": "minor 6th", "formel": "1 – ♭3 – 5 – 6", "toner": [60, 63, 67, 69], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 140)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"166\" cy=\"120.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 166 120.5)\"/>"}, {"kap": 3, "navn": "Tilføyd kvart", "eng": "added 4th", "formel": "1 – 3 – 4 – 5", "toner": [60, 64, 65, 67], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"166\" cy=\"133.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 166 133.5)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/>"}, {"kap": 3, "navn": "Tilføyd sekund", "eng": "added 2nd", "formel": "1 – 2 – 3 – 5", "toner": [60, 62, 64, 67], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"166\" cy=\"146.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 166 146.5)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/>"}, {"kap": 3, "navn": "Halvforminsket septimakkord (m7♭5)", "eng": "half-diminished 7th", "formel": "1 – ♭3 – ♭5 – ♭7", "toner": [60, 63, 66, 70], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 140)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><use href=\"#acc-flat\" transform=\"translate(115 127)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 114)\" fill=\"currentColor\"/>"}, {"kap": 3, "navn": "Forminsket septimakkord", "eng": "diminished 7th", "formel": "1 – ♭3 – ♭5 – ♭♭7", "toner": [60, 63, 66, 69], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 140)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><use href=\"#acc-flat\" transform=\"translate(115 127)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/><use href=\"#acc-dflat\" transform=\"translate(128 114)\" fill=\"currentColor\"/>"}, {"kap": 3, "navn": "Moll-major-septimakkord", "eng": "minor major 7th", "formel": "1 – ♭3 – 5 – 7", "toner": [60, 63, 67, 71], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 140)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/>"}, {"kap": 3, "navn": "Dominant noneakkord", "eng": "dominant 9th", "formel": "1 – 3 – 5 – ♭7 – 9", "toner": [60, 64, 67, 70, 74], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 114)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"101.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 101.0)\"/>"}, {"kap": 3, "navn": "Major noneakkord", "eng": "major 9th", "formel": "1 – 3 – 5 – 7 – 9", "toner": [60, 64, 67, 71, 74], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/><ellipse cx=\"150\" cy=\"101.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 101.0)\"/>"}, {"kap": 3, "navn": "Moll noneakkord", "eng": "minor 9th", "formel": "1 – ♭3 – 5 – ♭7 – 9", "toner": [60, 63, 67, 70, 74], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 140)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 114)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"101.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 101.0)\"/>"}, {"kap": 3, "navn": "Dominant undecimakkord", "eng": "dominant 11th", "formel": "1 – 3 – 5 – ♭7 – 9 – 11", "toner": [60, 64, 67, 70, 74, 77], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 114)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"101.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 101.0)\"/><ellipse cx=\"150\" cy=\"88.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 88.0)\"/>"}, {"kap": 3, "navn": "Moll undecimakkord", "eng": "minor 11th", "formel": "1 – ♭3 – 5 – ♭7 – 9 – 11", "toner": [60, 63, 67, 70, 74, 77], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 140)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 114)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"101.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 101.0)\"/><ellipse cx=\"150\" cy=\"88.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 88.0)\"/>"}, {"kap": 3, "navn": "Dominant tredecimakkord", "eng": "dominant 13th", "formel": "1 – 3 – 5 – ♭7 – 9 – 11 – 13", "toner": [60, 64, 67, 70, 74, 77, 81], "vb": "0 49 300 124", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"136\" y1=\"75.0\" x2=\"164\" y2=\"75.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 114)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"101.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 101.0)\"/><ellipse cx=\"150\" cy=\"88.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 88.0)\"/><ellipse cx=\"150\" cy=\"75.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 75.0)\"/>"}, {"kap": 4, "navn": "Napolitansk sekst", "eng": "Neapolitan 6th", "formel": "4 – ♭6 – ♭2", "toner": [65, 68, 73], "vb": "0 62 300 102", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"133.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 133.5)\"/><ellipse cx=\"150\" cy=\"120.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 120.5)\"/><use href=\"#acc-flat\" transform=\"translate(115 120.5)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"101.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 101.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 101)\" fill=\"currentColor\"/>"}, {"kap": 4, "navn": "Italiensk sekst", "eng": "Italian 6th", "formel": "♭6 – 1 – ♯4", "toner": [56, 60, 66], "vb": "0 62 300 124", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"136\" y1=\"166.0\" x2=\"164\" y2=\"166.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"166.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 166.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 166)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"133.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 133.5)\"/><use href=\"#acc-sharp\" transform=\"translate(128 133.5)\" fill=\"currentColor\"/>"}, {"kap": 4, "navn": "Fransk sekst", "eng": "French 6th", "formel": "♭6 – 1 – 2 – ♯4", "toner": [56, 60, 62, 66], "vb": "0 62 300 124", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"136\" y1=\"166.0\" x2=\"164\" y2=\"166.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"166.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 166.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 166)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"166\" cy=\"146.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 166 146.5)\"/><ellipse cx=\"150\" cy=\"133.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 133.5)\"/><use href=\"#acc-sharp\" transform=\"translate(128 133.5)\" fill=\"currentColor\"/>"}, {"kap": 4, "navn": "Tysk sekst", "eng": "German 6th", "formel": "♭6 – 1 – ♭3 – ♯4", "toner": [56, 60, 63, 66], "vb": "0 62 300 124", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"136\" y1=\"166.0\" x2=\"164\" y2=\"166.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"166.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 166.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 166)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><use href=\"#acc-flat\" transform=\"translate(115 140)\" fill=\"currentColor\"/><ellipse cx=\"166\" cy=\"133.5\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 166 133.5)\"/><use href=\"#acc-sharp\" transform=\"translate(128 133.5)\" fill=\"currentColor\"/>"}, {"kap": 4, "navn": "Forstørret septimakkord", "eng": "augmented 7th", "formel": "1 – 3 – ♯5 – ♭7", "toner": [60, 64, 68, 70], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><use href=\"#acc-sharp\" transform=\"translate(115 127)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/><use href=\"#acc-flat\" transform=\"translate(128 114)\" fill=\"currentColor\"/>"}, {"kap": 4, "navn": "Forstørret majorseptimakkord", "eng": "augmented major 7th", "formel": "1 – 3 – ♯5 – 7", "toner": [60, 64, 68, 71], "vb": "0 62 300 111", "svg": "<line x1=\"10\" y1=\"140\" x2=\"290\" y2=\"140\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"127\" x2=\"290\" y2=\"127\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"114\" x2=\"290\" y2=\"114\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"101\" x2=\"290\" y2=\"101\" stroke=\"currentColor\" stroke-width=\"1.3\"/><line x1=\"10\" y1=\"88\" x2=\"290\" y2=\"88\" stroke=\"currentColor\" stroke-width=\"1.3\"/><use href=\"#gclef\" transform=\"translate(8 139.04) scale(0.0767 -0.0767)\" fill=\"currentColor\"/><line x1=\"136\" y1=\"153.0\" x2=\"164\" y2=\"153.0\" stroke=\"currentColor\" stroke-width=\"1.3\"/><ellipse cx=\"150\" cy=\"153.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 153.0)\"/><ellipse cx=\"150\" cy=\"140.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 140.0)\"/><ellipse cx=\"150\" cy=\"127.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 127.0)\"/><use href=\"#acc-sharp\" transform=\"translate(128 127)\" fill=\"currentColor\"/><ellipse cx=\"150\" cy=\"114.0\" rx=\"7.2\" ry=\"5.6\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"0.8\" transform=\"rotate(-18 150 114.0)\"/>"}];
+  /* Akkorder som bare kan høres i sammenheng: kadens i c-moll.
+     c-moll, akkorden, kvartsekstakkord (c-moll med G i bassen), G-dur, c-moll. */
+  var KADENS = {
+    'Napolitansk sekst': [[48,60,63,67],[53,61,65,68],[43,60,63,67],[43,59,62,67],[48,60,63,67]],
+    'Italiensk sekst':   [[48,60,67,75],[44,60,66,72],[43,60,67,75],[43,59,67,74],[48,60,67,75]],
+    'Fransk sekst':      [[48,60,63,67],[44,60,62,66],[43,60,63,67],[43,59,62,67],[48,60,63,67]],
+    'Tysk sekst':        [[48,60,63,67],[44,60,63,66],[43,60,63,67],[43,59,62,67],[48,60,63,67]]
+  };
+  AKK.forEach(function(a, i){ a.i = i; a.kadens = KADENS[a.navn] || null; });
+  function navn(a){ return T(a.navn); }
+
+  /* =================== Tonearter (avansert) =================== */
+  /* Hver tone i C-versjonen får bokstav og fortegn ut fra formelen i boka. Når akkorden flyttes
+     til en annen grunntone, flyttes bokstavene like mange trinn, slik at stavemåten blir riktig
+     (for eksempel tysk sekst i e-moll: C, E, G, Aiss). */
+  var BH = [0, 2, 4, 5, 7, 9, 11];
+  function naturlig(b, okt){ return (okt + 1) * 12 + BH[b]; }
+  AKK.forEach(function(a){
+    var grader = a.formel.split(' – ');
+    a.stavet = a.toner.map(function(m, i){
+      var g = grader[i], tall = parseInt(g.replace(/[♭♯]/g, ''), 10), b = (tall - 1) % 7;
+      for (var o = 2; o <= 6; o++) { var f = m - naturlig(b, o); if (Math.abs(f) <= 2) return { b: b, f: f, oktav: o }; }
+      return null;
+    });
+    a.dobbelt = a.stavet.filter(function(n){ return Math.abs(n.f) === 2; }).length;
+  });
+  /* Mulige grunntoner, med begge stavemåter der det finnes to. */
+  var GRUNN = [[0,0],[0,1],[1,-1],[1,0],[1,1],[2,-1],[2,0],[3,0],[3,1],[4,-1],[4,0],[4,1],[5,-1],[5,0],[5,1],[6,-1],[6,0]];
+  function flytt(a, r){
+    /* r = [bokstav, fortegn]. Velg oktav slik at akkorden ligger godt på notelinjen. */
+    var halv = BH[r[0]] + r[1], beste = null;
+    [-1, 0].forEach(function(ok){
+      var h = halv + 12 * ok, tr = r[0] + 7 * ok;
+      var toner = a.toner.map(function(m){ return m + h; });
+      var lav = Math.min.apply(null, toner), hoy = Math.max.apply(null, toner);
+      var straff = Math.max(0, 60 - lav) + Math.max(0, hoy - 81) + Math.abs(h) / 100;   // færrest mulig hjelpelinjer
+      if (!beste || straff < beste.straff) beste = { h: h, tr: tr, straff: straff };
+    });
+    var stavet = a.stavet.map(function(n){
+      var d = n.oktav * 7 + n.b + beste.tr, b = ((d % 7) + 7) % 7, o = Math.floor(d / 7);
+      return { b: b, oktav: o, f: 0 };
+    });
+    var toner = a.toner.map(function(m){ return m + beste.h; });
+    stavet.forEach(function(n, i){ n.f = toner[i] - naturlig(n.b, n.oktav); });
+    var ok = stavet.every(function(n){ return Math.abs(n.f) <= 2 && !(n.f === 2); })
+      && stavet.filter(function(n){ return Math.abs(n.f) === 2; }).length <= a.dobbelt;
+    if (!ok) return null;
+    var fortegn = stavet.reduce(function(s, n){ return s + Math.abs(n.f); }, 0);
+    return { akk: a, rot: { b: r[0], f: r[1] }, toner: toner, stavet: stavet, fortegn: fortegn,
+             kadens: a.kadens ? a.kadens.map(function(k){ return k.map(function(m){ return m + beste.h; }); }) : null };
+  }
+  /* For hver akkord: én stavemåte per tonehøyde, den med færrest fortegn. */
+  AKK.forEach(function(a){
+    var per = {};
+    GRUNN.forEach(function(r){
+      var v = flytt(a, r); if (!v) return;
+      var pc = ((BH[r[0]] + r[1]) % 12 + 12) % 12;
+      if (!per[pc] || v.fortegn < per[pc].fortegn) per[pc] = v;
+    });
+    a.versjoner = Object.keys(per).map(function(k){ return per[k]; });
+  });
+  var NAVN_TONE = {
+    no: { 0: ['C', 'D', 'E', 'F', 'G', 'A', 'H'], 1: ['Ciss', 'Diss', 'Eiss', 'Fiss', 'Giss', 'Aiss', 'Hiss'], '-1': ['Ces', 'Dess', 'Ess', 'Fes', 'Gess', 'Ass', 'B'] },
+    pl: { 0: ['C', 'D', 'E', 'F', 'G', 'A', 'H'], 1: ['Cis', 'Dis', 'Eis', 'Fis', 'Gis', 'Ais', 'His'], '-1': ['Ces', 'Des', 'Es', 'Fes', 'Ges', 'As', 'B'] },
+    en: { 0: ['C', 'D', 'E', 'F', 'G', 'A', 'B'], 1: ['C♯', 'D♯', 'E♯', 'F♯', 'G♯', 'A♯', 'B♯'], '-1': ['C♭', 'D♭', 'E♭', 'F♭', 'G♭', 'A♭', 'B♭'] }
+  };
+  function tonenavn(n){ return (NAVN_TONE[SPRAK] || NAVN_TONE.no)[n.f][n.b]; }
+  function moll(n){ return SPRAK === 'en' ? tonenavn(n) + ' minor' : tonenavn(n).toLowerCase() + '-moll'; }
+  function dur(n){ return SPRAK === 'en' ? tonenavn(n) + ' major' : tonenavn(n) + '-dur'; }
+  function dominant(rot){
+    var b = (rot.b + 4) % 7, f = (BH[rot.b] + rot.f + 7) % 12 - BH[b];
+    if (f > 6) f -= 12; if (f < -6) f += 12;
+    return { b: b, f: f };
+  }
+
+  /* Noter for en flyttet akkord: noter over hverandre, sekunder forskjøvet til høyre,
+     fortegn i kolonner så de ikke kolliderer. Samme mål som notene i boka. */
+  function yAv(n){ return 140 - (n.oktav * 7 + n.b - 30) * 6.5; }
+  function tegnAkkord(v){
+    var X = 150, noter = v.stavet.map(function(n){ return { n: n, y: yAv(n), d: n.oktav * 7 + n.b, hoyre: false }; })
+      .sort(function(p, q){ return p.d - q.d; });
+    for (var i = 1; i < noter.length; i++) if (noter[i].d - noter[i - 1].d === 1 && !noter[i - 1].hoyre) noter[i].hoyre = true;
+    var harHoyre = noter.some(function(p){ return p.hoyre; });
+    var s = '', lav = Math.max.apply(null, noter.map(function(p){ return p.y; })), hoy = Math.min.apply(null, noter.map(function(p){ return p.y; }));
+    for (var i2 = 0; i2 < 5; i2++) s += '<line x1="10" y1="' + (88 + i2 * 13) + '" x2="290" y2="' + (88 + i2 * 13) + '" stroke="currentColor" stroke-width="1.3"/>';
+    s += '<use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="currentColor"/>';
+    function hjelpelinje(y){
+      var bred = noter.some(function(p){ return p.hoyre && (y >= 153 ? p.y >= y - 0.1 : p.y <= y + 0.1); });
+      s += '<line x1="' + (X - 14) + '" y1="' + y + '" x2="' + (X + (bred ? 30 : 14)) + '" y2="' + y + '" stroke="currentColor" stroke-width="1.3"/>';
+    }
+    for (var l = 153; l <= lav + 0.1; l += 13) hjelpelinje(l);
+    for (var l2 = 75; l2 >= hoy - 0.1; l2 -= 13) hjelpelinje(l2);
+    noter.forEach(function(p){
+      var x = X + (p.hoyre ? 16 : 0);
+      s += '<ellipse cx="' + x + '" cy="' + p.y + '" rx="7.2" ry="5.6" fill="currentColor" transform="rotate(-18 ' + x + ' ' + p.y + ')"/>';
+    });
+    /* Fortegn: ovenfra og ned, første kolonne der det er plass. */
+    var kolonner = [];
+    function omrade(f, y){ return f > 0 ? [y - 10.5, y + 10.5] : [y - 15.5, y + 5.3]; }
+    noter.slice().reverse().forEach(function(p){
+      if (!p.n.f) return;
+      var o = omrade(p.n.f, p.y), k = 0;
+      while (kolonner[k] && kolonner[k].some(function(q){ return o[0] < q[1] + 1 && q[0] < o[1] + 1; })) k++;
+      (kolonner[k] = kolonner[k] || []).push(o.concat([p]));
+    });
+    var x = 128;
+    kolonner.forEach(function(kol, k){
+      if (k) x -= 13;
+      kol.forEach(function(q){
+        var id = q[2].n.f > 0 ? 'acc-sharp' : (q[2].n.f === -2 ? 'acc-dflat' : 'acc-flat');
+        s += '<use href="#' + id + '" transform="translate(' + x + ' ' + q[2].y + ')" fill="currentColor"/>';
+      });
+    });
+    var topp = Math.min(62, hoy - 22), bunn = Math.max(173, lav + 14);
+    return '<svg viewBox="0 ' + topp + ' 300 ' + (bunn - topp) + '" role="img" aria-label="' + T('{navn} på notelinjen', { navn: navn(v.akk) }) + '">' + s + '</svg>';
+  }
+
+  /* Liten forbokstav midt i en setning (ikke på engelsk, der f.eks. «German 6th» skal ha stor forbokstav). */
+  function smaa(t){ return SPRAK === 'en' ? t : t.replace(/^./, function(c){ return c.toLowerCase(); }); }
+  function navnMedEng(a){ return SPRAK === 'en' || a.eng.toLowerCase() === T(a.navn).toLowerCase() ? T(a.navn) : T(a.navn) + ' (' + a.eng + ')'; }   // ikke «Sus2 (sus2)»
+  function forklaring(v){
+    var a = v.akk, s = T('Formel: {f}.', { f: a.formel });
+    if (a.kadens) s += ' ' + T('Kadensen i {toneart}: {toneart}, {navn}, kvartsekstakkord, {dominant} (dominanten) og {toneart}.',
+      { toneart: moll(v.rot), navn: SPRAK === 'en' ? navn(a) : navn(a).toLowerCase(), dominant: dur(dominant(v.rot)) });
+    return s;
+  }
+  /* Hvor akkorden står: «på Ess» eller, for kadensakkordene, «i ess-moll». */
+  function hvor(v){ return v.akk.kadens ? T('i {toneart}', { toneart: moll(v.rot) }) : T('på {tone}', { tone: tonenavn(v.rot) }); }
+  function noterSvg(v){
+    if (v.c) return '<svg viewBox="' + v.akk.vb + '" role="img" aria-label="' + T('{navn} på notelinjen', { navn: navn(v.akk) }) + '">' + v.akk.svg + '</svg>';
+    return tegnAkkord(v);
+  }
+  /* Grunntone: alltid C (som i boka) eller alle tonearter. */
+  var GKEY = 'vbm-quiz-akkorder-grunntone', alleTonearter = false;
+  try { alleTonearter = localStorage.getItem(GKEY) === 'alle'; } catch(e){}
+  function versjon(a){
+    if (!alleTonearter) return { akk: a, rot: { b: 0, f: 0 }, toner: a.toner, kadens: a.kadens, c: true };
+    return tilfeldig(a.versjoner);
+  }
+
+  /* Svarknapper gruppert etter kapittel */
+  function svarKnapper(rot, liste, valgt){
+    rot.innerHTML = '';
+    var flere = liste.some(function(a){ return a.kap !== liste[0].kap; });
+    var knapper = [];
+    [1, 2, 3, 4].forEach(function(k){
+      var del = liste.filter(function(a){ return a.kap === k; });
+      if (!del.length) return;
+      if (flere) rot.appendChild(lag('p', 'label kap-label', T(KAPITLER[k - 1])));
+      var rad = lag('div', 'row answers svar'); rad.setAttribute('role', 'group');
+      rad.setAttribute('aria-label', T(KAPITLER[k - 1]));
+      del.forEach(function(a){
+        var b = lag('button', 'btn', navn(a)); b.type = 'button'; b._akk = a;
+        b.addEventListener('click', function(){ valgt(a, b); });
+        rad.appendChild(b); knapper.push(b);
+      });
+      rot.appendChild(rad);
+    });
+    return knapper;
+  }
+
+  /* =================== Modus =================== */
+  var modusKnapper = [].slice.call(document.querySelectorAll('[data-modus]'));
+  function velgModus(m){
+    stopp();
+    modusKnapper.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-modus') === m ? 'true' : 'false'); });
+    [].forEach.call(document.querySelectorAll('[data-modus-del]'), function(el){ el.hidden = el.getAttribute('data-modus-del') !== m; });
+    [].forEach.call(document.querySelectorAll('.modus-tekst'), function(el){ el.hidden = el.getAttribute('data-for') !== m; });
+  }
+  modusKnapper.forEach(function(b){ b.addEventListener('click', function(){ velgModus(b.getAttribute('data-modus')); }); });
+  /* Avspilling: opp, ned og samlet (vanlig) eller bare samlet (superavansert). */
+  var AKEY = 'vbm-quiz-akkorder-avspilling', bareSamlet = false;
+  try { bareSamlet = localStorage.getItem(AKEY) === 'samlet'; } catch(e){}
+  var avspKnapper = [].slice.call(document.querySelectorAll('[data-avsp]'));
+  function visAvsp(){
+    avspKnapper.forEach(function(b){ b.setAttribute('aria-pressed', (b.getAttribute('data-avsp') === 'samlet') === bareSamlet ? 'true' : 'false'); });
+    [].forEach.call(document.querySelectorAll('.avsp-tekst'), function(el){ el.hidden = (el.getAttribute('data-for') === 'samlet') !== bareSamlet; });
+  }
+  avspKnapper.forEach(function(b){ b.addEventListener('click', function(){
+    var ny = b.getAttribute('data-avsp') === 'samlet';
+    if (ny === bareSamlet) return;
+    bareSamlet = ny; stopp(); visAvsp();
+    try { localStorage.setItem(AKEY, ny ? 'samlet' : 'alle'); } catch(e){}
+  }); });
+  visAvsp();
+
+  var grunnKnapper = [].slice.call(document.querySelectorAll('[data-grunn]'));
+  function visGrunn(){
+    grunnKnapper.forEach(function(b){ b.setAttribute('aria-pressed', (b.getAttribute('data-grunn') === 'alle') === alleTonearter ? 'true' : 'false'); });
+    [].forEach.call(document.querySelectorAll('.grunn-tekst'), function(el){ el.hidden = (el.getAttribute('data-for') === 'alle') !== alleTonearter; });
+  }
+  grunnKnapper.forEach(function(b){ b.addEventListener('click', function(){
+    var ny = b.getAttribute('data-grunn') === 'alle';
+    if (ny === alleTonearter) return;
+    alleTonearter = ny; visGrunn();
+    try { localStorage.setItem(GKEY, ny ? 'alle' : 'c'); } catch(e){}
+    nyOvOppgave();
+  }); });
+
+  /* =================== Øvemodus =================== */
+  var NOKKEL = 'vbm-quiz-akkorder';
+  var valgt = AKK.map(function(a){ return a.kap === 1; });   // kapittel 1 er valgt fra start
+  try { var lagret = JSON.parse(localStorage.getItem(NOKKEL)); if (lagret && lagret.length === AKK.length && lagret.filter(Boolean).length >= 2) valgt = lagret; } catch(e){}
+  var STAT = AKK.map(function(){ return { r: 0, t: 0 }; });
+  var MAL = 5, paRad = 0, best = 0, klar = false;
+  var ov = { oppgave: null, besvart: false };
+  var svarRot = $('ov-svar'), fb = $('ov-fb'), noter = $('ov-noter');
+  var spillBtn = $('ov-spill'), nesteBtn = $('ov-neste'), svarListe = [];
+
+  var brikkeRot = $('ov-brikker'), brikker = [], kapKnapper = [];
+  [1, 2, 3, 4].forEach(function(k){
+    var hode = lag('div', 'kap-hode');
+    hode.appendChild(lag('p', 'label kap-label', T(KAPITLER[k - 1])));
+    var kb = lag('button', 'btn kap-btn', T('Hele kapitlet')); kb.type = 'button'; kb._kap = k;
+    kb.addEventListener('click', function(){
+      var alle = AKK.every(function(a, i){ return a.kap !== k || valgt[i]; });
+      AKK.forEach(function(a, i){ if (a.kap === k) valgt[i] = !alle; });
+      if (valgt.filter(Boolean).length < 2) AKK.forEach(function(a, i){ if (a.kap === k) valgt[i] = true; });
+      lagreValg(); oppdaterBrikker(); nyOvOppgave();
+    });
+    hode.appendChild(kb); kapKnapper.push(kb);
+    brikkeRot.appendChild(hode);
+    var rad = lag('div', 'row brikker'); rad.setAttribute('role', 'group'); rad.setAttribute('aria-label', T(KAPITLER[k - 1]));
+    AKK.forEach(function(a, i){
+      if (a.kap !== k) return;
+      var b = lag('button', 'btn', navn(a)); b.type = 'button'; b._i = i;
+      b.addEventListener('click', function(){
+        if (valgt[i] && valgt.filter(Boolean).length <= 2) return;   // minst to
+        valgt[i] = !valgt[i]; lagreValg(); oppdaterBrikker(); nyOvOppgave();
+      });
+      rad.appendChild(b); brikker.push(b);
+    });
+    brikkeRot.appendChild(rad);
+  });
+  $('ov-alle').addEventListener('click', function(){ valgt = AKK.map(function(){ return true; }); lagreValg(); oppdaterBrikker(); nyOvOppgave(); });
+  function lagreValg(){ try { localStorage.setItem(NOKKEL, JSON.stringify(valgt)); } catch(e){} }
+  function oppdaterBrikker(){
+    brikker.forEach(function(b){ b.setAttribute('aria-pressed', valgt[b._i] ? 'true' : 'false'); });
+    kapKnapper.forEach(function(kb){
+      var alle = AKK.every(function(a, i){ return a.kap !== kb._kap || valgt[i]; });
+      kb.setAttribute('aria-pressed', alle ? 'true' : 'false');
+    });
+  }
+
+  function nyOvOppgave(){
+    stopp();
+    var mulige = AKK.filter(function(a, i){ return valgt[i]; });
+    var forrige = ov.oppgave && ov.oppgave.akk, a;
+    do { a = tilfeldig(mulige); } while (mulige.length > 2 && a === forrige && Math.random() < 0.7);
+    ov = { oppgave: versjon(a), besvart: false };
+    svarListe = svarKnapper(svarRot, mulige, svarOv);
+    svarListe.forEach(function(b){ b.disabled = true; });
+    fb.innerHTML = ''; noter.hidden = true; noter.innerHTML = ''; nesteBtn.hidden = true;
+  }
+  spillBtn.addEventListener('click', function(){
+    spill(ov.oppgave, spillBtn, 1);
+    if (!ov.besvart) svarListe.forEach(function(b){ b.disabled = false; });
+  });
+  nesteBtn.addEventListener('click', function(){
+    nyOvOppgave();
+    spill(ov.oppgave, spillBtn, 1);
+    svarListe.forEach(function(b){ b.disabled = false; });
+    spillBtn.focus();
+  });
+  var FEIL_MELDINGER = [
+    'Ikke gi opp. Øret blir bedre for hver oppgave.',
+    'Hør gjerne en gang til før du går videre.',
+    'Lytt etter tersen først: er den stor eller liten?',
+    'Pust rolig, lytt godt, og prøv neste.'
+  ];
+  function svarOv(x, b){
+    if (ov.besvart) return;
+    ov.besvart = true;
+    var v = ov.oppgave, a = v.akk, riktig = x === a, m = '';
+    STAT[a.i].t++; if (riktig) STAT[a.i].r++;
+    svarListe.forEach(function(k){ k.disabled = true; });
+    b.disabled = false; b.setAttribute('aria-pressed', 'true');
+    if (riktig) {
+      paRad++; best = Math.max(best, paRad);
+      if (paRad === MAL && !klar) { klar = true; m = T('Fem riktige på rad. Målet er nådd!'); }
+      else if (paRad === 3) m = T('Tre riktige på rad. Bra jobbet!');
+      else if (paRad === 10) m = T('Ti riktige på rad. Imponerende!');
+    } else { paRad = 0; m = T(tilfeldig(FEIL_MELDINGER)); }
+    fb.innerHTML = '<strong class="' + (riktig ? 'ok' : 'nei') + '">' + (riktig ? T('Riktig.') : T('Feil.')) + '</strong> '
+      + T('Det var {navn} {hvor}.', { navn: smaa(navnMedEng(a)), hvor: hvor(v) }) + ' ' + forklaring(v)
+      + (m ? '<span class="motiv">' + m + '</span>' : '');
+    noter.innerHTML = noterSvg(v); noter.hidden = false;
+    nesteBtn.hidden = false;
+    visFremgang();
+  }
+  function visFremgang(){
+    var html = '', r = 0, t = 0;
+    AKK.forEach(function(a, i){
+      var s = STAT[i]; r += s.r; t += s.t;
+      if (!s.t) return;
+      html += '<li><span>' + navn(a) + '</span><span class="tall">' + T('{r} av {t} riktige.', { r: s.r, t: s.t }) + '</span></li>';
+    });
+    $('ov-fremgang').innerHTML = html || '<li><span class="tall">' + T('Ingen svar ennå.') + '</span></li>';
+    $('ov-total').innerHTML = '<strong>' + T('Totalt: {r} av {t} riktige', { r: r, t: t }) + (t ? ' (' + Math.round(100 * r / t) + ' %)' : '') + '.</strong> '
+      + (klar ? '<span class="klar">' + T('Målet er nådd.') + '</span> ' : '')
+      + T('På rad nå: {n}. Beste rekke: {b}.', { n: paRad, b: best });
+  }
+  visGrunn(); oppdaterBrikker(); nyOvOppgave(); visFremgang();
+
+  /* =================== Prøvemodus =================== */
+  var ANTALL = 20, GANGER = 3;
+  var pr = null, proveKap = [true, false, false, false];
+  var pSvarRot = $('prove-svar'), pNeste = $('prove-neste'), pLytt = $('prove-lytt'), pKnapper = [];
+  var kapRad = $('prove-kapitler');
+  KAPITLER.forEach(function(k, i){
+    var b = lag('button', 'btn', T(k)); b.type = 'button';
+    b.addEventListener('click', function(){
+      if (proveKap[i] && proveKap.filter(Boolean).length <= 1) return;   // minst ett kapittel
+      proveKap[i] = !proveKap[i];
+      [].forEach.call(kapRad.children, function(x, j){ x.setAttribute('aria-pressed', proveKap[j] ? 'true' : 'false'); });
+    });
+    b.setAttribute('aria-pressed', proveKap[i] ? 'true' : 'false');
+    kapRad.appendChild(b);
+  });
+  $('prove-alle').addEventListener('click', function(){
+    proveKap = [true, true, true, true];
+    [].forEach.call(kapRad.children, function(x){ x.setAttribute('aria-pressed', 'true'); });
+  });
+  function startProve(){
+    var pool = AKK.filter(function(a){ return proveKap[a.kap - 1]; }), liste;
+    if (pool.length >= ANTALL) liste = blandet(pool).slice(0, ANTALL);
+    else { liste = pool.slice(); while (liste.length < ANTALL) liste.push(tilfeldig(pool)); liste = blandet(liste); }
+    pr = { oppgaver: liste.map(versjon), svar: [], nr: 0 };
+    pKnapper = svarKnapper(pSvarRot, pool, function(a, b){
+      if (!pr) return;
+      pr.svar[pr.nr] = a;
+      pKnapper.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      pNeste.disabled = false;
+    });
+    $('prove-start').hidden = true; $('prove-resultat').hidden = true; $('prove-oppgave').hidden = false;
+    visProveOppgave();
+  }
+  function visProveOppgave(){
+    $('prove-tittel').textContent = T('Oppgave {n} av {t}', { n: pr.nr + 1, t: ANTALL });
+    pKnapper.forEach(function(x){ x.setAttribute('aria-pressed', 'false'); });
+    pNeste.disabled = true;
+    pNeste.textContent = pr.nr === ANTALL - 1 ? T('Se resultatet') : T('Neste oppgave');
+    stopp();
+    spill(pr.oppgaver[pr.nr], pLytt, GANGER);
+  }
+  pNeste.addEventListener('click', function(){
+    if (pr.nr < ANTALL - 1) { pr.nr++; visProveOppgave(); pKnapper[0].focus(); }
+    else visResultat();
+  });
+  var resultatListe = [];
+  function visResultat(){
+    stopp();
+    var r = 0, html = '';
+    resultatListe = pr.oppgaver.slice();
+    pr.oppgaver.forEach(function(v, i){
+      var a = v.akk, s = pr.svar[i], ok = s === a; if (ok) r++;
+      html += '<li><div class="gj-tekst"><strong class="' + (ok ? 'ok' : 'nei') + '">' + (ok ? T('Riktig.') : T('Feil.')) + '</strong> '
+        + navnMedEng(a) + ' ' + hvor(v) + '.' + (ok ? '' : ' <span class="ditt">' + T('Ditt svar: {s}.', { s: navn(s) }) + '</span>') + '</div>'
+        + '<button type="button" class="btn" data-gj="' + i + '" aria-label="' + T('Spill oppgave {n}', { n: i + 1 }) + '">&#9658;&#xFE0E; <span>' + T('spill') + '</span></button></li>';
+    });
+    var p = Math.round(100 * r / ANTALL);
+    $('prove-tittel').textContent = T('Resultat');
+    $('prove-poeng').innerHTML = '<strong>' + T('{r} av {t} riktige', { r: r, t: ANTALL }) + '</strong> (' + p + ' %)';
+    $('prove-melding').textContent = p === 100 ? T('Alle riktige. Et helt eksepsjonelt gehør!')
+      : p >= 85 ? T('Svært bra. Du er godt forberedt.')
+      : p >= 65 ? T('Bra. Øv litt mer på akkordene du bommet på.')
+      : p >= 40 ? T('Du er på god vei. Bruk øvemodus på akkordene du bommet på, og prøv igjen.')
+      : T('Ikke gi opp. Begynn i øvemodus med noen få akkorder, og legg til flere etter hvert.');
+    $('prove-liste').innerHTML = html;
+    $('prove-oppgave').hidden = true; $('prove-resultat').hidden = false;
+    $('prove-poeng').scrollIntoView({ block: 'center', behavior: 'smooth' });
+    pr = null;
+  }
+  $('prove-liste').addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('[data-gj]');
+    if (b) spill(resultatListe[+b.getAttribute('data-gj')], b, 1);
+  });
+  $('prove-start-btn').addEventListener('click', startProve);
+  $('prove-igjen').addEventListener('click', function(){
+    $('prove-resultat').hidden = true; $('prove-start').hidden = false;
+    $('prove-tittel').textContent = T('Prøve med 20 oppgaver');
+  });
+})();
+</script>
+<script src="lyd.js"></script>
+</body>
+</html>
