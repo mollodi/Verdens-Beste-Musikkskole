@@ -15,7 +15,7 @@
      2. Intervall-jukseboka og Den ultimate jukseboka (data-stil="bok"). Felles regler har data-stil, resten gjelder én side.
      3. Intervaller & sanger og Lytteguiden (data-stil="mork"). Felles regler har data-stil, resten gjelder én side.
      4. Startsiden (index.html)
-     5. Gehørlekser med mikrointervaller (gehorlekser-mikrointervaller.html)
+     5. Øvingssidene: Gehørlekser med mikrointervaller og Gehørquiz (data-stil="ovelse")
      6. Akkordhefte (akkordhefte.html)
    ===================================================================== */
 
@@ -1341,10 +1341,15 @@ html:where([data-side="index.html"]) {
 }
 
 /* =====================================================================
-   5. Gehørlekser med mikrointervaller (gehorlekser-mikrointervaller.html)
+   5. Øvingssidene: Gehørlekser med mikrointervaller og Gehørquiz (data-stil="ovelse").
+      Felles regler har data-stil. Det som bare gjelder quizen, står nederst i seksjonen.
    ===================================================================== */
 :root:where([data-side="gehorlekser-mikrointervaller.html"]) { --vbm-verk: "K7Q4-J9W5"; }
-:root:where([data-side="gehorlekser-mikrointervaller.html"]) {
+:root:where([data-side="gehorquiz.html"]) { --vbm-verk: "K7Q4-R3MD"; }
+:root:where([data-side="gehorquiz-akkorder.html"]) { --vbm-verk: "K7Q4-AKQZ"; }
+:root:where([data-side="kvintsirkelen.html"]) { --vbm-verk: "K7Q4-KVSK"; }
+:root:where([data-side="quiz-kvintsirkelen.html"]) { --vbm-verk: "K7Q4-QKVS"; }
+:root:where([data-stil="ovelse"]) {
   --ink: #12151A;
   --ink-soft: #1B2027;
   --paper: #F6F1E7;
@@ -1357,24 +1362,24 @@ html:where([data-side="index.html"]) {
   --rule: rgba(33,31,26,0.14);
   --rule-dark: rgba(246,241,231,0.14);
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]), :where(html[data-side="gehorlekser-mikrointervaller.html"]) * {
+:where(html[data-stil="ovelse"]), :where(html[data-stil="ovelse"]) * {
   box-sizing: border-box;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) body {
+:where(html[data-stil="ovelse"]) body {
   margin: 0;
   background: var(--ink);
   color: var(--paper);
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) a { color: inherit; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) header.hero {
+:where(html[data-stil="ovelse"]) a { color: inherit; }
+:where(html[data-stil="ovelse"]) header.hero {
   max-width: 980px;
   margin: 0 auto;
   padding: 72px 28px 40px;
   border-bottom: 1px solid var(--rule-dark);
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .eyebrow {
+:where(html[data-stil="ovelse"]) .eyebrow {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 12.5px;
   letter-spacing: 0.14em;
@@ -1382,7 +1387,7 @@ html:where([data-side="index.html"]) {
   color: var(--brass);
   margin-bottom: 18px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) h1 {
+:where(html[data-stil="ovelse"]) h1 {
   font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   font-weight: 700;
   font-size: clamp(34px, 5.4vw, 56px);
@@ -1390,20 +1395,20 @@ html:where([data-side="index.html"]) {
   margin: 0 0 16px;
   letter-spacing: -0.01em;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) h1 em {
+:where(html[data-stil="ovelse"]) h1 em {
   font-style: italic;
   font-weight: 500;
   color: var(--brass);
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .hero p.lede {
+:where(html[data-stil="ovelse"]) .hero p.lede {
   max-width: 580px;
   font-size: 16.5px;
   line-height: 1.6;
   color: rgba(246,241,231,0.72);
   margin: 0 0 14px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .hero p.lede:last-child { margin-bottom: 0; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .notice {
+:where(html[data-stil="ovelse"]) .hero p.lede:last-child { margin-bottom: 0; }
+:where(html[data-stil="ovelse"]) .notice {
   max-width: 980px;
   margin: 0 auto;
   padding: 18px 28px 0;
@@ -1411,8 +1416,8 @@ html:where([data-side="index.html"]) {
   font-size: 12.5px;
   color: var(--brass);
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .notice[hidden] { display: none; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) main {
+:where(html[data-stil="ovelse"]) .notice[hidden] { display: none; }
+:where(html[data-stil="ovelse"]) main {
   max-width: 980px;
   margin: 0 auto;
   padding: 28px 28px 100px;
@@ -1421,25 +1426,25 @@ html:where([data-side="index.html"]) {
   gap: 16px;
   align-items: start;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card {
+:where(html[data-stil="ovelse"]) .card {
   background: var(--paper);
   color: var(--text-on-paper);
   border-radius: 14px;
   padding: 20px 20px 18px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card-head {
+:where(html[data-stil="ovelse"]) .card-head {
   border-bottom: 1px solid var(--rule);
   padding-bottom: 14px;
   margin-bottom: 14px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card-head h2 {
+:where(html[data-stil="ovelse"]) .card-head h2 {
   font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   font-weight: 700;
   font-size: 21px;
   margin: 0;
   letter-spacing: -0.01em;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .step-label {
+:where(html[data-stil="ovelse"]) .step-label {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 10.5px;
   color: var(--text-muted);
@@ -1447,34 +1452,34 @@ html:where([data-side="index.html"]) {
   letter-spacing: 0.06em;
   margin-bottom: 4px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card p.task {
+:where(html[data-stil="ovelse"]) .card p.task {
   font-size: 14.5px;
   line-height: 1.55;
   margin: 0 0 14px;
   color: #3E3A32;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .label {
+:where(html[data-stil="ovelse"]) .label {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 11px;
   color: var(--text-muted);
   margin: 0 0 6px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .forskjell {
+:where(html[data-stil="ovelse"]) .forskjell {
   font-size: 14.5px;
   margin: 0 0 14px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .forskjell strong {
+:where(html[data-stil="ovelse"]) .forskjell strong {
   font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   font-size: 19px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .row {
+:where(html[data-stil="ovelse"]) .row {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
   margin: 0 0 12px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn {
+:where(html[data-stil="ovelse"]) .btn {
   display: inline-flex;
   align-items: center;
   background: #FFFFFF;
@@ -1486,77 +1491,77 @@ html:where([data-side="index.html"]) {
   cursor: pointer;
   font-family: inherit;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn span { margin-left: 6px; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn:focus-visible {
+:where(html[data-stil="ovelse"]) .btn span { margin-left: 6px; }
+:where(html[data-stil="ovelse"]) .btn:focus-visible {
   outline: 2px solid var(--brass-dim);
   outline-offset: 2px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn:disabled {
+:where(html[data-stil="ovelse"]) .btn:disabled {
   opacity: .45;
   cursor: default;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn.playing {
+:where(html[data-stil="ovelse"]) .btn.playing {
   border-color: var(--brass);
   color: var(--brass-dim);
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn.loading { opacity: .65; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn[aria-pressed="true"] {
+:where(html[data-stil="ovelse"]) .btn.loading { opacity: .65; }
+:where(html[data-stil="ovelse"]) .btn[aria-pressed="true"] {
   background: var(--text-on-paper);
   color: var(--paper);
   border-color: var(--text-on-paper);
   opacity: 1;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn[hidden] { display: none; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .answers .btn {
+:where(html[data-stil="ovelse"]) .btn[hidden] { display: none; }
+:where(html[data-stil="ovelse"]) .answers .btn {
   flex: 1 1 130px;
   justify-content: center;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .answers.tre .btn { flex: 1 1 90px; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .feedback {
+:where(html[data-stil="ovelse"]) .answers.tre .btn { flex: 1 1 90px; }
+:where(html[data-stil="ovelse"]) .feedback {
   font-size: 14.5px;
   line-height: 1.5;
   min-height: 1.5em;
   margin: 2px 0 10px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .feedback strong { font-weight: 700; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .feedback .ok { color: var(--green-dk); }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .feedback .nei { color: var(--red-dk); }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .feedback .delvis { color: var(--brass-dim); }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .feedback .motiv {
+:where(html[data-stil="ovelse"]) .feedback strong { font-weight: 700; }
+:where(html[data-stil="ovelse"]) .feedback .ok { color: var(--green-dk); }
+:where(html[data-stil="ovelse"]) .feedback .nei { color: var(--red-dk); }
+:where(html[data-stil="ovelse"]) .feedback .delvis { color: var(--brass-dim); }
+:where(html[data-stil="ovelse"]) .feedback .motiv {
   display: block;
   margin-top: 4px;
   font-style: italic;
   color: var(--text-muted);
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card.resultat { grid-column: 1 / -1; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang {
+:where(html[data-stil="ovelse"]) .card.resultat { grid-column: 1 / -1; }
+:where(html[data-stil="ovelse"]) .fremgang {
   list-style: none;
   margin: 0 0 12px;
   padding: 0;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang li {
+:where(html[data-stil="ovelse"]) .fremgang li {
   padding: 8px 0;
   border-bottom: 1px solid var(--rule);
   font-size: 14.5px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang li > span { display: block; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang li:last-child { border-bottom: none; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang .tall {
+:where(html[data-stil="ovelse"]) .fremgang li > span { display: block; }
+:where(html[data-stil="ovelse"]) .fremgang li:last-child { border-bottom: none; }
+:where(html[data-stil="ovelse"]) .fremgang .tall {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 12px;
   color: var(--text-muted);
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang .klar {
+:where(html[data-stil="ovelse"]) .fremgang .klar {
   font-weight: 700;
   color: var(--green-dk);
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .total {
+:where(html[data-stil="ovelse"]) .total {
   font-size: 15px;
   margin: 0;
   padding-top: 10px;
   border-top: 1px solid var(--rule);
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .perfekt {
+:where(html[data-stil="ovelse"]) .perfekt {
   margin: 14px 0 0;
   padding: 14px 16px;
   border-radius: 10px;
@@ -1565,18 +1570,18 @@ html:where([data-side="index.html"]) {
   font-size: 15px;
   line-height: 1.5;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .perfekt strong {
+:where(html[data-stil="ovelse"]) .perfekt strong {
   font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   font-size: 22px;
   display: block;
   color: var(--brass);
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .perfekt[hidden] { display: none; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .cents .btn {
+:where(html[data-stil="ovelse"]) .perfekt[hidden] { display: none; }
+:where(html[data-stil="ovelse"]) .cents .btn {
   padding: 7px 12px;
   font-size: 13px;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .stats {
+:where(html[data-stil="ovelse"]) .stats {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 11px;
   color: var(--text-muted);
@@ -1585,22 +1590,22 @@ html:where([data-side="index.html"]) {
   padding-top: 10px;
   margin: 0;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .slider-wrap { margin: 4px 0 16px; }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .slider-wrap input[type="range"] {
+:where(html[data-stil="ovelse"]) .slider-wrap { margin: 4px 0 16px; }
+:where(html[data-stil="ovelse"]) .slider-wrap input[type="range"] {
   width: 100%;
   margin: 0;
   height: 34px;
   accent-color: var(--brass-dim);
   cursor: pointer;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) .slider-ends {
+:where(html[data-stil="ovelse"]) .slider-ends {
   display: flex;
   justify-content: space-between;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 11px;
   color: var(--text-muted);
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) footer {
+:where(html[data-stil="ovelse"]) footer {
   max-width: 980px;
   margin: 0 auto;
   padding: 28px 28px 90px;
@@ -1613,49 +1618,217 @@ html:where([data-side="index.html"]) {
   gap: 12px;
   flex-wrap: wrap;
 }
-:where(html[data-side="gehorlekser-mikrointervaller.html"]) footer .vbm-kreditt {
+:where(html[data-stil="ovelse"]) footer .vbm-kreditt {
   flex-basis: 100%;
   font-size: 11px;
 }
 @media (max-width: 560px) {
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) header.hero { padding: 48px 20px 32px; }
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) main { padding: 24px 16px 100px; }
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .notice { padding: 16px 20px 0; }
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) footer { padding: 24px 20px 90px; }
+  :where(html[data-stil="ovelse"]) header.hero { padding: 48px 20px 32px; }
+  :where(html[data-stil="ovelse"]) main { padding: 24px 16px 100px; }
+  :where(html[data-stil="ovelse"]) .notice { padding: 16px 20px 0; }
+  :where(html[data-stil="ovelse"]) footer { padding: 24px 20px 90px; }
 }
 @media print {
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn,
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .slider-wrap {
+  :where(html[data-stil="ovelse"]) .btn,
+  :where(html[data-stil="ovelse"]) .slider-wrap {
     display: none;
   }
 }
 /* Kontrastmodus (Windows): alt blir lesbart, og valgte knapper vises tydelig */
 @media (forced-colors: active) {
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .card { border: 1px solid CanvasText; }
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .card-head,
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .stats,
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .fremgang li,
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .total {
+  :where(html[data-stil="ovelse"]) .card { border: 1px solid CanvasText; }
+  :where(html[data-stil="ovelse"]) .card-head,
+  :where(html[data-stil="ovelse"]) .stats,
+  :where(html[data-stil="ovelse"]) .fremgang li,
+  :where(html[data-stil="ovelse"]) .total {
     border-color: CanvasText;
   }
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .perfekt { border: 2px solid CanvasText; }
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn { border-color: ButtonText; }
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn:disabled {
+  :where(html[data-stil="ovelse"]) .perfekt { border: 2px solid CanvasText; }
+  :where(html[data-stil="ovelse"]) .btn { border-color: ButtonText; }
+  :where(html[data-stil="ovelse"]) .btn:disabled {
     opacity: 1;
     color: GrayText;
     border-color: GrayText;
   }
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn.playing {
+  :where(html[data-stil="ovelse"]) .btn.playing {
     border-color: Highlight;
     outline: 2px solid Highlight;
   }
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn[aria-pressed="true"] {
+  :where(html[data-stil="ovelse"]) .btn[aria-pressed="true"] {
     forced-color-adjust: none;
     background: Highlight;
     color: HighlightText;
     border-color: Highlight;
   }
-  :where(html[data-side="gehorlekser-mikrointervaller.html"]) .btn:focus-visible { outline: 2px solid Highlight; }
+  :where(html[data-stil="ovelse"]) .btn:focus-visible { outline: 2px solid Highlight; }
+}
+
+/* ---------- Bare Gehørlekser: like høye kort i hver rad, tallene nederst ---------- */
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) main { align-items: stretch; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card { display: flex; flex-direction: column; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card > * { flex-shrink: 0; }
+:where(html[data-side="gehorlekser-mikrointervaller.html"]) .card .stats { margin-top: auto; }
+
+/* ---------- Bare gehørquizene (sider med data-quiz) ---------- */
+/* PC: oppgaven og fremgangen til venstre, valg av akkorder/intervaller til høyre. */
+@media (min-width: 760px) {
+  :where(html[data-quiz]) main { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr; }
+  :where(html[data-quiz]) #ov-oppgave { grid-column: 1; grid-row: 2; }
+  :where(html[data-quiz]) #ov-fremgang-kort { grid-column: 1; grid-row: 3; }
+  :where(html[data-quiz]) #ov-valg { grid-column: 2; grid-row: 2 / span 2; }
+  :where(html[data-quiz]) #prove { grid-row: 2; }
+}
+:where(html[data-quiz]) .modus-kort,
+:where(html[data-quiz]) .prove-kort { grid-column: 1 / -1; }
+:where(html[data-quiz]) [hidden] { display: none !important; }
+:where(html[data-quiz]) .brikker .btn {
+  padding: 7px 12px;
+  font-size: 13.5px;
+}
+:where(html[data-quiz]) .svar .btn { flex: 1 1 140px; justify-content: center; }
+:where(html[data-quiz]) .noter {
+  color: var(--text-on-paper);
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+:where(html[data-quiz]) .noter svg { display: block; width: 100%; max-width: 420px; height: auto; margin: 0 auto; }
+:where(html[data-quiz]) .lytt {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--rule);
+  border-radius: 10px;
+}
+:where(html[data-quiz]) .lytt .lytt-na { display: none; }
+:where(html[data-quiz]) .lytt.playing { border-color: var(--brass); color: var(--brass-dim); }
+:where(html[data-quiz]) .lytt.playing .lytt-na { display: inline; }
+:where(html[data-quiz]) .lytt.playing .lytt-ferdig { display: none; }
+:where(html[data-quiz]) .lytt.playing::before { content: "\25B6\FE0E\00A0 "; }
+:where(html[data-quiz]) .poeng {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+:where(html[data-quiz]) .gjennomgang {
+  margin: 0 0 14px;
+  padding: 0 0 0 1.6em;
+}
+:where(html[data-quiz]) .gjennomgang li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+:where(html[data-quiz]) .gjennomgang li:last-child { border-bottom: none; }
+:where(html[data-quiz]) .gjennomgang .gj-tekst { margin-bottom: 6px; }
+:where(html[data-quiz]) .gjennomgang .ok { color: var(--green-dk); }
+:where(html[data-quiz]) .gjennomgang .nei { color: var(--red-dk); }
+:where(html[data-quiz]) .gjennomgang .ditt { color: var(--text-muted); }
+:where(html[data-quiz]) .gjennomgang .btn { padding: 5px 12px; font-size: 13px; }
+:where(html[data-quiz]) .fremgang li { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+:where(html[data-quiz]) .fremgang li > span { display: inline; }
+:where(html[data-quiz]) .kap-hode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 14px 0 8px;
+}
+:where(html[data-quiz]) .kap-hode:first-child { margin-top: 0; }
+:where(html[data-quiz]) .kap-hode .label { margin: 0; }
+:where(html[data-quiz]) .kap-label { margin: 12px 0 6px; }
+:where(html[data-quiz]) .svar-grupper > .kap-label:first-child { margin-top: 0; }
+:where(html[data-quiz]) .kap-btn { padding: 5px 12px; font-size: 12.5px; }
+:where(html[data-quiz]) .velg-alle { margin-top: 16px; }
+:where(html[data-quiz]) .total .klar { font-weight: 700; color: var(--green-dk); }
+@media (forced-colors: active) {
+  :where(html[data-quiz]) .noter,
+  :where(html[data-quiz]) .gjennomgang li { border-color: CanvasText; }
+  :where(html[data-quiz]) .noter { color: CanvasText; }
+  :where(html[data-quiz]) .lytt { border-color: CanvasText; color: CanvasText; }
+  :where(html[data-quiz]) .lytt.playing { border-color: Highlight; outline: 2px solid Highlight; }
+}
+@media print {
+  :where(html[data-quiz]) .lytt { display: none; }
+}
+
+
+/* ---------- Bare Kvintsirkelen (kvintsirkelen.html) ---------- */
+:where(html[data-side="kvintsirkelen.html"]) .sirkel-kort,
+:where(html[data-side="kvintsirkelen.html"]) .ovelse-kort { grid-column: 1 / -1; }
+:where(html[data-side="kvintsirkelen.html"]) main { align-items: stretch; }   /* like høye kort i hver rad */
+:where(html[data-side="kvintsirkelen.html"]) .sirkel-oppsett {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+@media (min-width: 760px) {
+  :where(html[data-side="kvintsirkelen.html"]) .sirkel-oppsett { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+}
+:where(html[data-side="kvintsirkelen.html"]) .sirkel-bilde svg { display: block; width: 100%; max-width: 440px; height: auto; margin: 0 auto; }
+:where(html[data-side="kvintsirkelen.html"]) .plass { cursor: pointer; outline: none; }
+:where(html[data-side="kvintsirkelen.html"]) .plass .ring-dur { fill: #FFFFFF; stroke: var(--text-on-paper); stroke-width: 1.2; }
+:where(html[data-side="kvintsirkelen.html"]) .plass .ring-moll { fill: #EFE7D6; stroke: var(--text-on-paper); stroke-width: 1.2; }
+:where(html[data-side="kvintsirkelen.html"]) .plass text { fill: var(--text-on-paper); text-anchor: middle; pointer-events: none; }
+:where(html[data-side="kvintsirkelen.html"]) .plass .navn-dur { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-weight: 700; font-size: 19px; }
+:where(html[data-side="kvintsirkelen.html"]) .plass .navn-moll { font-size: 14.5px; }
+:where(html[data-side="kvintsirkelen.html"]) .plass .navn-dur.liten { font-size: 14.5px; }
+:where(html[data-side="kvintsirkelen.html"]) .plass .navn-moll.liten { font-size: 12px; }
+:where(html[data-side="kvintsirkelen.html"]) .plass:hover .ring-dur, :where(html[data-side="kvintsirkelen.html"]) .plass:hover .ring-moll { fill: #F3E6C8; }
+:where(html[data-side="kvintsirkelen.html"]) .plass.valgt .ring-dur { fill: var(--text-on-paper); }
+:where(html[data-side="kvintsirkelen.html"]) .plass.valgt .ring-moll { fill: #3E3A32; }
+:where(html[data-side="kvintsirkelen.html"]) .plass.valgt text { fill: var(--paper); }
+:where(html[data-side="kvintsirkelen.html"]) .plass:focus-visible .ring-dur { stroke: var(--brass); stroke-width: 3; }
+:where(html[data-side="kvintsirkelen.html"]) .midt { fill: var(--paper); stroke: var(--text-on-paper); stroke-width: 1.2; }
+:where(html[data-side="kvintsirkelen.html"]) .midt-dur, :where(html[data-side="kvintsirkelen.html"]) .midt-moll { fill: var(--text-on-paper); text-anchor: middle; }
+:where(html[data-side="kvintsirkelen.html"]) .midt-dur { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-weight: 700; font-size: 26px; }
+:where(html[data-side="kvintsirkelen.html"]) .midt-moll { font-size: 17px; }
+:where(html[data-side="kvintsirkelen.html"]) .toneart-navn {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 22px;
+  margin: 0 0 10px;
+}
+:where(html[data-side="kvintsirkelen.html"]) .toneart-fortegn { font-size: 15px; margin: 0 0 8px; }
+:where(html[data-side="kvintsirkelen.html"]) .noter { color: var(--text-on-paper); margin: 0 0 12px; }
+:where(html[data-side="kvintsirkelen.html"]) .noter svg { display: block; width: 100%; max-width: 360px; height: auto; }
+:where(html[data-side="kvintsirkelen.html"]) .lytt-rad .btn { flex: 1 1 150px; justify-content: center; }
+:where(html[data-side="kvintsirkelen.html"]) .del-tittel {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 17px;
+  margin: 18px 0 8px;
+}
+:where(html[data-side="kvintsirkelen.html"]) a.btn { text-decoration: none; }
+@media (forced-colors: active) {
+  :where(html[data-side="kvintsirkelen.html"]) .sirkel-bilde svg { forced-color-adjust: none; }
+  :where(html[data-side="kvintsirkelen.html"]) .plass .ring-dur, :where(html[data-side="kvintsirkelen.html"]) .plass .ring-moll, :where(html[data-side="kvintsirkelen.html"]) .midt { fill: Canvas; stroke: CanvasText; }
+  :where(html[data-side="kvintsirkelen.html"]) .plass text, :where(html[data-side="kvintsirkelen.html"]) .midt-dur, :where(html[data-side="kvintsirkelen.html"]) .midt-moll { fill: CanvasText; }
+  :where(html[data-side="kvintsirkelen.html"]) .plass:hover .ring-dur, :where(html[data-side="kvintsirkelen.html"]) .plass:hover .ring-moll { fill: Canvas; }
+  :where(html[data-side="kvintsirkelen.html"]) .plass.valgt .ring-dur, :where(html[data-side="kvintsirkelen.html"]) .plass.valgt .ring-moll { fill: Highlight; }
+  :where(html[data-side="kvintsirkelen.html"]) .plass.valgt text { fill: HighlightText; }
+  :where(html[data-side="kvintsirkelen.html"]) .plass:focus-visible .ring-dur { stroke: Highlight; stroke-width: 4; }
+  :where(html[data-side="kvintsirkelen.html"]) .noter { color: CanvasText; }
+}
+
+/* ---------- Bare Teoriquiz: kvintsirkelen (quiz-kvintsirkelen.html) ---------- */
+:where(html[data-side="quiz-kvintsirkelen.html"]) .noter { border-top: none; padding-top: 0; margin: 0 0 12px; }
+:where(html[data-side="quiz-kvintsirkelen.html"]) .noter svg { max-width: 360px; margin: 0; }
+:where(html[data-side="quiz-kvintsirkelen.html"]) #ov-fasit { border-top: 1px solid var(--rule); padding-top: 8px; }
+:where(html[data-side="quiz-kvintsirkelen.html"]) .stor-toneart, :where(html[data-side="quiz-kvintsirkelen.html"]) .prove-sporsmal {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  margin: 0 0 12px;
+}
+:where(html[data-side="quiz-kvintsirkelen.html"]) .stor-toneart { font-size: 30px; font-weight: 700; }
+:where(html[data-side="quiz-kvintsirkelen.html"]) .prove-sporsmal { font-size: 18px; font-weight: 700; }
+@media (min-width: 760px) {
+  :where(html[data-side="quiz-kvintsirkelen.html"]) #ov-fremgang-kort { grid-column: 2; grid-row: 2; }
+}
+@media (forced-colors: active) {
+  :where(html[data-side="quiz-kvintsirkelen.html"]) #ov-fasit { border-color: CanvasText; }
 }
 
 /* =====================================================================

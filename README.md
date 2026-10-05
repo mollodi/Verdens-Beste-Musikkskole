@@ -17,8 +17,16 @@ Gratis undervisningsmateriell i musikkteori for elever og lærere. Juksebøkene 
 - **Dominant- og majorakkorder med septim og none**: lytteguide til septim- og nonakkorder hos Chopin, Debussy, Hendrix, James Brown og flere.
 - **Gehørlekser med mikrointervaller**: seks øvelser i små forskjeller i tonehøyde, med sinustoner eller piano, som forberedelse til opptaksprøven på pianostemmerutdanningen ved NMH.
 
+### Musikkteori
+- **Kvintsirkelen**: interaktiv kvintsirkel med alle dur- og molltonearter, fortegnene på ekte notelinje, rekkefølgen på kryss og b-er, enharmoniske tonearter, og skala og treklang for hver toneart.
+
 ### Elevhefter
 - **Akkordhefte**: treklanger, trinnakkorder og diatonisk harmoni, med harmonisk moll.
+
+### Quiz
+- **Gehørquiz: intervaller**: hør et intervall og finn navnet, i øvemodus eller som en prøve med 20 oppgaver der hvert lydeksempel spilles tre ganger, slik som på opptaksprøver i gehør.
+- **Gehørquiz: akkorder**: alle 34 akkordene fra Den ultimate jukseboka, i de samme fire kapitlene, med C som grunntone eller i alle tonearter (avansert). Akkordene som bare kan høres i sammenheng (napolitansk, italiensk, fransk og tysk sekst), spilles også i en kort kadens i c-moll.
+- **Teoriquiz: kvintsirkelen**: les fortegnene og finn tonearten, eller finn fortegnene til en toneart, i dur og moll, med opptil 4 eller alle 7 fortegn.
 
 ## Lyd
 I juksebøkene kan du velge mellom **piano**, **gitar** og **strykere** med knappen nederst til høyre. Når du trykker på en ny spill-knapp, stopper lyden som spiller. Trykk på samme knapp igjen for å stoppe.

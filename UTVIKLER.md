@@ -12,6 +12,7 @@ Ren HTML, CSS og JavaScript. Ingen byggesteg, ingen rammeverk. Alle filer ligger
 | `sprak-en.js`, `sprak-pl.js` | Oversettelser fra norsk | Ja |
 | `sprak-no.js` | Oversettelse til norsk for sider skrevet på engelsk (lytteguiden) | Sjelden |
 | `lyd.js` | Lydmotor for spill-knappene (piano, gitar, strykere) | Nesten aldri |
+| `tonearter.js` | Tonearter, fortegn og tonenavn på tre språk, brukt av kvintsirkelen og kvintsirkel-quizen | Sjelden |
 | `Fraunces-Variable.ttf`, `Fraunces-OFL.txt`, `Lora-Variable.ttf`, `Lora-Italic-Variable.ttf`, `Lora-OFL.txt` | Skriftene til Akkordhefte, med lisensene som skal følge med. Filene må ikke endres | Aldri |
 | `index.html` og innholdssidene | Bare innhold. Ingen `<style>` i sidene | Ja |
 
@@ -30,7 +31,8 @@ Ren HTML, CSS og JavaScript. Ingen byggesteg, ingen rammeverk. Alle filer ligger
 
 - `lang`: språket siden er skrevet på (`no` eller `en`).
 - `data-side`: filnavnet. Brukes både av stil.css og av ordbøkene.
-- `data-stil` (valgfri): `bok` gir utseendet til juksebøkene, `mork` utseendet til de mørke lyttesidene.
+- `data-stil` (valgfri): `bok` gir utseendet til juksebøkene, `mork` utseendet til de mørke lyttesidene, `ovelse` utseendet til øvingssidene (gehørlekser og gehørquizene).
+- `data-quiz` (valgfri): gir en øvingsside quiz-utseendet (svarknapper, noter, prøveresultat). Brukes av alle gehørquizene.
 - `data-svart-hvitt` (valgfri): gir knappene Farger | Svart-hvitt.
 
 ## Oppskrifter
