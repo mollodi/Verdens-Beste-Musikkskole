@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-NOTL
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="notelesing.html" data-stil="ovelse" data-vbm="K7Q4-NOTL">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Notelesing</title>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
+<meta name="description" content="Lær å lese noter i G-nøkkel, F-nøkkel, altnøkkel og tenornøkkel, med et piano som viser hver tone på notelinjen, og oktavnavnene fra kontraoktav til trestrøken oktav.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Musikkteori</div>
+  <h1>Note<em>lesing</em></h1>
+  <p class="lede">Noter forteller hvilken tone som skal spilles. Her lærer du notelinjen, de fire nøklene og oktavnavnene, og du kan trykke på pianoet for å se hvor hver tone står.</p>
+  <p class="lede">Velg piano, gitar eller strykere nederst til høyre.</p>
+</header>
+
+<main>
+  <section class="card bred piano-kort">
+    <div class="card-head">
+      <div class="step-label">Prøv selv</div>
+      <h2>Trykk på en tangent</h2>
+    </div>
+    <p class="label">Nøkkel</p>
+    <div class="row brikker" id="nokler" role="group" aria-label="Velg nøkkel"></div>
+    <div class="stav-og-navn">
+      <div class="noter" id="stav"></div>
+      <p class="tonenavn" id="tonenavn" aria-live="polite"></p>
+    </div>
+    <div class="piano-rad">
+      <button type="button" class="btn piano-pil" id="ned" aria-label="En oktav ned">&#9664;&#xFE0E;</button>
+      <div class="piano" id="piano"></div>
+      <button type="button" class="btn piano-pil" id="opp" aria-label="En oktav opp">&#9654;&#xFE0E;</button>
+    </div>
+    <div class="row answers" role="group" aria-label="Svarte tangenter">
+      <button type="button" class="btn" data-skriv="kryss">Svarte tangenter med ♯</button>
+      <button type="button" class="btn" data-skriv="b">Svarte tangenter med ♭</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <div class="step-label">1</div>
+      <h2>Notelinjen</h2>
+    </div>
+    <p class="task">Notelinjen har fem linjer og fire mellomrom. En note kan stå på en linje eller i et mellomrom, og hvert steg opp er neste tone i alfabetet: C, D, E, F, G, A, H og så C igjen. Toner som er for høye eller lave for notelinjen, får korte hjelpelinjer.</p>
+    <p class="task">Nøkkelen helt til venstre bestemmer hvilken tone som står hvor. Uten nøkkel kan du ikke lese notene.</p>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <div class="step-label">2</div>
+      <h2>De fire nøklene</h2>
+    </div>
+    <p class="task"><strong>G-nøkkel</strong> (diskantnøkkel) slynger seg rundt 2. linje nedenfra, som er g¹. Brukes for de fleste melodiinstrumenter, sang og pianoets høyre hånd.</p>
+    <p class="task"><strong>F-nøkkel</strong> (bassnøkkel) har prikkene rundt 4. linje, som er f. Brukes for bass, cello, fagott, trombone og pianoets venstre hånd.</p>
+    <p class="task"><strong>Altnøkkel</strong> er en C-nøkkel der midten peker på 3. linje, som er c¹. Brukes for bratsj.</p>
+    <p class="task"><strong>Tenornøkkel</strong> er den samme C-nøkkelen flyttet til 4. linje. Brukes for cello, fagott og trombone når de spiller høyt.</p>
+  </section>
+
+  <section class="card bred">
+    <div class="card-head">
+      <div class="step-label">3</div>
+      <h2>Samme tone, fire plasser</h2>
+    </div>
+    <p class="task">Alle fire notelinjene under viser den samme tonen, c¹, den midterste C-en på pianoet. Nøkkelen flytter tonen: i G-nøkkel står den på hjelpelinjen under, i F-nøkkel på hjelpelinjen over, og i C-nøklene på linjen nøkkelen peker på.</p>
+    <div class="fire-stav" id="fire-stav"></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <div class="step-label">4</div>
+      <h2>Huskeregler</h2>
+    </div>
+    <p class="task viktig"><strong>G-nøkkel:</strong> linjene nedenfra er E, G, H, D og F. Mellomrommene nedenfra er F, A, C og E.</p>
+    <p class="task viktig"><strong>F-nøkkel:</strong> linjene nedenfra er G, H, D, F og A. Mellomrommene nedenfra er A, C, E og G.</p>
+    <p class="task">Lær én tone sikkert i hver nøkkel, for eksempel g¹ i G-nøkkel og f i F-nøkkel, og tell deg fram derfra.</p>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <div class="step-label">5</div>
+      <h2>Oktavnavn</h2>
+    </div>
+    <p class="task">Et vanlig piano med 88 tangenter har åtte C-er, og hver oktav fra C til H har sitt navn. Den midterste C-en heter c¹, enstrøken c. På engelsk kalles den C4.</p>
+    <ul class="oktaver" id="oktaver"></ul>
+  </section>
+
+  <section class="card bred ovelse-kort">
+    <div class="card-head">
+      <div class="step-label">Øv</div>
+      <h2>Test deg selv</h2>
+    </div>
+    <p class="task">I Teoriquiz: notelesing leser du noter og finner navnet, eller finner en tone på notelinjen.</p>
+    <div class="row">
+      <a class="btn" href="quiz-notelesing.html">Teoriquiz: notelesing</a>
+    </div>
+  </section>
+</main>
+
+<footer data-lyd="alle"></footer>
+
+<script src="tonearter.js"></script>
+<script src="skalaer.js"></script>
+<script>/* VBM K7Q4-NOTL */
+(function(){
+  'use strict';
+  var K = window.VBM_TONEARTER, S = window.VBM_SKALAER, T = K.T;
+  var SPRAK = window.VBM_SPRAK || 'no';
+  function $(id){ return document.getElementById(id); }
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  var NOKLER = [['G', 'G-nøkkel'], ['F', 'F-nøkkel'], ['alt', 'Altnøkkel'], ['tenor', 'Tenornøkkel']];
+  var START = { G: 60, F: 36, alt: 48, tenor: 48 };   // pianoets laveste C for hver nøkkel
+  var nokkel = 'G', start = 60, skriv = 'kryss', valgt = 60;
+  try { var l = JSON.parse(localStorage.getItem('vbm-notelesing')); if (l) { nokkel = l.n || 'G'; start = l.s || START[nokkel]; skriv = l.k || 'kryss'; valgt = l.v || 60; } } catch(e){}
+  function lagre(){ try { localStorage.setItem('vbm-notelesing', JSON.stringify({ n: nokkel, s: start, k: skriv, v: valgt })); } catch(e){} }
+
+  /* Stavemåte for en tonehøyde: hvite tangenter uten fortegn, svarte med ♯ eller ♭ */
+  var KRYSS = [[0,0],[0,1],[1,0],[1,1],[2,0],[3,0],[3,1],[4,0],[4,1],[5,0],[5,1],[6,0]];
+  var BE = [[0,0],[1,-1],[1,0],[2,-1],[2,0],[3,0],[4,-1],[4,0],[5,-1],[5,0],[6,-1],[6,0]];
+  function stav(m){ var p = (skriv === 'b' ? BE : KRYSS)[m % 12]; return { b: p[0], f: p[1], oktav: Math.floor(m / 12) - 1 }; }
+  function navneTekst(n){
+    var o = S.oktavInfo(n);
+    /* Norsk og polsk bruker Helmholtz-navn (c¹), engelsk vitenskapelige navn (C4). */
+    return T('{helm} ({oktav})', { helm: o.helm, oktav: T(o.oktav), sci: o.sci });
+  }
+
+  /* =================== Nøkler, notelinje og piano =================== */
+  NOKLER.forEach(function(x){
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = T(x[1]); b._n = x[0];
+    b.addEventListener('click', function(){ nokkel = x[0]; start = START[nokkel]; lagre(); tegn(); });
+    $('nokler').appendChild(b);
+  });
+  [].forEach.call(document.querySelectorAll('[data-skriv]'), function(b){
+    b.addEventListener('click', function(){ skriv = b.getAttribute('data-skriv'); lagre(); tegn(); });
+  });
+  $('ned').addEventListener('click', function(){ if (start > 24) { start -= 12; lagre(); tegn(); } });
+  $('opp').addEventListener('click', function(){ if (start < 72) { start += 12; lagre(); tegn(); } });
+
+  function piano(){
+    /* To oktaver fra start til C to oktaver over, 15 hvite tangenter */
+    var HV = 22, s = '', svarte = '', x = 0;
+    for (var m = start; m <= start + 24; m++) {
+      var pc = m % 12, svart = [1, 3, 6, 8, 10].indexOf(pc) >= 0;
+      var klasse = 'tangent ' + (svart ? 'svart' : 'hvit') + (m === valgt ? ' valgt' : '');
+      var info = S.oktavInfo(stav(m)), etikett = esc(SPRAK === 'en' ? info.sci : info.helm);
+      if (svart) svarte += '<rect class="' + klasse + '" data-m="' + m + '" x="' + (x - 7) + '" y="0" width="14" height="56" rx="2" role="button" tabindex="0" aria-label="' + etikett + '"/>';
+      else {
+        s += '<rect class="' + klasse + '" data-m="' + m + '" x="' + x + '" y="0" width="' + HV + '" height="90" rx="2" role="button" tabindex="0" aria-label="' + etikett + '"/>';
+        if (pc === 0) s += '<text class="c-merke" x="' + (x + HV / 2) + '" y="82" text-anchor="middle">' + etikett + '</text>';
+        x += HV;
+      }
+    }
+    return '<svg viewBox="-1 -1 ' + (x + 2) + ' 92" role="group" aria-label="' + esc(T('Piano')) + '">' + s + svarte + '</svg>';
+  }
+  function tegn(){
+    [].forEach.call($('nokler').children, function(b){ b.setAttribute('aria-pressed', b._n === nokkel ? 'true' : 'false'); });
+    [].forEach.call(document.querySelectorAll('[data-skriv]'), function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-skriv') === skriv ? 'true' : 'false'); });
+    if (valgt < start || valgt > start + 24) valgt = start + 12;
+    var n = stav(valgt);
+    $('stav').innerHTML = S.enStav(nokkel, [n], { etikett: navneTekst(n) });
+    $('tonenavn').textContent = navneTekst(n);
+    $('piano').innerHTML = piano();
+    $('ned').disabled = start <= 24; $('opp').disabled = start >= 72;
+  }
+  function trykk(el){
+    valgt = +el.getAttribute('data-m'); lagre(); tegn();
+    if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS([[valgt]], $('piano'));
+  }
+  $('piano').addEventListener('click', function(e){ var t = e.target.closest && e.target.closest('[data-m]'); if (t) trykk(t); });
+  $('piano').addEventListener('keydown', function(e){
+    var t = e.target.closest && e.target.closest('[data-m]');
+    if (t && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); trykk(t); }
+  });
+
+  /* =================== Samme tone i fire nøkler =================== */
+  var c1 = { b: 0, f: 0, oktav: 4 };
+  $('fire-stav').innerHTML = NOKLER.map(function(x){
+    return '<figure class="liten-stav"><div class="noter">' + S.enStav(x[0], [c1], { bredde: 150, x0: 100, etikett: T(x[1]) + ': c¹' }) + '</div><figcaption>' + esc(T(x[1])) + '</figcaption></figure>';
+  }).join('');
+
+  /* =================== Oktavnavnene =================== */
+  var oktHtml = '';
+  for (var o = 1; o <= 6; o++) {
+    var fra = S.oktavInfo({ b: 0, f: 0, oktav: o }), til = S.oktavInfo({ b: 6, f: 0, oktav: o });
+    var fraT = SPRAK === 'en' ? fra.sci : fra.helm, tilT = SPRAK === 'en' ? til.sci : til.helm;
+    oktHtml += '<li><span class="okt-navn">' + esc(T(fra.oktav)) + '</span><span class="okt-toner">' + esc(fraT + ' ' + T('til') + ' ' + tilT) + '</span></li>';
+  }
+  $('oktaver').innerHTML = oktHtml;
+
+  tegn();
+})();
+</script>
+<script src="lyd.js"></script>
+</body>
+</html>

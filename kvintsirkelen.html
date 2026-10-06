@@ -72,10 +72,12 @@
     </div>
     <h3 class="del-tittel">Kryss</h3>
     <div class="noter" id="alle-kryss"></div>
-    <p class="task">Fiss, Ciss, Giss, Diss, Aiss, Eiss, Hiss. Hvert nytt kryss ligger en ren kvint over det forrige. Huskeregel: det siste krysset ligger en liten sekund under durtonearten. Med Fiss, Ciss og Giss er det siste krysset Giss, og tonearten er A-dur.</p>
+    <p class="task">Fiss, Ciss, Giss, Diss, Aiss, Eiss, Hiss. Hvert nytt kryss ligger en ren kvint over det forrige.</p>
+    <p class="task viktig"><strong>Huskeregel:</strong> det siste krysset ligger en liten sekund under durtonearten. Med Fiss, Ciss og Giss er det siste krysset Giss, og tonearten er A-dur.</p>
     <h3 class="del-tittel">B-er</h3>
     <div class="noter" id="alle-ber"></div>
-    <p class="task">B, Ess, Ass, Dess, Gess, Ces, Fes, altså kryssene baklengs. Huskeregel: den nest siste b-en er navnet på durtonearten. Med B, Ess og Ass er den nest siste Ess, og tonearten er Ess-dur. F-dur, med bare én b, må du huske.</p>
+    <p class="task">B, Ess, Ass, Dess, Gess, Ces, Fes, altså kryssene baklengs.</p>
+    <p class="task viktig"><strong>Huskeregel:</strong> den nest siste b-en er navnet på durtonearten. Med B, Ess og Ass er den nest siste Ess, og tonearten er Ess-dur. F-dur, med bare én b, må du huske.</p>
   </section>
 
   <section class="card ovelse-kort">
@@ -93,10 +95,11 @@
 <footer data-lyd="alle"></footer>
 
 <script src="tonearter.js"></script>
+<script src="skalaer.js"></script>
 <script>/* VBM K7Q4-KVSK */
 (function(){
   'use strict';
-  var K = window.VBM_TONEARTER, T = K.T;
+  var K = window.VBM_TONEARTER, S = window.VBM_SKALAER, T = K.T;
   function $(id){ return document.getElementById(id); }
 
   /* =================== Sirkelen =================== */
@@ -163,7 +166,7 @@
     $('valgt-fortegn').textContent = a.fortegn
       ? T('{antall}: {liste}.', { antall: K.antall(a.fortegn).replace(/^./, function(c){ return c.toUpperCase(); }), liste: K.liste(navn) })
       : T('Ingen fortegn.');
-    $('valgt-noter').innerHTML = K.fortegnSvg(a.fortegn);
+    tegnNoter();
     var rad = $('valgt-enharm');
     rad.innerHTML = '';
     rad.hidden = plass.length < 2;
@@ -176,11 +179,42 @@
       rad.appendChild(b);
     });
   }
+  /* =================== Notene som spilles ===================
+     Notelinjen viser fortegnene og tonene i det du sist spilte (først durskalaen),
+     og tonen som klinger, er farget. Treklangen spilles brutt og til slutt samlet. */
+  var MOLL = S.ALLE.filter(function(s){ return s.id === 'naturlig-moll'; })[0].trinn;
+  var VISNING = {
+    durskala:     { trinn: S.DUR, dur: true },
+    mollskala:    { trinn: MOLL, dur: false },
+    durtreklang:  { trinn: [[0,0],[2,4],[4,7]], dur: true, akkord: true },
+    molltreklang: { trinn: [[0,0],[2,3],[4,7]], dur: false, akkord: true }
+  };
+  var visning = 'durskala';
   function aktiv(){ return K.medFortegn(valgtFortegn); }
-  $('spill-durskala').addEventListener('click', function(){ if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS(K.skala(aktiv().dur, false), this); });
-  $('spill-mollskala').addEventListener('click', function(){ if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS(K.skala(aktiv().moll, true), this); });
-  $('spill-durtreklang').addEventListener('click', function(){ if (window.VBM_LYD_SPILL) window.VBM_LYD_SPILL(K.treklang(aktiv().dur, false), this, 1); });
-  $('spill-molltreklang').addEventListener('click', function(){ if (window.VBM_LYD_SPILL) window.VBM_LYD_SPILL(K.treklang(aktiv().moll, true), this, 1); });
+  function noteliste(){ var v = VISNING[visning], a = aktiv(); return S.toner(v.dur ? a.dur : a.moll, v.trinn); }
+  function tegnNoter(){
+    var a = aktiv(), v = VISNING[visning];
+    var etikett = K.antall(a.fortegn) + ', ' + (v.dur ? K.dur(a.dur) : K.moll(a.moll));
+    $('valgt-noter').innerHTML = S.noter(noteliste(), a.fortegn, null, etikett);
+  }
+  function spill(navn, knapp){
+    if (!window.VBM_LYD_SEKVENS) return;
+    if (visning !== navn) { if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); visning = navn; tegnNoter(); }
+    var liste = noteliste().map(S.midi), v = VISNING[navn];
+    var steg = liste.map(function(m){ return [m]; });
+    if (v.akkord) steg.push(liste);   // til slutt alle tonene samtidig
+    var svg = $('valgt-noter').querySelector('svg');
+    window.VBM_LYD_SEKVENS(steg, knapp, function(k){
+      [].forEach.call(svg.querySelectorAll('.spilles'), function(x){ x.classList.remove('spilles'); });
+      if (k < 0) return;
+      (k < liste.length ? [k] : liste.map(function(m, i){ return i; })).forEach(function(i){
+        var n = svg.querySelector('[data-i="' + i + '"]'); if (n) n.classList.add('spilles');
+      });
+    });
+  }
+  ['durskala', 'durtreklang', 'mollskala', 'molltreklang'].forEach(function(navn){
+    $('spill-' + navn).addEventListener('click', function(){ spill(navn, this); });
+  });
 
   /* =================== Rekkefølgen på fortegnene =================== */
   $('alle-kryss').innerHTML = K.fortegnSvg(7, T('Alle sju kryss i rekkefølge'));

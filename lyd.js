@@ -109,6 +109,8 @@
     }
     voices = [];
     if (timer) { clearTimeout(timer); timer = null; }
+    stegTimere.forEach(clearTimeout); stegTimere = [];
+    if (aktivVedSteg) { var v = aktivVedSteg; aktivVedSteg = null; try { v(-1); } catch(e){} }
     if (activeBtn) { activeBtn.classList.remove('playing', 'loading'); activeBtn = null; }
   }
   function track(src, gain){
@@ -179,17 +181,28 @@
   /* sekvens = en liste med steg som spilles etter hverandre, hvert steg én eller flere toner
      (kvintsirkelen bruker dette til skalaer). Siste steg klinger lenger. */
   var S_STEG = 0.5, S_TONE = 0.9, S_SISTE = 2.2;
-  function planSekvens(sekvens, voiceFn){
+  /* vedSteg(i) kalles når steg i begynner å klinge, og vedSteg(-1) når alt er ferdig eller stoppet,
+     slik at siden kan farge tonen som spilles. */
+  var stegTimere = [], aktivVedSteg = null;
+  function planSekvens(sekvens, voiceFn, vedSteg, my){
     var t = ctx.currentTime + 0.05;
     sekvens.forEach(function(steg, i){
       var siste = i === sekvens.length - 1;
       steg.forEach(function(m){ voiceFn(m, t + i * S_STEG, siste ? S_SISTE : S_TONE, steg.length > 1, steg.length); });
     });
+    if (vedSteg) {
+      aktivVedSteg = vedSteg;
+      var start = (t - ctx.currentTime) * 1000;
+      sekvens.forEach(function(steg, i){
+        stegTimere.push(setTimeout(function(){ if (my === token) vedSteg(i); }, Math.max(0, start + i * S_STEG * 1000)));
+      });
+      stegTimere.push(setTimeout(function(){ if (my === token) { aktivVedSteg = null; vedSteg(-1); } }, start + ((sekvens.length - 1) * S_STEG + S_SISTE) * 1000));
+    }
     return (t + (sekvens.length - 1) * S_STEG + S_SISTE + 0.7) - ctx.currentTime;
   }
 
-  function play(notes, btn, ganger, kadens, samlet, sekvens){
-    function plan(voiceFn){ return sekvens ? planSekvens(sekvens, voiceFn) : schedule(notes, voiceFn, ganger, kadens, samlet); }
+  function play(notes, btn, ganger, kadens, samlet, sekvens, vedSteg){
+    function plan(voiceFn){ return sekvens ? planSekvens(sekvens, voiceFn, vedSteg, token) : schedule(notes, voiceFn, ganger, kadens, samlet); }
     stopAll();
     var my = token, inst = INSTR[current];
     activeBtn = btn; btn.classList.add('playing', 'loading');
@@ -267,11 +280,12 @@
     if (btn === activeBtn) { stopAll(); return; }
     play(notes, btn, ganger, kadens, samlet);
   };
-  /* VBM_LYD_SEKVENS(steg, knapp): spiller stegene etter hverandre, f.eks. en skala [[60],[62],[64]...]. */
-  window.VBM_LYD_SEKVENS = function(sekvens, btn){
+  /* VBM_LYD_SEKVENS(steg, knapp, vedSteg): spiller stegene etter hverandre, f.eks. en skala [[60],[62],[64]...].
+     vedSteg (valgfri) får vite hvilket steg som klinger, se planSekvens. */
+  window.VBM_LYD_SEKVENS = function(sekvens, btn, vedSteg){
     ensureCtx();
     if (btn === activeBtn) { stopAll(); return; }
-    play([], btn, 1, null, false, sekvens);
+    play([], btn, 1, null, false, sekvens, vedSteg);
   };
   window.VBM_LYD_STOPP = stopAll;
   window.__vbmLyd = { voices: function(){ return voices.length; }, instrument: function(){ return current; } };

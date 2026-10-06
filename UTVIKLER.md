@@ -12,7 +12,9 @@ Ren HTML, CSS og JavaScript. Ingen byggesteg, ingen rammeverk. Alle filer ligger
 | `sprak-en.js`, `sprak-pl.js` | Oversettelser fra norsk | Ja |
 | `sprak-no.js` | Oversettelse til norsk for sider skrevet på engelsk (lytteguiden) | Sjelden |
 | `lyd.js` | Lydmotor for spill-knappene (piano, gitar, strykere) | Nesten aldri |
-| `tonearter.js` | Tonearter, fortegn og tonenavn på tre språk, brukt av kvintsirkelen og kvintsirkel-quizen | Sjelden |
+| `tonearter.js` | Tonearter, fortegn og tonenavn på tre språk, brukt av kvintsirkelen, skalaene og quizene deres | Sjelden |
+| `skalaer.js` | Alle skalaene (trinn, tekster, sangeksempler), noter for skalaer, akkorder side om side, firstemmig sats på to notelinjer og enkeltnoter i fire nøkler, brukt av skalaleksjonen, skalaquizen, kvintsirkelen, omvendingene, harmonilæren og notelesingen | Sjelden |
+| `harmoni.js` | Firstemmige akkorder for funksjoner, kadenser, kvartsekstakkorder, beliggenhet og skråstrekakkorder, brukt av harmonilæren og quizen | Sjelden |
 | `Fraunces-Variable.ttf`, `Fraunces-OFL.txt`, `Lora-Variable.ttf`, `Lora-Italic-Variable.ttf`, `Lora-OFL.txt` | Skriftene til Akkordhefte, med lisensene som skal følge med. Filene må ikke endres | Aldri |
 | `index.html` og innholdssidene | Bare innhold. Ingen `<style>` i sidene | Ja |
 
@@ -105,3 +107,13 @@ Når nettsiden er ferdig og skal bli synlig i søk, fjernes linjen fra alle side
 
 ## Før opplasting
 Ta sikkerhetskopi: på GitHub, Code > Download ZIP.
+
+## Domene og beskyttelse
+
+Nettsiden ligger på https://verdensbestemusikkskole.no/ (GitHub Pages med eget domene).
+
+- Filen `CNAME` i repoet forteller GitHub hvilket domene siden har. Den må ikke slettes. Den er ikke med i zip-filene, og opplasting av nye filer rører den ikke.
+- `felles.js` sjekker adressen siden kjører på. På `verdensbestemusikkskole.no`, `www.verdensbestemusikkskole.no` og `mollodi.github.io` (eierens egen GitHub, også testsiden VBM-test) vises siden som vanlig. Alle andre steder viser den et banner øverst: «Originalen av denne siden finnes på Verdens Beste Musikkskole», med lenke til samme side på domenet.
+- Bytter domenet igjen, endres `ORIGINAL` og `EGNE` øverst i `felles.js`.
+- Alle sider har `noindex, nofollow` og signatur, og hvert verk har sin egen Verk-ID.
+

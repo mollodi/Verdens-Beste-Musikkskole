@@ -20,7 +20,11 @@ window.VBM_TONEARTER = (function(){
     pl: { 0: ['C', 'D', 'E', 'F', 'G', 'A', 'H'], 1: ['Cis', 'Dis', 'Eis', 'Fis', 'Gis', 'Ais', 'His'], '-1': ['Ces', 'Des', 'Es', 'Fes', 'Ges', 'As', 'B'] },
     en: { 0: ['C', 'D', 'E', 'F', 'G', 'A', 'B'], 1: ['C♯', 'D♯', 'E♯', 'F♯', 'G♯', 'A♯', 'B♯'], '-1': ['C♭', 'D♭', 'E♭', 'F♭', 'G♭', 'A♭', 'B♭'] }
   };
-  function tone(n){ return (NAVN[sprak()] || NAVN.no)[n.f][n.b]; }
+  function tone(n){
+    var t = NAVN[sprak()] || NAVN.no;
+    if (t[n.f]) return t[n.f][n.b];
+    return t[0][n.b] + (n.f > 0 ? '𝄪' : '𝄫');   // dobbeltfortegn (vises sjelden som tekst)
+  }
   function dur(n){ return sprak() === 'en' ? tone(n) + ' major' : tone(n) + '-dur'; }
   function moll(n){ return sprak() === 'en' ? tone(n) + ' minor' : tone(n).toLowerCase() + '-moll'; }
   /* Korte navn til sirkelen: stor bokstav for dur, liten for moll (engelsk: «Am»). */

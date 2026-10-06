@@ -2,7 +2,7 @@
 
 **Juksebøker og lytteguider for musikkteori og øretrening**
 
-👉 **Åpne nettsiden:** https://mollodi.github.io/Verdens-Beste-Musikkskole/
+👉 **Åpne nettsiden:** https://verdensbestemusikkskole.no/
 
 Gratis undervisningsmateriell i musikkteori for elever og lærere. Juksebøkene og lytteguidene har ekte notasjon. Juksebøkene kan spilles av direkte i nettleseren, og lytteguidene har Spotify-lenker til hver sang.
 
@@ -10,7 +10,7 @@ Gratis undervisningsmateriell i musikkteori for elever og lærere. Juksebøkene 
 
 ### Juksebøker
 - **Intervall-jukseboka**: alle 25 intervaller fra ren prim til dobbel oktav, i farger og i svart-hvitt.
-- **Den ultimate jukseboka for akkorder og intervaller**: 34 akkorder i fire kapitler, fra treklanger til 13-akkorder og kvartalakkorder, i farger og i svart-hvitt.
+- **Den ultimate jukseboka for akkorder og intervaller**: 47 akkorder i fem kapitler, fra treklanger til jazzakkorder (sus, tilføyde toner, alterte dominanter og lydisk major), og omvendingene av dur, moll og dominantseptimakkorden i kapittel 6, i farger og i svart-hvitt.
 
 ### Øretrening og lytting
 - **Intervaller & sanger**: hvert intervall oppover og nedover, med kjente sanger og Spotify-lenker.
@@ -18,15 +18,26 @@ Gratis undervisningsmateriell i musikkteori for elever og lærere. Juksebøkene 
 - **Gehørlekser med mikrointervaller**: seks øvelser i små forskjeller i tonehøyde, med sinustoner eller piano, som forberedelse til opptaksprøven på pianostemmerutdanningen ved NMH.
 
 ### Musikkteori
+- **Notelesing**: notelinjen, G-nøkkel, F-nøkkel, altnøkkel og tenornøkkel, oktavnavnene (Helmholtz og vitenskapelige navn), og et piano som viser hver tone på notelinjen i valgt nøkkel.
 - **Kvintsirkelen**: interaktiv kvintsirkel med alle dur- og molltonearter, fortegnene på ekte notelinje, rekkefølgen på kryss og b-er, enharmoniske tonearter, og skala og treklang for hver toneart.
+- **Skalaer og modi**: dur, moll (naturlig, harmonisk og melodisk), de sju modiene, pentatonikk, blues, heltone, kromatisk og jazzskalaer, i alle tonearter, med noter, lyd og sangeksempler. Modiene vises både fra samme grunntone og som trinn i durskalaen.
+- **Omvendinger**: alle stillingene til treklanger og septimakkorder, fra sekstakkord til sekundakkord, med besifring, skråstreknavn og intervallene over bassen, i alle tonearter. Forklarer også at sekstakkord betyr to ting.
+- **Harmonilære**: funksjoner (T, S, D og parallellene), de fire kadensene i dur og moll, kvartsekstakkordens tre bruksmåter, beliggenhet og leie, og skråstrekakkorder, i firstemmig sats på to notelinjer i alle tonearter.
 
 ### Elevhefter
 - **Akkordhefte**: treklanger, trinnakkorder og diatonisk harmoni, med harmonisk moll.
 
-### Quiz
-- **Gehørquiz: intervaller**: hør et intervall og finn navnet, i øvemodus eller som en prøve med 20 oppgaver der hvert lydeksempel spilles tre ganger, slik som på opptaksprøver i gehør.
-- **Gehørquiz: akkorder**: alle 34 akkordene fra Den ultimate jukseboka, i de samme fire kapitlene, med C som grunntone eller i alle tonearter (avansert). Akkordene som bare kan høres i sammenheng (napolitansk, italiensk, fransk og tysk sekst), spilles også i en kort kadens i c-moll.
+### Gehørquiz
+- **Gehørquiz: intervaller**: hør et intervall og finn navnet, innen én oktav eller opptil to oktaver (avansert), i øvemodus eller som en prøve med 20 oppgaver der hvert lydeksempel spilles tre ganger, slik som på opptaksprøver i gehør.
+- **Gehørquiz: akkorder**: alle akkordene fra Den ultimate jukseboka, også omvendingene, i de samme seks kapitlene, med C som grunntone eller i alle tonearter (avansert). Akkordene som bare kan høres i sammenheng (napolitansk, italiensk, fransk og tysk sekst), spilles også i en kort kadens i c-moll.
+- **Gehørquiz: skalaer og modi**: hør en skala og finn navnet, med C eller alle tonearter. Samme side som Teoriquiz: skalaer og modi, åpnet med «Hør» valgt (quiz-skalaer.html?type=hor).
+- **Gehørquiz: omvendinger**: hør en akkord og finn stillingen, fra grunnstilling til sekundakkord, for dur, moll og dominantseptimakkorder, med C eller alle tonearter.
+- **Gehørquiz: kadenser og funksjoner**: hør en kadens og finn typen, eller hør en akkord etter tonika og finn funksjonen.
+
+### Teoriquiz
+- **Teoriquiz: notelesing**: les en note og finn navnet, med eller uten fortegn, eller trykk der en tone står på notelinjen, i G-, F-, alt- og tenornøkkel.
 - **Teoriquiz: kvintsirkelen**: les fortegnene og finn tonearten, eller finn fortegnene til en toneart, i dur og moll, med opptil 4 eller alle 7 fortegn.
+- **Teoriquiz: skalaer og modi**: les en skala på notelinjen og finn navnet. Samme side, åpnet med «Les» valgt (quiz-skalaer.html?type=les).
 
 ## Lyd
 I juksebøkene kan du velge mellom **piano**, **gitar** og **strykere** med knappen nederst til høyre. Når du trykker på en ny spill-knapp, stopper lyden som spiller. Trykk på samme knapp igjen for å stoppe.

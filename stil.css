@@ -1349,6 +1349,14 @@ html:where([data-side="index.html"]) {
 :root:where([data-side="gehorquiz-akkorder.html"]) { --vbm-verk: "K7Q4-AKQZ"; }
 :root:where([data-side="kvintsirkelen.html"]) { --vbm-verk: "K7Q4-KVSK"; }
 :root:where([data-side="quiz-kvintsirkelen.html"]) { --vbm-verk: "K7Q4-QKVS"; }
+:root:where([data-side="skalaer.html"]) { --vbm-verk: "K7Q4-SKMD"; }
+:root:where([data-side="quiz-skalaer.html"]) { --vbm-verk: "K7Q4-QSKL"; }
+:root:where([data-side="omvendinger.html"]) { --vbm-verk: "K7Q4-OMVD"; }
+:root:where([data-side="gehorquiz-omvendinger.html"]) { --vbm-verk: "K7Q4-QOMV"; }
+:root:where([data-side="harmonilaere.html"]) { --vbm-verk: "K7Q4-HARM"; }
+:root:where([data-side="gehorquiz-harmoni.html"]) { --vbm-verk: "K7Q4-QHRM"; }
+:root:where([data-side="notelesing.html"]) { --vbm-verk: "K7Q4-NOTL"; }
+:root:where([data-side="quiz-notelesing.html"]) { --vbm-verk: "K7Q4-QNOT"; }
 :root:where([data-stil="ovelse"]) {
   --ink: #12151A;
   --ink-soft: #1B2027;
@@ -1670,13 +1678,14 @@ html:where([data-side="index.html"]) {
 :where(html[data-side="gehorlekser-mikrointervaller.html"]) .card .stats { margin-top: auto; }
 
 /* ---------- Bare gehørquizene (sider med data-quiz) ---------- */
-/* PC: oppgaven og fremgangen til venstre, valg av akkorder/intervaller til høyre. */
+/* Fremgangen øverst over hele bredden. PC: oppgaven til venstre, valgene til høyre. */
+:where(html[data-quiz]) #ov-fremgang-kort { grid-column: 1 / -1; }
 @media (min-width: 760px) {
-  :where(html[data-quiz]) main { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr; }
-  :where(html[data-quiz]) #ov-oppgave { grid-column: 1; grid-row: 2; }
-  :where(html[data-quiz]) #ov-fremgang-kort { grid-column: 1; grid-row: 3; }
-  :where(html[data-quiz]) #ov-valg { grid-column: 2; grid-row: 2 / span 2; }
-  :where(html[data-quiz]) #prove { grid-row: 2; }
+  :where(html[data-quiz]) main { grid-template-columns: 1fr 1fr; }
+  :where(html[data-quiz]) #ov-oppgave { grid-column: 1; }
+  :where(html[data-quiz]) #ov-valg { grid-column: 2; }
+  :where(html[data-quiz]) .fremgang { columns: 2; column-gap: 32px; }
+  :where(html[data-quiz]) .fremgang li { break-inside: avoid; }
 }
 :where(html[data-quiz]) .modus-kort,
 :where(html[data-quiz]) .prove-kort { grid-column: 1 / -1; }
@@ -1796,6 +1805,7 @@ html:where([data-side="index.html"]) {
 :where(html[data-side="kvintsirkelen.html"]) .toneart-fortegn { font-size: 15px; margin: 0 0 8px; }
 :where(html[data-side="kvintsirkelen.html"]) .noter { color: var(--text-on-paper); margin: 0 0 12px; }
 :where(html[data-side="kvintsirkelen.html"]) .noter svg { display: block; width: 100%; max-width: 360px; height: auto; }
+:where(html[data-side="kvintsirkelen.html"]) #valgt-noter svg { max-width: 460px; }
 :where(html[data-side="kvintsirkelen.html"]) .lytt-rad .btn { flex: 1 1 150px; justify-content: center; }
 :where(html[data-side="kvintsirkelen.html"]) .del-tittel {
   font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
@@ -1803,6 +1813,7 @@ html:where([data-side="index.html"]) {
   margin: 18px 0 8px;
 }
 :where(html[data-side="kvintsirkelen.html"]) a.btn { text-decoration: none; }
+:where(html[data-side="kvintsirkelen.html"]) #valgt-enharm[hidden] { display: none; }   /* bare to knapper der tonearten har to navn */
 @media (forced-colors: active) {
   :where(html[data-side="kvintsirkelen.html"]) .sirkel-bilde svg { forced-color-adjust: none; }
   :where(html[data-side="kvintsirkelen.html"]) .plass .ring-dur, :where(html[data-side="kvintsirkelen.html"]) .plass .ring-moll, :where(html[data-side="kvintsirkelen.html"]) .midt { fill: Canvas; stroke: CanvasText; }
@@ -1824,11 +1835,247 @@ html:where([data-side="index.html"]) {
 }
 :where(html[data-side="quiz-kvintsirkelen.html"]) .stor-toneart { font-size: 30px; font-weight: 700; }
 :where(html[data-side="quiz-kvintsirkelen.html"]) .prove-sporsmal { font-size: 18px; font-weight: 700; }
-@media (min-width: 760px) {
-  :where(html[data-side="quiz-kvintsirkelen.html"]) #ov-fremgang-kort { grid-column: 2; grid-row: 2; }
-}
+:where(html[data-side="quiz-kvintsirkelen.html"]) #ov-oppgave { grid-column: 1 / -1; }
 @media (forced-colors: active) {
   :where(html[data-side="quiz-kvintsirkelen.html"]) #ov-fasit { border-color: CanvasText; }
+}
+
+
+/* ---------- Bare Skalaer og modi (skalaer.html) ---------- */
+:where(html[data-side="skalaer.html"]) main { align-items: stretch; }
+:where(html[data-side="skalaer.html"]) .skala-liste { display: contents; }
+:where(html[data-side="skalaer.html"]) .valg-kort { grid-column: 1 / -1; }
+:where(html[data-side="skalaer.html"]) .valg-kort .brikker .btn { min-width: 52px; justify-content: center; }
+:where(html[data-side="skalaer.html"]) .gruppe-tittel {
+  grid-column: 1 / -1;
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 26px;
+  color: var(--paper);
+  margin: 18px 0 0;
+}
+:where(html[data-side="skalaer.html"]) .gruppe-intro { grid-column: 1 / -1; color: var(--paper); opacity: .85; margin: 0; max-width: 70ch; font-size: 15px; line-height: 1.55; }
+:where(html[data-side="skalaer.html"]) .skala-kort h2 .eng { font-family: inherit; font-weight: 400; font-size: 15px; color: var(--text-muted); }
+:where(html[data-side="skalaer.html"]) .formel { margin: 0 0 6px; font-size: 15px; word-spacing: 2px; }
+:where(html[data-side="skalaer.html"]) .formel .label { display: inline-block; min-width: 82px; margin: 0; }
+:where(html[data-side="skalaer.html"]) .noter { color: var(--text-on-paper); margin: 8px 0 10px; }
+:where(html[data-side="skalaer.html"]) .noter svg { display: block; width: 100%; max-width: 460px; height: auto; }
+:where(html[data-side="skalaer.html"]) .noter .kjenne { fill: var(--brass); }
+:where(html[data-side="skalaer.html"]) .noter .spilles, :where(html[data-side="kvintsirkelen.html"]) .noter .spilles { fill: var(--green-dk); stroke: var(--green-dk); stroke-width: 2.5; }
+:where(html[data-side="skalaer.html"]) .to-noter { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px 18px; }
+:where(html[data-side="skalaer.html"]) .noter-blokk { border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 4px; }
+:where(html[data-side="skalaer.html"]) .noter-blokk .label { margin: 0; }
+:where(html[data-side="skalaer.html"]) .sanger { list-style: none; margin: 0; padding: 0; }
+:where(html[data-side="skalaer.html"]) .sanger li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; border-top: 1px solid var(--rule); }
+:where(html[data-side="skalaer.html"]) .song-title { font-weight: 600; font-size: 15px; }
+:where(html[data-side="skalaer.html"]) .song-meta { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--text-muted); }
+:where(html[data-side="skalaer.html"]) .spotify-link {
+  flex-shrink: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px;
+  border: 1.5px solid var(--rule); border-radius: 999px; padding: 4px 10px; text-decoration: none; color: inherit;
+}
+:where(html[data-side="skalaer.html"]) .spotify-link:hover { border-color: var(--brass); }
+@media (forced-colors: active) {
+  :where(html[data-side="skalaer.html"]) .gruppe-tittel, :where(html[data-side="skalaer.html"]) .gruppe-intro { color: CanvasText; }
+  :where(html[data-side="skalaer.html"]) .noter { color: CanvasText; }
+  :where(html[data-side="skalaer.html"]) .noter svg { forced-color-adjust: none; }
+  :where(html[data-side="skalaer.html"]) .noter svg line, :where(html[data-side="skalaer.html"]) .noter svg use, :where(html[data-side="skalaer.html"]) .noter svg ellipse { color: CanvasText; }
+  :where(html[data-side="skalaer.html"]) .noter .kjenne { fill: Highlight; }
+  :where(html[data-side="skalaer.html"]) .noter .spilles, :where(html[data-side="kvintsirkelen.html"]) .noter .spilles { fill: LinkText; stroke: LinkText; stroke-width: 3; }
+  :where(html[data-side="skalaer.html"]) .noter-blokk, :where(html[data-side="skalaer.html"]) .sanger li { border-color: CanvasText; }
+  :where(html[data-side="skalaer.html"]) .spotify-link { border-color: LinkText; color: LinkText; }
+}
+
+
+/* ---------- Bare Skalaquiz (quiz-skalaer.html) ---------- */
+:where(html[data-side="quiz-skalaer.html"]) #ov-bilde, :where(html[data-side="quiz-skalaer.html"]) #prove-bilde { border-top: none; padding-top: 0; margin: 0 0 12px; }
+:where(html[data-side="quiz-skalaer.html"]) .noter svg { max-width: 460px; margin: 0; }
+:where(html[data-side="quiz-skalaer.html"]) .noter .kjenne { fill: var(--brass); }
+:where(html[data-side="quiz-skalaer.html"]) .prove-sporsmal {
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 18px; font-weight: 700; margin: 0 0 12px;
+}
+@media (forced-colors: active) {
+  :where(html[data-side="quiz-skalaer.html"]) .noter svg { forced-color-adjust: none; color: CanvasText; }
+  :where(html[data-side="quiz-skalaer.html"]) .noter .kjenne { fill: Highlight; }
+}
+
+
+/* ---------- Bare Omvendinger (omvendinger.html) ---------- */
+:where(html[data-side="omvendinger.html"]) main { align-items: stretch; }
+:where(html[data-side="omvendinger.html"]) .valg-kort, :where(html[data-side="omvendinger.html"]) .stillinger-kort, :where(html[data-side="omvendinger.html"]) .ovelse-kort { grid-column: 1 / -1; }
+:where(html[data-side="omvendinger.html"]) .valg-kort .label { margin: 12px 0 6px; }
+:where(html[data-side="omvendinger.html"]) .valg-kort .label:first-of-type { margin-top: 0; }
+:where(html[data-side="omvendinger.html"]) #grunntoner .btn { min-width: 52px; justify-content: center; }
+:where(html[data-side="omvendinger.html"]) .noter { color: var(--text-on-paper); margin: 4px 0 12px; }
+:where(html[data-side="omvendinger.html"]) .noter svg { display: block; width: 100%; max-width: 560px; height: auto; }
+:where(html[data-side="omvendinger.html"]) .noter .besifring { fill: currentColor; font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 19px; font-weight: 700; }
+:where(html[data-side="omvendinger.html"]) .noter .spilles { fill: var(--green-dk); stroke: var(--green-dk); stroke-width: 2.5; }
+:where(html[data-side="omvendinger.html"]) .stillinger { list-style: none; margin: 8px 0 0; padding: 0; }
+:where(html[data-side="omvendinger.html"]) .stillinger li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--rule); }
+:where(html[data-side="omvendinger.html"]) .still-tekst { display: flex; flex-direction: column; gap: 2px; }
+:where(html[data-side="omvendinger.html"]) .still-navn { font-weight: 600; font-size: 15.5px; }
+:where(html[data-side="omvendinger.html"]) .still-symbol { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 16px; }
+:where(html[data-side="omvendinger.html"]) .still-over { font-size: 14px; color: var(--text-muted); }
+:where(html[data-side="omvendinger.html"]) .stillinger .btn { flex-shrink: 0; }
+:where(html[data-side="omvendinger.html"]) a.btn { text-decoration: none; }
+@media (forced-colors: active) {
+  :where(html[data-side="omvendinger.html"]) .noter { color: CanvasText; }
+  :where(html[data-side="omvendinger.html"]) .noter svg { forced-color-adjust: none; }
+  :where(html[data-side="omvendinger.html"]) .noter .spilles { fill: LinkText; stroke: LinkText; stroke-width: 3; }
+  :where(html[data-side="omvendinger.html"]) .stillinger li { border-color: CanvasText; }
+  :where(html[data-side="omvendinger.html"]) .still-over { color: CanvasText; }
+}
+
+
+/* ---------- Bare Gehørquiz: omvendinger (gehorquiz-omvendinger.html) ---------- */
+:where(html[data-side="gehorquiz-omvendinger.html"]) .noter svg { max-width: 240px; }
+:where(html[data-side="gehorquiz-omvendinger.html"]) .noter .besifring { fill: currentColor; font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 19px; font-weight: 700; }
+@media (forced-colors: active) {
+  :where(html[data-side="gehorquiz-omvendinger.html"]) .noter svg { forced-color-adjust: none; color: CanvasText; }
+}
+
+
+/* =====================================================================
+   Viktige meldinger og innholdsfortegnelse (felles)
+   Samme utseende som tipsboksene i Akkordheftet: farget kant til venstre,
+   svak bakgrunn og fet merkelapp. I svart-hvitt grå, i kontrastmodus systemfarger.
+   ===================================================================== */
+:where([data-stil="bok"]) .viktig {
+  display: block;
+  border-left: 3px solid var(--yellow);
+  background: color-mix(in srgb, var(--yellow) 13%, var(--surface));
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+  margin: 10px 0 0;
+}
+:where([data-stil="bok"]) .viktig strong { color: var(--yellow-ink); }
+:where([data-stil="bok"]) p.lede.viktig { margin-top: 0 !important; margin-bottom: 14px; }
+:where([data-stil="bok"]) .group-note.viktig { margin-bottom: 12px; }
+html.sh .viktig { border-left-color: var(--ink) !important; background: transparent !important; }
+html.sh .viktig strong { color: var(--ink) !important; }
+:where([data-stil="bok"]) .innhold { margin: 8px 0 28px; }
+:where([data-stil="bok"]) .innhold ol { margin: 6px 0 0; padding-left: 0; list-style: none; line-height: 1.9; }
+:where([data-stil="bok"]) .innhold a, :where([data-stil="bok"]) .til-toppen a { color: var(--ink); text-underline-offset: 3px; }
+:where([data-stil="bok"]) .til-toppen { margin: 18px 0 8px; font-size: 14.5px; }
+:where([data-stil="ovelse"]) .viktig {
+  border-left: 3px solid var(--brass);
+  background: color-mix(in srgb, var(--brass) 14%, transparent);
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+}
+:where([data-stil="ovelse"]) .viktig strong { color: var(--brass-dim); }
+:where([data-stil="ovelse"]) div.viktig > p:last-child { margin-bottom: 0; }
+:where(html[data-side="akkordhefte.html"]) .til-toppen { margin: 22px 0 0; font-size: 14px; }
+:where(html[data-side="akkordhefte.html"]) .til-toppen a { color: var(--gold-ink); text-underline-offset: 3px; }
+.viktig-fot strong { color: var(--brass, #C08A28); }
+.viktig-fot { margin: 0; }
+@media print {
+  .til-toppen { display: none !important; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:where([data-stil="bok"]), :where(html[data-side="akkordhefte.html"]) { scroll-behavior: smooth; }
+}
+@media (forced-colors: active) {
+  .viktig { border-left-color: CanvasText !important; background: Canvas !important; forced-color-adjust: none; color: CanvasText; }
+  .viktig strong, .viktig-fot strong { color: CanvasText !important; }
+  .innhold a, .til-toppen a { color: LinkText !important; }
+}
+
+
+/* ---------- Bare Harmonilære (harmonilaere.html) ---------- */
+:where(html[data-side="harmonilaere.html"]) main { align-items: stretch; }
+:where(html[data-side="harmonilaere.html"]) .valg-kort, :where(html[data-side="harmonilaere.html"]) .bred { grid-column: 1 / -1; }
+:where(html[data-side="harmonilaere.html"]) #grunntoner .btn { min-width: 52px; justify-content: center; }
+:where(html[data-side="harmonilaere.html"]) .valg-kort .answers { margin-top: 10px; }
+:where(html[data-side="harmonilaere.html"]) .delblokk { border-top: 1px solid var(--rule); padding-top: 12px; margin-top: 14px; }
+:where(html[data-side="harmonilaere.html"]) .delblokk h3 { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 19px; margin: 0 0 6px; }
+:where(html[data-side="harmonilaere.html"]) .delblokk h3 .eng { font-weight: 400; font-size: 14px; color: var(--text-muted); }
+:where(html[data-side="harmonilaere.html"]) .noter { color: var(--text-on-paper); margin: 6px 0 8px; }
+:where(html[data-side="harmonilaere.html"]) .noter svg { display: block; width: 100%; max-width: 520px; height: auto; }
+:where(html[data-side="harmonilaere.html"]) .noter .besifring { fill: currentColor; font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 17px; font-weight: 700; }
+:where(html[data-side="harmonilaere.html"]) .noter .spilles { fill: var(--green-dk); stroke: var(--green-dk); stroke-width: 2.5; }
+:where(html[data-side="harmonilaere.html"]) .sats { margin-bottom: 6px; }
+:where(html[data-side="harmonilaere.html"]) .viktig { margin: 6px 0 10px; }
+:where(html[data-side="harmonilaere.html"]) .sanger { list-style: none; margin: 10px 0 0; padding: 0; }
+:where(html[data-side="harmonilaere.html"]) .sanger li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; border-top: 1px solid var(--rule); }
+:where(html[data-side="harmonilaere.html"]) .song-title { font-weight: 600; font-size: 15px; }
+:where(html[data-side="harmonilaere.html"]) .song-meta { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--text-muted); }
+:where(html[data-side="harmonilaere.html"]) .spotify-link { flex-shrink: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; border: 1.5px solid var(--rule); border-radius: 999px; padding: 4px 10px; text-decoration: none; color: inherit; }
+:where(html[data-side="harmonilaere.html"]) a.btn { text-decoration: none; }
+@media (forced-colors: active) {
+  :where(html[data-side="harmonilaere.html"]) .noter { color: CanvasText; }
+  :where(html[data-side="harmonilaere.html"]) .noter svg { forced-color-adjust: none; }
+  :where(html[data-side="harmonilaere.html"]) .noter .spilles { fill: LinkText; stroke: LinkText; stroke-width: 3; }
+  :where(html[data-side="harmonilaere.html"]) .delblokk, :where(html[data-side="harmonilaere.html"]) .sanger li { border-color: CanvasText; }
+  :where(html[data-side="harmonilaere.html"]) .spotify-link { border-color: LinkText; color: LinkText; }
+}
+
+
+/* ---------- Bare Gehørquiz: kadenser og funksjoner (gehorquiz-harmoni.html) ---------- */
+:where(html[data-side="gehorquiz-harmoni.html"]) .noter svg { max-width: 460px; }
+:where(html[data-side="gehorquiz-harmoni.html"]) .noter .besifring { fill: currentColor; font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 17px; font-weight: 700; }
+:where(html[data-side="gehorquiz-harmoni.html"]) .noter .spilles { fill: var(--green-dk); stroke: var(--green-dk); stroke-width: 2.5; }
+:where(html[data-side="gehorquiz-harmoni.html"]) .prove-sporsmal { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 18px; font-weight: 700; margin: 0 0 12px; }
+@media (forced-colors: active) {
+  :where(html[data-side="gehorquiz-harmoni.html"]) .noter svg { forced-color-adjust: none; color: CanvasText; }
+  :where(html[data-side="gehorquiz-harmoni.html"]) .noter .spilles { fill: LinkText; stroke: LinkText; stroke-width: 3; }
+}
+
+
+/* ---------- Bare Notelesing (notelesing.html) ---------- */
+:where(html[data-side="notelesing.html"]) main { align-items: stretch; }
+:where(html[data-side="notelesing.html"]) .bred { grid-column: 1 / -1; }
+:where(html[data-side="notelesing.html"]) .noter { color: var(--text-on-paper); }
+:where(html[data-side="notelesing.html"]) .noter svg { display: block; width: 100%; height: auto; }
+:where(html[data-side="notelesing.html"]) .stav-og-navn { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 6px 0 4px; }
+:where(html[data-side="notelesing.html"]) .stav-og-navn .noter { flex: 1 1 220px; max-width: 300px; }
+:where(html[data-side="notelesing.html"]) .tonenavn { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 22px; font-weight: 700; margin: 0; min-width: 9ch; }
+:where(html[data-side="notelesing.html"]) .piano-rad { display: flex; align-items: center; gap: 8px; margin: 8px 0 12px; }
+:where(html[data-side="notelesing.html"]) .piano { flex: 1 1 0; min-width: 0; max-width: 560px; }
+:where(html[data-side="notelesing.html"]) .piano svg { display: block; width: 100%; height: auto; }
+:where(html[data-side="notelesing.html"]) .piano-pil { flex-shrink: 0; min-width: 34px; padding: 8px 6px; justify-content: center; }
+:where(html[data-side="notelesing.html"]) .tangent { cursor: pointer; stroke: var(--ink, #1E1E1A); stroke-width: 1; }
+:where(html[data-side="notelesing.html"]) .tangent.hvit { fill: #FFFDF8; }
+:where(html[data-side="notelesing.html"]) .tangent.svart { fill: #1E1E1A; }
+:where(html[data-side="notelesing.html"]) .tangent.valgt { fill: var(--brass); }
+:where(html[data-side="notelesing.html"]) .tangent:focus-visible { outline: none; stroke: var(--brass); stroke-width: 3; }
+:where(html[data-side="notelesing.html"]) .c-merke { font-size: 11px; fill: #6B6A62; pointer-events: none; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+:where(html[data-side="notelesing.html"]) .fire-stav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px; }
+@media (min-width: 760px) { :where(html[data-side="notelesing.html"]) .fire-stav { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+:where(html[data-side="notelesing.html"]) .liten-stav { margin: 0; }
+:where(html[data-side="notelesing.html"]) .liten-stav figcaption { font-size: 14px; text-align: center; margin-top: 2px; }
+:where(html[data-side="notelesing.html"]) .oktaver { list-style: none; margin: 6px 0 0; padding: 0; }
+:where(html[data-side="notelesing.html"]) .oktaver li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-top: 1px solid var(--rule); }
+:where(html[data-side="notelesing.html"]) .okt-navn { font-weight: 600; }
+:where(html[data-side="notelesing.html"]) .okt-toner { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 16px; }
+:where(html[data-side="notelesing.html"]) .viktig { margin: 0 0 10px; }
+:where(html[data-side="notelesing.html"]) a.btn { text-decoration: none; }
+@media (forced-colors: active) {
+  :where(html[data-side="notelesing.html"]) .noter { color: CanvasText; }
+  :where(html[data-side="notelesing.html"]) .noter svg, :where(html[data-side="notelesing.html"]) .piano svg { forced-color-adjust: none; }
+  :where(html[data-side="notelesing.html"]) .tangent { stroke: CanvasText; }
+  :where(html[data-side="notelesing.html"]) .tangent.hvit { fill: Canvas; }
+  :where(html[data-side="notelesing.html"]) .tangent.svart { fill: CanvasText; }
+  :where(html[data-side="notelesing.html"]) .tangent.valgt { fill: Highlight; }
+  :where(html[data-side="notelesing.html"]) .c-merke { fill: CanvasText; }
+  :where(html[data-side="notelesing.html"]) .oktaver li { border-color: CanvasText; }
+}
+
+
+/* ---------- Bare Teoriquiz: notelesing (quiz-notelesing.html) ---------- */
+:where(html[data-side="quiz-notelesing.html"]) #ov-stav, :where(html[data-side="quiz-notelesing.html"]) #prove-stav { border-top: none; padding-top: 0; margin: 0 0 10px; }
+:where(html[data-side="quiz-notelesing.html"]) #ov-stav svg, :where(html[data-side="quiz-notelesing.html"]) #prove-stav svg { max-width: 420px; }
+:where(html[data-side="quiz-notelesing.html"]) #ov-fasit svg { max-width: 360px; }
+:where(html[data-side="quiz-notelesing.html"]) .noter .forslag { fill: var(--brass); }
+:where(html[data-side="quiz-notelesing.html"]) .noter .fasit { fill: var(--green-dk); }
+:where(html[data-side="quiz-notelesing.html"]) .noter .trykkflate { cursor: pointer; }
+:where(html[data-side="quiz-notelesing.html"]) .noter .trykkflate:hover { fill: color-mix(in srgb, var(--brass) 18%, transparent); }
+:where(html[data-side="quiz-notelesing.html"]) .bokstaver .btn, :where(html[data-side="quiz-notelesing.html"]) .fortegn-rad .btn { min-width: 46px; justify-content: center; font-size: 17px; }
+:where(html[data-side="quiz-notelesing.html"]) .prove-sporsmal { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 18px; font-weight: 700; margin: 0 0 12px; }
+@media (forced-colors: active) {
+  :where(html[data-side="quiz-notelesing.html"]) .noter svg { forced-color-adjust: none; color: CanvasText; }
+  :where(html[data-side="quiz-notelesing.html"]) .noter .forslag { fill: Highlight; }
+  :where(html[data-side="quiz-notelesing.html"]) .noter .fasit { fill: LinkText; }
+  :where(html[data-side="quiz-notelesing.html"]) .noter .trykkflate:hover { fill: transparent; stroke: Highlight; }
 }
 
 /* =====================================================================

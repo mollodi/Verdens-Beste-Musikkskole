@@ -32,13 +32,15 @@ window.VBM = {
     { id: "jukseboker", overskrift: "Juksebøker", tittel: "Bøker til", uthevet: "oppslag",
       ingress: "Oppslagsverk med ekte noter i C. Trykk på spill-knappen for å høre, på piano, gitar eller strykere." },
     { id: "oretrening", overskrift: "Øretrening", tittel: "Hør og", uthevet: "lytt",
-      ingress: "Kjente sanger og verk som viser lyden av intervaller og akkorder." },
+      ingress: "Kjente sanger og verk som viser lyden av intervaller og akkorder, og gehørlekser i små forskjeller i tonehøyde." },
     { id: "teori", overskrift: "Musikkteori", tittel: "Lær og", uthevet: "forstå",
       ingress: "Interaktive leksjoner i musikkteori, med ekte noter og lyd." },
     { id: "elevhefter", overskrift: "Elevhefter", tittel: "Hefter til", uthevet: "timen",
       ingress: "Arbeidshefter til bruk i undervisningen." },
-    { id: "quiz", overskrift: "Quiz", tittel: "Øv og", uthevet: "test deg",
-      ingress: "Gehørquizer med øvemodus i eget tempo og prøvemodus slik som på opptaksprøver." }
+    { id: "gehorquiz", overskrift: "Gehørquiz", tittel: "Hør og", uthevet: "svar",
+      ingress: "Hør intervaller, akkorder, skalaer og kadenser, og finn navnet. Med øvemodus i eget tempo og prøvemodus slik som på opptaksprøver." },
+    { id: "teoriquiz", overskrift: "Teoriquiz", tittel: "Les og", uthevet: "svar",
+      ingress: "Les fortegn og noter, og finn svaret. Med øvemodus i eget tempo og prøvemodus med 20 oppgaver." }
   ],
 
   materialer: [
@@ -53,9 +55,9 @@ window.VBM = {
     },
     {
       seksjon: "jukseboker",
-      merke: "34 akkorder",
+      merke: "47 akkorder",
       tittel: "Den ultimate jukseboka for akkorder og intervaller",
-      beskrivelse: "Fire kapitler, fra treklanger til 13-akkorder, kvartalakkorder og mer.",
+      beskrivelse: "Seks kapitler, fra treklanger til jazzakkorder, med omvendingene i et eget kapittel.",
       fil: "akkorder-og-intervaller.html",
       svartHvitt: true,
       lagtTil: ""
@@ -98,6 +100,15 @@ window.VBM = {
     },
     {
       seksjon: "teori",
+      merke: "Noter",
+      tittel: "Notelesing",
+      beskrivelse: "Notelinjen, G-nøkkel, F-nøkkel, alt- og tenornøkkel, og oktavnavnene, med et piano som viser hver tone.",
+      fil: "notelesing.html",
+      svartHvitt: false,
+      lagtTil: "2026-10-06"
+    },
+    {
+      seksjon: "teori",
       merke: "Tonearter",
       tittel: "Kvintsirkelen",
       beskrivelse: "Alle dur- og molltonearter med fortegn, rekkefølgen på kryss og b-er, og lyd for hver toneart.",
@@ -106,31 +117,103 @@ window.VBM = {
       lagtTil: "2026-10-05"
     },
     {
-      seksjon: "quiz",
+      seksjon: "teori",
+      merke: "Skalaer",
+      tittel: "Skalaer og modi",
+      beskrivelse: "Dur, moll, de sju modiene, pentatonikk, blues, heltone og jazzskalaer, i alle tonearter, med lyd og sangeksempler.",
+      fil: "skalaer.html",
+      svartHvitt: false,
+      lagtTil: "2026-10-05"
+    },
+    {
+      seksjon: "teori",
+      merke: "Omvendinger",
+      tittel: "Omvendinger",
+      beskrivelse: "Alle stillingene til treklanger og septimakkorder, fra sekstakkord til sekundakkord, i alle tonearter.",
+      fil: "omvendinger.html",
+      svartHvitt: false,
+      lagtTil: "2026-10-06"
+    },
+    {
+      seksjon: "teori",
+      merke: "Harmoni",
+      tittel: "Harmonilære",
+      beskrivelse: "Funksjoner, kadenser, kvartsekstakkordens bruk, beliggenhet og leie, og skråstrekakkorder, i firstemmig sats.",
+      fil: "harmonilaere.html",
+      svartHvitt: false,
+      lagtTil: "2026-10-06"
+    },
+    {
+      seksjon: "gehorquiz",
       merke: "Intervaller",
       tittel: "Gehørquiz: intervaller",
-      beskrivelse: "Hør et intervall og finn navnet, i øvemodus eller som en prøve med 20 oppgaver.",
+      beskrivelse: "Hør et intervall og finn navnet, innen én oktav eller opptil to oktaver, i øvemodus eller som en prøve med 20 oppgaver.",
       fil: "gehorquiz.html",
       svartHvitt: false,
       lagtTil: "2026-10-02"
     },
     {
-      seksjon: "quiz",
+      seksjon: "gehorquiz",
       merke: "Akkorder",
       tittel: "Gehørquiz: akkorder",
-      beskrivelse: "Alle 34 akkordene fra Den ultimate jukseboka, i øvemodus eller som en prøve med 20 oppgaver.",
+      beskrivelse: "Alle akkordene fra Den ultimate jukseboka, også omvendingene, i øvemodus eller som en prøve med 20 oppgaver.",
       fil: "gehorquiz-akkorder.html",
       svartHvitt: false,
       lagtTil: "2026-10-05"
     },
     {
-      seksjon: "quiz",
+      seksjon: "teoriquiz",
+      merke: "Noter",
+      tittel: "Teoriquiz: notelesing",
+      beskrivelse: "Les en note og finn navnet, eller finn en tone på notelinjen, i fire nøkler.",
+      fil: "quiz-notelesing.html",
+      svartHvitt: false,
+      lagtTil: "2026-10-06"
+    },
+    {
+      seksjon: "teoriquiz",
       merke: "Tonearter",
       tittel: "Teoriquiz: kvintsirkelen",
       beskrivelse: "Les fortegnene og finn tonearten, eller finn fortegnene til en toneart.",
       fil: "quiz-kvintsirkelen.html",
       svartHvitt: false,
       lagtTil: "2026-10-05"
+    },
+    {
+      seksjon: "gehorquiz",
+      merke: "Skalaer",
+      tittel: "Gehørquiz: skalaer og modi",
+      beskrivelse: "Hør en skala og finn navnet: dur, moll, modi, pentatonikk, blues og jazzskalaer.",
+      fil: "quiz-skalaer.html?type=hor",
+      svartHvitt: false,
+      lagtTil: "2026-10-05"
+    },
+    {
+      seksjon: "teoriquiz",
+      merke: "Skalaer",
+      tittel: "Teoriquiz: skalaer og modi",
+      beskrivelse: "Les en skala på notelinjen og finn navnet.",
+      fil: "quiz-skalaer.html?type=les",
+      svartHvitt: false,
+      lagtTil: "2026-10-05"
+    },
+    {
+      seksjon: "gehorquiz",
+      merke: "Omvendinger",
+      tittel: "Gehørquiz: omvendinger",
+      beskrivelse: "Hør en akkord og finn stillingen, fra grunnstilling til sekundakkord.",
+      fil: "gehorquiz-omvendinger.html",
+      svartHvitt: false,
+      lagtTil: "2026-10-06"
+    },
+    {
+      seksjon: "gehorquiz",
+      merke: "Harmoni",
+      tittel: "Gehørquiz: kadenser og funksjoner",
+      beskrivelse: "Hør en kadens og finn typen, eller hør en akkord etter tonika og finn funksjonen.",
+      fil: "gehorquiz-harmoni.html",
+      svartHvitt: false,
+      lagtTil: "2026-10-06"
     }
   ]
 

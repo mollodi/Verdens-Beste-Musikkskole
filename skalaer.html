@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-SKMD
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="skalaer.html" data-stil="ovelse" data-vbm="K7Q4-SKMD">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Skalaer og modi</title>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
+<meta name="description" content="Dur, moll, de sju modiene, pentatonikk, blues, heltone, kromatisk og jazzskalaer, med ekte noter, lyd og sangeksempler, i alle tonearter.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Musikkteori</div>
+  <h1>Skalaer og <em>modi</em></h1>
+  <p class="lede">En skala er tonene i en toneart, ordnet trinn for trinn. Her finner du dur og moll, de sju modiene, pentatonikk og blues, heltone og kromatisk, og de viktigste jazzskalaene.</p>
+  <p class="lede">Velg en grunntone, så skrives alle skalaene om til den. Velg piano, gitar eller strykere nederst til høyre.</p>
+</header>
+
+<main>
+  <section class="card valg-kort">
+    <div class="card-head">
+      <div class="step-label">Grunntone</div>
+      <h2>Velg grunntone</h2>
+    </div>
+    <div class="row brikker" id="grunntoner" role="group" aria-label="Velg grunntone"></div>
+    <p class="task">Trinnene mellom tonene står under hver skala: <strong>H</strong> er en heltone, <strong>h</strong> en halvtone, og <strong>1½</strong> halvannen tone. Det som gjør skalaen spesiell, er farget på notelinjen.</p>
+  </section>
+  <div id="skalaer" class="skala-liste"></div>
+</main>
+
+<footer data-lyd="alle"></footer>
+
+<script src="tonearter.js"></script>
+<script src="skalaer.js"></script>
+<script>/* VBM K7Q4-SKMD */
+(function(){
+  'use strict';
+  var K = window.VBM_TONEARTER, S = window.VBM_SKALAER, T = K.T;
+  var SPRAK = window.VBM_SPRAK || 'no';
+  function $(id){ return document.getElementById(id); }
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  /* =================== Grunntone =================== */
+  var NOKKEL = 'vbm-skalaer-grunntone', rotNr = 0;
+  try { var lagret = +localStorage.getItem(NOKKEL); if (lagret >= 0 && lagret < 12) rotNr = lagret; } catch(e){}
+  var rad = $('grunntoner');
+  S.GRUNN.forEach(function(r, i){
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'btn';
+    b.textContent = r.map(K.tone).join('/'); b.setAttribute('aria-pressed', i === rotNr ? 'true' : 'false');
+    b.addEventListener('click', function(){
+      rotNr = i;
+      try { localStorage.setItem(NOKKEL, String(i)); } catch(e){}
+      [].forEach.call(rad.children, function(x, j){ x.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+      if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP();
+      tegn();
+    });
+    rad.appendChild(b);
+  });
+
+  /* =================== Skalaene =================== */
+  var DUR_HALV = [0, 2, 4, 5, 7, 9, 11];
+  function grader(s){
+    return s.trinn.slice(0, -1).map(function(t){
+      var d = t[0] % 7, diff = t[1] - DUR_HALV[d];
+      return ({ '-2': '♭♭', '-1': '♭', '0': '', '1': '♯' }[diff] || '') + (d + 1);
+    }).join('  ');
+  }
+  /* Bokstaver for heltone og halvtone på hvert språk (engelsk W/H, polsk C/P). */
+  var STEG = { no: ['h', 'H'], en: ['H', 'W'], pl: ['P', 'C'] }[SPRAK] || ['h', 'H'];
+  function monster(s){ return s.monster.map(function(h){ return h === 1 ? STEG[0] : h === 2 ? STEG[1] : '1½'; }).join('  '); }
+  var spillbare = {};   // knapp-id -> {opp, ned}
+  /* «C dorisk»; på engelsk med stor forbokstav: «C Dorian». */
+  function skalaNavn(rot, s){ return T('{tone} {skala}', { tone: K.tone(rot), skala: SPRAK === 'en' ? T(s.navn) : T(s.navn).toLowerCase() }); }
+  function kort(s){
+    var rot = S.rotFor(rotNr, s), liste = S.toner(rot, s.trinn, s), ned = s.ned ? S.toner(rot, s.ned, s) : null, id = 'spill-' + s.id;
+    spillbare[id] = { lyd: S.lyd(liste, ned), antall: liste.length, oppOgNed: !!ned };
+    /* Melodisk moll endrer seg på vei ned, så den vises både opp og ned på notelinjen. */
+    if (ned) liste = liste.concat(ned.slice(0, -1).reverse());
+    var tittelSkala = skalaNavn(rot, s);
+    var h = '<article class="card skala-kort" id="' + s.id + '">'
+      + '<div class="card-head"><div class="step-label">' + esc(T(gruppeNavn[s.gruppe])) + '</div>'
+      + '<h2>' + esc(T(s.navn)) + (SPRAK === 'en' ? '' : ' <span class="eng">(' + esc(s.eng) + ')</span>') + '</h2></div>'
+      + '<p class="formel"><span class="label">' + esc(T('Trinn')) + '</span> ' + grader(s) + '</p>'
+      + '<p class="formel"><span class="label">' + esc(T('Avstander')) + '</span> ' + monster(s) + '</p>';
+    if (s.modus) {
+      var durRot = S.durRot(rotNr), foreldre = S.modusIDur(durRot, s.modus), idR = id + '-i-dur';
+      spillbare[idR] = { lyd: S.lyd(foreldre), antall: foreldre.length, oppOgNed: false };
+      h += '<div class="to-noter">'
+        + '<div class="noter-blokk"><p class="label">' + esc(T('Fra {tone}', { tone: K.tone(rot) })) + ': ' + esc(tittelSkala) + '</p>'
+        + '<div class="noter">' + S.noter(liste, 0, s.kjenne, tittelSkala) + '</div>'
+        + '<button type="button" class="btn spill" data-spill="' + id + '">&#9658;&#xFE0E; <span>' + esc(T('spill')) + '</span></button></div>'
+        + '<div class="noter-blokk"><p class="label">' + esc(T('I {toneart}', { toneart: K.dur(durRot) })) + ': ' + esc(skalaNavn(foreldre[0], s)) + '</p>'
+        + '<div class="noter">' + S.noter(foreldre, S.fortegnFor(durRot), null, skalaNavn(foreldre[0], s)) + '</div>'
+        + '<button type="button" class="btn spill" data-spill="' + idR + '">&#9658;&#xFE0E; <span>' + esc(T('spill')) + '</span></button></div>'
+        + '</div>';
+    } else {
+      h += '<div class="noter">' + S.noter(liste, 0, s.kjenne, tittelSkala) + '</div>'
+        + '<div class="row"><button type="button" class="btn spill" data-spill="' + id + '">&#9658;&#xFE0E; <span>' + esc(T('spill')) + '</span></button></div>';
+    }
+    h += '<p class="task">' + esc(T(s.tekst)) + '</p>';
+    if (s.sanger.length) {
+      h += '<p class="label">' + esc(T('Eksempler')) + '</p><ul class="sanger">';
+      s.sanger.forEach(function(x){
+        h += '<li><div class="song-info"><div class="song-title">' + esc(T(x.tittel)) + '</div><div class="song-meta">' + esc(T(x.info)) + '</div></div>'
+          + '<a class="spotify-link" href="https://open.spotify.com/search/' + encodeURIComponent(x.sok) + '" target="_blank" rel="noopener">Spotify</a></li>';
+      });
+      h += '</ul>';
+    }
+    return h + '</article>';
+  }
+  var gruppeNavn = {}; S.GRUPPER.forEach(function(g){ gruppeNavn[g.id] = g.tittel; });
+  var INTRO = {
+    modi: 'De sju modiene er durskalaen spilt fra hvert av de sju trinnene. Til venstre står hver modus på den valgte grunntonen, så du hører forskjellen. Til høyre står den som et trinn i durskalaen, med de samme fortegnene.',
+    jazz: 'Skalaer som brukes til improvisasjon over akkorder i jazz. Her kan samme bokstav komme to ganger, fordi skalaen har åtte toner eller skrives slik jazzmusikere tenker den.'
+  };
+  function tegn(){
+    var h = '';
+    spillbare = {};
+    S.GRUPPER.forEach(function(g){
+      h += '<h2 class="gruppe-tittel">' + esc(T(g.tittel)) + '</h2>';
+      if (INTRO[g.id]) h += '<p class="gruppe-intro">' + esc(T(INTRO[g.id])) + '</p>';
+      S.ALLE.filter(function(s){ return s.gruppe === g.id; }).forEach(function(s){ h += kort(s); });
+    });
+    $('skalaer').innerHTML = h;
+  }
+  /* Fargelegger tonen som spilles. Skalaen spilles opp og ned; på vei ned lyser de samme tonene
+     baklengs, unntatt melodisk moll, der nedturen har egne toner på notelinjen. */
+  $('skalaer').addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('[data-spill]');
+    if (!b || !window.VBM_LYD_SEKVENS) return;
+    var info = spillbare[b.getAttribute('data-spill')];
+    var blokk = b.closest('.noter-blokk') || b.closest('.skala-kort'), svg = blokk.querySelector('.noter svg');
+    function vedSteg(k){
+      [].forEach.call(svg.querySelectorAll('.spilles'), function(x){ x.classList.remove('spilles'); });
+      if (k < 0) return;
+      var i = info.oppOgNed || k < info.antall ? k : 2 * info.antall - 2 - k;
+      var n = svg.querySelector('[data-i="' + i + '"]'); if (n) n.classList.add('spilles');
+    }
+    window.VBM_LYD_SEKVENS(info.lyd, b, vedSteg);
+  });
+  tegn();
+})();
+</script>
+<script src="lyd.js"></script>
+</body>
+</html>

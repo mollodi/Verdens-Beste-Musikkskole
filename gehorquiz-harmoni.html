@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-QHRM
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="gehorquiz-harmoni.html" data-stil="ovelse" data-quiz data-vbm="K7Q4-QHRM">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Gehørquiz: kadenser og funksjoner</title>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
+<meta name="description" content="Hør en kadens og finn typen, eller hør en akkord etter tonika og finn funksjonen. Øvemodus og prøvemodus med 20 oppgaver.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Quiz</div>
+  <h1>Gehør<em>quiz</em>: kadenser og funksjoner</h1>
+  <p class="lede">Hør en kadens og finn typen, eller hør en akkord etter tonika og finn funksjonen. Øv i ditt eget tempo, eller ta en prøve med 20 oppgaver.</p>
+  <p class="lede">Alt er forklart i leksjonen <a href="harmonilaere.html">Harmonilære</a>. Velg piano, gitar eller strykere nederst til høyre.</p>
+</header>
+
+<main>
+  <!-- Fremgangen står øverst, slik som i gehørleksene med mikrointervaller. -->
+  <section class="card" id="ov-fremgang-kort" data-modus-del="ov" aria-live="polite">
+    <div class="card-head">
+      <div class="step-label">Øvemodus</div>
+      <h2>Din fremgang</h2>
+    </div>
+    <p class="task">Målet er fem riktige svar på rad. Resultatet nullstilles når du laster siden på nytt.</p>
+    <ul class="fremgang" id="ov-fremgang"></ul>
+    <p class="total" id="ov-total"></p>
+  </section>
+
+  <section class="card modus-kort">
+    <div class="card-head">
+      <div class="step-label">Modus</div>
+      <h2>Hva vil du gjøre?</h2>
+    </div>
+    <div class="row answers" role="group" aria-label="Velg modus">
+      <button type="button" class="btn" data-modus="ov" aria-pressed="true">Øvemodus</button>
+      <button type="button" class="btn" data-modus="prove" aria-pressed="false">Prøvemodus</button>
+    </div>
+    <p class="task modus-tekst" data-for="ov">Du får svaret med en gang, med akkordene på notelinjen.</p>
+    <p class="task modus-tekst" data-for="prove" hidden>20 oppgaver med valgene under. Hvert lydeksempel spilles tre ganger, og du får resultatet til slutt.</p>
+    <p class="label" id="type-label">Oppgaver</p>
+    <div class="row answers tre" role="group" aria-labelledby="type-label">
+      <button type="button" class="btn" data-valg="type" data-verdi="kadens">Kadenser</button>
+      <button type="button" class="btn" data-valg="type" data-verdi="funksjon">Funksjoner</button>
+      <button type="button" class="btn" data-valg="type" data-verdi="begge">Begge</button>
+    </div>
+    <p class="label" id="kjonn-label">Kadenser i</p>
+    <div class="row answers tre" role="group" aria-labelledby="kjonn-label">
+      <button type="button" class="btn" data-valg="kjonn" data-verdi="dur">Dur</button>
+      <button type="button" class="btn" data-valg="kjonn" data-verdi="moll">Moll</button>
+      <button type="button" class="btn" data-valg="kjonn" data-verdi="begge">Begge</button>
+    </div>
+    <p class="label" id="grunn-label">Grunntone</p>
+    <div class="row answers" role="group" aria-labelledby="grunn-label">
+      <button type="button" class="btn" data-valg="grunn" data-verdi="c">Alltid C</button>
+      <button type="button" class="btn" data-valg="grunn" data-verdi="alle">Alle tonearter (avansert)</button>
+    </div>
+    <p class="task">I funksjonsoppgavene spilles tonika først, og så akkorden du skal finne funksjonen til. De er alltid i dur.</p>
+  </section>
+
+  <!-- ===== Øvemodus ===== -->
+  <section class="card" id="ov-oppgave" data-modus-del="ov">
+    <div class="card-head">
+      <div class="step-label">Øvemodus</div>
+      <h2 id="ov-sporsmal"></h2>
+    </div>
+    <div class="row">
+      <button type="button" class="btn" id="ov-spill" aria-label="Spill lydeksemplet">&#9658;&#xFE0E; <span>spill</span></button>
+      <button type="button" class="btn" id="ov-neste" hidden>Neste oppgave</button>
+    </div>
+    <!-- Svaret og notene står rett under «Neste oppgave», over svarknappene. -->
+    <p class="feedback" id="ov-fb" aria-live="polite"></p>
+    <div class="noter" id="ov-noter" hidden></div>
+    <div class="svar-grupper" id="ov-svar"></div>
+  </section>
+
+  <!-- ===== Prøvemodus ===== -->
+  <section class="card prove-kort" id="prove" data-modus-del="prove" hidden>
+    <div class="card-head">
+      <div class="step-label">Prøvemodus</div>
+      <h2 id="prove-tittel">Prøve med 20 oppgaver</h2>
+    </div>
+    <div id="prove-start">
+      <p class="task">Hvert lydeksempel spilles tre ganger og kan ikke spilles på nytt. Du kan svare mens lyden spiller, og endre svaret til du går videre. Bruk gjerne hodetelefoner.</p>
+      <div class="row">
+        <button type="button" class="btn" id="prove-start-btn">Start prøven</button>
+      </div>
+    </div>
+    <div id="prove-oppgave" hidden>
+      <p class="prove-sporsmal" id="prove-sporsmal"></p>
+      <p class="lytt" id="prove-lytt"><span class="lytt-na">Lydeksemplet spilles tre ganger</span><span class="lytt-ferdig">Lydeksemplet er ferdig</span></p>
+      <div class="svar-grupper" id="prove-svar"></div>
+      <div class="row">
+        <button type="button" class="btn" id="prove-neste" disabled>Neste oppgave</button>
+      </div>
+    </div>
+    <div id="prove-resultat" hidden>
+      <p class="poeng" id="prove-poeng"></p>
+      <p class="task" id="prove-melding"></p>
+      <p class="label">Gjennomgang. Trykk på spill for å høre lydeksemplet igjen.</p>
+      <ol class="gjennomgang" id="prove-liste"></ol>
+      <div class="row">
+        <button type="button" class="btn" id="prove-igjen">Ta en ny prøve</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-lyd="alle"></footer>
+
+<script src="tonearter.js"></script>
+<script src="skalaer.js"></script>
+<script src="harmoni.js"></script>
+<script>/* VBM K7Q4-QHRM */
+(function(){
+  'use strict';
+  var K = window.VBM_TONEARTER, S = window.VBM_SKALAER, H = window.VBM_HARMONI, T = K.T;
+  var SPRAK = window.VBM_SPRAK || 'no';
+  function $(id){ return document.getElementById(id); }
+  function tilfeldig(a){ return a[Math.floor(Math.random() * a.length)]; }
+  function lag(tag, klasse, tekst){ var e = document.createElement(tag); if (klasse) e.className = klasse; if (tekst != null) e.textContent = tekst; return e; }
+  function smaa(t){ return SPRAK === 'en' ? t : t.replace(/^./, function(c){ return c.toLowerCase(); }); }
+  function stopp(){ if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); }
+
+  /* =================== Svarene =================== */
+  var KADENS = H.KADENSER.map(function(k){ return { id: k.id, navn: k.navn, gr: 'kadens' }; });
+  var FUNK = [
+    { id: 'T', navn: 'Tonika (T)', akk: 'I' }, { id: 'S', navn: 'Subdominant (S)', akk: 'IV' }, { id: 'D', navn: 'Dominant (D)', akk: 'V' },
+    { id: 'Tp', navn: 'Tonikaparallell (Tp)', akk: 'vi' }, { id: 'Sp', navn: 'Subdominantparallell (Sp)', akk: 'ii' }, { id: 'Dp', navn: 'Dominantparallell (Dp)', akk: 'iii' }
+  ].map(function(f){ f.gr = 'funksjon'; return f; });
+  var GRUPPE = { kadens: 'Kadens', funksjon: 'Funksjon' };
+
+  /* =================== Valg =================== */
+  var NOKKEL = 'vbm-quiz-harmoni', valg = { type: 'kadens', kjonn: 'dur', grunn: 'c' };
+  try { var l = JSON.parse(localStorage.getItem(NOKKEL)); if (l) for (var k in valg) if (l[k]) valg[k] = l[k]; } catch(e){}
+  var valgKnapper = [].slice.call(document.querySelectorAll('[data-valg]'));
+  function visValg(){ valgKnapper.forEach(function(b){ b.setAttribute('aria-pressed', valg[b.getAttribute('data-valg')] === b.getAttribute('data-verdi') ? 'true' : 'false'); }); }
+  valgKnapper.forEach(function(b){ b.addEventListener('click', function(){
+    var k = b.getAttribute('data-valg'), v = b.getAttribute('data-verdi');
+    if (valg[k] === v) return;
+    valg[k] = v; visValg(); stopp();
+    try { localStorage.setItem(NOKKEL, JSON.stringify(valg)); } catch(e){}
+    nyOvOppgave();
+  }); });
+  var modusKnapper = [].slice.call(document.querySelectorAll('[data-modus]'));
+  modusKnapper.forEach(function(b){ b.addEventListener('click', function(){
+    var m = b.getAttribute('data-modus'); stopp();
+    modusKnapper.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    [].forEach.call(document.querySelectorAll('[data-modus-del]'), function(el){ el.hidden = el.getAttribute('data-modus-del') !== m; });
+    [].forEach.call(document.querySelectorAll('.modus-tekst'), function(el){ el.hidden = el.getAttribute('data-for') !== m; });
+  }); });
+
+  /* =================== Oppgavene =================== */
+  function lagOppgave(forrige){
+    var type = valg.type === 'begge' ? tilfeldig(['kadens', 'funksjon']) : valg.type, o;
+    do {
+      var nr = valg.grunn === 'alle' ? Math.floor(Math.random() * 12) : 0;
+      if (type === 'kadens') {
+        var svar = tilfeldig(KADENS), erMoll = valg.kjonn === 'begge' ? Math.random() < 0.5 : valg.kjonn === 'moll';
+        var kad = H.KADENSER.filter(function(x){ return x.id === svar.id; })[0];
+        var r = H.rekke(nr, erMoll, kad.rekke, null, 'funksjon');
+        o = { type: type, svar: svar, r: r, erMoll: erMoll, steg: [] };
+        r.akkorder.forEach(function(a){ o.steg.push(a.midi); o.steg.push([]); });
+      } else {
+        var f = tilfeldig(FUNK), r2 = H.rekke(nr, false, ['I', f.akk], null, 'funksjon');
+        o = { type: type, svar: f, r: r2, erMoll: false, steg: [r2.akkorder[0].midi, [], [], r2.akkorder[1].midi, []] };
+      }
+    } while (forrige && o.svar === forrige.svar && Math.random() < 0.6);
+    o.toneart = o.erMoll ? K.moll(o.r.rot) : K.dur(o.r.rot);
+    return o;
+  }
+  function sporsmal(o){ return o.type === 'kadens' ? T('Hvilken kadens hører du?') : T('Hvilken funksjon har den andre akkorden?'); }
+  function tregang(steg){ return steg.concat([[], []], steg, [[], []], steg); }
+  function beskriv(o){
+    if (o.type === 'kadens') {
+      return T('Det var {navn} i {toneart}: {rekke}.', { navn: smaa(T(o.svar.navn)), toneart: o.toneart,
+        rekke: o.r.akkorder.map(function(a){ return a.sym; }).join(', ') });
+    }
+    var a = o.r.akkorder[1];
+    return T('Det var {navn}, {rom}, altså {akkord} i {toneart}.', { navn: smaa(T(o.svar.navn)), rom: a.akk.rom, akkord: a.sym, toneart: o.toneart });
+  }
+  function svarKnapper(rot, type, ved){
+    rot.innerHTML = '';
+    var knapper = [], grupper = type === 'begge' ? ['kadens', 'funksjon'] : [type];
+    grupper.forEach(function(g){
+      if (grupper.length > 1) rot.appendChild(lag('p', 'label kap-label', T(GRUPPE[g])));
+      var rad = lag('div', 'row answers svar'); rad.setAttribute('role', 'group'); rad.setAttribute('aria-label', T(GRUPPE[g]));
+      (g === 'kadens' ? KADENS : FUNK).forEach(function(x){
+        var b = lag('button', 'btn', T(x.navn)); b.type = 'button';
+        b.addEventListener('click', function(){ ved(x, b); });
+        rad.appendChild(b); knapper.push(b);
+      });
+      rot.appendChild(rad);
+    });
+    return knapper;
+  }
+
+  /* =================== Øvemodus =================== */
+  var STAT = {}, MAL = 5, paRad = 0, best = 0, klar = false, ov = null, knapper = [];
+  var FEIL = ['Ikke gi opp. Øret blir bedre for hver oppgave.', 'Lytt etter den siste akkorden: kommer du hjem, eller stopper det med spenning?', 'Hør gjerne en gang til før du går videre.', 'Pust rolig, lytt godt, og prøv neste.'];
+  function nyOvOppgave(){
+    stopp();
+    ov = { o: lagOppgave(ov && ov.o), besvart: false };
+    $('ov-sporsmal').textContent = sporsmal(ov.o);
+    knapper = svarKnapper($('ov-svar'), valg.type, svarOv);
+    knapper.forEach(function(b){ b.disabled = true; });
+    $('ov-fb').innerHTML = ''; $('ov-noter').hidden = true; $('ov-noter').innerHTML = ''; $('ov-neste').hidden = true;
+  }
+  function farg(svg, s){
+    if (!svg) return;
+    [].forEach.call(svg.querySelectorAll('.spilles'), function(x){ x.classList.remove('spilles'); });
+    if (s < 0) return;
+    var nr = ov.o.type === 'kadens' ? Math.floor(s / 2) : (s < 3 ? 0 : 1);
+    [].forEach.call(svg.querySelectorAll('[data-a="' + nr + '"]'), function(x){ x.classList.add('spilles'); });
+  }
+  $('ov-spill').addEventListener('click', function(){
+    if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS(ov.o.steg, this, function(s){ farg($('ov-noter').querySelector('svg'), s); });
+    if (!ov.besvart) knapper.forEach(function(b){ b.disabled = false; });
+  });
+  $('ov-neste').addEventListener('click', function(){ nyOvOppgave(); $('ov-spill').click(); $('ov-spill').focus(); });
+  function svarOv(x, b){
+    if (ov.besvart) return;
+    ov.besvart = true;
+    var o = ov.o, riktig = x === o.svar, m = '';
+    var s = STAT[o.svar.id] = STAT[o.svar.id] || { r: 0, t: 0, svar: o.svar }; s.t++; if (riktig) s.r++;
+    knapper.forEach(function(k){ k.disabled = k !== b; });
+    b.setAttribute('aria-pressed', 'true');
+    if (riktig) {
+      paRad++; best = Math.max(best, paRad);
+      if (paRad === MAL && !klar) { klar = true; m = T('Fem riktige på rad. Målet er nådd!'); }
+      else if (paRad === 3) m = T('Tre riktige på rad. Bra jobbet!');
+      else if (paRad === 10) m = T('Ti riktige på rad. Imponerende!');
+    } else { paRad = 0; m = T(tilfeldig(FEIL)); }
+    $('ov-fb').innerHTML = '<strong class="' + (riktig ? 'ok' : 'nei') + '">' + (riktig ? T('Riktig.') : T('Feil.')) + '</strong> ' + beskriv(o)
+      + (m ? '<span class="motiv">' + m + '</span>' : '');
+    $('ov-noter').innerHTML = S.storSats(o.r.akkorder, o.r.fortegn, o.r.akkorder.map(function(a){ return a.sym; }).join(', ')); $('ov-noter').hidden = false;
+    $('ov-neste').hidden = false;
+    visFremgang();
+  }
+  function visFremgang(){
+    var html = '', r = 0, t = 0;
+    KADENS.concat(FUNK).forEach(function(x){
+      var s = STAT[x.id]; if (!s) return; r += s.r; t += s.t;
+      html += '<li><span>' + T(x.navn) + '</span><span class="tall">' + T('{r} av {t} riktige.', { r: s.r, t: s.t }) + '</span></li>';
+    });
+    $('ov-fremgang').innerHTML = html || '<li><span class="tall">' + T('Ingen svar ennå.') + '</span></li>';
+    $('ov-total').innerHTML = '<strong>' + T('Totalt: {r} av {t} riktige', { r: r, t: t }) + (t ? ' (' + Math.round(100 * r / t) + ' %)' : '') + '.</strong> '
+      + (klar ? '<span class="klar">' + T('Målet er nådd.') + '</span> ' : '')
+      + T('På rad nå: {n}. Beste rekke: {b}.', { n: paRad, b: best });
+  }
+
+  /* =================== Prøvemodus =================== */
+  var ANTALL = 20, pr = null, pKnapper = [], resultat = [];
+  function startProve(){
+    var liste = [], forrige = null;
+    for (var i = 0; i < ANTALL; i++) { forrige = lagOppgave(forrige); liste.push(forrige); }
+    pr = { oppgaver: liste, svar: [], nr: 0 };
+    pKnapper = svarKnapper($('prove-svar'), valg.type, function(x, b){
+      pr.svar[pr.nr] = x;
+      pKnapper.forEach(function(k){ k.setAttribute('aria-pressed', k === b ? 'true' : 'false'); });
+      $('prove-neste').disabled = false;
+    });
+    $('prove-start').hidden = true; $('prove-resultat').hidden = true; $('prove-oppgave').hidden = false;
+    visProve();
+  }
+  function visProve(){
+    var o = pr.oppgaver[pr.nr];
+    $('prove-tittel').textContent = T('Oppgave {n} av {t}', { n: pr.nr + 1, t: ANTALL });
+    $('prove-sporsmal').textContent = sporsmal(o);
+    pKnapper.forEach(function(x){ x.setAttribute('aria-pressed', 'false'); });
+    $('prove-neste').disabled = true;
+    $('prove-neste').textContent = pr.nr === ANTALL - 1 ? T('Se resultatet') : T('Neste oppgave');
+    stopp(); if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS(tregang(o.steg), $('prove-lytt'));
+  }
+  $('prove-neste').addEventListener('click', function(){
+    if (pr.nr < ANTALL - 1) { pr.nr++; visProve(); pKnapper[0].focus(); }
+    else visResultat();
+  });
+  function visResultat(){
+    stopp();
+    var r = 0, html = '';
+    resultat = pr.oppgaver.slice();
+    pr.oppgaver.forEach(function(o, i){
+      var s = pr.svar[i], ok = s === o.svar; if (ok) r++;
+      html += '<li><div class="gj-tekst"><strong class="' + (ok ? 'ok' : 'nei') + '">' + (ok ? T('Riktig.') : T('Feil.')) + '</strong> ' + beskriv(o)
+        + (ok ? '' : ' <span class="ditt">' + T('Ditt svar: {s}.', { s: T(s.navn) }) + '</span>') + '</div>'
+        + '<button type="button" class="btn" data-gj="' + i + '" aria-label="' + T('Spill oppgave {n}', { n: i + 1 }) + '">&#9658;&#xFE0E; <span>' + T('spill') + '</span></button></li>';
+    });
+    var p = Math.round(100 * r / ANTALL);
+    $('prove-tittel').textContent = T('Resultat');
+    $('prove-poeng').innerHTML = '<strong>' + T('{r} av {t} riktige', { r: r, t: ANTALL }) + '</strong> (' + p + ' %)';
+    $('prove-melding').textContent = p === 100 ? T('Alle riktige. Et helt eksepsjonelt gehør!')
+      : p >= 85 ? T('Svært bra. Du er godt forberedt.')
+      : p >= 65 ? T('Bra. Øv litt mer på det du bommet på.')
+      : p >= 40 ? T('Du er på god vei. Bruk øvemodus på det du bommet på, og prøv igjen.')
+      : T('Ikke gi opp. Begynn i øvemodus med kadensene, og legg til funksjonene etter hvert.');
+    $('prove-liste').innerHTML = html;
+    $('prove-oppgave').hidden = true; $('prove-resultat').hidden = false;
+    $('prove-poeng').scrollIntoView({ block: 'center', behavior: 'smooth' });
+    pr = null;
+  }
+  $('prove-liste').addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('[data-gj]');
+    if (b && window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS(resultat[+b.getAttribute('data-gj')].steg, b);
+  });
+  $('prove-start-btn').addEventListener('click', startProve);
+  $('prove-igjen').addEventListener('click', startProve);
+
+  visValg(); nyOvOppgave(); visFremgang();
+})();
+</script>
+<script src="lyd.js"></script>
+</body>
+</html>
