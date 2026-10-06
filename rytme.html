@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-RTML
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="rytme.html" data-stil="ovelse" data-vbm="K7Q4-RTML">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Rytme og taktarter</title>
+<script>window.VBM_LYD_RYTME_SIDE = true;</script>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
+<meta name="description" content="Rytme og taktarter i seks kapitler, fra puls og notelengder til trioler, synkoper, sammensatt og ujevn takt, med ekte noter, trommer og telling.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Musikkteori</div>
+  <h1>Rytme og <em>taktarter</em></h1>
+  <p class="lede">Rytme er hvor lenge tonene varer og når de kommer. Leksjonen har seks kapitler, fra nivå 1 til nivå 5, og hvert kapittel bygger på det forrige.</p>
+  <p class="lede">Trykk på spill for å høre en rytme. Først kommer én takt med metronomen, så spilles rytmen tre ganger etter hverandre, og noten som spilles lyser opp. Trommer er valgt nederst til høyre, men du kan også velge piano, gitar eller strykere.</p>
+</header>
+
+<main>
+  <section class="card bred innstillinger">
+    <div class="card-head">
+      <div class="step-label">Innstillinger</div>
+      <h2>Tempo og metronom</h2>
+    </div>
+    <p class="label" id="tempo-label">Tempo</p>
+    <div class="row answers tre" role="group" aria-labelledby="tempo-label">
+      <button type="button" class="btn" data-tempo="60">Sakte</button>
+      <button type="button" class="btn" data-tempo="80">Middels</button>
+      <button type="button" class="btn" data-tempo="100">Raskt</button>
+    </div>
+    <p class="label" id="metronom-label">Metronom under rytmen</p>
+    <div class="row answers" role="group" aria-labelledby="metronom-label">
+      <button type="button" class="btn" data-metronom="1">På</button>
+      <button type="button" class="btn" data-metronom="0">Av</button>
+    </div>
+    <nav class="innhold-rytme" aria-label="Kapitler">
+      <p class="label">Kapitler</p>
+      <ol id="kapittel-liste"></ol>
+    </nav>
+  </section>
+
+  <!-- ===== Kapittel 1 ===== -->
+  <section class="card bred kapittel" id="k1">
+    <div class="card-head">
+      <div class="step-label">Kapittel 1 · Nivå 1</div>
+      <h2>Puls, takt og notelengder</h2>
+    </div>
+    <p class="task">Pulsen er de jevne slagene du klapper eller tramper til. Slagene samles i takter, og den første tonen i hver takt er litt tyngre. Taktarten står i begynnelsen: det øverste tallet forteller hvor mange slag det er i takten, og det nederste hvilken note som er ett slag. 4 betyr firedelsnote, så 3/4 er tre firedeler i hver takt.</p>
+    <p class="task">Notelengdene henger sammen som en brøk: en helnote varer like lenge som to halvnoter, fire firedeler eller åtte åttendeler. Hver note har en pause med samme lengde.</p>
+    <div class="verdier" id="verdier"></div>
+    <div class="eksempler" data-kapittel="k1"></div>
+    <div class="row"><button type="button" class="btn ny-rytme" data-kapittel="k1">Lag nye rytmer</button></div>
+    <div class="taktarter" data-takter="2/4,3/4,4/4"></div>
+    <ul class="sanger">
+      <li><div class="song-info"><div class="song-title">Radetzky-marsj</div><div class="song-meta">Johann Strauss d.e., 1848 · 2/4</div></div><a class="spotify-link" href="https://open.spotify.com/search/Radetzky%20March%20Strauss" target="_blank" rel="noopener">Spotify</a></li>
+      <li><div class="song-info"><div class="song-title">An der schönen blauen Donau</div><div class="song-meta">Johann Strauss d.y., 1867 · 3/4</div></div><a class="spotify-link" href="https://open.spotify.com/search/An%20der%20sch%C3%B6nen%20blauen%20Donau" target="_blank" rel="noopener">Spotify</a></li>
+      <li><div class="song-info"><div class="song-title">Billie Jean</div><div class="song-meta">Michael Jackson, 1982 · 4/4</div></div><a class="spotify-link" href="https://open.spotify.com/search/Billie%20Jean%20Michael%20Jackson" target="_blank" rel="noopener">Spotify</a></li>
+    </ul>
+  </section>
+
+  <!-- ===== Kapittel 2 ===== -->
+  <section class="card bred kapittel" id="k2">
+    <div class="card-head">
+      <div class="step-label">Kapittel 2 · Nivå 2</div>
+      <h2>Åttendeler og sekstendeler</h2>
+    </div>
+    <p class="task">En firedel kan deles i to åttendeler, og en åttendel i to sekstendeler. Korte noter på samme slag bindes sammen med bjelker, slik at du ser hvor slagene begynner. Åttendeler telles «1 og 2 og»: tallet på slaget og «og» midt mellom.</p>
+    <p class="task viktig"><strong>Huskeregel:</strong> én bjelke er åttendeler, to bjelker er sekstendeler. Står noten alene, har den et flagg i stedet: ett for åttendel, to for sekstendel.</p>
+    <div class="eksempler" data-kapittel="k2"></div>
+    <div class="row"><button type="button" class="btn ny-rytme" data-kapittel="k2">Lag nye rytmer</button></div>
+  </section>
+
+  <!-- ===== Kapittel 3 ===== -->
+  <section class="card bred kapittel" id="k3">
+    <div class="card-head">
+      <div class="step-label">Kapittel 3 · Nivå 2</div>
+      <h2>Punktering</h2>
+    </div>
+    <p class="task">En prikk bak en note gjør den halvparten så lang til. En punktert halvnote varer tre slag (2 + 1), en punktert firedel halvannet slag (1 + ½), og en punktert åttendel tre sekstendeler. Punkteringen står nesten alltid sammen med en kort note som fyller resten av slaget: punktert firedel og åttendel, eller punktert åttendel og sekstendel.</p>
+    <div class="eksempler" data-kapittel="k3"></div>
+    <div class="row"><button type="button" class="btn ny-rytme" data-kapittel="k3">Lag nye rytmer</button></div>
+  </section>
+
+  <!-- ===== Kapittel 4 ===== -->
+  <section class="card bred kapittel" id="k4">
+    <div class="card-head">
+      <div class="step-label">Kapittel 4 · Nivå 3</div>
+      <h2>Trioler og synkoper</h2>
+    </div>
+    <p class="task">En triol er tre noter på plassen til to, merket med et lite 3-tall. Tre åttendelstrioler fyller ett slag, og tre firedelstrioler fyller to slag. Trioler gir en rullende, trippel følelse inni en vanlig takt, som i første sats av Måneskinnssonaten.</p>
+    <p class="task">En synkope er når en tone kommer mellom slagene og holder over neste slag, så tyngden flyttes. Åttendel, firedel, åttendel er den vanligste: firedelen begynner på «og» og varer over slaget. Synkoper er grunnlaget for ragtime, jazz, funk og mye pop.</p>
+    <div class="eksempler" data-kapittel="k4"></div>
+    <div class="row"><button type="button" class="btn ny-rytme" data-kapittel="k4">Lag nye rytmer</button></div>
+    <ul class="sanger">
+      <li><div class="song-info"><div class="song-title">Måneskinnssonaten, 1. sats</div><div class="song-meta">Ludwig van Beethoven, 1801 · trioler</div></div><a class="spotify-link" href="https://open.spotify.com/search/Moonlight%20Sonata%201st%20movement" target="_blank" rel="noopener">Spotify</a></li>
+      <li><div class="song-info"><div class="song-title">The Entertainer</div><div class="song-meta">Scott Joplin, 1902 · synkoper</div></div><a class="spotify-link" href="https://open.spotify.com/search/The%20Entertainer%20Scott%20Joplin" target="_blank" rel="noopener">Spotify</a></li>
+    </ul>
+  </section>
+
+  <!-- ===== Kapittel 5 ===== -->
+  <section class="card bred kapittel" id="k5">
+    <div class="card-head">
+      <div class="step-label">Kapittel 5 · Nivå 4</div>
+      <h2>Sammensatt takt</h2>
+    </div>
+    <p class="task">I 6/8, 9/8 og 12/8 er slaget en punktert firedel, og hvert slag deles i tre åttendeler. 6/8 har altså to slag, 9/8 tre og 12/8 fire, og åttendelene bindes i grupper på tre. Det gir en vuggende, rullende følelse.</p>
+    <p class="task viktig"><strong>Ikke bland sammen:</strong> 6/8 og 3/4 har begge seks åttendeler i takten, men de grupperes ulikt. 3/4 har tre slag delt i to (1 og 2 og 3 og), mens 6/8 har to slag delt i tre (1 2 3 4 5 6, med tyngde på 1 og 4). Hør forskjellen under.</p>
+    <div class="eksempler" data-kapittel="k5"></div>
+    <div class="row"><button type="button" class="btn ny-rytme" data-kapittel="k5">Lag nye rytmer</button></div>
+    <div class="taktarter" data-takter="3/4,6/8,9/8,12/8"></div>
+    <ul class="sanger">
+      <li><div class="song-info"><div class="song-title">We Are the Champions</div><div class="song-meta">Queen, 1977 · 6/8</div></div><a class="spotify-link" href="https://open.spotify.com/search/We%20Are%20the%20Champions%20Queen" target="_blank" rel="noopener">Spotify</a></li>
+      <li><div class="song-info"><div class="song-title">Nothing Else Matters</div><div class="song-meta">Metallica, 1991 · 6/8</div></div><a class="spotify-link" href="https://open.spotify.com/search/Nothing%20Else%20Matters%20Metallica" target="_blank" rel="noopener">Spotify</a></li>
+      <li><div class="song-info"><div class="song-title">At Last</div><div class="song-meta">Etta James, 1960 · 12/8</div></div><a class="spotify-link" href="https://open.spotify.com/search/At%20Last%20Etta%20James" target="_blank" rel="noopener">Spotify</a></li>
+    </ul>
+  </section>
+
+  <!-- ===== Kapittel 6 ===== -->
+  <section class="card bred kapittel" id="k6">
+    <div class="card-head">
+      <div class="step-label">Kapittel 6 · Nivå 5</div>
+      <h2>Ujevn takt</h2>
+    </div>
+    <p class="task">I ujevn takt kan slagene ikke deles i like store grupper. 5/4 telles som 3 + 2 eller 2 + 3. 7/8 er sju åttendeler i grupper på to og tre, for eksempel 2 + 2 + 3, og føles som tre slag der det siste er litt lenger. Ujevn takt er vanlig i folkemusikk fra Balkan, i jazz og i progressiv rock.</p>
+    <div class="eksempler" data-kapittel="k6"></div>
+    <div class="row"><button type="button" class="btn ny-rytme" data-kapittel="k6">Lag nye rytmer</button></div>
+    <div class="taktarter" data-takter="5/4,7/8"></div>
+    <ul class="sanger">
+      <li><div class="song-info"><div class="song-title">Take Five</div><div class="song-meta">The Dave Brubeck Quartet, 1959 · 5/4</div></div><a class="spotify-link" href="https://open.spotify.com/search/Take%20Five%20Dave%20Brubeck" target="_blank" rel="noopener">Spotify</a></li>
+      <li><div class="song-info"><div class="song-title">Mission: Impossible Theme</div><div class="song-meta">Lalo Schifrin, 1967 · 5/4</div></div><a class="spotify-link" href="https://open.spotify.com/search/Mission%20Impossible%20Theme%20Lalo%20Schifrin" target="_blank" rel="noopener">Spotify</a></li>
+      <li><div class="song-info"><div class="song-title">Money</div><div class="song-meta">Pink Floyd, 1973 · 7/4, sju firedeler</div></div><a class="spotify-link" href="https://open.spotify.com/search/Money%20Pink%20Floyd" target="_blank" rel="noopener">Spotify</a></li>
+    </ul>
+  </section>
+
+  <section class="card bred ovelse-kort">
+    <div class="card-head">
+      <div class="step-label">Øv</div>
+      <h2>Test deg selv</h2>
+    </div>
+    <p class="task">I rytmequizen hører du rytmer og taktarter og finner riktig notasjon, eller leser og teller. Du velger selv hvilke kapitler du vil øve på.</p>
+    <div class="row">
+      <a class="btn" href="quiz-rytme.html?type=hor">Gehørquiz: rytme</a>
+      <a class="btn" href="quiz-rytme.html?type=les">Teoriquiz: rytme</a>
+    </div>
+  </section>
+</main>
+
+<footer data-lyd="rytme"></footer>
+
+<script src="rytme.js"></script>
+<script>/* VBM K7Q4-RTML */
+(function(){
+  'use strict';
+  var R = window.VBM_RYTME, T = window.VBM_T || function(t, v){ return v ? t.replace(/\{(\w+)\}/g, function(m, k){ return v[k]; }) : t; };
+  function $(id){ return document.getElementById(id); }
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function n(d){ return { d: d }; } function p(d){ return { d: d, p: true }; } function tr(d){ return { d: d, t: true }; }
+
+  /* =================== Innstillinger =================== */
+  var valg = { tempo: 80, metronom: false };
+  try { var l = JSON.parse(localStorage.getItem('vbm-rytme')); if (l) { valg.tempo = l.tempo || 80; valg.metronom = !!l.metronom; } } catch(e){}
+  function lagre(){ try { localStorage.setItem('vbm-rytme', JSON.stringify(valg)); } catch(e){} }
+  function visValg(){
+    [].forEach.call(document.querySelectorAll('[data-tempo]'), function(b){ b.setAttribute('aria-pressed', +b.getAttribute('data-tempo') === valg.tempo ? 'true' : 'false'); });
+    [].forEach.call(document.querySelectorAll('[data-metronom]'), function(b){ b.setAttribute('aria-pressed', (b.getAttribute('data-metronom') === '1') === valg.metronom ? 'true' : 'false'); });
+  }
+  [].forEach.call(document.querySelectorAll('[data-tempo]'), function(b){ b.addEventListener('click', function(){ valg.tempo = +b.getAttribute('data-tempo'); lagre(); visValg(); }); });
+  [].forEach.call(document.querySelectorAll('[data-metronom]'), function(b){ b.addEventListener('click', function(){ valg.metronom = b.getAttribute('data-metronom') === '1'; lagre(); visValg(); }); });
+  /* Sammensatt takt telles i punkterte firedeler, ujevn 7/8 i åttendeler: tempoet tilpasses */
+  function tempoFor(takt){ var T0 = R.TAKTER[takt]; return T0.sammensatt ? Math.round(valg.tempo * 0.7) : takt === '7/8' ? valg.tempo * 2 : valg.tempo; }
+
+  /* =================== Kapittellisten =================== */
+  $('kapittel-liste').innerHTML = R.KAPITLER.map(function(k, i){
+    return '<li><a href="#' + k.id + '">' + esc(T('Kapittel {n}: {navn}', { n: i + 1, navn: T(k.navn) })) + '</a> <span class="niva">' + esc(T('Nivå {n}', { n: k.niva })) + '</span></li>';
+  }).join('');
+
+  /* =================== Notelengder og pauser =================== */
+  var VERDIER = [[48, 'Helnote', 'Helpause', '4'], [24, 'Halvnote', 'Halvpause', '2'], [12, 'Firedelsnote', 'Firedelspause', '1'], [6, 'Åttendelsnote', 'Åttendelspause', '½'], [3, 'Sekstendelsnote', 'Sekstendelspause', '¼']];
+  $('verdier').innerHTML = '<table class="verditabell"><thead><tr><th>' + esc(T('Note')) + '</th><th>' + esc(T('Pause')) + '</th><th>' + esc(T('Slag i 4/4')) + '</th></tr></thead><tbody>'
+    + VERDIER.map(function(v){
+      return '<tr><td><div class="mini">' + R.noter([[n(v[0])]], { visTakt: false, etikett: T(v[1]), enkel: true }) + '</div>' + esc(T(v[1])) + '</td>'
+        + '<td><div class="mini">' + R.noter([[p(v[0])]], { visTakt: false, etikett: T(v[2]), enkel: true }) + '</div>' + esc(T(v[2])) + '</td><td class="slag">' + v[3] + '</td></tr>';
+    }).join('') + '</tbody></table>';
+
+  /* =================== Eksempler i hvert kapittel =================== */
+  var FASTE = {
+    k1: [['4/4', [[n(12), n(12), n(12), n(12)], [n(24), n(24)]]], ['3/4', [[n(24), n(12)], [n(36)]]], ['4/4', [[n(12), p(12), n(24)], [n(48)]]]],
+    k2: [['4/4', [[n(6), n(6), n(6), n(6), n(12), n(12)]]], ['2/4', [[n(3), n(3), n(3), n(3), n(6), n(3), n(3)]]], ['4/4', [[n(12), p(6), n(6), n(6), n(3), n(3), n(12)]]]],
+    k3: [['3/4', [[n(36)]]], ['4/4', [[n(18), n(6), n(18), n(6)]]], ['2/4', [[n(9), n(3), n(9), n(3)]]]],
+    k4: [['2/4', [[tr(4), tr(4), tr(4), n(6), n(6)]]], ['4/4', [[tr(8), tr(8), tr(8), n(24)]]], ['4/4', [[n(6), n(12), n(6), n(6), n(12), n(6)]]]],
+    k5: [['6/8', [[n(6), n(6), n(6), n(6), n(6), n(6)]]], ['6/8', [[n(12), n(6), n(18)]]], ['12/8', [[n(6), n(6), n(6), n(18), n(9), n(3), n(6), n(18)]]]],
+    k6: [['5/4', [[n(12), n(12), n(12), n(12), n(12)]]], ['7/8', [[n(6), n(6), n(6), n(6), n(6), n(6), n(6)]]], ['7/8', [[n(12), n(12), n(18)]]]]
+  };
+  var data = {}, teller = 0;
+  function eksempel(takt, takter){
+    var id = 'r' + (teller++);
+    data[id] = { takt: takt, takter: takter };
+    return '<div class="rytme-eks"><div class="noter rytme">' + R.noter(takter, { takt: takt, telling: true, etikett: T('Rytme i {takt}', { takt: takt }) }) + '</div>'
+      + '<button type="button" class="btn" data-spill="' + id + '">&#9658;&#xFE0E; <span>' + esc(T('spill')) + '</span></button></div>';
+  }
+  function tegnKapittel(id){
+    var el = document.querySelector('.eksempler[data-kapittel="' + id + '"]');
+    el.innerHTML = FASTE[id].map(function(x){ return eksempel(x[0], x[1]); }).join('');
+  }
+  R.KAPITLER.forEach(function(k){ tegnKapittel(k.id); });
+  /* «Lag nye rytmer» bytter ut alle tre eksemplene i kapitlet med nye rytmer fra kapitlet */
+  [].forEach.call(document.querySelectorAll('.ny-rytme'), function(b){
+    b.addEventListener('click', function(){
+      if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP();
+      var k = R.KAPITLER.filter(function(x){ return x.id === b.getAttribute('data-kapittel'); })[0];
+      var el = document.querySelector('.eksempler[data-kapittel="' + k.id + '"]'), html = '';
+      for (var n2 = 0; n2 < 3; n2++) {
+        var takt = k.takter[n2 % k.takter.length], antall = k.id === 'k1' ? 2 : 1, takter = [];
+        for (var i = 0; i < antall; i++) takter.push(R.lagTakt(k, takt));
+        html += eksempel(takt, takter);
+      }
+      el.innerHTML = html;
+    });
+  });
+
+  /* =================== Hør taktartene (grooves) =================== */
+  [].forEach.call(document.querySelectorAll('.taktarter'), function(el){
+    el.innerHTML = '<p class="label">' + esc(T('Hør taktarten')) + '</p><div class="row">' + el.getAttribute('data-takter').split(',').map(function(t){
+      return '<button type="button" class="btn" data-groove="' + t + '">&#9658;&#xFE0E; <span>' + t + '</span></button>';
+    }).join('') + '</div>';
+  });
+
+  /* =================== Avspilling med farge =================== */
+  document.querySelector('main').addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('[data-spill], [data-groove]');
+    if (!b || !window.VBM_LYD_RYTME) return;
+    if (b.hasAttribute('data-groove')) {
+      var t = b.getAttribute('data-groove');
+      window.VBM_LYD_RYTME(R.groove(t, tempoFor(t), 4), b);
+      return;
+    }
+    var d = data[b.getAttribute('data-spill')], svg = b.parentNode.querySelector('svg');
+    window.VBM_LYD_RYTME(R.hendelser(d.takter, d.takt, tempoFor(d.takt), { metronom: valg.metronom, ganger: 3 }), b, function(i){
+      [].forEach.call(svg.querySelectorAll('.spilles'), function(x){ x.classList.remove('spilles'); });
+      if (i >= 0) [].forEach.call(svg.querySelectorAll('[data-i="' + i + '"]'), function(x){ x.classList.add('spilles'); });
+    });
+  });
+  visValg();
+})();
+</script>
+<script src="lyd.js"></script>
+</body>
+</html>

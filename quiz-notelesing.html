@@ -244,13 +244,29 @@
       $('ov-svar-knapp').hidden = false; $('ov-svar-knapp').disabled = true;
     }
   }
-  $('ov-stav').addEventListener('click', function(e){
-    var r = e.target.closest && e.target.closest('[data-d]');
+  /* Linjen eller mellomrommet finnes ut fra det nøyaktige punktet fingeren traff, ikke nettleserens
+     «justerte» trykk, som på mobil ofte havner på nabolinjen. */
+  function flateVed(e, rot){
+    var el = document.elementFromPoint(e.clientX, e.clientY);
+    return el && el.closest ? el.closest('#' + rot + ' [data-d]') : null;
+  }
+  var sistPeker = 0;
+  ['ov-stav', 'prove-stav'].forEach(function(id){
+    $(id).addEventListener('pointerup', function(e){
+      var r = flateVed(e, id); if (!r) return;
+      sistPeker = Date.now();
+      r.dispatchEvent(new CustomEvent('vbm-trykk', { bubbles: true }));
+    });
+    $(id).addEventListener('click', function(e){ if (Date.now() - sistPeker < 600) e.stopImmediatePropagation(); }, true);
+  });
+  $('ov-stav').addEventListener('vbm-trykk', function(e){ velgOv(e.target); });
+  $('ov-stav').addEventListener('click', function(e){ velgOv(e.target.closest && e.target.closest('[data-d]')); });
+  function velgOv(r){
     if (!r || ov.besvart || ov.o.type !== 'finn') return;
     ov.forslag = +r.getAttribute('data-d');
     $('ov-stav').innerHTML = finnStav(ov.o, ov.forslag);
     $('ov-svar-knapp').disabled = false;
-  });
+  }
   $('ov-svar-knapp').addEventListener('click', function(){
     if (ov.besvart || ov.forslag == null) return;
     var d = ov.forslag, riktig = d % 7 === ov.o.n.b;
@@ -276,6 +292,7 @@
     var tekst;
     if (o.type === 'les') {
       tekst = T('Det var {navn} ({oktav}).', { navn: navn(o.n), oktav: T(S.oktavInfo(o.n).oktav) });
+      if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP();
       if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS([[midi(o.n)]], $('ov-stav'));
     } else {
       var plasser = riktigePlasser(o);
@@ -283,6 +300,7 @@
       tekst += ' ' + T('{tone} står slik i {nokkel}:', { tone: K.tone({ b: o.n.b, f: 0 }), nokkel: nk });
       $('ov-fasit').innerHTML = S.enStav(o.nk, plasser, { bredde: 80 + plasser.length * 44, x0: 50 + plasser.length * 22, etikett: tekst });
       $('ov-fasit').hidden = false;
+      if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP();
       if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS([[midi(svar)]], $('ov-stav'));
     }
     $('ov-fb').innerHTML = '<strong class="' + (riktig ? 'ok' : 'nei') + '">' + (riktig ? T('Riktig.') : T('Feil.')) + '</strong> ' + tekst
@@ -330,15 +348,16 @@
       $('prove-svar').innerHTML = '<p class="task">' + T('Trykk på linjen eller mellomrommet der tonen står.') + '</p>';
     }
   }
-  $('prove-stav').addEventListener('click', function(e){
-    var r = e.target.closest && e.target.closest('[data-d]');
+  $('prove-stav').addEventListener('vbm-trykk', function(e){ velgProve(e.target); });
+  $('prove-stav').addEventListener('click', function(e){ velgProve(e.target.closest && e.target.closest('[data-d]')); });
+  function velgProve(r){
     if (!r || !pr) return;
     var o = pr.oppgaver[pr.nr]; if (o.type !== 'finn') return;
     var d = +r.getAttribute('data-d');
     pr.svar[pr.nr] = { b: d % 7, f: 0, oktav: Math.floor(d / 7) };
     $('prove-stav').innerHTML = finnStav(o, d);
     $('prove-neste').disabled = false;
-  });
+  }
   $('prove-neste').addEventListener('click', function(){
     if (pr.nr < ANTALL - 1) { pr.nr++; visProve(); }
     else visResultat();

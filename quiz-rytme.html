@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-QRTM
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="quiz-rytme.html" data-stil="ovelse" data-quiz data-vbm="K7Q4-QRTM">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Rytmequiz</title>
+<script>window.VBM_LYD_RYTME_SIDE = true;</script>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
+<meta name="description" content="Hør en rytme og finn notene, hør taktarten, eller les og tell. Velg kapitler og nivå fra Rytme og taktarter. Øvemodus og prøvemodus med 20 oppgaver.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Quiz</div>
+  <h1>Rytme<em>quiz</em></h1>
+  <p class="lede">Hør en rytme og finn notene, hør hvilken taktart musikken går i, eller les en rytme og tell. Velg kapitlene du vil øve på, fra nivå 1 til nivå 5.</p>
+  <p class="lede">Alt er forklart i leksjonen <a href="rytme.html">Rytme og taktarter</a>. Trommer er valgt nederst til høyre, men du kan også velge piano, gitar eller strykere.</p>
+</header>
+
+<main>
+  <!-- Fremgangen står øverst, slik som i gehørleksene med mikrointervaller. -->
+  <section class="card" id="ov-fremgang-kort" data-modus-del="ov" aria-live="polite">
+    <div class="card-head">
+      <div class="step-label">Øvemodus</div>
+      <h2>Din fremgang</h2>
+    </div>
+    <p class="task">Målet er fem riktige svar på rad. Resultatet nullstilles når du laster siden på nytt.</p>
+    <ul class="fremgang" id="ov-fremgang"></ul>
+    <p class="total" id="ov-total"></p>
+  </section>
+
+  <section class="card modus-kort">
+    <div class="card-head">
+      <div class="step-label">Modus</div>
+      <h2>Hva vil du gjøre?</h2>
+    </div>
+    <div class="row answers" role="group" aria-label="Velg modus">
+      <button type="button" class="btn" data-modus="ov" aria-pressed="true">Øvemodus</button>
+      <button type="button" class="btn" data-modus="prove" aria-pressed="false">Prøvemodus</button>
+    </div>
+    <p class="task modus-tekst" data-for="ov">Du får svaret med en gang, med rytmen på notelinjen.</p>
+    <p class="task modus-tekst" data-for="prove" hidden>20 oppgaver med valgene under. Lydeksemplene spilles to ganger, og du får resultatet til slutt.</p>
+    <p class="label" id="type-label">Oppgaver</p>
+    <div class="row answers" role="group" aria-labelledby="type-label">
+      <button type="button" class="btn" data-valg="type" data-verdi="horRytme">Hør rytmen</button>
+      <button type="button" class="btn" data-valg="type" data-verdi="horTakt">Hør taktarten</button>
+      <button type="button" class="btn" data-valg="type" data-verdi="les">Les og tell</button>
+      <button type="button" class="btn" data-valg="type" data-verdi="alle">Alle</button>
+    </div>
+    <p class="label" id="kap-label">Kapitler</p>
+    <div class="row brikker" id="kapitler" role="group" aria-labelledby="kap-label"></div>
+    <p class="label" id="tempo-label">Tempo</p>
+    <div class="row answers tre" role="group" aria-labelledby="tempo-label">
+      <button type="button" class="btn" data-valg="tempo" data-verdi="60">Sakte</button>
+      <button type="button" class="btn" data-valg="tempo" data-verdi="80">Middels</button>
+      <button type="button" class="btn" data-valg="tempo" data-verdi="100">Raskt</button>
+    </div>
+    <p class="task">«Hør rytmen» begynner med én takt metronom. «Les og tell» veksler mellom å finne taktarten og å finne noten som mangler.</p>
+  </section>
+
+  <!-- ===== Øvemodus ===== -->
+  <section class="card" id="ov-oppgave" data-modus-del="ov">
+    <div class="card-head">
+      <div class="step-label">Øvemodus</div>
+      <h2 id="ov-sporsmal"></h2>
+    </div>
+    <div class="noter rytme" id="ov-bilde"></div>
+    <div class="row">
+      <button type="button" class="btn" id="ov-spill" aria-label="Spill lydeksemplet">&#9658;&#xFE0E; <span>spill</span></button>
+      <button type="button" class="btn" id="ov-neste" hidden>Neste oppgave</button>
+    </div>
+    <!-- Svaret står rett under «Neste oppgave», over svarknappene. -->
+    <p class="feedback" id="ov-fb" aria-live="polite"></p>
+    <div class="noter rytme" id="ov-fasit" hidden></div>
+    <div class="svar-grupper" id="ov-svar"></div>
+  </section>
+
+  <!-- ===== Prøvemodus ===== -->
+  <section class="card prove-kort" id="prove" data-modus-del="prove" hidden>
+    <div class="card-head">
+      <div class="step-label">Prøvemodus</div>
+      <h2 id="prove-tittel">Prøve med 20 oppgaver</h2>
+    </div>
+    <div id="prove-start">
+      <p class="task">Lydeksemplene spilles to ganger og kan ikke spilles på nytt. Du kan svare mens lyden spiller, og endre svaret til du går videre.</p>
+      <div class="row">
+        <button type="button" class="btn" id="prove-start-btn">Start prøven</button>
+      </div>
+    </div>
+    <div id="prove-oppgave" hidden>
+      <p class="prove-sporsmal" id="prove-sporsmal"></p>
+      <p class="lytt" id="prove-lytt"><span class="lytt-na">Lydeksemplet spilles</span><span class="lytt-ferdig">Lydeksemplet er ferdig</span></p>
+      <div class="noter rytme" id="prove-bilde"></div>
+      <div class="svar-grupper" id="prove-svar"></div>
+      <div class="row">
+        <button type="button" class="btn" id="prove-neste" disabled>Neste oppgave</button>
+      </div>
+    </div>
+    <div id="prove-resultat" hidden>
+      <p class="poeng" id="prove-poeng"></p>
+      <p class="task" id="prove-melding"></p>
+      <p class="label">Gjennomgang</p>
+      <ol class="gjennomgang" id="prove-liste"></ol>
+      <div class="row">
+        <button type="button" class="btn" id="prove-igjen">Ta en ny prøve</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-lyd="rytme"></footer>
+
+<script src="rytme.js"></script>
+<script>/* VBM K7Q4-QRTM */
+(function(){
+  'use strict';
+  var R = window.VBM_RYTME, T = window.VBM_T;
+  var SPRAK = window.VBM_SPRAK || 'no';
+  function $(id){ return document.getElementById(id); }
+  function tilfeldig(a){ return a[Math.floor(Math.random() * a.length)]; }
+  function blandet(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
+  function lag(tag, klasse, tekst){ var e = document.createElement(tag); if (klasse) e.className = klasse; if (tekst != null) e.textContent = tekst; return e; }
+  function stopp(){ if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); }
+  function smaa(t){ return SPRAK === 'en' ? t : t.replace(/^./, function(c){ return c.toLowerCase(); }); }
+
+  /* =================== Valg =================== */
+  var NOKKEL = 'vbm-quiz-rytme', valg = { type: 'horRytme', tempo: '80', kap: ['k1'] };
+  try { var l = JSON.parse(localStorage.getItem(NOKKEL)); if (l) { if (l.type) valg.type = l.type; if (l.tempo) valg.tempo = l.tempo; if (l.kap && l.kap.length) valg.kap = l.kap; } } catch(e){}
+  /* Fra startsiden: Gehørquiz-kortet åpner med lytteoppgaver, Teoriquiz-kortet med «Les og tell». */
+  var fraLenke = (/[?&]type=(hor|les)\b/.exec(location.search) || [])[1];
+  if (fraLenke === 'les') valg.type = 'les';
+  if (fraLenke === 'hor' && valg.type === 'les') valg.type = 'horRytme';
+  function lagre(){ try { localStorage.setItem(NOKKEL, JSON.stringify(valg)); } catch(e){} }
+  var valgKnapper = [].slice.call(document.querySelectorAll('[data-valg]'));
+  function visValg(){
+    valgKnapper.forEach(function(b){ b.setAttribute('aria-pressed', valg[b.getAttribute('data-valg')] === b.getAttribute('data-verdi') ? 'true' : 'false'); });
+    [].forEach.call($('kapitler').children, function(b){ b.setAttribute('aria-pressed', valg.kap.indexOf(b._k) >= 0 ? 'true' : 'false'); });
+  }
+  valgKnapper.forEach(function(b){ b.addEventListener('click', function(){
+    var k = b.getAttribute('data-valg'), v = b.getAttribute('data-verdi');
+    if (valg[k] === v) return;
+    valg[k] = v; lagre(); visValg(); if (k !== 'tempo') nyOvOppgave();
+  }); });
+  R.KAPITLER.forEach(function(k, i){
+    var b = lag('button', 'btn', T('{n}. {navn} (nivå {niva})', { n: i + 1, navn: T(k.navn), niva: k.niva })); b.type = 'button'; b._k = k.id;
+    b.addEventListener('click', function(){
+      var j = valg.kap.indexOf(k.id);
+      if (j >= 0) { if (valg.kap.length === 1) return; valg.kap.splice(j, 1); } else valg.kap.push(k.id);
+      lagre(); visValg(); nyOvOppgave();
+    });
+    $('kapitler').appendChild(b);
+  });
+  var modusKnapper = [].slice.call(document.querySelectorAll('[data-modus]'));
+  modusKnapper.forEach(function(b){ b.addEventListener('click', function(){
+    var m = b.getAttribute('data-modus'); stopp();
+    modusKnapper.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    [].forEach.call(document.querySelectorAll('[data-modus-del]'), function(el){ el.hidden = el.getAttribute('data-modus-del') !== m; });
+    [].forEach.call(document.querySelectorAll('.modus-tekst'), function(el){ el.hidden = el.getAttribute('data-for') !== m; });
+  }); });
+
+  /* =================== Oppgavene =================== */
+  function kapitler(){ return R.KAPITLER.filter(function(k){ return valg.kap.indexOf(k.id) >= 0; }); }
+  function tempoFor(takt){ var t = +valg.tempo, T0 = R.TAKTER[takt]; return T0.sammensatt ? Math.round(t * 0.7) : takt === '7/8' ? t * 2 : t; }
+  function likeTakter(a, b){ return JSON.stringify(a) === JSON.stringify(b); }
+  /* Hvor like to rytmer er: andelen felles anslag (brukes for å lage gode feilsvar) */
+  function anslag(takter){ var s = [], pos = 0; takter.forEach(function(t){ t.forEach(function(e){ if (!e.p) s.push(pos + (e.t ? 't' : '')); pos += e.d; }); }); return s; }
+  function likhet(a, b){ var A = anslag(a), B = anslag(b), f = A.filter(function(x){ return B.indexOf(x) >= 0; }).length; return f / Math.max(A.length, B.length); }
+  function lagOppgave(forrige){
+    var typer = valg.type === 'alle' ? ['horRytme', 'horTakt', 'les'] : [valg.type];
+    var type = tilfeldig(typer), kap = tilfeldig(kapitler()), takt = tilfeldig(kap.takter), o;
+    if (type === 'les') type = Math.random() < 0.5 ? 'lesTakt' : 'lesMangler';
+    if (type === 'horRytme') {
+      var antall = kap.id === 'k1' ? 2 : 1, riktig = [];
+      for (var i = 0; i < antall; i++) riktig.push(R.lagTakt(kap, takt));
+      /* Tre feilsvar som ligner mest mulig */
+      var kandidater = [];
+      for (var k = 0; k < 40; k++) { var c = []; for (var j = 0; j < antall; j++) c.push(j === antall - 1 || Math.random() < 0.5 ? R.lagTakt(kap, takt) : R.kopi(riktig[j])); if (!likeTakter(c, riktig)) kandidater.push(c); }
+      kandidater.sort(function(a, b){ return likhet(b, riktig) - likhet(a, riktig); });
+      var valgte = [];
+      kandidater.forEach(function(c){ if (valgte.length < 3 && !valgte.some(function(v){ return likeTakter(v, c); })) valgte.push(c); });
+      var alternativer = blandet([riktig].concat(valgte));
+      o = { type: type, kap: kap, takt: takt, takter: riktig, alternativer: alternativer, svar: alternativer.indexOf(riktig) };
+    } else if (type === 'horTakt') {
+      var mulige = []; kapitler().forEach(function(k2){ k2.takter.forEach(function(t){ if (mulige.indexOf(t) < 0) mulige.push(t); }); });
+      takt = tilfeldig(mulige);
+      o = { type: type, takt: takt, alternativer: mulige, svar: mulige.indexOf(takt) };
+    } else if (type === 'lesTakt') {
+      var takter = [R.lagTakt(kap, takt)];
+      var muligeT = []; kapitler().forEach(function(k2){ k2.takter.forEach(function(t){ if (muligeT.indexOf(t) < 0) muligeT.push(t); }); });
+      /* 3/4 og 6/8 har like mange åttendeler, så bare én av dem kan være med som svar */
+      if (takt === '6/8') muligeT = muligeT.filter(function(t){ return t !== '3/4'; });
+      if (takt === '3/4') muligeT = muligeT.filter(function(t){ return t !== '6/8'; });
+      if (muligeT.length < 2) muligeT = ['2/4', '3/4', '4/4', '5/4'].concat(takt === '3/4' || takt === '2/4' || takt === '4/4' || takt === '5/4' ? [] : [takt]);
+      if (muligeT.indexOf(takt) < 0) muligeT.push(takt);
+      o = { type: type, kap: kap, takt: takt, takter: takter, alternativer: muligeT, svar: muligeT.indexOf(takt) };
+    } else {
+      var takt1, idx, tries = 0;
+      do { takt1 = R.lagTakt(kap, takt); var kand = []; takt1.forEach(function(e, k3){ if (!e.p && !e.t && R.VERDINAVN[e.d]) kand.push(k3); }); idx = kand.length ? tilfeldig(kand) : -1; tries++; } while (idx < 0 && tries < 50);
+      var verdier = [48, 36, 24, 18, 12, 9, 6, 3].filter(function(d){ return d <= R.TAKTER[takt].tikk; });
+      if (!kap.monstre.some(function(m){ return m === 'k3' || m === 'sammensatt'; })) verdier = verdier.filter(function(d){ return d !== 36 && d !== 18 && d !== 9 || d === takt1[idx].d; });
+      o = { type: 'lesMangler', kap: kap, takt: takt, takter: [takt1], mangler: idx, alternativer: verdier, svar: verdier.indexOf(takt1[idx].d) };
+    }
+    if (forrige && JSON.stringify(o.takter || o.takt) === JSON.stringify(forrige.takter || forrige.takt) && Math.random() < 0.8) return lagOppgave(forrige);
+    return o;
+  }
+  function sporsmal(o){
+    return { horRytme: T('Hvilken rytme hører du?'), horTakt: T('Hvilken taktart går musikken i?'), lesTakt: T('Hvilken taktart passer til takten?'), lesMangler: T('Hvilken note mangler?') }[o.type];
+  }
+  function lyd(o, ganger){
+    var h;
+    if (o.type === 'horTakt') h = R.groove(o.takt, tempoFor(o.takt), 4);
+    else h = R.hendelser(o.takter, o.takt, tempoFor(o.takt));
+    if (ganger > 1) {
+      var lengde = h.reduce(function(m, x){ return Math.max(m, x.t); }, 0) + 60 / tempoFor(o.takt) * 2;
+      h = h.concat(h.map(function(x){ return { t: x.t + lengde, lyd: x.lyd, v: x.v, m: x.m, d: x.d }; }));
+    }
+    return h;
+  }
+  function bilde(o, visSvar){
+    if (o.type === 'lesTakt') return R.noter(o.takter, { takt: o.takt, visTakt: !!visSvar, etikett: sporsmal(o) });
+    if (o.type === 'lesMangler') return R.noter(o.takter, { takt: o.takt, mangler: visSvar ? null : o.mangler, etikett: sporsmal(o) });
+    if (o.type === 'horRytme' && visSvar) return R.noter(o.takter, { takt: o.takt, telling: true, etikett: sporsmal(o) });
+    return '';
+  }
+  function svarKnapper(rot, o, ved){
+    rot.innerHTML = '';
+    var rad = lag('div', 'row answers svar' + (o.type === 'horRytme' ? ' rytme-svar' : '')); rad.setAttribute('role', 'group'); rad.setAttribute('aria-label', T('Svar'));
+    var knapper = o.alternativer.map(function(a, i){
+      var b = lag('button', 'btn' + (o.type === 'horRytme' ? ' rytme-valg' : '')); b.type = 'button';
+      if (o.type === 'horRytme') b.innerHTML = '<span class="valg-nr">' + 'ABCD'.charAt(i) + '</span>' + R.noter(a, { takt: o.takt, skala: 1, etikett: T('Alternativ {n}', { n: 'ABCD'.charAt(i) }) });
+      else if (o.type === 'lesMangler') b.textContent = T(R.VERDINAVN[a]);
+      else b.textContent = a;
+      b.addEventListener('click', function(){ ved(i, b); });
+      rad.appendChild(b); return b;
+    });
+    rot.appendChild(rad);
+    return knapper;
+  }
+  function forklaring(o){
+    if (o.type === 'horRytme') return T('Rytmen står under.');
+    if (o.type === 'horTakt') { var T0 = R.TAKTER[o.takt]; return T('Det var {takt}: {slag} slag i takten.', { takt: o.takt, slag: T0.grupper.length }) + (T0.sammensatt ? ' ' + T('Hvert slag deles i tre.') : ''); }
+    if (o.type === 'lesTakt') {
+      var T1 = R.TAKTER[o.takt];
+      return T(T1.bunn === 8 ? 'Takten varer {n} åttendeler, så taktarten er {takt}.' : 'Takten varer {n} firedeler, så taktarten er {takt}.', { n: T1.topp, takt: o.takt });
+    }
+    return T('Det manglet en {verdi}.', { verdi: liten(T(R.VERDINAVN[o.alternativer[o.svar]])) });
+  }
+  /* Notenavn midt i en setning skrives med liten forbokstav på alle språk */
+  function liten(t){ return t.charAt(0).toLowerCase() + t.slice(1); }
+  function svarTekst(o, i){
+    if (o.type === 'horRytme') return 'ABCD'.charAt(i);
+    if (o.type === 'lesMangler') return liten(T(R.VERDINAVN[o.alternativer[i]]));
+    return o.alternativer[i];
+  }
+
+  /* =================== Øvemodus =================== */
+  var STAT = {}, MAL = 5, paRad = 0, best = 0, klar = false, ov = null, knapper = [];
+  var FEIL = ['Ikke gi opp. Du blir bedre for hver oppgave.', 'Tell slagene høyt mens du lytter eller leser.', 'Klapp rytmen selv, så kjenner du den bedre igjen.', 'Pust rolig, tenk deg om, og prøv neste.'];
+  var TYPENAVN = { horRytme: 'Hør rytmen', horTakt: 'Hør taktarten', lesTakt: 'Finn taktarten', lesMangler: 'Finn noten som mangler' };
+  function nyOvOppgave(){
+    stopp();
+    ov = { o: lagOppgave(ov && ov.o), besvart: false };
+    var o = ov.o, lytt = o.type === 'horRytme' || o.type === 'horTakt';
+    $('ov-sporsmal').textContent = sporsmal(o);
+    $('ov-bilde').innerHTML = bilde(o, false); $('ov-bilde').hidden = !$('ov-bilde').innerHTML;
+    $('ov-spill').hidden = !lytt;
+    knapper = svarKnapper($('ov-svar'), o, svarOv);
+    knapper.forEach(function(b){ b.disabled = lytt; });
+    $('ov-fb').innerHTML = ''; $('ov-fasit').hidden = true; $('ov-fasit').innerHTML = ''; $('ov-neste').hidden = true;
+  }
+  function farg(svg, i){
+    if (!svg) return;
+    [].forEach.call(svg.querySelectorAll('.spilles'), function(x){ x.classList.remove('spilles'); });
+    if (i >= 0) [].forEach.call(svg.querySelectorAll('[data-i="' + i + '"]'), function(x){ x.classList.add('spilles'); });
+  }
+  $('ov-spill').addEventListener('click', function(){
+    if (window.VBM_LYD_RYTME) window.VBM_LYD_RYTME(lyd(ov.o, 1), this, function(i){ farg($('ov-fasit').querySelector('svg'), i); });
+    if (!ov.besvart) knapper.forEach(function(b){ b.disabled = false; });
+  });
+  $('ov-neste').addEventListener('click', function(){
+    nyOvOppgave();
+    if (!$('ov-spill').hidden) { $('ov-spill').click(); $('ov-spill').focus(); }
+  });
+  function svarOv(i, b){
+    if (ov.besvart) return;
+    ov.besvart = true;
+    var o = ov.o, riktig = i === o.svar, m = '';
+    var s = STAT[o.type] = STAT[o.type] || { r: 0, t: 0 }; s.t++; if (riktig) s.r++;
+    knapper.forEach(function(k){ k.disabled = k !== b; });
+    knapper[o.svar].classList.add('fasit-valg');
+    b.setAttribute('aria-pressed', 'true');
+    if (riktig) {
+      paRad++; best = Math.max(best, paRad);
+      if (paRad === MAL && !klar) { klar = true; m = T('Fem riktige på rad. Målet er nådd!'); }
+      else if (paRad === 3) m = T('Tre riktige på rad. Bra jobbet!');
+      else if (paRad === 10) m = T('Ti riktige på rad. Imponerende!');
+    } else { paRad = 0; m = T(tilfeldig(FEIL)); }
+    $('ov-fb').innerHTML = '<strong class="' + (riktig ? 'ok' : 'nei') + '">' + (riktig ? T('Riktig.') : T('Feil.')) + '</strong> '
+      + T('Svaret er {svar}.', { svar: svarTekst(o, o.svar) }) + ' ' + forklaring(o) + (m ? '<span class="motiv">' + m + '</span>' : '');
+    var fasit = bilde(o, true);
+    if (fasit) { $('ov-fasit').innerHTML = fasit; $('ov-fasit').hidden = false; }
+    if (o.type === 'lesTakt' || o.type === 'lesMangler') { $('ov-bilde').hidden = true; $('ov-spill').hidden = false; }
+    $('ov-neste').hidden = false;
+    visFremgang();
+  }
+  function visFremgang(){
+    var html = '', r = 0, t = 0;
+    Object.keys(TYPENAVN).forEach(function(ty){
+      var s = STAT[ty]; if (!s) return; r += s.r; t += s.t;
+      html += '<li><span>' + T(TYPENAVN[ty]) + '</span><span class="tall">' + T('{r} av {t} riktige.', { r: s.r, t: s.t }) + '</span></li>';
+    });
+    $('ov-fremgang').innerHTML = html || '<li><span class="tall">' + T('Ingen svar ennå.') + '</span></li>';
+    $('ov-total').innerHTML = '<strong>' + T('Totalt: {r} av {t} riktige', { r: r, t: t }) + (t ? ' (' + Math.round(100 * r / t) + ' %)' : '') + '.</strong> '
+      + (klar ? '<span class="klar">' + T('Målet er nådd.') + '</span> ' : '')
+      + T('På rad nå: {n}. Beste rekke: {b}.', { n: paRad, b: best });
+  }
+
+  /* =================== Prøvemodus =================== */
+  var ANTALL = 20, pr = null, pKnapper = [];
+  function startProve(){
+    var liste = [], forrige = null;
+    for (var i = 0; i < ANTALL; i++) { forrige = lagOppgave(forrige); liste.push(forrige); }
+    pr = { oppgaver: liste, svar: [], nr: 0 };
+    $('prove-start').hidden = true; $('prove-resultat').hidden = true; $('prove-oppgave').hidden = false;
+    visProve();
+  }
+  function visProve(){
+    var o = pr.oppgaver[pr.nr], lytt = o.type === 'horRytme' || o.type === 'horTakt';
+    $('prove-tittel').textContent = T('Oppgave {n} av {t}', { n: pr.nr + 1, t: ANTALL });
+    $('prove-sporsmal').textContent = sporsmal(o);
+    $('prove-bilde').innerHTML = bilde(o, false); $('prove-bilde').hidden = !$('prove-bilde').innerHTML;
+    $('prove-lytt').hidden = !lytt;
+    pKnapper = svarKnapper($('prove-svar'), o, function(i, b){
+      pr.svar[pr.nr] = i;
+      pKnapper.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      $('prove-neste').disabled = false;
+    });
+    $('prove-neste').disabled = true;
+    $('prove-neste').textContent = pr.nr === ANTALL - 1 ? T('Se resultatet') : T('Neste oppgave');
+    stopp();
+    if (lytt && window.VBM_LYD_RYTME) window.VBM_LYD_RYTME(lyd(o, 2), $('prove-lytt'));
+  }
+  $('prove-neste').addEventListener('click', function(){
+    if (pr.nr < ANTALL - 1) { pr.nr++; visProve(); }
+    else visResultat();
+  });
+  function visResultat(){
+    stopp();
+    var r = 0, html = '';
+    pr.oppgaver.forEach(function(o, i){
+      var s = pr.svar[i], ok = s === o.svar; if (ok) r++;
+      html += '<li><div class="gj-tekst"><strong class="' + (ok ? 'ok' : 'nei') + '">' + (ok ? T('Riktig.') : T('Feil.')) + '</strong> '
+        + T(TYPENAVN[o.type]) + ': ' + T('svaret er {svar}.', { svar: svarTekst(o, o.svar) })
+        + (ok ? '' : ' <span class="ditt">' + T('Ditt svar: {s}.', { s: svarTekst(o, s) }) + '</span>') + '</div></li>';
+    });
+    var p = Math.round(100 * r / ANTALL);
+    $('prove-tittel').textContent = T('Resultat');
+    $('prove-poeng').innerHTML = '<strong>' + T('{r} av {t} riktige', { r: r, t: ANTALL }) + '</strong> (' + p + ' %)';
+    $('prove-melding').textContent = p === 100 ? T('Alle riktige. Du har rytmen i blodet!')
+      : p >= 85 ? T('Svært bra. Du er godt forberedt.')
+      : p >= 65 ? T('Bra. Øv litt mer på det du bommet på.')
+      : p >= 40 ? T('Du er på god vei. Bruk øvemodus på det du bommet på, og prøv igjen.')
+      : T('Ikke gi opp. Begynn i øvemodus med kapittel 1, og legg til flere etter hvert.');
+    $('prove-liste').innerHTML = html;
+    $('prove-oppgave').hidden = true; $('prove-resultat').hidden = false;
+    $('prove-poeng').scrollIntoView({ block: 'center', behavior: 'smooth' });
+    pr = null;
+  }
+  $('prove-start-btn').addEventListener('click', startProve);
+  $('prove-igjen').addEventListener('click', startProve);
+
+  visValg(); nyOvOppgave(); visFremgang();
+})();
+</script>
+<script src="lyd.js"></script>
+</body>
+</html>

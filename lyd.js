@@ -48,8 +48,19 @@
   INSTR.piano.layers.concat(INSTR.gitar.layers, INSTR.strykere.layers)
     .forEach(function(L){ L.shift = L.shift || 0; L.cents = L.cents || 0; L.delay = L.delay || 0; L.range = L.range || 12; });
 
-  var current = 'piano';
-  try { var saved = localStorage.getItem('vbm-instrument'); if (INSTR[saved]) current = saved; } catch(e){}
+  /* Rytmesidene (window.VBM_LYD_RYTME_SIDE = true) får også trommer, og trommer er valgt som standard der.
+     Trommelydene er ekte opptak fra Versilian Community Sample Library (CC0) og ligger på nettstedet selv. */
+  var RYTME = !!window.VBM_LYD_RYTME_SIDE, LAGRE = RYTME ? 'vbm-instrument-rytme' : 'vbm-instrument';
+  /* window.VBM_LYD_TROMMEFILER kan erstatte filene (brukes i forhåndsvisninger der lydene ligger inne i siden). */
+  var TROMMER = window.VBM_LYD_TROMMEFILER || { skarp: 'rytme-skarptromme.mp3', bass: 'rytme-basstromme.mp3', hihat: 'rytme-hihat.mp3', klikk: 'rytme-treblokk.mp3' };
+  var TROMME_NIVA = { skarp: 0.75, bass: 0.95, hihat: 0.55, klikk: 0.7 };
+  if (RYTME) {
+    var med = { trommer: { label: 'Trommer', layers: [] } };
+    Object.keys(INSTR).forEach(function(k){ med[k] = INSTR[k]; });
+    INSTR = med;
+  }
+  var current = RYTME ? 'trommer' : 'piano';
+  try { var saved = localStorage.getItem(LAGRE); if (INSTR[saved]) current = saved; } catch(e){}
 
   /* ---------- lydkontekst ---------- */
   var AC = window.AudioContext || window.webkitAudioContext;
@@ -81,16 +92,46 @@
       if (p && p.then) p.then(res, rej);
     });
   }
+  /* Lyd som ligger inne i siden (data:-adresser, brukt i forhåndsvisninger) pakkes ut direkte.
+     fetch() ville blitt stoppet av sikkerhetsreglene på sider som bare tillater kjente adresser. */
+  function fraData(url){
+    var b64 = url.slice(url.indexOf(',') + 1), bin = atob(b64), buf = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+    return Promise.resolve(buf.buffer);
+  }
   function load(url){
     if (!cache[url]) {
-      cache[url] = fetch(url)
-        .then(function(r){ if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+      cache[url] = (url.indexOf('data:') === 0 ? fraData(url) : fetch(url)
+        .then(function(r){ if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); }))
         .then(decode);
       cache[url].catch(function(){ delete cache[url]; });
     }
     return cache[url];
   }
   function urlFor(L, s){ return L.base + nameOf(s) + '.mp3'; }
+
+  /* ---------- fargelegging i takt med lyden ----------
+     Fargene styres av lydklokken (ctx.currentTime), som sjekkes hvert 15. millisekund. Hver sjekk leser
+     klokken på nytt, så en sjekk som kommer litt sent, gir ikke feil som hoper seg opp.
+     (requestAnimationFrame brukes ikke: den stoppes eller bremses i innebygde rammer, som forhåndsvisninger.)
+     Forsinkelsen fra lydkortet til høyttaleren eller hodetelefonene (ctx.outputLatency, ofte stor med
+     Bluetooth) trekkes fra, slik at fargen kommer når tonen høres. */
+  var planlagt = [], rafId = null;
+  /* Forsinkelsen begrenses til 0,5 s, i tilfelle en nettleser rapporterer en urimelig verdi */
+  function forsinkelse(){ var f = ctx ? (ctx.outputLatency || ctx.baseLatency || 0) : 0; return Math.min(Math.max(f, 0), 0.5); }
+  function tikk(){
+    rafId = null;
+    if (!ctx) return;
+    var na = ctx.currentTime - forsinkelse(), klare = [], rest = [];
+    planlagt.forEach(function(p){ (p.t <= na ? klare : rest).push(p); });
+    planlagt = rest;
+    klare.sort(function(a, b){ return a.t - b.t; }).forEach(function(p){ try { p.fn(); } catch(e){} });
+    if (planlagt.length) rafId = setTimeout(tikk, 15);
+  }
+  function planlegg(tCtx, fn){
+    planlagt.push({ t: tCtx, fn: fn });
+    if (!rafId) rafId = setTimeout(tikk, 15);
+  }
 
   /* ---------- aktive stemmer, slik at alt kan stoppes ---------- */
   var voices = [], activeBtn = null, timer = null, token = 0;
@@ -110,6 +151,7 @@
     voices = [];
     if (timer) { clearTimeout(timer); timer = null; }
     stegTimere.forEach(clearTimeout); stegTimere = [];
+    planlagt = []; if (rafId) { clearTimeout(rafId); rafId = null; }
     if (aktivVedSteg) { var v = aktivVedSteg; aktivVedSteg = null; try { v(-1); } catch(e){} }
     if (activeBtn) { activeBtn.classList.remove('playing', 'loading'); activeBtn = null; }
   }
@@ -192,11 +234,10 @@
     });
     if (vedSteg) {
       aktivVedSteg = vedSteg;
-      var start = (t - ctx.currentTime) * 1000;
       sekvens.forEach(function(steg, i){
-        stegTimere.push(setTimeout(function(){ if (my === token) vedSteg(i); }, Math.max(0, start + i * S_STEG * 1000)));
+        planlegg(t + i * S_STEG, function(){ if (my === token) vedSteg(i); });
       });
-      stegTimere.push(setTimeout(function(){ if (my === token) { aktivVedSteg = null; vedSteg(-1); } }, start + ((sekvens.length - 1) * S_STEG + S_SISTE) * 1000));
+      planlegg(t + (sekvens.length - 1) * S_STEG + S_SISTE, function(){ if (my === token) { aktivVedSteg = null; vedSteg(-1); } });
     }
     return (t + (sekvens.length - 1) * S_STEG + S_SISTE + 0.7) - ctx.currentTime;
   }
@@ -263,7 +304,7 @@
       b.addEventListener('click', function(){
         if (k === current) return;
         stopAll(); current = k;
-        try { localStorage.setItem('vbm-instrument', k); } catch(e){}
+        try { localStorage.setItem(LAGRE, k); } catch(e){}
         wrap.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
       });
       wrap.appendChild(b);
@@ -286,6 +327,82 @@
     ensureCtx();
     if (btn === activeBtn) { stopAll(); return; }
     play([], btn, 1, null, false, sekvens, vedSteg);
+  };
+  /* VBM_LYD_RYTME(hendelser, knapp, vedSteg): spiller en rytme.
+     hendelser: [{ t: sekunder fra start, lyd: 'skarp' | 'bass' | 'hihat' | 'klikk', v: styrke 0–1,
+                   m: tonehøyde for piano, gitar og strykere, d: lengde i sekunder, i: nummer for fargelegging }].
+     Med trommer spilles lyd-feltet. Med de andre instrumentene spilles tonen m, mens 'klikk'
+     (metronomen) alltid er treblokken. vedSteg(i) kalles når en hendelse med i klinger, og vedSteg(-1) til slutt. */
+  function spillRytme(hendelser, btn, vedSteg){
+    stopAll();
+    var my = token, inst = INSTR[current], tromme = current === 'trommer';
+    activeBtn = btn; btn.classList.add('playing', 'loading');
+    var tromUrl = function(lyd){ return (B.trommer || '') + TROMMER[lyd]; };
+    var trommeLyder = {}, urls = {};
+    hendelser.forEach(function(h){ if (tromme || h.lyd === 'klikk') trommeLyder[h.lyd] = true; });
+    Object.keys(trommeLyder).forEach(function(l){ urls[tromUrl(l)] = true; });
+    if (!tromme) inst.layers.forEach(function(L){
+      hendelser.forEach(function(h){ if (h.lyd !== 'klikk') { var s2 = nearest(L, (h.m || 72) + L.shift); if (s2 !== null) urls[urlFor(L, s2)] = true; } });
+    });
+    var list = Object.keys(urls);
+    Promise.all(list.map(load)).then(function(bufs){
+      if (my !== token) return;
+      var got = {}; list.forEach(function(u, i){ got[u] = bufs[i]; });
+      btn.classList.remove('loading');
+      var t = ctx.currentTime + 0.08, slutt = 0;
+      hendelser.forEach(function(h){
+        var t0 = t + h.t, v = h.v == null ? 1 : h.v;
+        if (tromme || h.lyd === 'klikk') {
+          var src = ctx.createBufferSource(), g = ctx.createGain();
+          src.buffer = got[tromUrl(h.lyd)]; src.connect(g); g.connect(out);
+          g.gain.value = TROMME_NIVA[h.lyd] * v;
+          src.start(t0); track(src, g);
+          slutt = Math.max(slutt, h.t + src.buffer.duration);
+        } else {
+          var d = Math.max(0.12, (h.d || 0.4) * 0.92);
+          inst.layers.forEach(function(L){
+            var p = (h.m || 72) + L.shift, s3 = nearest(L, p);
+            if (s3 === null) return;
+            sampleVoice(inst, got[urlFor(L, s3)], Math.pow(2, (p - s3) / 12 + L.cents / 1200), t0 + L.delay, d, L.level * 0.62 * v);
+          });
+          slutt = Math.max(slutt, h.t + d + inst.release);
+        }
+      });
+      if (vedSteg) {
+        aktivVedSteg = vedSteg;
+        hendelser.forEach(function(h){
+          if (h.i == null) return;
+          planlegg(t + h.t, function(){ if (my === token) vedSteg(h.i); });
+        });
+        planlegg(t + slutt, function(){ if (my === token) { aktivVedSteg = null; vedSteg(-1); } });
+      }
+      finish((t - ctx.currentTime) + slutt + 0.3, my);
+    }).catch(function(){
+      if (my !== token) return;
+      /* Kan ikke lydfilene lastes, brukes den innebygde synthen på én tone. */
+      btn.classList.remove('loading');
+      var t = ctx.currentTime + 0.08, slutt = 0;
+      hendelser.forEach(function(h){
+        var m = h.lyd === 'klikk' ? 96 : h.lyd === 'bass' ? 48 : 72;
+        synthVoice(m, t + h.t, 0.18, 0.18 * (h.v == null ? 1 : h.v));
+        slutt = Math.max(slutt, h.t + 0.2);
+      });
+      /* Notene farges også når reservelyden brukes */
+      if (vedSteg) {
+        aktivVedSteg = vedSteg;
+        hendelser.forEach(function(h){
+          if (h.i == null) return;
+          planlegg(t + h.t, function(){ if (my === token) vedSteg(h.i); });
+        });
+        planlegg(t + slutt, function(){ if (my === token) { aktivVedSteg = null; vedSteg(-1); } });
+      }
+      finish((t - ctx.currentTime) + slutt + 0.3, my);
+    });
+  }
+  window.VBM_LYD_RYTME = function(hendelser, btn, vedSteg){
+    ensureCtx();
+    if (btn === activeBtn) { stopAll(); return; }
+    spillRytme(hendelser, btn, vedSteg);
   };
   window.VBM_LYD_STOPP = stopAll;
   window.__vbmLyd = { voices: function(){ return voices.length; }, instrument: function(){ return current; } };

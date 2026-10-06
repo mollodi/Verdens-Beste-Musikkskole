@@ -1357,6 +1357,8 @@ html:where([data-side="index.html"]) {
 :root:where([data-side="gehorquiz-harmoni.html"]) { --vbm-verk: "K7Q4-QHRM"; }
 :root:where([data-side="notelesing.html"]) { --vbm-verk: "K7Q4-NOTL"; }
 :root:where([data-side="quiz-notelesing.html"]) { --vbm-verk: "K7Q4-QNOT"; }
+:root:where([data-side="rytme.html"]) { --vbm-verk: "K7Q4-RTML"; }
+:root:where([data-side="quiz-rytme.html"]) { --vbm-verk: "K7Q4-QRTM"; }
 :root:where([data-stil="ovelse"]) {
   --ink: #12151A;
   --ink-soft: #1B2027;
@@ -2026,12 +2028,15 @@ html.sh .viktig strong { color: var(--ink) !important; }
 :where(html[data-side="notelesing.html"]) .bred { grid-column: 1 / -1; }
 :where(html[data-side="notelesing.html"]) .noter { color: var(--text-on-paper); }
 :where(html[data-side="notelesing.html"]) .noter svg { display: block; width: 100%; height: auto; }
-:where(html[data-side="notelesing.html"]) .stav-og-navn { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 6px 0 4px; }
-:where(html[data-side="notelesing.html"]) .stav-og-navn .noter { flex: 1 1 220px; max-width: 300px; }
-:where(html[data-side="notelesing.html"]) .tonenavn { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 22px; font-weight: 700; margin: 0; min-width: 9ch; }
+:where(html[data-side="notelesing.html"]) .stav-og-navn { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: 6px 0 4px; }
+/* Fast høyde: notelinjen og navnet skal ikke flytte pianoet når en ny tone vises (ellers treffer neste trykk feil tangent på mobil) */
+:where(html[data-side="notelesing.html"]) .stav-og-navn .noter { width: 100%; max-width: 300px; height: 170px; }
+:where(html[data-side="notelesing.html"]) .stav-og-navn .noter svg { width: 100%; height: 100%; }
+:where(html[data-side="notelesing.html"]) .tonenavn { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 22px; font-weight: 700; margin: 0; min-height: 1.3em; line-height: 1.3; white-space: nowrap; }
 :where(html[data-side="notelesing.html"]) .piano-rad { display: flex; align-items: center; gap: 8px; margin: 8px 0 12px; }
 :where(html[data-side="notelesing.html"]) .piano { flex: 1 1 0; min-width: 0; max-width: 560px; }
 :where(html[data-side="notelesing.html"]) .piano svg { display: block; width: 100%; height: auto; }
+:where(html[data-side="notelesing.html"]) .piano { touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
 :where(html[data-side="notelesing.html"]) .piano-pil { flex-shrink: 0; min-width: 34px; padding: 8px 6px; justify-content: center; }
 :where(html[data-side="notelesing.html"]) .tangent { cursor: pointer; stroke: var(--ink, #1E1E1A); stroke-width: 1; }
 :where(html[data-side="notelesing.html"]) .tangent.hvit { fill: #FFFDF8; }
@@ -2068,6 +2073,7 @@ html.sh .viktig strong { color: var(--ink) !important; }
 :where(html[data-side="quiz-notelesing.html"]) .noter .forslag { fill: var(--brass); }
 :where(html[data-side="quiz-notelesing.html"]) .noter .fasit { fill: var(--green-dk); }
 :where(html[data-side="quiz-notelesing.html"]) .noter .trykkflate { cursor: pointer; }
+:where(html[data-side="quiz-notelesing.html"]) #ov-stav, :where(html[data-side="quiz-notelesing.html"]) #prove-stav { touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
 :where(html[data-side="quiz-notelesing.html"]) .noter .trykkflate:hover { fill: color-mix(in srgb, var(--brass) 18%, transparent); }
 :where(html[data-side="quiz-notelesing.html"]) .bokstaver .btn, :where(html[data-side="quiz-notelesing.html"]) .fortegn-rad .btn { min-width: 46px; justify-content: center; font-size: 17px; }
 :where(html[data-side="quiz-notelesing.html"]) .prove-sporsmal { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 18px; font-weight: 700; margin: 0 0 12px; }
@@ -2076,6 +2082,67 @@ html.sh .viktig strong { color: var(--ink) !important; }
   :where(html[data-side="quiz-notelesing.html"]) .noter .forslag { fill: Highlight; }
   :where(html[data-side="quiz-notelesing.html"]) .noter .fasit { fill: LinkText; }
   :where(html[data-side="quiz-notelesing.html"]) .noter .trykkflate:hover { fill: transparent; stroke: Highlight; }
+}
+
+
+/* ---------- Rytmenoter (rytme.js), felles for leksjon og quiz ---------- */
+.noter.rytme svg, .rytme-valg svg { display: block; max-width: 100%; height: auto; }
+.noter .taktart, .rytme-valg .taktart { font: 700 22px Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; fill: currentColor; }
+.noter .triol, .rytme-valg .triol { font: italic 700 12px Charter, "Iowan Old Style", Georgia, serif; fill: currentColor; }
+.noter .telling { font: 12px ui-sans-serif, system-ui, sans-serif; fill: currentColor; opacity: .7; }
+.noter .mangler-tekst { font: 700 16px ui-sans-serif, system-ui, sans-serif; fill: currentColor; }
+.noter .spilles, .noter .pause.spilles path, .noter .pause.spilles rect, .noter .pause.spilles circle { fill: var(--green-dk, #2C6B42); stroke: var(--green-dk, #2C6B42); }
+@media (forced-colors: active) {
+  .noter.rytme svg, .rytme-valg svg { forced-color-adjust: none; color: CanvasText; }
+  .noter .spilles, .noter .pause.spilles path, .noter .pause.spilles rect, .noter .pause.spilles circle { fill: LinkText; stroke: LinkText; }
+}
+
+/* ---------- Bare Rytme og taktarter (rytme.html) ---------- */
+:where(html[data-side="rytme.html"]) main { align-items: stretch; }
+:where(html[data-side="rytme.html"]) .bred { grid-column: 1 / -1; }
+:where(html[data-side="rytme.html"]) .noter { color: var(--text-on-paper); }
+:where(html[data-side="rytme.html"]) .rytme-eks { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--rule); padding: 8px 0; }
+:where(html[data-side="rytme.html"]) .rytme-eks .noter { flex: 1 1 auto; min-width: 0; max-width: 560px; }
+:where(html[data-side="rytme.html"]) .rytme-eks .btn { flex-shrink: 0; }
+:where(html[data-side="rytme.html"]) .eksempler { margin: 8px 0; }
+:where(html[data-side="rytme.html"]) .taktarter { margin-top: 12px; }
+:where(html[data-side="rytme.html"]) .verditabell { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 15px; }
+:where(html[data-side="rytme.html"]) .verditabell th { text-align: left; font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; text-transform: uppercase; letter-spacing: .06em; padding: 4px 6px; border-bottom: 1px solid var(--rule); }
+:where(html[data-side="rytme.html"]) .verditabell td { padding: 4px 6px; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+:where(html[data-side="rytme.html"]) .verditabell .mini { display: inline-block; width: 46px; vertical-align: middle; margin-right: 6px; color: var(--text-on-paper); }
+:where(html[data-side="rytme.html"]) .verditabell .mini svg { display: block; width: 46px; height: auto; }
+:where(html[data-side="rytme.html"]) .verditabell .slag { font-family: Charter, "Iowan Old Style", Georgia, serif; font-size: 17px; text-align: center; }
+:where(html[data-side="rytme.html"]) .innhold-rytme ol { list-style: none; padding: 0; margin: 4px 0 0; line-height: 1.9; }
+:where(html[data-side="rytme.html"]) .innhold-rytme a { color: inherit; text-underline-offset: 3px; }
+:where(html[data-side="rytme.html"]) .niva { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; border: 1px solid var(--rule); border-radius: 999px; padding: 1px 7px; margin-left: 4px; }
+:where(html[data-side="rytme.html"]) .sanger { list-style: none; margin: 12px 0 0; padding: 0; }
+:where(html[data-side="rytme.html"]) .sanger li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; border-top: 1px solid var(--rule); }
+:where(html[data-side="rytme.html"]) .song-title { font-weight: 600; font-size: 15px; }
+:where(html[data-side="rytme.html"]) .song-meta { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--text-muted); }
+:where(html[data-side="rytme.html"]) .spotify-link { flex-shrink: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; border: 1.5px solid var(--rule); border-radius: 999px; padding: 4px 10px; text-decoration: none; color: inherit; }
+:where(html[data-side="rytme.html"]) .viktig { margin: 0 0 10px; }
+:where(html[data-side="rytme.html"]) a.btn { text-decoration: none; }
+@media (forced-colors: active) {
+  :where(html[data-side="rytme.html"]) .noter, :where(html[data-side="rytme.html"]) .verditabell .mini { color: CanvasText; }
+  :where(html[data-side="rytme.html"]) .rytme-eks, :where(html[data-side="rytme.html"]) .verditabell td, :where(html[data-side="rytme.html"]) .verditabell th, :where(html[data-side="rytme.html"]) .sanger li { border-color: CanvasText; }
+  :where(html[data-side="rytme.html"]) .niva { border-color: CanvasText; }
+  :where(html[data-side="rytme.html"]) .spotify-link { border-color: LinkText; color: LinkText; }
+}
+
+
+/* ---------- Bare Rytmequiz (quiz-rytme.html) ---------- */
+:where(html[data-side="quiz-rytme.html"]) #ov-bilde, :where(html[data-side="quiz-rytme.html"]) #prove-bilde { border-top: none; padding-top: 0; margin: 0 0 10px; }
+:where(html[data-side="quiz-rytme.html"]) .noter { color: var(--text-on-paper); }
+:where(html[data-side="quiz-rytme.html"]) .rytme-svar { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+@media (min-width: 760px) { :where(html[data-side="quiz-rytme.html"]) .rytme-svar { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+:where(html[data-side="quiz-rytme.html"]) .rytme-valg { display: flex; align-items: center; gap: 10px; justify-content: flex-start; padding: 8px 12px; border-radius: 14px; text-align: left; }
+:where(html[data-side="quiz-rytme.html"]) .rytme-valg svg { flex: 1 1 auto; min-width: 0; }
+:where(html[data-side="quiz-rytme.html"]) .valg-nr { font-weight: 700; font-size: 16px; flex-shrink: 0; width: 1.4em; }
+:where(html[data-side="quiz-rytme.html"]) .btn.fasit-valg { outline: 3px solid var(--green-dk, #2C6B42); outline-offset: 1px; }
+:where(html[data-side="quiz-rytme.html"]) .prove-sporsmal { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 18px; font-weight: 700; margin: 0 0 12px; }
+@media (forced-colors: active) {
+  :where(html[data-side="quiz-rytme.html"]) .noter { color: CanvasText; }
+  :where(html[data-side="quiz-rytme.html"]) .btn.fasit-valg { outline-color: Highlight; }
 }
 
 /* =====================================================================

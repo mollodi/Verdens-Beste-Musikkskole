@@ -42,7 +42,8 @@
   /* Lydkreditter. Siden velger med <footer data-lyd="alle"> eller data-lyd="piano". */
   var LYD = {
     alle: 'Lyd: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Gitar, fiolin og cello fra tonejs-instruments av Nicholas Brosowsky (CC BY 3.0).',
-    piano: 'Lyd: Salamander Grand Piano av Alexander Holm (CC BY 3.0).'
+    piano: 'Lyd: Salamander Grand Piano av Alexander Holm (CC BY 3.0).',
+    rytme: 'Lyd: trommer fra Versilian Community Sample Library (CC0). Piano: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Gitar, fiolin og cello fra tonejs-instruments av Nicholas Brosowsky (CC BY 3.0).'
   };
 
   /* ==================== 2. Språk ==================== */

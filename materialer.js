@@ -109,6 +109,15 @@ window.VBM = {
     },
     {
       seksjon: "teori",
+      merke: "Rytme",
+      tittel: "Rytme og taktarter",
+      beskrivelse: "Seks kapitler fra nivå 1 til 5: notelengder, punktering, trioler, synkoper, sammensatt og ujevn takt, med trommer.",
+      fil: "rytme.html",
+      svartHvitt: false,
+      lagtTil: "2026-10-06"
+    },
+    {
+      seksjon: "teori",
       merke: "Tonearter",
       tittel: "Kvintsirkelen",
       beskrivelse: "Alle dur- og molltonearter med fortegn, rekkefølgen på kryss og b-er, og lyd for hver toneart.",
@@ -212,6 +221,24 @@ window.VBM = {
       tittel: "Gehørquiz: kadenser og funksjoner",
       beskrivelse: "Hør en kadens og finn typen, eller hør en akkord etter tonika og finn funksjonen.",
       fil: "gehorquiz-harmoni.html",
+      svartHvitt: false,
+      lagtTil: "2026-10-06"
+    },
+    {
+      seksjon: "gehorquiz",
+      merke: "Rytme",
+      tittel: "Gehørquiz: rytme",
+      beskrivelse: "Hør en rytme og finn notene, eller hør hvilken taktart musikken går i.",
+      fil: "quiz-rytme.html?type=hor",
+      svartHvitt: false,
+      lagtTil: "2026-10-06"
+    },
+    {
+      seksjon: "teoriquiz",
+      merke: "Rytme",
+      tittel: "Teoriquiz: rytme",
+      beskrivelse: "Les en rytme og tell: finn taktarten eller noten som mangler.",
+      fil: "quiz-rytme.html?type=les",
       svartHvitt: false,
       lagtTil: "2026-10-06"
     }

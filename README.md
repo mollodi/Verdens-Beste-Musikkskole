@@ -19,6 +19,7 @@ Gratis undervisningsmateriell i musikkteori for elever og lærere. Juksebøkene 
 
 ### Musikkteori
 - **Notelesing**: notelinjen, G-nøkkel, F-nøkkel, altnøkkel og tenornøkkel, oktavnavnene (Helmholtz og vitenskapelige navn), og et piano som viser hver tone på notelinjen i valgt nøkkel.
+- **Rytme og taktarter**: seks kapitler fra nivå 1 til 5, fra puls og notelengder til punktering, trioler, synkoper, sammensatt takt (6/8, 9/8, 12/8) og ujevn takt (5/4, 7/8), med rytmenoter, telling, metronom, trommegrooves og sangeksempler.
 - **Kvintsirkelen**: interaktiv kvintsirkel med alle dur- og molltonearter, fortegnene på ekte notelinje, rekkefølgen på kryss og b-er, enharmoniske tonearter, og skala og treklang for hver toneart.
 - **Skalaer og modi**: dur, moll (naturlig, harmonisk og melodisk), de sju modiene, pentatonikk, blues, heltone, kromatisk og jazzskalaer, i alle tonearter, med noter, lyd og sangeksempler. Modiene vises både fra samme grunntone og som trinn i durskalaen.
 - **Omvendinger**: alle stillingene til treklanger og septimakkorder, fra sekstakkord til sekundakkord, med besifring, skråstreknavn og intervallene over bassen, i alle tonearter. Forklarer også at sekstakkord betyr to ting.
@@ -33,11 +34,13 @@ Gratis undervisningsmateriell i musikkteori for elever og lærere. Juksebøkene 
 - **Gehørquiz: skalaer og modi**: hør en skala og finn navnet, med C eller alle tonearter. Samme side som Teoriquiz: skalaer og modi, åpnet med «Hør» valgt (quiz-skalaer.html?type=hor).
 - **Gehørquiz: omvendinger**: hør en akkord og finn stillingen, fra grunnstilling til sekundakkord, for dur, moll og dominantseptimakkorder, med C eller alle tonearter.
 - **Gehørquiz: kadenser og funksjoner**: hør en kadens og finn typen, eller hør en akkord etter tonika og finn funksjonen.
+- **Gehørquiz: rytme**: hør en rytme og finn riktig notasjon blant fire, eller hør hvilken taktart en trommegroove går i. Samme side som Teoriquiz: rytme, åpnet med lytteoppgaver (quiz-rytme.html?type=hor).
 
 ### Teoriquiz
 - **Teoriquiz: notelesing**: les en note og finn navnet, med eller uten fortegn, eller trykk der en tone står på notelinjen, i G-, F-, alt- og tenornøkkel.
 - **Teoriquiz: kvintsirkelen**: les fortegnene og finn tonearten, eller finn fortegnene til en toneart, i dur og moll, med opptil 4 eller alle 7 fortegn.
 - **Teoriquiz: skalaer og modi**: les en skala på notelinjen og finn navnet. Samme side, åpnet med «Les» valgt (quiz-skalaer.html?type=les).
+- **Teoriquiz: rytme**: les en takt og finn taktarten, eller finn noten som mangler (quiz-rytme.html?type=les).
 
 ## Lyd
 I juksebøkene kan du velge mellom **piano**, **gitar** og **strykere** med knappen nederst til høyre. Når du trykker på en ny spill-knapp, stopper lyden som spiller. Trykk på samme knapp igjen for å stoppe.

@@ -15,6 +15,8 @@ Ren HTML, CSS og JavaScript. Ingen byggesteg, ingen rammeverk. Alle filer ligger
 | `tonearter.js` | Tonearter, fortegn og tonenavn på tre språk, brukt av kvintsirkelen, skalaene og quizene deres | Sjelden |
 | `skalaer.js` | Alle skalaene (trinn, tekster, sangeksempler), noter for skalaer, akkorder side om side, firstemmig sats på to notelinjer og enkeltnoter i fire nøkler, brukt av skalaleksjonen, skalaquizen, kvintsirkelen, omvendingene, harmonilæren og notelesingen | Sjelden |
 | `harmoni.js` | Firstemmige akkorder for funksjoner, kadenser, kvartsekstakkorder, beliggenhet og skråstrekakkorder, brukt av harmonilæren og quizen | Sjelden |
+| `rytme.js` | Rytmer, taktarter, rytmenoter på én linje, avspilling med inntelling og metronom, og trommegrooves, brukt av rytmeleksjonen og rytmequizen | Sjelden |
+| `rytme-skarptromme.mp3`, `rytme-basstromme.mp3`, `rytme-hihat.mp3`, `rytme-treblokk.mp3` | Ekte trommeopptak fra Versilian Community Sample Library (CC0), brukt av rytmesidene. Treblokken er metronomen | Aldri |
 | `Fraunces-Variable.ttf`, `Fraunces-OFL.txt`, `Lora-Variable.ttf`, `Lora-Italic-Variable.ttf`, `Lora-OFL.txt` | Skriftene til Akkordhefte, med lisensene som skal følge med. Filene må ikke endres | Aldri |
 | `index.html` og innholdssidene | Bare innhold. Ingen `<style>` i sidene | Ja |
 

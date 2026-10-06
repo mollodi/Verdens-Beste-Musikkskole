@@ -141,7 +141,15 @@
   /* =================== Nøkler, notelinje og piano =================== */
   NOKLER.forEach(function(x){
     var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = T(x[1]); b._n = x[0];
-    b.addEventListener('click', function(){ nokkel = x[0]; start = START[nokkel]; lagre(); tegn(); });
+    /* Ny nøkkel: tonen beholdes. Pianoet viser nøkkelens vanlige område hvis tonen er der,
+       ellers flyttes det bare så mye at den valgte tonen synes. */
+    b.addEventListener('click', function(){
+      nokkel = x[0];
+      var vanlig = START[nokkel];
+      if (valgt >= vanlig && valgt <= vanlig + 24) start = vanlig;
+      else start = Math.min(72, Math.max(24, Math.floor(valgt / 12) * 12 - (valgt < vanlig ? 0 : 12)));
+      lagre(); tegn();
+    });
     $('nokler').appendChild(b);
   });
   [].forEach.call(document.querySelectorAll('[data-skriv]'), function(b){
@@ -178,9 +186,22 @@
   }
   function trykk(el){
     valgt = +el.getAttribute('data-m'); lagre(); tegn();
+    /* Stopp tonen som klinger først, ellers tolkes et nytt trykk som «stopp» */
+    if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP();
     if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS([[valgt]], $('piano'));
   }
-  $('piano').addEventListener('click', function(e){ var t = e.target.closest && e.target.closest('[data-m]'); if (t) trykk(t); });
+  /* Tangenten finnes ut fra det nøyaktige punktet fingeren traff. Mobilnettlesere «justerer» ellers
+     trykket til nærmeste knapp, og på et piano blir det ofte nabotangenten. */
+  var sistPeker = 0;
+  function tangentVed(x, y){ var el = document.elementFromPoint(x, y); return el && el.closest ? el.closest('#piano [data-m]') : null; }
+  $('piano').addEventListener('pointerup', function(e){
+    var t = tangentVed(e.clientX, e.clientY);
+    if (t) { sistPeker = Date.now(); trykk(t); }
+  });
+  $('piano').addEventListener('click', function(e){
+    if (Date.now() - sistPeker < 600) return;   // allerede håndtert av pointerup
+    var t = e.target.closest && e.target.closest('[data-m]'); if (t) trykk(t);
+  });
   $('piano').addEventListener('keydown', function(e){
     var t = e.target.closest && e.target.closest('[data-m]');
     if (t && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); trykk(t); }
