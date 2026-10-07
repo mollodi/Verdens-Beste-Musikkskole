@@ -2145,6 +2145,104 @@ html.sh .viktig strong { color: var(--ink) !important; }
   :where(html[data-side="quiz-rytme.html"]) .btn.fasit-valg { outline-color: Highlight; }
 }
 
+
+/* =====================================================================
+   Lenker og navigasjon (felles for alle sider)
+   Lenker i tekst får en tydelig farge og understrek. Mørk messing på lyst papir,
+   lys messing på mørk bakgrunn. I kontrastmodus brukes systemets lenkefarge.
+   ===================================================================== */
+:root { --lenke-lys: #8A5F12; --lenke-mork: #E8B866; --lenke: var(--lenke-lys); }
+:where([data-stil="ovelse"], [data-stil="mork"]) body { --lenke: var(--lenke-mork); }
+:where([data-stil="ovelse"], [data-stil="mork"]) :where(.card, .cover) { --lenke: var(--lenke-lys); }
+@media (prefers-color-scheme: dark) {
+  :where([data-stil="bok"]) body { --lenke: var(--lenke-mork); }
+}
+:where(main, .hero, .chapter, article, .lede, .wrap) a:not(.btn):not(.spotify-link):not(.card-link):not(.vbm-meny-lenke):not(.vbm-hjem) {
+  color: var(--lenke);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--lenke) 55%, transparent);
+  border-radius: 2px;
+  transition: text-decoration-color .15s, text-decoration-thickness .15s;
+}
+:where(main, .hero, .chapter, article, .lede, .wrap) a:not(.btn):not(.spotify-link):not(.card-link):not(.vbm-meny-lenke):not(.vbm-hjem):hover {
+  text-decoration-color: var(--lenke);
+  text-decoration-thickness: 2.5px;
+}
+:where(main, .hero, .chapter, article, .lede, .wrap) a:not(.btn):not(.spotify-link):not(.card-link):not(.vbm-meny-lenke):not(.vbm-hjem):focus-visible {
+  outline: 2px solid var(--lenke); outline-offset: 2px; text-decoration: none;
+}
+/* Knapper som er lenker til andre sider får en pil, så de skiller seg fra spill-knapper */
+a.btn::after { content: "\2192"; margin-left: .5em; display: inline-block; transition: transform .15s; }
+a.btn:hover::after { transform: translateX(3px); }
+
+/* ---------- Menylinjen øverst ---------- */
+.vbm-back.vbm-topp {
+  position: sticky; top: 0; z-index: 40;
+  max-width: none; margin: 0; padding: 8px max(1.25rem, calc((100% - 60rem) / 2 + 1.25rem));
+  background: var(--vbm-topp-bg, #fff);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .12);
+}
+.vbm-back.vbm-topp.vbm-back--book { margin: 0 0 24px; }
+/* Mens menyen er åpen, ruller linjen med siden, så hele listen kan leses uten egen rullefelt */
+.vbm-back.vbm-topp.vbm-meny-apen { position: relative; }
+/* Startsiden: menyknappen til venstre, språkknappene til høyre */
+.vbm-back .vbm-hjem, .vbm-back .vbm-meny-knapp {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 14px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: inherit; opacity: 1; text-decoration: none;
+  border: 1.5px solid color-mix(in srgb, currentColor 45%, transparent); border-radius: 999px;
+  padding: 8px 14px; background: transparent; cursor: pointer;
+}
+.vbm-back .vbm-hjem:hover, .vbm-back .vbm-meny-knapp:hover, .vbm-back .vbm-meny-knapp[aria-expanded="true"] {
+  border-color: var(--lenke-mork); color: inherit;
+}
+:where([data-stil="bok"], [data-side="akkordhefte.html"]) .vbm-back .vbm-hjem:hover,
+:where([data-stil="bok"], [data-side="akkordhefte.html"]) .vbm-back .vbm-meny-knapp:hover,
+:where([data-stil="bok"], [data-side="akkordhefte.html"]) .vbm-back .vbm-meny-knapp[aria-expanded="true"] { border-color: var(--lenke-lys); }
+.vbm-meny-ikon, .vbm-meny-ikon::before, .vbm-meny-ikon::after { display: block; width: 16px; height: 2px; background: currentColor; border-radius: 1px; }
+.vbm-meny-ikon { position: relative; }
+.vbm-meny-ikon::before, .vbm-meny-ikon::after { content: ""; position: absolute; left: 0; }
+.vbm-meny-ikon::before { top: -5px; } .vbm-meny-ikon::after { top: 5px; }
+.vbm-back.vbm-topp .vbm-valg { margin-left: auto; }
+.vbm-back.vbm-topp .vbm-meny-knapp { order: 2; }
+.vbm-back.vbm-topp .vbm-valg { order: 3; }
+/* Menyen med alle sidene */
+.vbm-meny {
+  order: 4; flex: 1 1 100%; min-width: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 6px 24px;
+  padding: 10px 2px 6px; border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+.vbm-meny[hidden] { display: none; }
+.vbm-meny-tittel { margin: 6px 0 4px; font: 700 11px/1.3 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; opacity: .75; }
+.vbm-meny ul { list-style: none; margin: 0; padding: 0; }
+.vbm-meny-lenke {
+  display: block; padding: 7px 10px; margin: 0; border-radius: 8px; overflow-wrap: anywhere;
+  color: inherit; text-decoration: none; font: 15px/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+.vbm-meny-lenke:hover, .vbm-meny-lenke:focus-visible { background: color-mix(in srgb, currentColor 10%, transparent); outline: none; }
+.vbm-meny-lenke[aria-current="page"] { font-weight: 700; box-shadow: inset 3px 0 0 var(--lenke-mork); }
+:where([data-stil="bok"], [data-side="akkordhefte.html"]) .vbm-meny-lenke[aria-current="page"] { box-shadow: inset 3px 0 0 var(--lenke-lys); }
+@media (max-width: 520px) {
+  .vbm-back.vbm-topp { gap: 6px; padding: 6px 10px; }
+  .vbm-back .vbm-hjem, .vbm-back .vbm-meny-knapp { padding: 7px 10px; font-size: 13px; gap: 6px; }
+  .vbm-back.vbm-topp .vbm-valg { gap: 6px; }
+  .vbm-back.vbm-topp .vbm-pille button { padding: 6px 9px; font-size: 12.5px; }
+}
+@media print { .vbm-meny, .vbm-meny-knapp { display: none !important; } }
+@media (forced-colors: active) {
+  .vbm-back.vbm-topp { background: Canvas; border-bottom-color: CanvasText; box-shadow: none; }
+  .vbm-back .vbm-hjem, .vbm-back .vbm-meny-knapp { border-color: CanvasText; color: LinkText; }
+  .vbm-back .vbm-meny-knapp[aria-expanded="true"] { border-color: Highlight; }
+  .vbm-meny-lenke { color: LinkText; }
+  .vbm-meny-lenke[aria-current="page"] { box-shadow: inset 3px 0 0 Highlight; }
+  .vbm-meny-ikon, .vbm-meny-ikon::before, .vbm-meny-ikon::after { background: LinkText; }
+  :where(main, .hero, .chapter, article, .lede, .wrap) a:not(.btn):not(.spotify-link):not(.card-link):not(.vbm-meny-lenke):not(.vbm-hjem) { color: LinkText; text-decoration-color: LinkText; }
+}
+
 /* =====================================================================
    6. Akkordhefte (akkordhefte.html)
    ===================================================================== */
@@ -2192,7 +2290,7 @@ html:where([data-side="akkordhefte.html"]) {
   font-family: 'Lora', Georgia, serif;
   font-size: 17px;
   line-height: 1.65;
-  overflow-x: hidden;
+  overflow-x: clip;   /* «clip», ikke «hidden»: «hidden» ville stoppet menylinjen fra å bli stående øverst */
   overflow-wrap: break-word;
   word-break: break-word;
 }

@@ -66,13 +66,14 @@
   root.setAttribute('data-sprak', sprak);
 
   var side = root.getAttribute('data-side') || (location.pathname.split('/').pop() || 'index.html');
-  var ord = {};
-  /* Ordbøkene (sprak-XX.js) kaller denne funksjonen. */
+  var ord = {}, menyOrd = {};
+  /* Ordbøkene (sprak-XX.js) kaller denne funksjonen. Menyen bruker startsidens oversettelser av titlene. */
   window.VBM_ORDBOK = function(sp, bok){
     if (sp !== sprak) return;
     var f = bok.felles || {}, s = (bok.sider || {})[side] || {}, k;
     for (k in f) ord[k] = f[k];
     for (k in s) ord[k] = s[k];
+    menyOrd = (bok.sider || {})['index.html'] || {};
     oversettHode();
   };
   var trengs = sprak !== 'no' || kilde !== 'no';
@@ -251,7 +252,128 @@
     document.body.insertBefore(d, document.body.firstChild);
   }
 
-  /* ==================== 8. Oppstart ==================== */
+  /* ==================== 8. Meny øverst på alle sider ====================
+     «Alle ressurser» fører til startsiden, og «Meny» viser alle sidene, gruppert som på startsiden.
+     Listen hentes fra materialer.js, så en ny side kommer med i menyen av seg selv. */
+  function menyT(s){ var o = menyOrd[s]; if (typeof o === 'string') return o; return T(s); }
+  function hentMaterialer(ferdigFn){
+    if (window.VBM && window.VBM.materialer) { ferdigFn(); return; }
+    var sk = document.createElement('script'); sk.src = 'materialer.js';
+    sk.onload = ferdigFn; document.head.appendChild(sk);
+  }
+  function byggMeny(){
+    var nav = document.querySelector('.vbm-back');
+    /* Startsiden: menyknappen til venstre og språkknappene til høyre i samme linje øverst,
+       slik som på de andre sidene, men uten lenke tilbake (siden er selv oversikten). */
+    if (!nav && side === 'index.html') {
+      nav = document.createElement('nav'); nav.className = 'vbm-back vbm-back--start'; nav.setAttribute('aria-label', T('Nettsted'));
+      var banner = document.querySelector('.vbm-original');
+      document.body.insertBefore(nav, banner ? banner.nextSibling : document.body.firstChild);
+      var plass = document.querySelector('[data-vbm-sprak]'), pille = plass && plass.querySelector('.vbm-sprak');
+      if (pille) { var v = document.createElement('div'); v.className = 'vbm-valg'; v.appendChild(pille); nav.appendChild(v); plass.hidden = true; plass.style.display = 'none'; }
+    }
+    if (!nav || nav.querySelector('.vbm-meny-knapp')) return;
+    nav.classList.add('vbm-topp');
+    var hjem = nav.querySelector('a[href="index.html"]'); if (hjem) hjem.classList.add('vbm-hjem');
+    var bs = getComputedStyle(document.body);
+    nav.style.setProperty('--vbm-topp-bg', bs.backgroundColor && bs.backgroundColor !== 'rgba(0, 0, 0, 0)' ? bs.backgroundColor : '#fff');
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'vbm-meny-knapp';
+    b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-controls', 'vbm-meny');
+    b.innerHTML = '<span class="vbm-meny-ikon" aria-hidden="true"></span><span>' + T('Meny') + '</span>';
+    var panel = document.createElement('div'); panel.id = 'vbm-meny'; panel.className = 'vbm-meny'; panel.hidden = true;
+    var valg = nav.querySelector('.vbm-valg');
+    if (valg) nav.insertBefore(b, valg); else nav.appendChild(b);
+    nav.appendChild(panel);
+    /* Hopp til et kapittel (#kapittel-3, #innhold) skal stoppe under menylinjen, ikke bak den */
+    function luft(){ if (!nav.classList.contains('vbm-meny-apen')) root.style.scrollPaddingTop = (nav.getBoundingClientRect().height + 12) + 'px'; }
+    luft(); window.addEventListener('resize', luft);
+    /* Mens menyen er åpen, står linjen ikke fast øverst, så hele listen kan rulles og leses */
+    function lukk(){ panel.hidden = true; b.setAttribute('aria-expanded', 'false'); nav.classList.remove('vbm-meny-apen'); luft(); }
+    b.addEventListener('click', function(){
+      if (!panel.hidden) { lukk(); return; }
+      hentMaterialer(function(){
+        var M = window.VBM || {}, html = '';
+        (M.seksjoner || []).forEach(function(sk){
+          var liste = (M.materialer || []).filter(function(m){ return m.seksjon === sk.id && !m.skjult; });
+          if (!liste.length) return;
+          html += '<div class="vbm-meny-gruppe"><p class="vbm-meny-tittel">' + menyT(sk.overskrift) + '</p><ul>';
+          liste.forEach(function(m){
+            var her = m.fil.split('?')[0] === side;
+            html += '<li><a class="vbm-meny-lenke" href="' + m.fil + '"' + (her ? ' aria-current="page"' : '') + '>' + menyT(m.tittel) + '</a></li>';
+          });
+          html += '</ul></div>';
+        });
+        panel.innerHTML = html;
+        panel.hidden = false; b.setAttribute('aria-expanded', 'true'); nav.classList.add('vbm-meny-apen');
+        /* Er siden rullet ned, rulles den opp så menyen begynner øverst på skjermen */
+        var y = nav.getBoundingClientRect().top + window.pageYOffset;
+        if (window.pageYOffset > y) window.scrollTo(0, y);
+      });
+    });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !panel.hidden) { lukk(); b.focus(); } });
+    document.addEventListener('click', function(e){ if (!panel.hidden && !nav.contains(e.target)) lukk(); });
+  }
+
+  /* ==================== 9. Lenker i forklaringene ====================
+     Når en forklaring nevner en annen side, blir navnet en lenke (på alle tre språk).
+     «kapittel 3» blir bare lenke i juksebokens egne forklaringer, der det betyr bokens kapittel.
+     En side lenker aldri til seg selv, og et avsnitt lenker ikke to ganger til samme sted. */
+  var BOK = 'akkorder-og-intervaller.html';
+  var LENKER = {
+    no: [[/kapittel (\d) i Den ultimate jukseboka/, BOK + '#kapittel-$1'], [/Den ultimate jukseboka(?: for akkorder og intervaller)?/, BOK],
+         [/kapittel (\d)/, '#kapittel-$1', 0, BOK], [/Skalaer og modi/, 'skalaer.html'], [/lytteguiden/, 'lytteguide-septim-og-nonakkorder.html'],
+         [/(se )(Kvintsirkelen)/, 'kvintsirkelen.html', 2], [/Akkordheftet/, 'akkordhefte.html'], [/(i kadensen i )(gehørquizen)/, 'gehorquiz-akkorder.html', 2],
+         [/Gehørquiz: omvendinger/, 'gehorquiz-omvendinger.html'], [/Gehørquiz: kadenser og funksjoner/, 'gehorquiz-harmoni.html'],
+         [/Teoriquiz: notelesing/, 'quiz-notelesing.html'], [/(I )(rytmequizen)/, 'quiz-rytme.html', 2]],
+    en: [[/chapter (\d) of The Ultimate Cheat Book/, BOK + '#kapittel-$1'], [/The Ultimate Cheat Book(?: for Chords and Intervals)?/, BOK],
+         [/chapter (\d)/, '#kapittel-$1', 0, BOK], [/Scales and modes/, 'skalaer.html'], [/(see )(the listening guide)/, 'lytteguide-septim-og-nonakkorder.html', 2],
+         [/(see )(The circle of fifths)/, 'kvintsirkelen.html', 2], [/Chord workbook/, 'akkordhefte.html'], [/(in the cadence in the )(ear quiz)/, 'gehorquiz-akkorder.html', 2],
+         [/Ear quiz: inversions/, 'gehorquiz-omvendinger.html'], [/Ear quiz: cadences and functions/, 'gehorquiz-harmoni.html'],
+         [/Theory quiz: reading music/, 'quiz-notelesing.html'], [/(In the )(rhythm quiz)/, 'quiz-rytme.html', 2]],
+    pl: [[/rozdzia(?:le|ł) (\d) Najlepszej ściągi/, BOK + '#kapittel-$1'], [/Najlepsz(?:ej|a) ścią(?:dze|gi|ga)(?: z akordów i interwałów)?/, BOK],
+         [/rozdzia(?:łu|le|ł) (\d)/, '#kapittel-$1', 0, BOK], [/Skale i skale modalne/, 'skalaer.html'], [/przewodnik słuchowy/, 'lytteguide-septim-og-nonakkorder.html'],
+         [/(zobacz )(Koło kwintowe)/, 'kvintsirkelen.html', 2], [/Zeszycie akordów/, 'akkordhefte.html'], [/(w kadencji w )(quizie słuchowym)/, 'gehorquiz-akkorder.html', 2],
+         [/quizie słuchowym Przewroty/, 'gehorquiz-omvendinger.html'], [/quizie słuchowym Kadencje i funkcje/, 'gehorquiz-harmoni.html'],
+         [/quizie teoretycznym Czytanie nut/, 'quiz-notelesing.html'], [/quizie rytmicznym/, 'quiz-rytme.html']]
+  };
+  var LENKE_I = 'main p, main li, main figcaption, .hero .lede, .chapter .caption, .chapter .group-note, article p';
+  var LENKE_IKKE = 'a, button, nav, svg, h1, h2, h3, h4, label, .label, .step-label, .eyebrow, .vbm-back, .vbm-original, .cover, .song-info, .svar-grupper, .fremgang, .brikker, footer, [translate="no"]';
+  function lenkInn(rot){
+    var regler = LENKER[sprak]; if (!regler || side === 'index.html' || rot.nodeType !== 1) return;
+    var bokser = [].slice.call(rot.querySelectorAll(LENKE_I));
+    if (rot.matches && rot.matches(LENKE_I)) bokser.push(rot);
+    bokser.forEach(function(boks){
+      if (boks.closest(LENKE_IKKE) || boks.getAttribute('data-vbm-lenket')) return;
+      boks.setAttribute('data-vbm-lenket', '1');
+      var brukt = {}, w = document.createTreeWalker(boks, NodeFilter.SHOW_TEXT), noder = [], n;
+      while ((n = w.nextNode())) if (!n.parentElement.closest(LENKE_IKKE)) noder.push(n);
+      noder.forEach(function(node){
+        var tekst = node.nodeValue, del = node;
+        while (true) {
+          var best = null;
+          regler.forEach(function(r){
+            if (r[3] && r[3] !== side) return;
+            var m = r[0].exec(del.nodeValue);
+            if (!m) return;
+            var g = r[2] || 0, href = r[1].replace('$1', m[1] || '');
+            var maal = href.split('#')[0];
+            if (maal === side || (!maal && side !== BOK) || brukt[href]) return;
+            var start = m.index + (g ? m[0].indexOf(m[g]) : 0), lengde = (g ? m[g] : m[0]).length;
+            if (!best || start < best.start) best = { start: start, lengde: lengde, href: href };
+          });
+          if (!best) break;
+          var etter = del.splitText(best.start), rest = etter.splitText(best.lengde);
+          var a = document.createElement('a'); a.className = 'vbm-lenket'; a.href = best.href;
+          etter.parentNode.insertBefore(a, etter); a.appendChild(etter);
+          ferdig.add(del); ferdig.add(etter); ferdig.add(rest);
+          brukt[best.href] = true;
+          del = rest;
+        }
+      });
+    });
+  }
+
+  /* ==================== 10. Oppstart ==================== */
   var obs = null;
   function start(){
     if (!document.body) return;
@@ -261,9 +383,10 @@
     byggOriginal();
     byggBunn();
     tre(document.body);
+    lenkInn(document.body);
     obs = new MutationObserver(function(rec){
       rec.forEach(function(r){
-        if (r.type === 'childList') { for (var i = 0; i < r.addedNodes.length; i++) tre(r.addedNodes[i]); }
+        if (r.type === 'childList') { for (var i = 0; i < r.addedNodes.length; i++) { tre(r.addedNodes[i]); lenkInn(r.addedNodes[i]); } }
         else if (r.type === 'characterData') { ferdig.delete(r.target); tekstNode(r.target); }
         else if (r.type === 'attributes' && r.target.nodeType === 1 && !hopp(r.target)) attributter(r.target);
       });
@@ -271,6 +394,7 @@
     });
     obs.observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTR });
     byggKnapper();                                       // etter oversettelsen, så knappene ikke forstyrrer den
+    byggMeny();
     root.classList.remove('vbm-oversetter');
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();

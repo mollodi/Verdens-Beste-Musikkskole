@@ -122,7 +122,8 @@ VBM_ORDBOK("pl", {
     "Forstørret sekst": "Seksta zwiększona",
     "Spill av Forstørret sekst": "Odtwórz: seksta zwiększona",
     "Trommer": "Perkusja",
-    "Lyd: trommer fra Versilian Community Sample Library (CC0). Piano: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Gitar, fiolin og cello fra tonejs-instruments av Nicholas Brosowsky (CC BY 3.0).": "Dźwięk: perkusja z Versilian Community Sample Library (CC0). Fortepian: Salamander Grand Piano, Alexander Holm (CC BY 3.0). Gitara, skrzypce i wiolonczela z tonejs-instruments, Nicholas Brosowsky (CC BY 3.0)."
+    "Lyd: trommer fra Versilian Community Sample Library (CC0). Piano: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Gitar, fiolin og cello fra tonejs-instruments av Nicholas Brosowsky (CC BY 3.0).": "Dźwięk: perkusja z Versilian Community Sample Library (CC0). Fortepian: Salamander Grand Piano, Alexander Holm (CC BY 3.0). Gitara, skrzypce i wiolonczela z tonejs-instruments, Nicholas Brosowsky (CC BY 3.0).",
+    "Meny": "Menu"
   },
   sider: {
     "index.html": {

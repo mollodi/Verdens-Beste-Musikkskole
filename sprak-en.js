@@ -122,7 +122,8 @@ VBM_ORDBOK("en", {
     "Forstørret sekst": "Augmented 6th",
     "Spill av Forstørret sekst": "Play Augmented 6th",
     "Trommer": "Drums",
-    "Lyd: trommer fra Versilian Community Sample Library (CC0). Piano: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Gitar, fiolin og cello fra tonejs-instruments av Nicholas Brosowsky (CC BY 3.0).": "Sound: drums from the Versilian Community Sample Library (CC0). Piano: Salamander Grand Piano by Alexander Holm (CC BY 3.0). Guitar, violin and cello from tonejs-instruments by Nicholas Brosowsky (CC BY 3.0)."
+    "Lyd: trommer fra Versilian Community Sample Library (CC0). Piano: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Gitar, fiolin og cello fra tonejs-instruments av Nicholas Brosowsky (CC BY 3.0).": "Sound: drums from the Versilian Community Sample Library (CC0). Piano: Salamander Grand Piano by Alexander Holm (CC BY 3.0). Guitar, violin and cello from tonejs-instruments by Nicholas Brosowsky (CC BY 3.0).",
+    "Meny": "Menu"
   },
   sider: {
     "index.html": {
