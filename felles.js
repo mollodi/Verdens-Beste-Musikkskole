@@ -274,7 +274,9 @@
     }
     if (!nav || nav.querySelector('.vbm-meny-knapp')) return;
     nav.classList.add('vbm-topp');
-    var hjem = nav.querySelector('a[href="index.html"]'); if (hjem) hjem.classList.add('vbm-hjem');
+    /* «Alle ressurser» står ikke lenger i linjen, men øverst inne i menyen */
+    var hjem = nav.querySelector('a[href="index.html"]'), hjemTekst = '';
+    if (hjem) { hjemTekst = hjem.innerHTML; hjem.parentNode.removeChild(hjem); }
     var bs = getComputedStyle(document.body);
     nav.style.setProperty('--vbm-topp-bg', bs.backgroundColor && bs.backgroundColor !== 'rgba(0, 0, 0, 0)' ? bs.backgroundColor : '#fff');
     var b = document.createElement('button'); b.type = 'button'; b.className = 'vbm-meny-knapp';
@@ -293,6 +295,7 @@
       if (!panel.hidden) { lukk(); return; }
       hentMaterialer(function(){
         var M = window.VBM || {}, html = '';
+        if (hjemTekst) html += '<div class="vbm-meny-hjem"><a class="vbm-hjem" href="index.html">' + hjemTekst + '</a></div>';
         (M.seksjoner || []).forEach(function(sk){
           var liste = (M.materialer || []).filter(function(m){ return m.seksjon === sk.id && !m.skjult; });
           if (!liste.length) return;
