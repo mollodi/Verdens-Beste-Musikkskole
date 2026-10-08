@@ -661,7 +661,8 @@
   function tempoValg(){ var v = ''; try { v = localStorage.getItem(TEMPO) || ''; } catch(e){} return v === 'sakte' || v === 'middels' ? v : 'raskt'; }
   window.VBM_TEMPO = tempoValg;
   window.VBM_TEMPO_BPM = function(){ return { raskt: 100, middels: 80, sakte: 60 }[tempoValg()]; };
-  function brukVisning(){ var v = ''; try { v = localStorage.getItem(VISNING) || ''; } catch(e){} root.classList.toggle('vbm-sh', v === 'sh'); if (root.getAttribute('data-stil') === 'bok') root.classList.toggle('sh', v === 'sh'); return v; }
+  /* Svart-hvitt er standard. Fargene slås på under Innstillinger (lagres som «farger»). */
+  function brukVisning(){ var v = null; try { v = localStorage.getItem(VISNING); } catch(e){} v = v === 'farger' ? 'farger' : 'sh'; root.classList.toggle('vbm-sh', v === 'sh'); if (root.getAttribute('data-stil') === 'bok') root.classList.toggle('sh', v === 'sh'); return v; }
   function byggInnstillinger(){
     if (!TONEFARGER) return;
     var nav = document.querySelector('.vbm-back'); if (!nav || nav.querySelector('.vbm-inst-knapp')) return;
@@ -671,8 +672,8 @@
     var panel = document.createElement('div'); panel.id = 'vbm-inst'; panel.className = 'vbm-inst'; panel.hidden = true;
     panel.innerHTML = '<p class="vbm-meny-tittel">' + T('Visning') + '</p>'
       + '<div class="vbm-pille vbm-inst-valg" role="group" aria-label="' + T('Visning') + '">'
-      + '<button type="button" data-visning=""><span>' + T('Farger') + '</span></button><button type="button" data-visning="sh"><span>' + T('Svart-hvitt') + '</span></button></div>'
-      + '<p class="vbm-inst-tekst">' + T('Svart-hvitt er for deg som er fargeblind. Har du synestesi og ser egne farger når du hører toner, bør du ikke slå det på: bruk gaven din! For alle andre er fargene også nyttige, fordi det hjelper å knytte bestemte toner til farger.') + '</p>'
+      + '<button type="button" data-visning="farger"><span>' + T('Farger') + '</span></button><button type="button" data-visning="sh"><span>' + T('Svart-hvitt') + '</span></button></div>'
+      + '<p class="vbm-inst-tekst">' + T('Har du synestesi, ikke slå på fargene! Bruk gaven din! Ellers er det veldig nyttig å knytte bestemte lyder til farger.') + '</p>'
       + '<p class="vbm-meny-tittel">' + T('Tempo') + '</p>'
       + '<div class="vbm-pille vbm-inst-valg" role="group" aria-label="' + T('Tempo') + '">'
       + '<button type="button" data-tempo-valg="sakte"><span>' + T('Sakte') + '</span></button><button type="button" data-tempo-valg="middels"><span>' + T('Middels') + '</span></button><button type="button" data-tempo-valg="raskt"><span>' + T('Raskt') + '</span></button></div>'
