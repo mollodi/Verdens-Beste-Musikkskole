@@ -123,7 +123,24 @@ VBM_ORDBOK("pl", {
     "Spill av Forstørret sekst": "Odtwórz: seksta zwiększona",
     "Trommer": "Perkusja",
     "Lyd: trommer fra Versilian Community Sample Library (CC0). Piano: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Gitar, fiolin og cello fra tonejs-instruments av Nicholas Brosowsky (CC BY 3.0).": "Dźwięk: perkusja z Versilian Community Sample Library (CC0). Fortepian: Salamander Grand Piano, Alexander Holm (CC BY 3.0). Gitara, skrzypce i wiolonczela z tonejs-instruments, Nicholas Brosowsky (CC BY 3.0).",
-    "Meny": "Menu"
+    "Meny": "Menu",
+    "Original": "Oryginał",
+    "Hopp til innholdet": "Przejdź do treści",
+    "Innstillinger": "Ustawienia",
+    "Visning": "Wygląd",
+    "Svart-hvitt er for deg som er fargeblind. Har du synestesi og ser egne farger når du hører toner, bør du ikke slå det på: bruk gaven din! For alle andre er fargene også nyttige, fordi det hjelper å knytte bestemte toner til farger.": "Tryb czarno-biały jest dla osób z daltonizmem. Jeśli masz synestezję i widzisz własne kolory, słysząc dźwięki, nie włączaj go: korzystaj ze swojego daru! Dla wszystkich innych kolory też są przydatne, bo pomagają kojarzyć konkretne dźwięki z kolorami.",
+    "Tempo": "Tempo",
+    "Sakte": "Wolno",
+    "Middels": "Średnio",
+    "Raskt": "Szybko",
+    "Gjelder alt som spilles på nettstedet: skalaer, akkorder, intervaller og rytmer.": "Dotyczy wszystkiego, co jest odtwarzane na stronie: skal, akordów, interwałów i rytmów.",
+    "Piano under notene": "Fortepian pod nutami",
+    "På": "Wł.",
+    "Av": "Wył.",
+    "Viser tonene på notelinjen på et piano under hver notelinje. Du kan trykke på tangentene for å høre dem.": "Pokazuje dźwięki z pięciolinii na fortepianie pod każdą pięciolinią. Możesz dotykać klawiszy, aby je usłyszeć.",
+    "En oktav ned": "Oktawę w dół",
+    "En oktav opp": "Oktawę w górę",
+    "{instrument} når ikke så dype eller høye toner, så de spilles på piano.": "{instrument} nie sięga tak niskich ani wysokich dźwięków, więc grane są na fortepianie."
   },
   sider: {
     "index.html": {
@@ -319,7 +336,8 @@ VBM_ORDBOK("pl", {
         "20 halvtoner, også kalt oktav + liten sekst": "20 półtonów, inaczej oktawa + seksta mała",
         "21 halvtoner, også kalt oktav + stor sekst": "21 półtonów, inaczej oktawa + seksta wielka",
         "22 halvtoner, også kalt oktav + liten septim": "22 półtony, inaczej oktawa + septyma mała",
-        "23 halvtoner, også kalt oktav + stor septim": "23 półtony, inaczej oktawa + septyma wielka"
+        "23 halvtoner, også kalt oktav + stor septim": "23 półtony, inaczej oktawa + septyma wielka",
+        "Tips: er du fargeblind, kan du vise notene i svart-hvitt under Innstillinger (tannhjulet øverst).": "Wskazówka: jeśli masz daltonizm, możesz pokazać nuty w czerni i bieli w Ustawieniach (koło zębate u góry)."
       },
     "akkorder-og-intervaller.html": {
         "Den ultimate jukseboka for akkorder og intervaller": "Najlepsza ściąga z akordów i interwałów",
@@ -564,7 +582,8 @@ VBM_ORDBOK("pl", {
         "C-molltreklang med kvinten (G) i bassen, skrevet Cm/G. Over bassen ligger en ren kvart (C) og en liten sekst (E♭). Dette er kadensens kvartsekstakkord i moll: Cm/G foran G-dur og så til c-moll, slik akkordene i kapittel 4 spilles i kadensen i gehørquizen.": "Trójdźwięk c-moll z kwintą (G) w basie, zapisywany Cm/G. Nad basem leżą kwarta czysta (C) i seksta mała (E♭). To kadencyjny akord kwartsekstowy w mollu: Cm/G przed G-dur, a potem do c-moll, tak jak akordy z rozdziału 4 grane są w kadencji w quizie słuchowym.",
         "Jazz- og popakkorder har ingen faste norske navn. I noter skrives de med akkordsymboler, som C7sus4 eller Cadd9, og musikere sier symbolet. Navnene her beskriver hva akkorden består av, og symbolet står i parentes.": "Akordy jazzowe i popowe nie mają w języku norweskim stałych nazw. W nutach zapisuje się je symbolami akordów, takimi jak C7sus4 czy Cadd9, a muzycy wypowiadają symbol. Nazwy tutaj opisują, z czego składa się akord, a symbol podano w nawiasie.",
         "Innhold": "Spis treści",
-        "↑ Til innholdet": "↑ Do spisu treści"
+        "↑ Til innholdet": "↑ Do spisu treści",
+        "Tips: er du fargeblind, kan du vise notene i svart-hvitt under Innstillinger (tannhjulet øverst).": "Wskazówka: jeśli masz daltonizm, możesz pokazać nuty w czerni i bieli w Ustawieniach (koło zębate u góry)."
       },
     "intervaller-og-sanger.html": {
         "Intervaller & sanger: øretreningsreferanse": "Interwały i piosenki: materiał do kształcenia słuchu",
@@ -648,7 +667,8 @@ VBM_ORDBOK("pl", {
         "Spill av Stor septim oppover": "Odtwórz: septyma wielka w górę",
         "Spill av Stor septim nedover": "Odtwórz: septyma wielka w dół",
         "Spill av Ren oktav oppover": "Odtwórz: oktawa czysta w górę",
-        "Spill av Ren oktav nedover": "Odtwórz: oktawa czysta w dół"
+        "Spill av Ren oktav nedover": "Odtwórz: oktawa czysta w dół",
+        "Innstillinger": "Ustawienia"
       },
     "gehorlekser-mikrointervaller.html": {
         "Gehørlekser med mikrointervaller: forberedelse til pianostemmerutdanningen": "Ćwiczenia słuchowe z mikrointerwałami: przygotowanie do nauki strojenia fortepianów",
@@ -854,7 +874,8 @@ VBM_ORDBOK("pl", {
         "Diatoniske treklanger i A harmonisk moll": "Trójdźwięki diatoniczne w a-moll harmonicznym",
         "Det hevede 7. trinnet gjør to viktige ting: det skaper en forstørret treklang på <strong>III</strong> (den ene diatoniske plassen forstørrede treklanger faktisk finnes), og det gjør at <strong>v blir V</strong> (moll blir dur), som skaper en ledetone med sterkt drag mot grunntonen.": "Podwyższony VII stopień robi dwie ważne rzeczy: tworzy trójdźwięk zwiększony na <strong>III</strong> (jedyne miejsce diatoniczne, gdzie trójdźwięki zwiększone naprawdę występują), a także sprawia, że <strong>v staje się V</strong> (moll staje się durem), co tworzy dźwięk prowadzący z silnym ciążeniem do toniki.",
         "<span class=\"label\">Lytt til forskjellen</span> Sammenlign V i naturlig moll (E–G–H, moll) med V i harmonisk moll (E–G♯–H, dur). Draget mot tonika er lett å høre. Det er derfor komponister bruker harmonisk moll.": "<span class=\"label\">Posłuchaj różnicy</span> Porównaj V w molu naturalnym (E–G–H, molowy) z V w molu harmonicznym (E–G♯–H, durowy). Ciążenie do toniki łatwo usłyszeć. Dlatego kompozytorzy używają molu harmonicznego.",
-        "↑ Til innholdet": "↑ Do spisu treści"
+        "↑ Til innholdet": "↑ Do spisu treści",
+        "Vis fasit": "Pokaż odpowiedź"
       },
     "lytteguide-septim-og-nonakkorder.html": {
         "Dominant & Major 7th & 9th Chords": "Akordy dominantowe i maj z septymą i noną",
@@ -904,7 +925,8 @@ VBM_ORDBOK("pl", {
         "Play Fmaj7": "Odtwórz: Fmaj7",
         "Play Gmaj9": "Odtwórz: Gmaj9",
         "Play D♭maj9": "Odtwórz: D♭maj9",
-        "Play E♭maj9": "Odtwórz: E♭maj9"
+        "Play E♭maj9": "Odtwórz: E♭maj9",
+        "Settings": "Ustawienia"
       },
     "gehorquiz.html": {
         "Modus": "Tryb",
@@ -2077,7 +2099,10 @@ VBM_ORDBOK("pl", {
         "Kapitler": "Rozdziały",
         "Hør taktarten": "Posłuchaj metrum",
         "{n} kryss": function(v){ var n = v.n; return n + (n >= 2 && n <= 4 ? ' krzyżyki' : ' krzyżyków'); },
-        "{n} b-er": function(v){ var n = v.n; return n + (n >= 2 && n <= 4 ? ' bemole' : ' bemoli'); }
+        "{n} b-er": function(v){ var n = v.n; return n + (n >= 2 && n <= 4 ? ' bemole' : ' bemoli'); },
+        "åttendelstriol": "triola ósemkowa",
+        "firedelstriol": "triola ćwierćnutowa",
+        "Metronom": "Metronom"
       },
     "quiz-rytme.html": {
         "Modus": "Tryb",
@@ -2186,7 +2211,10 @@ VBM_ORDBOK("pl", {
         "{n} kryss": function(v){ var n = v.n; return n + (n >= 2 && n <= 4 ? ' krzyżyki' : ' krzyżyków'); },
         "{n} b-er": function(v){ var n = v.n; return n + (n >= 2 && n <= 4 ? ' bemole' : ' bemoli'); },
         "Takten varer {n} firedeler, så taktarten er {takt}.": function(v){ var n = v.n, f = n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14); return 'Takt trwa ' + n + (f ? ' ćwierćnuty' : ' ćwierćnut') + ', więc metrum to ' + v.takt + '.'; },
-        "Takten varer {n} åttendeler, så taktarten er {takt}.": function(v){ var n = v.n, f = n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14); return 'Takt trwa ' + n + (f ? ' ósemki' : ' ósemek') + ', więc metrum to ' + v.takt + '.'; }
+        "Takten varer {n} åttendeler, så taktarten er {takt}.": function(v){ var n = v.n, f = n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14); return 'Takt trwa ' + n + (f ? ' ósemki' : ' ósemek') + ', więc metrum to ' + v.takt + '.'; },
+        "åttendelstriol": "triola ósemkowa",
+        "firedelstriol": "triola ćwierćnutowa",
+        "Riktig svar": "Poprawna odpowiedź"
       }
   }
 });

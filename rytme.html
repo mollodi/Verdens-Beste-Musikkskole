@@ -35,13 +35,7 @@
   <section class="card bred innstillinger">
     <div class="card-head">
       <div class="step-label">Innstillinger</div>
-      <h2>Tempo og metronom</h2>
-    </div>
-    <p class="label" id="tempo-label">Tempo</p>
-    <div class="row answers tre" role="group" aria-labelledby="tempo-label">
-      <button type="button" class="btn" data-tempo="60">Sakte</button>
-      <button type="button" class="btn" data-tempo="80">Middels</button>
-      <button type="button" class="btn" data-tempo="100">Raskt</button>
+      <h2>Metronom</h2>
     </div>
     <p class="label" id="metronom-label">Metronom under rytmen</p>
     <div class="row answers" role="group" aria-labelledby="metronom-label">
@@ -172,17 +166,17 @@
   function n(d){ return { d: d }; } function p(d){ return { d: d, p: true }; } function tr(d){ return { d: d, t: true }; }
 
   /* =================== Innstillinger =================== */
-  var valg = { tempo: 80, metronom: false };
-  try { var l = JSON.parse(localStorage.getItem('vbm-rytme')); if (l) { valg.tempo = l.tempo || 80; valg.metronom = !!l.metronom; } } catch(e){}
+  /* Tempoet velges under Innstillinger (tannhjulet), og gjelder hele nettstedet */
+  var valg = { metronom: false };
+  try { var l = JSON.parse(localStorage.getItem('vbm-rytme')); if (l) { valg.metronom = !!l.metronom; } } catch(e){}
+  function tempoNa(){ return window.VBM_TEMPO_BPM ? window.VBM_TEMPO_BPM() : 100; }
   function lagre(){ try { localStorage.setItem('vbm-rytme', JSON.stringify(valg)); } catch(e){} }
   function visValg(){
-    [].forEach.call(document.querySelectorAll('[data-tempo]'), function(b){ b.setAttribute('aria-pressed', +b.getAttribute('data-tempo') === valg.tempo ? 'true' : 'false'); });
     [].forEach.call(document.querySelectorAll('[data-metronom]'), function(b){ b.setAttribute('aria-pressed', (b.getAttribute('data-metronom') === '1') === valg.metronom ? 'true' : 'false'); });
   }
-  [].forEach.call(document.querySelectorAll('[data-tempo]'), function(b){ b.addEventListener('click', function(){ valg.tempo = +b.getAttribute('data-tempo'); lagre(); visValg(); }); });
   [].forEach.call(document.querySelectorAll('[data-metronom]'), function(b){ b.addEventListener('click', function(){ valg.metronom = b.getAttribute('data-metronom') === '1'; lagre(); visValg(); }); });
   /* Sammensatt takt telles i punkterte firedeler, ujevn 7/8 i åttendeler: tempoet tilpasses */
-  function tempoFor(takt){ var T0 = R.TAKTER[takt]; return T0.sammensatt ? Math.round(valg.tempo * 0.7) : takt === '7/8' ? valg.tempo * 2 : valg.tempo; }
+  function tempoFor(takt){ var T0 = R.TAKTER[takt], t = tempoNa(); return T0.sammensatt ? Math.round(t * 0.7) : takt === '7/8' ? t * 2 : t; }
 
   /* =================== Kapittellisten =================== */
   $('kapittel-liste').innerHTML = R.KAPITLER.map(function(k, i){

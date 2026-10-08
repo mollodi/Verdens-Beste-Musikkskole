@@ -39,13 +39,8 @@
     <p class="label">Nøkkel</p>
     <div class="row brikker" id="nokler" role="group" aria-label="Velg nøkkel"></div>
     <div class="stav-og-navn">
-      <div class="noter" id="stav"></div>
+      <div class="noter" id="stav" data-uten-navn data-piano="alltid"></div>
       <p class="tonenavn" id="tonenavn" aria-live="polite"></p>
-    </div>
-    <div class="piano-rad">
-      <button type="button" class="btn piano-pil" id="ned" aria-label="En oktav ned">&#9664;&#xFE0E;</button>
-      <div class="piano" id="piano"></div>
-      <button type="button" class="btn piano-pil" id="opp" aria-label="En oktav opp">&#9654;&#xFE0E;</button>
     </div>
     <div class="row answers" role="group" aria-label="Svarte tangenter">
       <button type="button" class="btn" data-skriv="kryss">Svarte tangenter med ♯</button>
@@ -79,7 +74,7 @@
       <h2>Samme tone, fire plasser</h2>
     </div>
     <p class="task">Alle fire notelinjene under viser den samme tonen, c¹, den midterste C-en på pianoet. Nøkkelen flytter tonen: i G-nøkkel står den på hjelpelinjen under, i F-nøkkel på hjelpelinjen over, og i C-nøklene på linjen nøkkelen peker på.</p>
-    <div class="fire-stav" id="fire-stav"></div>
+    <div class="fire-stav" id="fire-stav" data-uten-navn></div>
   </section>
 
   <section class="card">
@@ -151,6 +146,7 @@
       var vanlig = START[nokkel];
       if (valgt >= vanlig && valgt <= vanlig + 24) start = vanlig;
       else start = Math.min(72, Math.max(24, Math.floor(valgt / 12) * 12 - (valgt < vanlig ? 0 : 12)));
+      $('stav').setAttribute('data-skift', 0);   // pianoet begynner på nøkkelens område igjen
       lagre(); tegn();
     });
     $('nokler').appendChild(b);
@@ -158,56 +154,30 @@
   [].forEach.call(document.querySelectorAll('[data-skriv]'), function(b){
     b.addEventListener('click', function(){ skriv = b.getAttribute('data-skriv'); lagre(); tegn(); });
   });
-  $('ned').addEventListener('click', function(){ if (start > 24) { start -= 12; lagre(); tegn(); } });
-  $('opp').addEventListener('click', function(){ if (start < 72) { start += 12; lagre(); tegn(); } });
 
-  function piano(){
-    /* To oktaver fra start til C to oktaver over, 15 hvite tangenter */
-    var HV = 22, s = '', svarte = '', x = 0;
-    for (var m = start; m <= start + 24; m++) {
-      var pc = m % 12, svart = [1, 3, 6, 8, 10].indexOf(pc) >= 0;
-      var klasse = 'tangent ' + (svart ? 'svart' : 'hvit') + (m === valgt ? ' valgt' : '');
-      var info = S.oktavInfo(stav(m)), etikett = esc(SPRAK === 'en' ? info.sci : info.helm);
-      if (svart) svarte += '<rect class="' + klasse + '" data-m="' + m + '" x="' + (x - 7) + '" y="0" width="14" height="56" rx="2" role="button" tabindex="0" aria-label="' + etikett + '"/>';
-      else {
-        s += '<rect class="' + klasse + '" data-m="' + m + '" x="' + x + '" y="0" width="' + HV + '" height="90" rx="2" role="button" tabindex="0" aria-label="' + etikett + '"/>';
-        if (pc === 0) s += '<text class="c-merke" x="' + (x + HV / 2) + '" y="82" text-anchor="middle">' + etikett + '</text>';
-        x += HV;
-      }
-    }
-    return '<svg viewBox="-1 -1 ' + (x + 2) + ' 92" role="group" aria-label="' + esc(T('Piano')) + '">' + s + svarte + '</svg>';
-  }
   function tegn(){
     [].forEach.call($('nokler').children, function(b){ b.setAttribute('aria-pressed', b._n === nokkel ? 'true' : 'false'); });
     [].forEach.call(document.querySelectorAll('[data-skriv]'), function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-skriv') === skriv ? 'true' : 'false'); });
-    if (valgt < start || valgt > start + 24) valgt = start + 12;
     var n = stav(valgt);
+    /* Det felles pianoet under notelinjen begynner på nøkkelens område (pilene på pianoet flytter det) */
+    $('stav').setAttribute('data-piano-fra', start);
     $('stav').innerHTML = S.enStav(nokkel, [n], { etikett: navneTekst(n) });
-    $('tonenavn').textContent = navneTekst(n);
-    $('piano').innerHTML = piano();
-    $('ned').disabled = start <= 24; $('opp').disabled = start >= 72;
+    /* Navnet i en lapp med tonens farge, som i de andre leksjonene, og oktavnavnet ved siden av */
+    var info = S.oktavInfo(n), kort = SPRAK === 'en' ? info.sci : info.helm;
+    $('tonenavn').innerHTML = '<span class="tn-navn" data-f="' + S.fargeFor(n) + '">' + esc(kort) + '</span> <span class="tn-oktav">(' + esc(T(info.oktav)) + ')</span>';
+    $('tonenavn').setAttribute('aria-label', navneTekst(n));
   }
-  function trykk(el){
-    valgt = +el.getAttribute('data-m'); lagre(); tegn();
-    /* Stopp tonen som klinger først, ellers tolkes et nytt trykk som «stopp» */
+  /* Trykk på en tangent i det felles pianoet: tonen vises på notelinjen og spilles.
+     Noten og tangenten lyser i tonens farge mens den klinger. */
+  $('stav').addEventListener('vbm-tangent', function(e){
+    valgt = e.detail.m; lagre(); tegn();
     if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP();
-    if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS([[valgt]], $('piano'));
-  }
-  /* Tangenten finnes ut fra det nøyaktige punktet fingeren traff. Mobilnettlesere «justerer» ellers
-     trykket til nærmeste knapp, og på et piano blir det ofte nabotangenten. */
-  var sistPeker = 0;
-  function tangentVed(x, y){ var el = document.elementFromPoint(x, y); return el && el.closest ? el.closest('#piano [data-m]') : null; }
-  $('piano').addEventListener('pointerup', function(e){
-    var t = tangentVed(e.clientX, e.clientY);
-    if (t) { sistPeker = Date.now(); trykk(t); }
-  });
-  $('piano').addEventListener('click', function(e){
-    if (Date.now() - sistPeker < 600) return;   // allerede håndtert av pointerup
-    var t = e.target.closest && e.target.closest('[data-m]'); if (t) trykk(t);
-  });
-  $('piano').addEventListener('keydown', function(e){
-    var t = e.target.closest && e.target.closest('[data-m]');
-    if (t && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); trykk(t); }
+    var piano = $('stav').querySelector('.tn-piano');
+    if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS([[valgt]], piano || $('stav'), function(k){
+      var note = $('stav').querySelector('ellipse[data-f]'); if (note) note.classList.toggle('spilles', k >= 0);
+      var tangent = $('stav').querySelector('.tn-tangent[data-m="' + valgt + '"]');
+      if (tangent) { tangent.setAttribute('data-tf', S.fargeFor(stav(valgt))); tangent.classList.toggle('tn-trykket', k >= 0); }
+    });
   });
 
   /* =================== Samme tone i fire nøkler =================== */
@@ -218,10 +188,11 @@
 
   /* =================== Oktavnavnene =================== */
   var oktHtml = '';
-  for (var o = 1; o <= 6; o++) {
-    var fra = S.oktavInfo({ b: 0, f: 0, oktav: o }), til = S.oktavInfo({ b: 6, f: 0, oktav: o });
+  /* Hele pianoets område: delvis subkontraoktav (A til H), og femstrøken oktav har bare c⁵ */
+  for (var o = 0; o <= 8; o++) {
+    var fra = S.oktavInfo({ b: o === 0 ? 5 : 0, f: 0, oktav: o }), til = S.oktavInfo({ b: o === 8 ? 0 : 6, f: 0, oktav: o });
     var fraT = SPRAK === 'en' ? fra.sci : fra.helm, tilT = SPRAK === 'en' ? til.sci : til.helm;
-    oktHtml += '<li><span class="okt-navn">' + esc(T(fra.oktav)) + '</span><span class="okt-toner">' + esc(fraT + ' ' + T('til') + ' ' + tilT) + '</span></li>';
+    oktHtml += '<li><span class="okt-navn">' + esc(T(fra.oktav)) + '</span><span class="okt-toner">' + esc(o === 8 ? fraT : fraT + ' ' + T('til') + ' ' + tilT) + '</span></li>';
   }
   $('oktaver').innerHTML = oktHtml;
 

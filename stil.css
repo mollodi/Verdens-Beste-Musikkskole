@@ -1359,6 +1359,8 @@ html:where([data-side="index.html"]) {
 :root:where([data-side="quiz-notelesing.html"]) { --vbm-verk: "K7Q4-QNOT"; }
 :root:where([data-side="rytme.html"]) { --vbm-verk: "K7Q4-RTML"; }
 :root:where([data-side="quiz-rytme.html"]) { --vbm-verk: "K7Q4-QRTM"; }
+:where(html[data-side="quiz-rytme.html"]) .gj-noter { margin-top: 6px; color: var(--text-on-paper); }
+:where(html[data-side="quiz-rytme.html"]) .gjennomgang li { flex-wrap: wrap; }
 :root:where([data-stil="ovelse"]) {
   --ink: #12151A;
   --ink-soft: #1B2027;
@@ -1861,7 +1863,7 @@ html:where([data-side="index.html"]) {
 :where(html[data-side="skalaer.html"]) .formel .label { display: inline-block; min-width: 82px; margin: 0; }
 :where(html[data-side="skalaer.html"]) .noter { color: var(--text-on-paper); margin: 8px 0 10px; }
 :where(html[data-side="skalaer.html"]) .noter svg { display: block; width: 100%; max-width: 460px; height: auto; }
-:where(html[data-side="skalaer.html"]) .noter .kjenne { fill: var(--brass); }
+:where(html[data-side="skalaer.html"]) .noter .kjenne { fill: transparent; stroke: currentColor; stroke-width: 2px; }   /* kjennetegnende tone: hul note, fargen betyr tonehøyde */
 :where(html[data-side="skalaer.html"]) .noter .spilles, :where(html[data-side="kvintsirkelen.html"]) .noter .spilles { fill: var(--green-dk); stroke: var(--green-dk); stroke-width: 2.5; }
 :where(html[data-side="skalaer.html"]) .to-noter { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px 18px; }
 :where(html[data-side="skalaer.html"]) .noter-blokk { border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 4px; }
@@ -1880,7 +1882,7 @@ html:where([data-side="index.html"]) {
   :where(html[data-side="skalaer.html"]) .noter { color: CanvasText; }
   :where(html[data-side="skalaer.html"]) .noter svg { forced-color-adjust: none; }
   :where(html[data-side="skalaer.html"]) .noter svg line, :where(html[data-side="skalaer.html"]) .noter svg use, :where(html[data-side="skalaer.html"]) .noter svg ellipse { color: CanvasText; }
-  :where(html[data-side="skalaer.html"]) .noter .kjenne { fill: Highlight; }
+  :where(html[data-side="skalaer.html"]) .noter .kjenne { fill: transparent; stroke: CanvasText; stroke-width: 2px; }
   :where(html[data-side="skalaer.html"]) .noter .spilles, :where(html[data-side="kvintsirkelen.html"]) .noter .spilles { fill: LinkText; stroke: LinkText; stroke-width: 3; }
   :where(html[data-side="skalaer.html"]) .noter-blokk, :where(html[data-side="skalaer.html"]) .sanger li { border-color: CanvasText; }
   :where(html[data-side="skalaer.html"]) .spotify-link { border-color: LinkText; color: LinkText; }
@@ -1890,14 +1892,14 @@ html:where([data-side="index.html"]) {
 /* ---------- Bare Skalaquiz (quiz-skalaer.html) ---------- */
 :where(html[data-side="quiz-skalaer.html"]) #ov-bilde, :where(html[data-side="quiz-skalaer.html"]) #prove-bilde { border-top: none; padding-top: 0; margin: 0 0 12px; }
 :where(html[data-side="quiz-skalaer.html"]) .noter svg { max-width: 460px; margin: 0; }
-:where(html[data-side="quiz-skalaer.html"]) .noter .kjenne { fill: var(--brass); }
+:where(html[data-side="quiz-skalaer.html"]) .noter .kjenne { fill: transparent; stroke: currentColor; stroke-width: 2px; }   /* kjennetegnende tone: hul note, fargen betyr tonehøyde */
 :where(html[data-side="quiz-skalaer.html"]) .prove-sporsmal {
   font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   font-size: 18px; font-weight: 700; margin: 0 0 12px;
 }
 @media (forced-colors: active) {
   :where(html[data-side="quiz-skalaer.html"]) .noter svg { forced-color-adjust: none; color: CanvasText; }
-  :where(html[data-side="quiz-skalaer.html"]) .noter .kjenne { fill: Highlight; }
+  :where(html[data-side="quiz-skalaer.html"]) .noter .kjenne { fill: transparent; stroke: CanvasText; stroke-width: 2px; }
 }
 
 
@@ -1964,7 +1966,8 @@ html.sh .viktig strong { color: var(--ink) !important; }
   padding: 10px 14px;
   border-radius: 0 6px 6px 0;
 }
-:where([data-stil="ovelse"]) .viktig strong { color: var(--brass-dim); }
+:where([data-stil="ovelse"]) .viktig strong { color: #6B4708; }
+:where([data-stil="ovelse"]) .viktig a { --lenke: #6B4708; }   /* mørkere enn messingen, så kontrasten holder WCAG AA */
 :where([data-stil="ovelse"]) div.viktig > p:last-child { margin-bottom: 0; }
 :where(html[data-side="akkordhefte.html"]) .til-toppen { margin: 22px 0 0; font-size: 14px; }
 :where(html[data-side="akkordhefte.html"]) .til-toppen a { color: var(--gold-ink); text-underline-offset: 3px; }
@@ -2030,8 +2033,8 @@ html.sh .viktig strong { color: var(--ink) !important; }
 :where(html[data-side="notelesing.html"]) .noter svg { display: block; width: 100%; height: auto; }
 :where(html[data-side="notelesing.html"]) .stav-og-navn { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: 6px 0 4px; }
 /* Fast høyde: notelinjen og navnet skal ikke flytte pianoet når en ny tone vises (ellers treffer neste trykk feil tangent på mobil) */
-:where(html[data-side="notelesing.html"]) .stav-og-navn .noter { width: 100%; max-width: 300px; height: 170px; }
-:where(html[data-side="notelesing.html"]) .stav-og-navn .noter svg { width: 100%; height: 100%; }
+:where(html[data-side="notelesing.html"]) .stav-og-navn .noter { width: 100%; }
+:where(html[data-side="notelesing.html"]) .stav-og-navn .noter > svg { display: block; }   /* felles målestokk: fast høyde og full bredde */
 :where(html[data-side="notelesing.html"]) .tonenavn { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 22px; font-weight: 700; margin: 0; min-height: 1.3em; line-height: 1.3; white-space: nowrap; }
 :where(html[data-side="notelesing.html"]) .piano-rad { display: flex; align-items: center; gap: 8px; margin: 8px 0 12px; }
 :where(html[data-side="notelesing.html"]) .piano { flex: 1 1 0; min-width: 0; max-width: 560px; }
@@ -2647,3 +2650,241 @@ html:where([data-side="akkordhefte.html"])[lang="pl"] details.answer[open] summa
   :where(html[data-side="akkordhefte.html"]) details.answer .inner { display: block !important; }
   :where(html[data-side="akkordhefte.html"]) details.answer:not([open]) .inner { display: block; }
 }
+
+/* ---------- Tilgjengelighet ---------- */
+/* «Hopp til innholdet»: usynlig til den får fokus med tastaturet */
+.vbm-hopp { position: absolute; left: 12px; top: -60px; z-index: 100; padding: 10px 16px; border-radius: 999px;
+  background: #12151A; color: #F5EFE3; font: 600 15px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; text-decoration: none; }
+.vbm-hopp:focus { top: 10px; outline: 2px solid #E8B866; outline-offset: 2px; }
+main:focus, .sheet:focus { outline: none; }
+@media (forced-colors: active) { .vbm-hopp { background: Canvas; color: LinkText; border: 2px solid LinkText; } }
+
+/* =====================================================================
+   Tonefarger og tonenavn (på hele nettstedet, juksebøkene kobles på i neste steg)
+   Fargene er de samme som i juksebøkene: Newtons regnbue, ♯ lysere, ♭ mørkere.
+   ===================================================================== */
+:root {
+  --nf-red: #AD2534; --nt-red: #FFFFFF;
+  --nf-red-dk: #7A1822; --nt-red-dk: #FFFFFF;
+  --nf-red-lt: #D9707B; --nt-red-lt: #1E1E1A;
+  --nf-orange: #D06730; --nt-orange: #1E1E1A;
+  --nf-orange-dk: #9E4A1C; --nt-orange-dk: #FFFFFF;
+  --nf-orange-lt: #E9A177; --nt-orange-lt: #1E1E1A;
+  --nf-yellow: #C79A1E; --nt-yellow: #1E1E1A;
+  --nf-yellow-dk: #8F6B12; --nt-yellow-dk: #FFFFFF;
+  --nf-yellow-lt: #E6C764; --nt-yellow-lt: #1E1E1A;
+  --nf-green: #42945E; --nt-green: #1E1E1A;
+  --nf-green-dk: #2C6B42; --nt-green-dk: #FFFFFF;
+  --nf-green-lt: #86C79B; --nt-green-lt: #1E1E1A;
+  --nf-blue: #3579B0; --nt-blue: #FFFFFF;
+  --nf-blue-dk: #24567F; --nt-blue-dk: #FFFFFF;
+  --nf-blue-lt: #7FB3DB; --nt-blue-lt: #1E1E1A;
+  --nf-indigo: #3F4B9E; --nt-indigo: #FFFFFF;
+  --nf-indigo-dk: #2A3470; --nt-indigo-dk: #FFFFFF;
+  --nf-indigo-lt: #8590CF; --nt-indigo-lt: #1E1E1A;
+  --nf-violet: #7650A6; --nt-violet: #FFFFFF;
+  --nf-violet-dk: #563A7C; --nt-violet-dk: #FFFFFF;
+  --nf-violet-lt: #B49AD4; --nt-violet-lt: #1E1E1A;
+}
+/* Notehodet som spilles får tonens farge */
+
+/* Navnet på tonen som klinger: en lapp med samme form som spill-knappen, rett ved siden av den.
+   Lappen har tonens farge, og navnet er hvitt eller mørkt, det som synes best på fargen. */
+/* Fast plass over notelinjen (like høy som lappen), så siden aldri flytter seg */
+/* Lappen løftes ut av notebildet, opp i den tomme høyre delen av linjen over notelinjen
+   (for eksempel «Fra C: C dorisk» eller «Trinn»/«Avstander»). Da kan den aldri dekke noter,
+   og notelinjen trenger ingen ekstra plass. */
+html.vbm-tonefarger .har-tn { position: relative; }
+/* Når linjen over er full (sjelden), får notelinjen en egen stripe like høy som lappen */
+html.vbm-tonefarger .har-tn.tn-plass { padding-top: 66px; }   /* egen stripe: luft over og under lappen */
+html.vbm-tonefarger .har-tn.tn-plass > .tn-knapp { bottom: auto; top: 10px; margin-bottom: 0; }
+html.vbm-tonefarger .tn-knapp {
+  position: absolute; bottom: 100%; right: 0; margin-bottom: 8px;   /* litt luft til strekene */
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 46px; min-width: 76px; padding: 0 20px; box-sizing: border-box;
+  border-radius: 999px; border: 1.5px solid transparent;
+  font: 700 20px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--farge); color: var(--tekst); border-color: var(--farge); pointer-events: none;
+}
+html.vbm-tonefarger .tn-knapp.tn-tom { visibility: hidden; }
+html.vbm-tonefarger .tn-knapp[data-f="red"] { --farge: var(--nf-red); --tekst: var(--nt-red); }
+html.vbm-tonefarger .tn-knapp[data-f="red-dk"] { --farge: var(--nf-red-dk); --tekst: var(--nt-red-dk); }
+html.vbm-tonefarger .tn-knapp[data-f="red-lt"] { --farge: var(--nf-red-lt); --tekst: var(--nt-red-lt); }
+html.vbm-tonefarger .tn-knapp[data-f="orange"] { --farge: var(--nf-orange); --tekst: var(--nt-orange); }
+html.vbm-tonefarger .tn-knapp[data-f="orange-dk"] { --farge: var(--nf-orange-dk); --tekst: var(--nt-orange-dk); }
+html.vbm-tonefarger .tn-knapp[data-f="orange-lt"] { --farge: var(--nf-orange-lt); --tekst: var(--nt-orange-lt); }
+html.vbm-tonefarger .tn-knapp[data-f="yellow"] { --farge: var(--nf-yellow); --tekst: var(--nt-yellow); }
+html.vbm-tonefarger .tn-knapp[data-f="yellow-dk"] { --farge: var(--nf-yellow-dk); --tekst: var(--nt-yellow-dk); }
+html.vbm-tonefarger .tn-knapp[data-f="yellow-lt"] { --farge: var(--nf-yellow-lt); --tekst: var(--nt-yellow-lt); }
+html.vbm-tonefarger .tn-knapp[data-f="green"] { --farge: var(--nf-green); --tekst: var(--nt-green); }
+html.vbm-tonefarger .tn-knapp[data-f="green-dk"] { --farge: var(--nf-green-dk); --tekst: var(--nt-green-dk); }
+html.vbm-tonefarger .tn-knapp[data-f="green-lt"] { --farge: var(--nf-green-lt); --tekst: var(--nt-green-lt); }
+html.vbm-tonefarger .tn-knapp[data-f="blue"] { --farge: var(--nf-blue); --tekst: var(--nt-blue); }
+html.vbm-tonefarger .tn-knapp[data-f="blue-dk"] { --farge: var(--nf-blue-dk); --tekst: var(--nt-blue-dk); }
+html.vbm-tonefarger .tn-knapp[data-f="blue-lt"] { --farge: var(--nf-blue-lt); --tekst: var(--nt-blue-lt); }
+html.vbm-tonefarger .tn-knapp[data-f="indigo"] { --farge: var(--nf-indigo); --tekst: var(--nt-indigo); }
+html.vbm-tonefarger .tn-knapp[data-f="indigo-dk"] { --farge: var(--nf-indigo-dk); --tekst: var(--nt-indigo-dk); }
+html.vbm-tonefarger .tn-knapp[data-f="indigo-lt"] { --farge: var(--nf-indigo-lt); --tekst: var(--nt-indigo-lt); }
+html.vbm-tonefarger .tn-knapp[data-f="violet"] { --farge: var(--nf-violet); --tekst: var(--nt-violet); }
+html.vbm-tonefarger .tn-knapp[data-f="violet-dk"] { --farge: var(--nf-violet-dk); --tekst: var(--nt-violet-dk); }
+html.vbm-tonefarger .tn-knapp[data-f="violet-lt"] { --farge: var(--nf-violet-lt); --tekst: var(--nt-violet-lt); }
+/* ---------- Svart-hvitt (fargeblinde og kromestesi): bare svart eller hvitt og en gråtone ---------- */
+/* Svart-hvitt: ingen grått. Alt følger sidens blekk (svart på lys bakgrunn, hvitt på mørk).
+   Tonen som spilles blir en hul note med tydelig kant, og navnelappen får kant i samme blekk. */
+html.vbm-tonefarger.vbm-sh [data-f].spilles { fill: transparent !important; stroke: currentColor !important; stroke-width: 2.2px; }
+html.vbm-tonefarger.vbm-sh .tn-knapp { background: transparent !important; border: 2.5px solid currentColor !important; color: currentColor !important; }
+@media (forced-colors: active) {
+  html.vbm-tonefarger .tn-knapp { forced-color-adjust: none; background: Highlight !important; color: HighlightText !important; border-color: Highlight !important; }
+  html.vbm-tonefarger [data-f].spilles { fill: Highlight !important; stroke: Highlight !important; }
+}
+
+/* ---------- Innstillinger (tannhjulet i menylinjen) ---------- */
+.vbm-back .vbm-inst-knapp {
+  display: inline-flex; align-items: center; gap: 7px; order: 2;
+  font: 600 14px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: inherit; background: transparent; cursor: pointer;
+  border: 1.5px solid color-mix(in srgb, currentColor 45%, transparent); border-radius: 999px; padding: 8px 12px;
+}
+.vbm-back .vbm-inst-knapp:hover, .vbm-back .vbm-inst-knapp[aria-expanded="true"] { border-color: var(--lenke-mork); }
+.vbm-inst { order: 4; flex: 1 1 100%; padding: 10px 2px 8px; border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent); }
+.vbm-inst[hidden] { display: none; }
+.vbm-inst-valg { display: inline-flex; margin: 2px 0 8px; }
+.vbm-inst-valg button { padding: 7px 14px; font-weight: 600; }
+.vbm-inst-valg button + button { border-left: 1px solid currentColor; }
+.vbm-inst-tekst { margin: 0 0 12px; max-width: 60ch; font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; opacity: .85; }
+@media (max-width: 520px) {
+  .vbm-back .vbm-inst-knapp { padding: 7px 9px; font-size: 13px; }
+  .vbm-back .vbm-inst-knapp span { display: none; }   /* bare tannhjulet på mobil, så linjen holder én rad */
+}
+@media (forced-colors: active) { .vbm-back .vbm-inst-knapp { border-color: CanvasText; color: LinkText; } }
+
+/* ---------- Notelesing: valgt tangent og navn i tonens farge ---------- */
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="red"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="red"] { --farge: var(--nf-red); --tekst: var(--nt-red); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="red-dk"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="red-dk"] { --farge: var(--nf-red-dk); --tekst: var(--nt-red-dk); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="red-lt"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="red-lt"] { --farge: var(--nf-red-lt); --tekst: var(--nt-red-lt); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="orange"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="orange"] { --farge: var(--nf-orange); --tekst: var(--nt-orange); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="orange-dk"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="orange-dk"] { --farge: var(--nf-orange-dk); --tekst: var(--nt-orange-dk); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="orange-lt"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="orange-lt"] { --farge: var(--nf-orange-lt); --tekst: var(--nt-orange-lt); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="yellow"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="yellow"] { --farge: var(--nf-yellow); --tekst: var(--nt-yellow); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="yellow-dk"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="yellow-dk"] { --farge: var(--nf-yellow-dk); --tekst: var(--nt-yellow-dk); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="yellow-lt"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="yellow-lt"] { --farge: var(--nf-yellow-lt); --tekst: var(--nt-yellow-lt); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="green"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="green"] { --farge: var(--nf-green); --tekst: var(--nt-green); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="green-dk"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="green-dk"] { --farge: var(--nf-green-dk); --tekst: var(--nt-green-dk); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="green-lt"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="green-lt"] { --farge: var(--nf-green-lt); --tekst: var(--nt-green-lt); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="blue"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="blue"] { --farge: var(--nf-blue); --tekst: var(--nt-blue); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="blue-dk"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="blue-dk"] { --farge: var(--nf-blue-dk); --tekst: var(--nt-blue-dk); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="blue-lt"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="blue-lt"] { --farge: var(--nf-blue-lt); --tekst: var(--nt-blue-lt); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="indigo"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="indigo"] { --farge: var(--nf-indigo); --tekst: var(--nt-indigo); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="indigo-dk"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="indigo-dk"] { --farge: var(--nf-indigo-dk); --tekst: var(--nt-indigo-dk); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="indigo-lt"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="indigo-lt"] { --farge: var(--nf-indigo-lt); --tekst: var(--nt-indigo-lt); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="violet"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="violet"] { --farge: var(--nf-violet); --tekst: var(--nt-violet); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="violet-dk"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="violet-dk"] { --farge: var(--nf-violet-dk); --tekst: var(--nt-violet-dk); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt[data-f="violet-lt"], :where(html[data-side="notelesing.html"]) .tn-navn[data-f="violet-lt"] { --farge: var(--nf-violet-lt); --tekst: var(--nt-violet-lt); }
+:where(html[data-side="notelesing.html"]) .tangent.valgt { fill: var(--farge, var(--brass)); }
+:where(html[data-side="notelesing.html"]) .tn-navn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 46px; min-width: 76px; padding: 0 20px; box-sizing: border-box;
+  border-radius: 999px; background: var(--farge); color: var(--tekst); border: 1.5px solid var(--farge);
+  font: 700 20px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; vertical-align: middle;
+}
+:where(html[data-side="notelesing.html"]) .tn-oktav { margin-left: 6px; }
+:where(html[data-side="notelesing.html"]) .tonenavn { display: flex; align-items: center; min-height: 46px; }
+/* Svart-hvitt: tangenten ser trykket ned (kraftig kant), navnet får kant i stedet for farge */
+html.vbm-tonefarger.vbm-sh[data-side="notelesing.html"] .tangent.hvit.valgt { fill: #FFFDF8; stroke: #1E1E1A; stroke-width: 3.5; }
+html.vbm-tonefarger.vbm-sh[data-side="notelesing.html"] .tangent.svart.valgt { fill: #FFFDF8; stroke: #1E1E1A; stroke-width: 2.5; }   /* trykket svart tangent: hvit med mørk kant, tydelig uten farger */
+html.vbm-tonefarger.vbm-sh[data-side="notelesing.html"] .tn-navn { background: transparent; color: currentColor; border: 2.5px solid currentColor; }
+@media (forced-colors: active) {
+  :where(html[data-side="notelesing.html"]) .tn-navn { forced-color-adjust: none; background: Highlight; color: HighlightText; border-color: Highlight; }
+}
+
+/* ---------- Faste farger (juksebøkene): notene har alltid tonens farge, med en tynn kant ----------
+   Mens tonen spilles beholder den fargen og får en kraftig kant. I svart-hvitt blir notene svarte (eller hvite
+   på mørk bakgrunn), og tonen som spilles blir en hul note, som ellers på nettstedet. */
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="red"] { fill: var(--nf-red); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="red-dk"] { fill: var(--nf-red-dk); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="red-lt"] { fill: var(--nf-red-lt); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="orange"] { fill: var(--nf-orange); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="orange-dk"] { fill: var(--nf-orange-dk); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="orange-lt"] { fill: var(--nf-orange-lt); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="yellow"] { fill: var(--nf-yellow); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="yellow-dk"] { fill: var(--nf-yellow-dk); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="yellow-lt"] { fill: var(--nf-yellow-lt); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="green"] { fill: var(--nf-green); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="green-dk"] { fill: var(--nf-green-dk); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="green-lt"] { fill: var(--nf-green-lt); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="blue"] { fill: var(--nf-blue); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="blue-dk"] { fill: var(--nf-blue-dk); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="blue-lt"] { fill: var(--nf-blue-lt); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="indigo"] { fill: var(--nf-indigo); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="indigo-dk"] { fill: var(--nf-indigo-dk); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="indigo-lt"] { fill: var(--nf-indigo-lt); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="violet"] { fill: var(--nf-violet); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="violet-dk"] { fill: var(--nf-violet-dk); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="violet-lt"] { fill: var(--nf-violet-lt); }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f] { stroke: #1E1E1A; stroke-width: .8px; }
+html.vbm-tonefarger.vbm-sh .vbm-notebilde[data-fast] [data-f] { fill: currentColor; stroke: none; }
+html.vbm-tonefarger.vbm-sh .vbm-notebilde[data-fast] [data-f].spilles { fill: transparent !important; stroke: currentColor !important; stroke-width: 2.2px !important; }
+.vbm-notebilde { color: var(--ink, currentColor); }
+@media (forced-colors: active) {
+  .vbm-notebilde svg { forced-color-adjust: none; color: CanvasText; }
+  html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f].spilles { stroke: Highlight !important; }
+}
+
+/* ---------- Piano under notelinjene (Innstillinger) ---------- */
+.tn-piano { margin: 8px 0 16px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+.tn-piano svg { display: block; max-width: 100%; height: auto; }   /* fast tangentstørrelse: flere tangenter på bredere skjermer */
+.tn-tangent { cursor: pointer; stroke: #1E1E1A; stroke-width: 1; }
+.tn-tangent.hvit { fill: #FFFDF8; }
+.tn-tangent.svart { fill: #1E1E1A; }
+html.vbm-tonefarger .tn-tangent[data-tf="red"].tn-trykket { fill: var(--nf-red); }
+html.vbm-tonefarger .tn-tangent[data-tf="red-dk"].tn-trykket { fill: var(--nf-red-dk); }
+html.vbm-tonefarger .tn-tangent[data-tf="red-lt"].tn-trykket { fill: var(--nf-red-lt); }
+html.vbm-tonefarger .tn-tangent[data-tf="orange"].tn-trykket { fill: var(--nf-orange); }
+html.vbm-tonefarger .tn-tangent[data-tf="orange-dk"].tn-trykket { fill: var(--nf-orange-dk); }
+html.vbm-tonefarger .tn-tangent[data-tf="orange-lt"].tn-trykket { fill: var(--nf-orange-lt); }
+html.vbm-tonefarger .tn-tangent[data-tf="yellow"].tn-trykket { fill: var(--nf-yellow); }
+html.vbm-tonefarger .tn-tangent[data-tf="yellow-dk"].tn-trykket { fill: var(--nf-yellow-dk); }
+html.vbm-tonefarger .tn-tangent[data-tf="yellow-lt"].tn-trykket { fill: var(--nf-yellow-lt); }
+html.vbm-tonefarger .tn-tangent[data-tf="green"].tn-trykket { fill: var(--nf-green); }
+html.vbm-tonefarger .tn-tangent[data-tf="green-dk"].tn-trykket { fill: var(--nf-green-dk); }
+html.vbm-tonefarger .tn-tangent[data-tf="green-lt"].tn-trykket { fill: var(--nf-green-lt); }
+html.vbm-tonefarger .tn-tangent[data-tf="blue"].tn-trykket { fill: var(--nf-blue); }
+html.vbm-tonefarger .tn-tangent[data-tf="blue-dk"].tn-trykket { fill: var(--nf-blue-dk); }
+html.vbm-tonefarger .tn-tangent[data-tf="blue-lt"].tn-trykket { fill: var(--nf-blue-lt); }
+html.vbm-tonefarger .tn-tangent[data-tf="indigo"].tn-trykket { fill: var(--nf-indigo); }
+html.vbm-tonefarger .tn-tangent[data-tf="indigo-dk"].tn-trykket { fill: var(--nf-indigo-dk); }
+html.vbm-tonefarger .tn-tangent[data-tf="indigo-lt"].tn-trykket { fill: var(--nf-indigo-lt); }
+html.vbm-tonefarger .tn-tangent[data-tf="violet"].tn-trykket { fill: var(--nf-violet); }
+html.vbm-tonefarger .tn-tangent[data-tf="violet-dk"].tn-trykket { fill: var(--nf-violet-dk); }
+html.vbm-tonefarger .tn-tangent[data-tf="violet-lt"].tn-trykket { fill: var(--nf-violet-lt); }
+/* Svart-hvitt: tonene på notelinjen vises som nedtrykte tangenter (kraftig kant, svarte tangenter blir hvite) */
+@media (forced-colors: active) {
+  .tn-piano svg { forced-color-adjust: none; }
+  .tn-tangent { stroke: CanvasText; } .tn-tangent.hvit { fill: Canvas; } .tn-tangent.svart { fill: CanvasText; }
+}
+
+/* Noten som spilles: hul note med kant, i alle visninger. Fargene vises i navnelappen og på pianoet. */
+html.vbm-tonefarger [data-f].spilles { fill: transparent !important; stroke: currentColor !important; stroke-width: 2.2px !important; }
+/* Tangenten som klinger ser nedtrykt ut: litt lavere og med skygge øverst. I farger får den tonens farge. */
+.tn-tangent { transition: transform .06s, fill .06s; transform-box: fill-box; transform-origin: top; }
+.tn-tangent.tn-trykket { transform: scaleY(.965); filter: drop-shadow(0 -2px 0 rgba(0, 0, 0, .35)); }
+html.vbm-tonefarger.vbm-sh .tn-tangent.tn-trykket.hvit { fill: #CFCCC4 !important; }
+html.vbm-tonefarger.vbm-sh .tn-tangent.tn-trykket.svart { fill: #55554F !important; }
+@media (forced-colors: active) { .tn-tangent.tn-trykket { fill: Highlight !important; filter: none; } }
+
+/* Pianoets piler og C-merker */
+.tn-piano { display: flex; align-items: center; gap: 6px; }
+.tn-piano svg { flex: 0 1 auto; min-width: 0; }
+.tn-pil { flex-shrink: 0; width: 34px; height: 34px; border-radius: 999px; border: 1.5px solid currentColor; background: transparent; color: inherit; font-size: 12px; cursor: pointer; padding: 0; }
+.tn-pil:disabled { opacity: .3; cursor: default; }
+.tn-c { font: 9px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #6B6A62; pointer-events: none; }
+.tn-tangent:focus-visible { outline: none; stroke: var(--lenke-mork); stroke-width: 3; }
+@media (forced-colors: active) { .tn-pil { border-color: ButtonText; color: ButtonText; } .tn-c { fill: CanvasText; } }
+
+/* Kort melding nederst (for eksempel når gitaren ikke når tonen) */
+.vbm-melding { position: fixed; left: 50%; bottom: 76px; transform: translate(-50%, 12px); max-width: min(92vw, 520px); z-index: 60;
+  background: #1E1E1A; color: #FFFDF8; padding: 10px 16px; border-radius: 12px; font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  box-shadow: 0 6px 20px rgba(0,0,0,.25); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+.vbm-melding.vis { opacity: 1; transform: translate(-50%, 0); }
+@media (forced-colors: active) { .vbm-melding { background: Canvas; color: CanvasText; border: 2px solid CanvasText; } }
+
+.vbm-tips { font-size: 15px; opacity: .9; margin-top: 4px; }

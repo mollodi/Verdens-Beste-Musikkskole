@@ -273,7 +273,14 @@
     $('ov-fb').innerHTML = ''; $('ov-fasit').hidden = true; $('ov-fasit').innerHTML = ''; $('ov-neste').hidden = true;
   }
   $('ov-spill').addEventListener('click', function(){
-    if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS(ov.o.lyd, this);
+    /* Notene på notelinjen lyser i sin farge mens skalaen spilles (opp og ned) */
+    var lengde = ov.o.liste.length;
+    if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS(ov.o.lyd, this, function(k){
+      var svg = document.querySelector('#ov-oppgave .noter:not([hidden]) svg'); if (!svg || !ov.besvart) return;
+      [].forEach.call(svg.querySelectorAll('.spilles'), function(x){ x.classList.remove('spilles'); });
+      if (k < 0) return;
+      var i = k < lengde ? k : 2 * lengde - 2 - k, n = svg.querySelector('[data-i="' + i + '"]'); if (n) n.classList.add('spilles');
+    });
     if (!ov.besvart) knapper.forEach(function(b){ b.disabled = false; });
   });
   var FEIL = ['Ikke gi opp. Øret blir bedre for hver oppgave.', 'Lytt etter tersen først: er den stor eller liten?', 'Lytt etter halvtonene: hvor ligger de i skalaen?', 'Pust rolig, lytt godt, og prøv neste.'];
@@ -294,7 +301,8 @@
     $('ov-fb').innerHTML = '<strong class="' + (riktig ? 'ok' : 'nei') + '">' + (riktig ? T('Riktig.') : T('Feil.')) + '</strong> '
       + T('Det var {navn} {hvor}.', { navn: smaa(navnMedEng(o.s)), hvor: hvor(o) }) + ogsa(o.s)
       + (m ? '<span class="motiv">' + m + '</span>' : '');
-    $('ov-fasit').innerHTML = notelinje(o, true); $('ov-fasit').hidden = false;
+    /* Samme notelinje som før svaret (med svaret markert), ikke en ekstra kopi */
+    $('ov-bilde').innerHTML = notelinje(o, true); $('ov-bilde').hidden = false;
     $('ov-spill').hidden = false;
     $('ov-neste').hidden = false;
     visFremgang();

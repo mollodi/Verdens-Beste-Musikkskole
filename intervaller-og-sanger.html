@@ -29,12 +29,12 @@
   <h1>Intervaller &amp; <em>sanger</em></h1>
   <p class="lede">116 velkjente sanger organisert etter musikalsk intervall, oppover og nedover, til bruk i øretreningen. Hver linje har en lenke til Spotify-søk.</p>
   <div class="hero-staff">
-    <div class="staff-box"><svg viewBox="0 62 360 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="330" y2="140" stroke="var(--paper)" stroke-width="1.3"/><line x1="10" y1="127" x2="330" y2="127" stroke="var(--paper)" stroke-width="1.3"/><line x1="10" y1="114" x2="330" y2="114" stroke="var(--paper)" stroke-width="1.3"/><line x1="10" y1="101" x2="330" y2="101" stroke="var(--paper)" stroke-width="1.3"/><line x1="10" y1="88" x2="330" y2="88" stroke="var(--paper)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--paper)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--paper)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--paper)" stroke="var(--paper)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="127.0" rx="7.2" ry="5.6" fill="var(--paper)" stroke="var(--paper)" stroke-width="0" transform="rotate(-18 250 127.0)"/></svg></div>
+    <div class="staff-box"></div>
     <div class="staff-caption">Velg oppover eller nedover, og trykk på et intervall hvis du vil se bare det. Hvert kort har noter, lyd og kjente sanger som hjelper deg å kjenne igjen intervallet. Oppover starter på midten C, nedover på C en oktav høyere. Trykk på spill for å høre intervallet.</div>
   </div>
 </header>
 
-<div class="controls">
+<div class="controls" role="region" aria-label="Innstillinger">
   <div class="tabs">
     <label class="tab-option">
       <input type="radio" name="direction" id="tab-up" checked>
@@ -116,7 +116,7 @@
         </div>
         <button class="play-btn" data-notes="60,60" aria-label="Spill av Ren prim oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="236" y1="153.0" x2="264" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 153.0)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [0, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -163,7 +163,7 @@
         </div>
         <button class="play-btn" data-notes="60,61" aria-label="Spill av Liten sekund oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="146.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 146.5)"/><use href="#acc-flat" transform="translate(228 146.5)" fill="var(--brass-dim)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [1, -1, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -203,7 +203,7 @@
         </div>
         <button class="play-btn" data-notes="60,62" aria-label="Spill av Stor sekund oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="146.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 146.5)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [1, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -250,7 +250,7 @@
         </div>
         <button class="play-btn" data-notes="60,63" aria-label="Spill av Liten ters oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="140.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 140.0)"/><use href="#acc-flat" transform="translate(228 140)" fill="var(--brass-dim)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [2, -1, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -297,7 +297,7 @@
         </div>
         <button class="play-btn" data-notes="60,64" aria-label="Spill av Stor ters oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="140.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 140.0)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [2, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -344,7 +344,7 @@
         </div>
         <button class="play-btn" data-notes="60,65" aria-label="Spill av Ren kvart oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="133.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 133.5)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [3, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -391,7 +391,7 @@
         </div>
         <button class="play-btn" data-notes="60,66" aria-label="Spill av Tritonus oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="133.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 133.5)"/><use href="#acc-sharp" transform="translate(228 133.5)" fill="var(--brass-dim)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [3, 1, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -424,7 +424,7 @@
         </div>
         <button class="play-btn" data-notes="60,67" aria-label="Spill av Ren kvint oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="127.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 127.0)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [4, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -471,7 +471,7 @@
         </div>
         <button class="play-btn" data-notes="60,68" aria-label="Spill av Liten sekst oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="120.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 120.5)"/><use href="#acc-flat" transform="translate(228 120.5)" fill="var(--brass-dim)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [5, -1, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -518,7 +518,7 @@
         </div>
         <button class="play-btn" data-notes="60,69" aria-label="Spill av Stor sekst oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="120.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 120.5)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [5, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -565,7 +565,7 @@
         </div>
         <button class="play-btn" data-notes="60,70" aria-label="Spill av Liten septim oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="114.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 114.0)"/><use href="#acc-flat" transform="translate(228 114)" fill="var(--brass-dim)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [6, -1, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -605,7 +605,7 @@
         </div>
         <button class="play-btn" data-notes="60,71" aria-label="Spill av Stor septim oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="114.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 114.0)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [6, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -645,7 +645,7 @@
         </div>
         <button class="play-btn" data-notes="60,72" aria-label="Spill av Ren oktav oppover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--brass-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--brass-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--brass-dim)"/><line x1="136" y1="153.0" x2="164" y2="153.0" stroke="var(--brass-dim)" stroke-width="1.3"/><ellipse cx="150" cy="153.0" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 150 153.0)"/><ellipse cx="250" cy="107.5" rx="7.2" ry="5.6" fill="var(--brass-dim)" stroke="var(--brass-dim)" stroke-width="0" transform="rotate(-18 250 107.5)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 4], [0, 0, 5]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -694,7 +694,7 @@
         </div>
         <button class="play-btn" data-notes="72,72" aria-label="Spill av Ren prim nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 107.5)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [0, 0, 5]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -741,7 +741,7 @@
         </div>
         <button class="play-btn" data-notes="72,71" aria-label="Spill av Liten sekund nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="114.0" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 114.0)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [6, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -788,7 +788,7 @@
         </div>
         <button class="play-btn" data-notes="72,70" aria-label="Spill av Stor sekund nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="114.0" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 114.0)"/><use href="#acc-flat" transform="translate(228 114)" fill="var(--slate-dim)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [6, -1, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -835,7 +835,7 @@
         </div>
         <button class="play-btn" data-notes="72,69" aria-label="Spill av Liten ters nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="120.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 120.5)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [5, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -882,7 +882,7 @@
         </div>
         <button class="play-btn" data-notes="72,68" aria-label="Spill av Stor ters nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="120.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 120.5)"/><use href="#acc-flat" transform="translate(228 120.5)" fill="var(--slate-dim)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [5, -1, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -929,7 +929,7 @@
         </div>
         <button class="play-btn" data-notes="72,67" aria-label="Spill av Ren kvart nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="127.0" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 127.0)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [4, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -976,7 +976,7 @@
         </div>
         <button class="play-btn" data-notes="72,66" aria-label="Spill av Tritonus nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="133.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 133.5)"/><use href="#acc-sharp" transform="translate(228 133.5)" fill="var(--slate-dim)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [3, 1, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -1016,7 +1016,7 @@
         </div>
         <button class="play-btn" data-notes="72,65" aria-label="Spill av Ren kvint nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="133.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 133.5)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [3, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -1063,7 +1063,7 @@
         </div>
         <button class="play-btn" data-notes="72,64" aria-label="Spill av Liten sekst nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="140.0" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 140.0)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [2, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -1103,7 +1103,7 @@
         </div>
         <button class="play-btn" data-notes="72,63" aria-label="Spill av Stor sekst nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="140.0" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 140.0)"/><use href="#acc-flat" transform="translate(228 140)" fill="var(--slate-dim)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [2, -1, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -1150,7 +1150,7 @@
         </div>
         <button class="play-btn" data-notes="72,62" aria-label="Spill av Liten septim nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="146.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 146.5)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [1, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -1183,7 +1183,7 @@
         </div>
         <button class="play-btn" data-notes="72,61" aria-label="Spill av Stor septim nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="146.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 146.5)"/><use href="#acc-flat" transform="translate(228 146.5)" fill="var(--slate-dim)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [1, -1, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -1202,7 +1202,7 @@
         </div>
         <button class="play-btn" data-notes="72,60" aria-label="Spill av Ren oktav nedover">&#9658;&#xFE0E; <span>spill</span></button>
       </div>
-      <div class="staff"><svg viewBox="0 62 460 111" style="width:100%;height:auto;display:block;" role="img" aria-label="Noter"><line x1="10" y1="140" x2="430" y2="140" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="127" x2="430" y2="127" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="114" x2="430" y2="114" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="101" x2="430" y2="101" stroke="var(--slate-dim)" stroke-width="1.3"/><line x1="10" y1="88" x2="430" y2="88" stroke="var(--slate-dim)" stroke-width="1.3"/><use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="var(--slate-dim)"/><line x1="236" y1="153.0" x2="264" y2="153.0" stroke="var(--slate-dim)" stroke-width="1.3"/><ellipse cx="150" cy="107.5" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 150 107.5)"/><ellipse cx="250" cy="153.0" rx="7.2" ry="5.6" fill="var(--slate-dim)" stroke="var(--slate-dim)" stroke-width="0" transform="rotate(-18 250 153.0)"/></svg></div>
+      <div class="staff"><div class="vbm-notebilde" data-noter='[[0, 0, 5], [0, 0, 4]]' data-form="melodi"></div></div>
       <ul class="songs">
         <li>
           <div class="song-info">
@@ -1242,6 +1242,8 @@
 </footer>
 
 <script>/* VBM K7Q4-2YJ3 */window.VBM_LYD={step:0.70,noteDur:1.4,chordDur:3.2,gap1:0.35,gap2:0.55};</script>
+<script src="tonearter.js"></script>
+<script src="skalaer.js"></script>
 <script src="lyd.js"></script>
 </body>
 </html>

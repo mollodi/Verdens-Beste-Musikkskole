@@ -60,7 +60,8 @@ VBM_ORDBOK("no", {
         "Play Fmaj7": "Spill av Fmaj7",
         "Play Gmaj9": "Spill av Gmaj9",
         "Play D♭maj9": "Spill av D♭maj9",
-        "Play E♭maj9": "Spill av E♭maj9"
+        "Play E♭maj9": "Spill av E♭maj9",
+        "Settings": "Innstillinger"
       }
   }
 });

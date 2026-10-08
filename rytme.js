@@ -194,6 +194,14 @@ window.VBM_RYTME = (function(){
     var topp = Y - STILK - 30, hoyde = (valg.telling ? 76 : 58) + STILK;
     /* Fast målestokk: alle rytmer tegnes like store, og bare lange rytmer krymper på smale skjermer. */
     var skala = valg.skala || 1.25;
+    /* Skjermlesere får rytmen som ord: notelengdene takt for takt */
+    var Tt = window.VBM_T || function(x){ return x; };
+    var beskr = takter.map(function(t){ return t.map(function(e){
+      if (e.t) return Tt(e.d === 4 ? 'åttendelstriol' : 'firedelstriol');
+      var nv = e.p ? PAUSENAVN[e.d] : VERDINAVN[e.d];
+      return nv ? Tt(nv).toLowerCase() : '';
+    }).join(', '); }).join('; ');
+    if (valg.mangler == null && !valg.enkel) valg.etikett = (valg.etikett ? valg.etikett + ': ' : '') + beskr;
     return '<svg width="' + Math.round(w2 * skala) + '" viewBox="0 ' + topp + ' ' + w2 + ' ' + hoyde + '" role="img" aria-label="' + (valg.etikett || '') + '">' + linje + s + beams + tall + telle + '</svg>';
   }
 

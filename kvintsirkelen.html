@@ -113,12 +113,15 @@
     return 'M' + p1.join(' ') + ' A' + r2 + ' ' + r2 + ' 0 0 1 ' + p2.join(' ') + ' L' + p3.join(' ') + ' A' + r1 + ' ' + r1 + ' 0 0 0 ' + p4.join(' ') + 'Z';
   }
   var valgtPlass = 0, valgtFortegn = 0;
-  function tekst(x, yy, t, klasse){ return '<text x="' + x.toFixed(1) + '" y="' + yy.toFixed(1) + '" class="' + klasse + '">' + t + '</text>'; }
+  /* Bokstavene i sirkelen er pynt for skjermlesere: knappens navn sier det samme, og mer */
+  function tekst(x, yy, t, klasse){ return '<text x="' + x.toFixed(1) + '" y="' + yy.toFixed(1) + '" class="' + klasse + '" aria-hidden="true">' + t + '</text>'; }
   function tegnSirkel(){
     var s = '<svg viewBox="0 0 400 400" role="group" aria-label="' + T('Kvintsirkelen') + '">';
     K.SIRKEL.forEach(function(plass, i){
       var a1 = i * 30 - 15, a2 = i * 30 + 15, arter = plass.map(K.medFortegn);
       var etikett = arter.map(function(a){ return T('{dur} og {moll}, {antall}', { dur: K.dur(a.dur), moll: K.moll(a.moll), antall: K.antall(a.fortegn) }); }).join(' / ');
+      /* De synlige bokstavene først i navnet, så talestyring («C») og skjermlesere stemmer med det som står i sirkelen */
+      etikett = arter.map(function(a){ return K.kortDur(a.dur) + ' ' + K.kortMoll(a.moll); }).join(' ') + ': ' + etikett;
       s += '<g class="plass' + (i === valgtPlass ? ' valgt' : '') + '" data-plass="' + i + '" role="button" tabindex="0" aria-pressed="' + (i === valgtPlass) + '" aria-label="' + etikett + '">';
       s += '<path class="ring-dur" d="' + sektor(R_MID, R_UT, a1, a2) + '"/>';
       s += '<path class="ring-moll" d="' + sektor(R_INN, R_MID, a1, a2) + '"/>';

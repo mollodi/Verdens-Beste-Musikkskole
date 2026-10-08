@@ -63,12 +63,6 @@
     </div>
     <p class="label" id="kap-label">Kapitler</p>
     <div class="row brikker" id="kapitler" role="group" aria-labelledby="kap-label"></div>
-    <p class="label" id="tempo-label">Tempo</p>
-    <div class="row answers tre" role="group" aria-labelledby="tempo-label">
-      <button type="button" class="btn" data-valg="tempo" data-verdi="60">Sakte</button>
-      <button type="button" class="btn" data-valg="tempo" data-verdi="80">Middels</button>
-      <button type="button" class="btn" data-valg="tempo" data-verdi="100">Raskt</button>
-    </div>
     <p class="task">«Hør rytmen» begynner med én takt metronom. «Les og tell» veksler mellom å finne taktarten og å finne noten som mangler.</p>
   </section>
 
@@ -138,8 +132,8 @@
   function smaa(t){ return SPRAK === 'en' ? t : t.replace(/^./, function(c){ return c.toLowerCase(); }); }
 
   /* =================== Valg =================== */
-  var NOKKEL = 'vbm-quiz-rytme', valg = { type: 'horRytme', tempo: '80', kap: ['k1'] };
-  try { var l = JSON.parse(localStorage.getItem(NOKKEL)); if (l) { if (l.type) valg.type = l.type; if (l.tempo) valg.tempo = l.tempo; if (l.kap && l.kap.length) valg.kap = l.kap; } } catch(e){}
+  var NOKKEL = 'vbm-quiz-rytme', valg = { type: 'horRytme', kap: ['k1'] };
+  try { var l = JSON.parse(localStorage.getItem(NOKKEL)); if (l) { if (l.type) valg.type = l.type; if (l.kap && l.kap.length) valg.kap = l.kap; } } catch(e){}
   /* Fra startsiden: Gehørquiz-kortet åpner med lytteoppgaver, Teoriquiz-kortet med «Les og tell». */
   var fraLenke = (/[?&]type=(hor|les)\b/.exec(location.search) || [])[1];
   if (fraLenke === 'les') valg.type = 'les';
@@ -153,7 +147,7 @@
   valgKnapper.forEach(function(b){ b.addEventListener('click', function(){
     var k = b.getAttribute('data-valg'), v = b.getAttribute('data-verdi');
     if (valg[k] === v) return;
-    valg[k] = v; lagre(); visValg(); if (k !== 'tempo') nyOvOppgave();
+    valg[k] = v; lagre(); visValg(); nyOvOppgave();
   }); });
   R.KAPITLER.forEach(function(k, i){
     var b = lag('button', 'btn', T('{n}. {navn} (nivå {niva})', { n: i + 1, navn: T(k.navn), niva: k.niva })); b.type = 'button'; b._k = k.id;
@@ -174,7 +168,8 @@
 
   /* =================== Oppgavene =================== */
   function kapitler(){ return R.KAPITLER.filter(function(k){ return valg.kap.indexOf(k.id) >= 0; }); }
-  function tempoFor(takt){ var t = +valg.tempo, T0 = R.TAKTER[takt]; return T0.sammensatt ? Math.round(t * 0.7) : takt === '7/8' ? t * 2 : t; }
+  /* Tempoet velges under Innstillinger (tannhjulet), og gjelder hele nettstedet */
+  function tempoFor(takt){ var t = window.VBM_TEMPO_BPM ? window.VBM_TEMPO_BPM() : 100, T0 = R.TAKTER[takt]; return T0.sammensatt ? Math.round(t * 0.7) : takt === '7/8' ? t * 2 : t; }
   function likeTakter(a, b){ return JSON.stringify(a) === JSON.stringify(b); }
   /* Hvor like to rytmer er: andelen felles anslag (brukes for å lage gode feilsvar) */
   function anslag(takter){ var s = [], pos = 0; takter.forEach(function(t){ t.forEach(function(e){ if (!e.p) s.push(pos + (e.t ? 't' : '')); pos += e.d; }); }); return s; }
@@ -365,7 +360,9 @@
       var s = pr.svar[i], ok = s === o.svar; if (ok) r++;
       html += '<li><div class="gj-tekst"><strong class="' + (ok ? 'ok' : 'nei') + '">' + (ok ? T('Riktig.') : T('Feil.')) + '</strong> '
         + T(TYPENAVN[o.type]) + ': ' + T('svaret er {svar}.', { svar: svarTekst(o, o.svar) })
-        + (ok ? '' : ' <span class="ditt">' + T('Ditt svar: {s}.', { s: svarTekst(o, s) }) + '</span>') + '</div></li>';
+        + (ok ? '' : ' <span class="ditt">' + T('Ditt svar: {s}.', { s: svarTekst(o, s) }) + '</span>') + '</div>'
+        + (o.takter ? '<div class="noter rytme gj-noter">' + R.noter(o.takter, { takt: o.takt, telling: true, skala: 1, etikett: T('Riktig svar') }) + '</div>' : '')
+        + '</li>';
     });
     var p = Math.round(100 * r / ANTALL);
     $('prove-tittel').textContent = T('Resultat');

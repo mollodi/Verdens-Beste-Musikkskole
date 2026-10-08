@@ -140,6 +140,8 @@
 
 <footer data-lyd="alle"></footer>
 
+<script src="tonearter.js"></script>
+<script src="skalaer.js"></script>
 <script>/* VBM K7Q4-AKQZ */
 (function(){
   'use strict';
@@ -148,7 +150,11 @@
   function $(id){ return document.getElementById(id); }
   function tilfeldig(a){ return a[Math.floor(Math.random() * a.length)]; }
   function blandet(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
-  function spill(v, knapp, ganger){ if (window.VBM_LYD_SPILL) window.VBM_LYD_SPILL(v.toner, knapp, ganger, v.kadens, bareSamlet); }
+  /* Når svaret og notene vises, farges notene mens de spilles (og navnet vises i lappen) */
+  function spill(v, knapp, ganger){
+    var synlig = document.getElementById('ov-noter'), farg = synlig && !synlig.hidden && window.VBM_FARG ? window.VBM_FARG(synlig) : null;
+    if (window.VBM_LYD_SPILL) window.VBM_LYD_SPILL(v.toner, knapp, ganger, v.kadens, bareSamlet, farg);
+  }
   function stopp(){ if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); }
   function lag(tag, klasse, tekst){ var e = document.createElement(tag); if (klasse) e.className = klasse; if (tekst != null) e.textContent = tekst; return e; }
 
@@ -231,48 +237,6 @@
     return { b: b, f: f };
   }
 
-  /* Noter for en flyttet akkord: noter over hverandre, sekunder forskjøvet til høyre,
-     fortegn i kolonner så de ikke kolliderer. Samme mål som notene i boka. */
-  function yAv(n){ return 140 - (n.oktav * 7 + n.b - 30) * 6.5; }
-  function tegnAkkord(v){
-    var X = 150, noter = v.stavet.map(function(n){ return { n: n, y: yAv(n), d: n.oktav * 7 + n.b, hoyre: false }; })
-      .sort(function(p, q){ return p.d - q.d; });
-    for (var i = 1; i < noter.length; i++) if (noter[i].d - noter[i - 1].d === 1 && !noter[i - 1].hoyre) noter[i].hoyre = true;
-    var harHoyre = noter.some(function(p){ return p.hoyre; });
-    var s = '', lav = Math.max.apply(null, noter.map(function(p){ return p.y; })), hoy = Math.min.apply(null, noter.map(function(p){ return p.y; }));
-    for (var i2 = 0; i2 < 5; i2++) s += '<line x1="10" y1="' + (88 + i2 * 13) + '" x2="290" y2="' + (88 + i2 * 13) + '" stroke="currentColor" stroke-width="1.3"/>';
-    s += '<use href="#gclef" transform="translate(8 139.04) scale(0.0767 -0.0767)" fill="currentColor"/>';
-    function hjelpelinje(y){
-      var bred = noter.some(function(p){ return p.hoyre && (y >= 153 ? p.y >= y - 0.1 : p.y <= y + 0.1); });
-      s += '<line x1="' + (X - 14) + '" y1="' + y + '" x2="' + (X + (bred ? 30 : 14)) + '" y2="' + y + '" stroke="currentColor" stroke-width="1.3"/>';
-    }
-    for (var l = 153; l <= lav + 0.1; l += 13) hjelpelinje(l);
-    for (var l2 = 75; l2 >= hoy - 0.1; l2 -= 13) hjelpelinje(l2);
-    noter.forEach(function(p){
-      var x = X + (p.hoyre ? 16 : 0);
-      s += '<ellipse cx="' + x + '" cy="' + p.y + '" rx="7.2" ry="5.6" fill="currentColor" transform="rotate(-18 ' + x + ' ' + p.y + ')"/>';
-    });
-    /* Fortegn: ovenfra og ned, første kolonne der det er plass. */
-    var kolonner = [];
-    function omrade(f, y){ return f > 0 ? [y - 10.5, y + 10.5] : [y - 15.5, y + 5.3]; }
-    noter.slice().reverse().forEach(function(p){
-      if (!p.n.f) return;
-      var o = omrade(p.n.f, p.y), k = 0;
-      while (kolonner[k] && kolonner[k].some(function(q){ return o[0] < q[1] + 1 && q[0] < o[1] + 1; })) k++;
-      (kolonner[k] = kolonner[k] || []).push(o.concat([p]));
-    });
-    var x = 128;
-    kolonner.forEach(function(kol, k){
-      if (k) x -= 13;
-      kol.forEach(function(q){
-        var id = q[2].n.f > 0 ? 'acc-sharp' : (q[2].n.f === -2 ? 'acc-dflat' : 'acc-flat');
-        s += '<use href="#' + id + '" transform="translate(' + x + ' ' + q[2].y + ')" fill="currentColor"/>';
-      });
-    });
-    var topp = Math.min(62, hoy - 22), bunn = Math.max(173, lav + 14);
-    return '<svg viewBox="0 ' + topp + ' 300 ' + (bunn - topp) + '" role="img" aria-label="' + T('{navn} på notelinjen', { navn: navn(v.akk) }) + '">' + s + '</svg>';
-  }
-
   /* Liten forbokstav midt i en setning (ikke på engelsk, der f.eks. «German 6th» skal ha stor forbokstav). */
   function smaa(t){ return SPRAK === 'en' ? t : t.replace(/^./, function(c){ return c.toLowerCase(); }); }
   /* Engelsk navn i parentes, men ikke når navnet allerede inneholder det («Sus2 (sus2)», «6/9-akkord, dur (6/9)»)
@@ -286,9 +250,15 @@
   }
   /* Hvor akkorden står: «på Ess» eller, for kadensakkordene, «i ess-moll». */
   function hvor(v){ return v.akk.kadens ? T('i {toneart}', { toneart: moll(v.rot) }) : T('på {tone}', { tone: tonenavn(v.rot) }); }
+  /* Akkorden tegnes med den felles notekoden (skalaer.js), som alle andre notelinjer på nettstedet:
+     riktig stavemåte, fortegn og hjelpelinjer, og farger og navn mens tonene spilles. */
   function noterSvg(v){
-    if (v.c) return '<svg viewBox="' + v.akk.vb + '" role="img" aria-label="' + T('{navn} på notelinjen', { navn: navn(v.akk) }) + '">' + v.akk.svg + '</svg>';
-    return tegnAkkord(v);
+    var stavet = v.c ? v.akk.stavet : v.stavet;
+    var svg = window.VBM_SKALAER.akkordrekke([{ noter: stavet, tall: [] }], T('{navn} på notelinjen', { navn: navn(v.akk) }));
+    /* Uten besifring trengs ikke plassen under notelinjen, og bildet får vanlig målestokk */
+    return svg.replace(/viewBox="([\d.-]+) ([\d.-]+) ([\d.]+) ([\d.]+)"/, function(m, x, y, w, h){
+      return 'style="width:' + Math.round(+w * 1.15) + 'px;max-width:100%;height:auto" viewBox="' + x + ' ' + y + ' ' + w + ' ' + (+h - 40) + '"';
+    });
   }
   /* Grunntone: alltid C (som i boka) eller alle tonearter. */
   var GKEY = 'vbm-quiz-akkorder-grunntone', alleTonearter = false;

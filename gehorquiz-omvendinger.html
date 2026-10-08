@@ -190,7 +190,11 @@
     } while (forrige && o.still === forrige.still && o.a === forrige.a && Math.random() < 0.6);
     return o;
   }
-  function spill(o, knapp, ganger){ if (window.VBM_LYD_SPILL) window.VBM_LYD_SPILL(o.toner, knapp, ganger, null, valg.avsp === 'samlet'); }
+  /* Når svaret og notene vises, farges notene mens de spilles (og navnet vises i lappen) */
+  function spill(o, knapp, ganger){
+    var synlig = $('ov-noter'), farg = synlig && !synlig.hidden && window.VBM_FARG ? window.VBM_FARG(synlig) : null;
+    if (window.VBM_LYD_SPILL) window.VBM_LYD_SPILL(o.toner, knapp, ganger, null, valg.avsp === 'samlet', farg);
+  }
   function symbol(o){ var s = K.tone(o.rot) + o.a.sym; return o.k ? s + '/' + K.tone(o.noter[0]) : s; }
   function beskriv(o){
     var b0 = o.noter[0], m0 = S.midi(b0), d0 = b0.oktav * 7 + b0.b;

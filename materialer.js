@@ -50,7 +50,7 @@ window.VBM = {
       tittel: "Intervall-jukseboka",
       beskrivelse: "Alle intervaller fra ren prim til dobbel oktav, med begge navn over oktaven.",
       fil: "intervaller.html",
-      svartHvitt: true,
+      svartHvitt: false,
       lagtTil: ""
     },
     {
@@ -59,7 +59,7 @@ window.VBM = {
       tittel: "Den ultimate jukseboka for akkorder og intervaller",
       beskrivelse: "Seks kapitler, fra treklanger til jazzakkorder, med omvendingene i et eget kapittel.",
       fil: "akkorder-og-intervaller.html",
-      svartHvitt: true,
+      svartHvitt: false,
       lagtTil: ""
     },
     {

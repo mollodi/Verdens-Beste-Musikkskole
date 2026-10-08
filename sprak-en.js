@@ -123,7 +123,24 @@ VBM_ORDBOK("en", {
     "Spill av Forstørret sekst": "Play Augmented 6th",
     "Trommer": "Drums",
     "Lyd: trommer fra Versilian Community Sample Library (CC0). Piano: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Gitar, fiolin og cello fra tonejs-instruments av Nicholas Brosowsky (CC BY 3.0).": "Sound: drums from the Versilian Community Sample Library (CC0). Piano: Salamander Grand Piano by Alexander Holm (CC BY 3.0). Guitar, violin and cello from tonejs-instruments by Nicholas Brosowsky (CC BY 3.0).",
-    "Meny": "Menu"
+    "Meny": "Menu",
+    "Original": "Original",
+    "Hopp til innholdet": "Skip to content",
+    "Innstillinger": "Settings",
+    "Visning": "Display",
+    "Svart-hvitt er for deg som er fargeblind. Har du synestesi og ser egne farger når du hører toner, bør du ikke slå det på: bruk gaven din! For alle andre er fargene også nyttige, fordi det hjelper å knytte bestemte toner til farger.": "Black and white is for you if you are colour-blind. If you have synaesthesia and see your own colours when you hear notes, do not turn it on: use your gift! For everyone else the colours are useful too, because they help you link particular notes to colours.",
+    "Tempo": "Tempo",
+    "Sakte": "Slow",
+    "Middels": "Medium",
+    "Raskt": "Fast",
+    "Gjelder alt som spilles på nettstedet: skalaer, akkorder, intervaller og rytmer.": "Applies to everything played on the site: scales, chords, intervals and rhythms.",
+    "Piano under notene": "Piano under the notes",
+    "På": "On",
+    "Av": "Off",
+    "Viser tonene på notelinjen på et piano under hver notelinje. Du kan trykke på tangentene for å høre dem.": "Shows the notes of each staff on a piano below it. You can tap the keys to hear them.",
+    "En oktav ned": "One octave down",
+    "En oktav opp": "One octave up",
+    "{instrument} når ikke så dype eller høye toner, så de spilles på piano.": "{instrument} cannot reach notes that low or high, so they are played on the piano."
   },
   sider: {
     "index.html": {
@@ -319,7 +336,8 @@ VBM_ORDBOK("en", {
         "20 halvtoner, også kalt oktav + liten sekst": "20 semitones, also called octave + minor 6th",
         "21 halvtoner, også kalt oktav + stor sekst": "21 semitones, also called octave + major 6th",
         "22 halvtoner, også kalt oktav + liten septim": "22 semitones, also called octave + minor 7th",
-        "23 halvtoner, også kalt oktav + stor septim": "23 semitones, also called octave + major 7th"
+        "23 halvtoner, også kalt oktav + stor septim": "23 semitones, also called octave + major 7th",
+        "Tips: er du fargeblind, kan du vise notene i svart-hvitt under Innstillinger (tannhjulet øverst).": "Tip: if you are colour-blind, you can show the notes in black and white under Settings (the gear at the top)."
       },
     "akkorder-og-intervaller.html": {
         "Den ultimate jukseboka for akkorder og intervaller": "The Ultimate Cheat Book for Chords and Intervals",
@@ -564,7 +582,8 @@ VBM_ORDBOK("en", {
         "C-molltreklang med kvinten (G) i bassen, skrevet Cm/G. Over bassen ligger en ren kvart (C) og en liten sekst (E♭). Dette er kadensens kvartsekstakkord i moll: Cm/G foran G-dur og så til c-moll, slik akkordene i kapittel 4 spilles i kadensen i gehørquizen.": "A C minor triad with the fifth (G) in the bass, written Cm/G. Above the bass lie a perfect fourth (C) and a minor sixth (E♭). This is the cadential six-four chord in minor: Cm/G before G major and then to C minor, the way the chapter 4 chords are played in the cadence in the ear quiz.",
         "Jazz- og popakkorder har ingen faste norske navn. I noter skrives de med akkordsymboler, som C7sus4 eller Cadd9, og musikere sier symbolet. Navnene her beskriver hva akkorden består av, og symbolet står i parentes.": "Jazz and pop chords have no fixed names in Norwegian. In sheet music they are written as chord symbols, such as C7sus4 or Cadd9, and musicians say the symbol. The names here describe what the chord is made of, and the symbol is in parentheses.",
         "Innhold": "Contents",
-        "↑ Til innholdet": "↑ Back to contents"
+        "↑ Til innholdet": "↑ Back to contents",
+        "Tips: er du fargeblind, kan du vise notene i svart-hvitt under Innstillinger (tannhjulet øverst).": "Tip: if you are colour-blind, you can show the notes in black and white under Settings (the gear at the top)."
       },
     "intervaller-og-sanger.html": {
         "Intervaller & sanger: øretreningsreferanse": "Intervals & songs: ear training reference",
@@ -648,7 +667,8 @@ VBM_ORDBOK("en", {
         "Spill av Stor septim oppover": "Play major 7th up",
         "Spill av Stor septim nedover": "Play major 7th down",
         "Spill av Ren oktav oppover": "Play perfect octave up",
-        "Spill av Ren oktav nedover": "Play perfect octave down"
+        "Spill av Ren oktav nedover": "Play perfect octave down",
+        "Innstillinger": "Settings"
       },
     "gehorlekser-mikrointervaller.html": {
         "Gehørlekser med mikrointervaller: forberedelse til pianostemmerutdanningen": "Ear training homework with microintervals: preparation for piano tuning studies",
@@ -854,7 +874,8 @@ VBM_ORDBOK("en", {
         "Diatoniske treklanger i A harmonisk moll": "Diatonic triads in A harmonic minor",
         "Det hevede 7. trinnet gjør to viktige ting: det skaper en forstørret treklang på <strong>III</strong> (den ene diatoniske plassen forstørrede treklanger faktisk finnes), og det gjør at <strong>v blir V</strong> (moll blir dur), som skaper en ledetone med sterkt drag mot grunntonen.": "The raised 7th degree does two important things: it creates an augmented triad on <strong>III</strong> (the one diatonic place where augmented triads actually occur), and it makes <strong>v become V</strong> (minor becomes major), which creates a leading tone with a strong pull toward the tonic.",
         "<span class=\"label\">Lytt til forskjellen</span> Sammenlign V i naturlig moll (E–G–H, moll) med V i harmonisk moll (E–G♯–H, dur). Draget mot tonika er lett å høre. Det er derfor komponister bruker harmonisk moll.": "<span class=\"label\">Listen to the difference</span> Compare V in natural minor (E–G–B, minor) with V in harmonic minor (E–G♯–B, major). The pull toward the tonic is easy to hear. That is why composers use harmonic minor.",
-        "↑ Til innholdet": "↑ Back to contents"
+        "↑ Til innholdet": "↑ Back to contents",
+        "Vis fasit": "Show answer"
       },
     "gehorquiz.html": {
         "Modus": "Mode",
@@ -2027,7 +2048,10 @@ VBM_ORDBOK("en", {
         "Kapitler": "Chapters",
         "Hør taktarten": "Hear the time signature",
         "{n} kryss": function(v){ return v.n + ' sharps'; },
-        "{n} b-er": function(v){ return v.n + ' flats'; }
+        "{n} b-er": function(v){ return v.n + ' flats'; },
+        "åttendelstriol": "eighth-note triplet",
+        "firedelstriol": "quarter-note triplet",
+        "Metronom": "Metronome"
       },
     "quiz-rytme.html": {
         "Modus": "Mode",
@@ -2136,7 +2160,10 @@ VBM_ORDBOK("en", {
         "{n} kryss": function(v){ return v.n + ' sharps'; },
         "{n} b-er": function(v){ return v.n + ' flats'; },
         "Takten varer {n} firedeler, så taktarten er {takt}.": "The bar lasts {n} quarter notes, so the time signature is {takt}.",
-        "Takten varer {n} åttendeler, så taktarten er {takt}.": "The bar lasts {n} eighth notes, so the time signature is {takt}."
+        "Takten varer {n} åttendeler, så taktarten er {takt}.": "The bar lasts {n} eighth notes, so the time signature is {takt}.",
+        "åttendelstriol": "eighth-note triplet",
+        "firedelstriol": "quarter-note triplet",
+        "Riktig svar": "Correct answer"
       }
   }
 });

@@ -9,6 +9,11 @@
   var cfg = window.VBM_LYD || {};
   var STEP = cfg.step || 0.66, NOTE = cfg.noteDur || 1.4, CHORD = cfg.chordDur || 3.2;
   var GAP1 = cfg.gap1 || 0.33, GAP2 = cfg.gap2 || 0.52;
+  /* Tempo fra Innstillinger (vbm-tempo): «raskt» er standard og dagens fart. «middels» og «sakte» gir
+     mer tid mellom tonene, i samme forhold som rytmesidens tempo 100, 80 og 60. Tonelengdene endres ikke. */
+  var STEP0 = STEP, GAP10 = GAP1, GAP20 = GAP2, S_STEG0 = 0.5;
+  function tempoFaktor(){ var v = ''; try { v = localStorage.getItem('vbm-tempo') || ''; } catch(e){} return v === 'sakte' ? 100 / 60 : v === 'middels' ? 100 / 80 : 1; }
+  function oppdaterTempo(){ var k = tempoFaktor(); STEP = STEP0 * k; GAP1 = GAP10 * k; GAP2 = GAP20 * k; S_STEG = S_STEG0 * k; }
 
   /* ---------- tonenavn <-> MIDI (filnavn bruker s for #, f.eks. Cs4) ---------- */
   var PC = ['C','Cs','D','Ds','E','F','Fs','G','Gs','A','As','B'];
@@ -134,7 +139,7 @@
   }
 
   /* ---------- aktive stemmer, slik at alt kan stoppes ---------- */
-  var voices = [], activeBtn = null, timer = null, token = 0;
+  var voices = [], activeBtn = null, timer = null, token = 0, aktivVedToner = null;
   function stopAll(){
     token++;
     if (ctx) {
@@ -152,6 +157,8 @@
     if (timer) { clearTimeout(timer); timer = null; }
     stegTimere.forEach(clearTimeout); stegTimere = [];
     planlagt = []; if (rafId) { clearTimeout(rafId); rafId = null; }
+    /* Fargene og navnelappen fra forrige avspilling fjernes når noe nytt starter eller alt stoppes */
+    if (aktivVedToner) { var gml = aktivVedToner; aktivVedToner = null; try { gml(null); } catch(e){} }
     if (aktivVedSteg) { var v = aktivVedSteg; aktivVedSteg = null; try { v(-1); } catch(e){} }
     if (activeBtn) { activeBtn.classList.remove('playing', 'loading'); activeBtn = null; }
   }
@@ -195,19 +202,24 @@
      dette for akkorder som bare kan høres i sammenheng, f.eks. tysk sekst). */
   var K_STEG = 1.25, K_AKK = 1.1, K_SISTE = 2.6;
   /* samlet = true: bare alle tonene samtidig, uten opp og ned (superavansert i gehørquizene). */
-  function schedule(notes, voiceFn, ganger, kadens, samlet){
-    var t = ctx.currentTime + 0.05, n = notes.length, slutt = t;
+  /* merk(t, indekser): kalles med hvilke av tonene (indekser i notes) som klinger fra tidspunkt t,
+     én om gangen når de spilles brutt, alle når de spilles samlet, og [] etterpå (f.eks. under kadensen). */
+  function schedule(notes, voiceFn, ganger, kadens, samlet, merk){
+    merk = merk || function(){};
+    var t = ctx.currentTime + 0.05, n = notes.length, slutt = t, alle = notes.map(function(m, i){ return i; });
     for (var k = 0; k < (ganger || 1); k++) {
       if (k) t = slutt + MELLOM;
       var t3 = t;
       if (!samlet) {
-        notes.forEach(function(m, i){ voiceFn(m, t + i * STEP, NOTE, false, n); });
+        notes.forEach(function(m, i){ voiceFn(m, t + i * STEP, NOTE, false, n); merk(t + i * STEP, [i]); });
         var t2 = t + n * STEP + GAP1, rev = notes.slice().reverse();
-        rev.forEach(function(m, i){ voiceFn(m, t2 + i * STEP, NOTE, false, n); });
+        rev.forEach(function(m, i){ voiceFn(m, t2 + i * STEP, NOTE, false, n); merk(t2 + i * STEP, [n - 1 - i]); });
         t3 = t2 + n * STEP + GAP2;
       }
       notes.forEach(function(m){ voiceFn(m, t3, CHORD, true, n); });
+      merk(t3, alle);
       slutt = t3 + CHORD;
+      merk(slutt, []);
       if (kadens && kadens.length) {
         var tk = slutt + 0.6;
         kadens.forEach(function(akk, i){
@@ -222,7 +234,7 @@
 
   /* sekvens = en liste med steg som spilles etter hverandre, hvert steg én eller flere toner
      (kvintsirkelen bruker dette til skalaer). Siste steg klinger lenger. */
-  var S_STEG = 0.5, S_TONE = 0.9, S_SISTE = 2.2;
+  var S_STEG = 0.5, S_TONE = 0.9, S_SISTE = 2.2;   // S_STEG justeres av oppdaterTempo()
   /* vedSteg(i) kalles når steg i begynner å klinge, og vedSteg(-1) når alt er ferdig eller stoppet,
      slik at siden kan farge tonen som spilles. */
   var stegTimere = [], aktivVedSteg = null;
@@ -242,13 +254,29 @@
     return (t + (sekvens.length - 1) * S_STEG + S_SISTE + 0.7) - ctx.currentTime;
   }
 
-  function play(notes, btn, ganger, kadens, samlet, sekvens, vedSteg){
-    function plan(voiceFn){ return sekvens ? planSekvens(sekvens, voiceFn, vedSteg, token) : schedule(notes, voiceFn, ganger, kadens, samlet); }
+  function play(notes, btn, ganger, kadens, samlet, sekvens, vedSteg, vedToner){
+    oppdaterTempo();
+    /* vedToner(indekser) brukes til fargelegging når tonene spilles med VBM_LYD_SPILL; vedToner(null) til slutt */
+    var merk = vedToner ? function(tt, idx){ var my = token; planlegg(tt, function(){ if (my === token) vedToner(idx); }); } : null;
+    function plan(voiceFn){
+      aktivVedToner = vedToner || null;   // etter stopAll(), så den gjelder denne avspillingen
+      if (sekvens) return planSekvens(sekvens, voiceFn, vedSteg, token);
+      var lengde = schedule(notes, voiceFn, ganger, kadens, samlet, merk);
+      if (vedToner) { var my2 = token; planlegg(ctx.currentTime + lengde - 0.6, function(){ if (my2 === token) vedToner(null); }); }
+      return lengde;
+    }
     stopAll();
     var my = token, inst = INSTR[current];
     activeBtn = btn; btn.classList.add('playing', 'loading');
     var urls = {};
     var alle = notes.concat.apply(notes, (kadens || []).concat(sekvens || []));
+    /* Gitar og strykere har ikke hele pianoets område (A0 til C8). Toner utenfor spilles på piano,
+       og siden får beskjed (felles.js viser en kort melding). */
+    var OMRADE = { gitar: [40, 88], strykere: [36, 100] }, omr = OMRADE[current];
+    if (omr && alle.some(function(m){ return m < omr[0] || m > omr[1]; })) {
+      inst = INSTR.piano;
+      try { window.dispatchEvent(new CustomEvent('vbm-utenfor', { detail: { instrument: INSTR[current].label } })); } catch(e){}
+    }
     inst.layers.forEach(function(L){
       alle.forEach(function(m){ var s = nearest(L, m + L.shift); if (s !== null) urls[urlFor(L, s)] = true; });
     });
@@ -284,7 +312,11 @@
     if (!btn) return;
     ensureCtx();                                  // må skje direkte i trykket (iOS)
     if (btn === activeBtn) { stopAll(); return; } // trykk igjen = stopp
-    play(btn.getAttribute('data-notes').split(',').map(Number), btn);
+    /* Har knappen et notebilde i nærheten, farges notene mens de spilles (felles.js viser navnet i lappen) */
+    var holder = null, el = btn;
+    for (var k = 0; k < 6 && el && !holder; k++) { el = el.parentElement; if (el && el.querySelector('.vbm-notebilde svg, svg [data-f]')) holder = el.querySelector('.vbm-notebilde, svg [data-f]').closest('.vbm-notebilde') || el; }
+    var farg = holder && window.VBM_FARG ? window.VBM_FARG(holder.querySelector('svg') || holder) : null;
+    play(btn.getAttribute('data-notes').split(',').map(Number), btn, null, null, null, null, null, farg);
   });
   document.addEventListener('touchstart', function(){ ensureCtx(); }, {once: true, passive: true});
 
@@ -294,7 +326,7 @@
   function buildPicker(){
     var wrap = document.createElement('div'), bs = getComputedStyle(document.body);
     wrap.className = 'vbm-pille vbm-instr vbm-instr-float';
-    wrap.setAttribute('role', 'group'); wrap.setAttribute('aria-label', 'Velg instrument');
+    wrap.setAttribute('role', 'region'); wrap.setAttribute('aria-label', 'Velg instrument');
     wrap.style.background = bs.backgroundColor && bs.backgroundColor !== 'rgba(0, 0, 0, 0)' ? bs.backgroundColor : '#fff';
     wrap.style.color = bs.color;
     Object.keys(INSTR).forEach(function(k){
@@ -316,10 +348,10 @@
   /* For sider som styrer lyden selv (gehørquizen):
      VBM_LYD_SPILL(toner, knapp, ganger, kadens, samlet) spiller, eller stopper hvis knappen allerede spiller.
      VBM_LYD_STOPP() stopper all lyd. Begge må kalles direkte fra et trykk (iOS). */
-  window.VBM_LYD_SPILL = function(notes, btn, ganger, kadens, samlet){
+  window.VBM_LYD_SPILL = function(notes, btn, ganger, kadens, samlet, vedToner){
     ensureCtx();
     if (btn === activeBtn) { stopAll(); return; }
-    play(notes, btn, ganger, kadens, samlet);
+    play(notes, btn, ganger, kadens, samlet, null, null, vedToner);
   };
   /* VBM_LYD_SEKVENS(steg, knapp, vedSteg): spiller stegene etter hverandre, f.eks. en skala [[60],[62],[64]...].
      vedSteg (valgfri) får vite hvilket steg som klinger, se planSekvens. */

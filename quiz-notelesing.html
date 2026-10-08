@@ -296,7 +296,9 @@
     if (o.type === 'les') {
       tekst = T('Det var {navn} ({oktav}).', { navn: navn(o.n), oktav: T(S.oktavInfo(o.n).oktav) });
       if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP();
-      if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS([[midi(o.n)]], $('ov-stav'));
+      if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS([[midi(o.n)]], $('ov-stav'), function(k){
+        var e = $('ov-stav').querySelector('ellipse[data-f]'); if (e) e.classList.toggle('spilles', k >= 0);
+      });
     } else {
       var plasser = riktigePlasser(o);
       tekst = riktig ? T('Du fant {navn}.', { navn: navn(svar) }) : T('Du trykket på {navn}.', { navn: navn(svar) });

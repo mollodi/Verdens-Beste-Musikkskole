@@ -302,7 +302,7 @@
 
   var velger = document.createElement('div');
   velger.className = 'vbm-pille vbm-instr vbm-instr-float';
-  velger.setAttribute('role', 'group'); velger.setAttribute('aria-label', T('Velg lyd'));
+  velger.setAttribute('role', 'region'); velger.setAttribute('aria-label', T('Velg lyd'));
   velger.style.background = '#12151A'; velger.style.color = '#F6F1E7';
   Object.keys(LYDER).forEach(function(k){
     var b = document.createElement('button'); b.type = 'button'; b.setAttribute('data-lyd', k);
