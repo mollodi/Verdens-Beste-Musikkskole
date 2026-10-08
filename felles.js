@@ -279,8 +279,24 @@
     /* «Alle ressurser» står ikke lenger i linjen, men øverst inne i menyen */
     var hjem = nav.querySelector('a[href="index.html"]'), hjemTekst = '';
     if (hjem) { hjemTekst = hjem.innerHTML; hjem.parentNode.removeChild(hjem); }
-    var bs = getComputedStyle(document.body);
-    nav.style.setProperty('--vbm-topp-bg', bs.backgroundColor && bs.backgroundColor !== 'rgba(0, 0, 0, 0)' ? bs.backgroundColor : '#fff');
+    /* Samme menylinje på alle sider: helt øverst over hele bredden, mørk med lys tekst.
+       I juksebøkene står linjen inne i innholdet, så den flyttes ut til toppen av siden. */
+    /* Banneret om originalen står også helt øverst over hele bredden, som på de andre sidene */
+    var over = document.querySelector('.vbm-original');
+    if (over && over.parentNode !== document.body) document.body.insertBefore(over, document.body.firstChild);
+    if (nav.parentNode !== document.body || (over && nav.previousElementSibling !== over)) {
+      document.body.insertBefore(nav, over ? over.nextSibling : document.body.firstChild);
+    }
+    nav.classList.remove('vbm-back--book');
+    /* Har siden marg på sidene (juksebøkene), går linjen og banneret likevel helt ut til kanten */
+    var bsr = getComputedStyle(document.body), pl = parseFloat(bsr.paddingLeft) || 0, pr = parseFloat(bsr.paddingRight) || 0;
+    if (pl || pr) {
+      [nav, over].forEach(function(el){ if (el) { el.style.marginLeft = -pl + 'px'; el.style.marginRight = -pr + 'px'; } });
+      nav.style.setProperty('--utvid', Math.max(pl, pr) + 'px');
+    }
+    /* … og helt opp til toppen, selv om siden har luft øverst */
+    var pt = parseFloat(bsr.paddingTop) || 0;
+    if (pt) { var forst = over && over.parentNode === document.body ? over : nav; forst.style.marginTop = -pt + 'px'; nav.style.marginBottom = pt + 'px'; }   // luften kommer under linjen i stedet
     var b = document.createElement('button'); b.type = 'button'; b.className = 'vbm-meny-knapp';
     b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-controls', 'vbm-meny');
     b.innerHTML = '<span class="vbm-meny-ikon" aria-hidden="true"></span><span>' + T('Meny') + '</span>';
@@ -656,7 +672,11 @@
   /* ==================== 12. Innstillinger ====================
      Tannhjulet i menylinjen: Farger eller Svart-hvitt (for fargeblinde og for deg med kromestesi).
      Valget gjelder hele nettstedet og huskes. Flere innstillinger kommer her senere. */
-  var VISNING = 'vbm-visning', TEMPO = 'vbm-tempo';
+  var VISNING = 'vbm-visning', TEMPO = 'vbm-tempo', TEMA = 'vbm-tema';
+  /* Utseende: «lys» eller «mork» velges under Innstillinger. Automatisk (standard) følger nettleseren. */
+  function temaValg(){ var v = ''; try { v = localStorage.getItem(TEMA) || ''; } catch(e){} return v === 'lys' || v === 'mork' ? v : ''; }
+  function brukTema(){ var v = temaValg(); if (v) root.setAttribute('data-tema', v); else root.removeAttribute('data-tema'); }
+  brukTema();
   /* Tempo for hele nettstedet: «raskt» (standard), «middels» eller «sakte». Rytmesidene bruker 100, 80 og 60 slag i minuttet. */
   function tempoValg(){ var v = ''; try { v = localStorage.getItem(TEMPO) || ''; } catch(e){} return v === 'sakte' || v === 'middels' ? v : 'raskt'; }
   window.VBM_TEMPO = tempoValg;
@@ -674,6 +694,10 @@
       + '<div class="vbm-pille vbm-inst-valg" role="group" aria-label="' + T('Visning') + '">'
       + '<button type="button" data-visning="farger"><span>' + T('Farger') + '</span></button><button type="button" data-visning="sh"><span>' + T('Svart-hvitt') + '</span></button></div>'
       + '<p class="vbm-inst-tekst">' + T('Har du synestesi, ikke slå på fargene! Bruk gaven din! Ellers er det veldig nyttig å knytte bestemte lyder til farger.') + '</p>'
+      + '<p class="vbm-meny-tittel">' + T('Utseende') + '</p>'
+      + '<div class="vbm-pille vbm-inst-valg" role="group" aria-label="' + T('Utseende') + '">'
+      + '<button type="button" data-tema-valg=""><span>' + T('Automatisk') + '</span></button><button type="button" data-tema-valg="lys"><span>' + T('Lys') + '</span></button><button type="button" data-tema-valg="mork"><span>' + T('Mørk') + '</span></button></div>'
+      + '<p class="vbm-inst-tekst">' + T('Automatisk følger innstillingen i nettleseren.') + '</p>'
       + '<p class="vbm-meny-tittel">' + T('Tempo') + '</p>'
       + '<div class="vbm-pille vbm-inst-valg" role="group" aria-label="' + T('Tempo') + '">'
       + '<button type="button" data-tempo-valg="sakte"><span>' + T('Sakte') + '</span></button><button type="button" data-tempo-valg="middels"><span>' + T('Middels') + '</span></button><button type="button" data-tempo-valg="raskt"><span>' + T('Raskt') + '</span></button></div>'
@@ -689,12 +713,14 @@
       var v = brukVisning(), t = tempoValg();
       [].forEach.call(panel.querySelectorAll('[data-visning]'), function(k){ k.setAttribute('aria-pressed', k.getAttribute('data-visning') === v ? 'true' : 'false'); });
       [].forEach.call(panel.querySelectorAll('[data-tempo-valg]'), function(k){ k.setAttribute('aria-pressed', k.getAttribute('data-tempo-valg') === t ? 'true' : 'false'); });
+      [].forEach.call(panel.querySelectorAll('[data-tema-valg]'), function(k){ k.setAttribute('aria-pressed', k.getAttribute('data-tema-valg') === temaValg() ? 'true' : 'false'); });
       [].forEach.call(panel.querySelectorAll('[data-piano-valg]'), function(k){ k.setAttribute('aria-pressed', (k.getAttribute('data-piano-valg') === '1') === pianoPaa() ? 'true' : 'false'); });
     }
     panel.addEventListener('click', function(e){
-      var k = e.target.closest && e.target.closest('[data-visning], [data-tempo-valg], [data-piano-valg]'); if (!k) return;
+      var k = e.target.closest && e.target.closest('[data-visning], [data-tempo-valg], [data-piano-valg], [data-tema-valg]'); if (!k) return;
       try {
-        if (k.hasAttribute('data-visning')) localStorage.setItem(VISNING, k.getAttribute('data-visning'));
+        if (k.hasAttribute('data-tema-valg')) { localStorage.setItem(TEMA, k.getAttribute('data-tema-valg')); brukTema(); }
+        else if (k.hasAttribute('data-visning')) localStorage.setItem(VISNING, k.getAttribute('data-visning'));
         else if (k.hasAttribute('data-piano-valg')) { localStorage.setItem(PIANO, k.getAttribute('data-piano-valg')); allePianoer(); }
         else localStorage.setItem(TEMPO, k.getAttribute('data-tempo-valg'));
       } catch(e2){}

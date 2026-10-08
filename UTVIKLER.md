@@ -130,3 +130,9 @@ Nettsiden ligger på https://verdensbestemusikkskole.no/ (GitHub Pages med eget 
 - Spill-knapper med `data-notes` farger notebildet i samme kort automatisk (`lyd.js`).
 - Juksebøkene har ikke lenger egne knapper for farger og svart-hvitt. Gamle lenker med `?svart-hvitt` slår på svart-hvitt under Innstillinger.
 
+## Lys og mørk modus
+
+- Standard er «Automatisk»: nettstedet følger nettleseren (`@media (prefers-color-scheme: light/dark)` i `stil.css`). Lys modus bruker Akkordheftets farger, mørk modus den mørke siden med hvite kort. Juksebøkenes innholdskort beholder bøkenes eget utseende (hvitt i lys, sort i mørk).
+- Under Innstillinger kan man velge Lys eller Mørk. Valget lagres i `localStorage` (`vbm-tema`) og settes som `data-tema` på `<html>`.
+- Reglene for valgt tema nederst i `stil.css` er laget automatisk fra reglene for lys og mørk modus. Endrer du en farge i en av dem, lag de valgte reglene på nytt på samme måte, så de fortsatt er like.
+

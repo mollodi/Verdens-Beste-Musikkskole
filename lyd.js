@@ -327,8 +327,9 @@
     var wrap = document.createElement('div'), bs = getComputedStyle(document.body);
     wrap.className = 'vbm-pille vbm-instr vbm-instr-float';
     wrap.setAttribute('role', 'region'); wrap.setAttribute('aria-label', 'Velg instrument');
-    wrap.style.background = bs.backgroundColor && bs.backgroundColor !== 'rgba(0, 0, 0, 0)' ? bs.backgroundColor : '#fff';
-    wrap.style.color = bs.color;
+    /* Samme utseende på alle sider, som menylinjen: mørk med lys tekst */
+    wrap.style.background = '#12151A';
+    wrap.style.color = '#F6F1E7';
     Object.keys(INSTR).forEach(function(k){
       var b = document.createElement('button'); b.type = 'button';
       b.innerHTML = '<span>' + INSTR[k].label + '</span>';

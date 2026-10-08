@@ -137,7 +137,7 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
 :root:where([data-side="intervaller.html"]) { --vbm-verk: "K7Q4-95F9"; }
 :root:where([data-side="akkorder-og-intervaller.html"]) { --vbm-verk: "K7Q4-TEC2"; }
 :root:where([data-stil="bok"]) {
-  --bg: #FAF9F6;
+  --bg: #F6F1E7;   /* samme papirfarge som kortene på resten av nettstedet */
   --ink: #1E1E1A;
   --ink-soft: #6B6A62;
   --line: #DEDBD1;
@@ -190,8 +190,7 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
   --octave-ink: #2A2925;
 }
 @media (prefers-color-scheme: dark) {
-  :root:where([data-stil="bok"]) {
-    --bg: #17160F;
+  :root:not([data-tema="lys"]):where([data-stil="bok"]) { --bg: #12151A;
     --ink: #EDEBE2;
     --ink-soft: #A6A499;
     --line: #3A382E;
@@ -214,8 +213,7 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
     --indigo-dk-ink: #AEB5DC;
     --violet-dk-ink: #C6B7DB;
     --octave: #CFCBC1;
-    --octave-ink: #E4E1D8;
-  }
+    --octave-ink: #E4E1D8; }
 }
 :where(html[data-stil="bok"]), :where(html[data-stil="bok"]) * { box-sizing: border-box; }
 :where(html[data-stil="bok"]) body {
@@ -679,7 +677,7 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
   max-width: 560px;
   font-size: 16.5px;
   line-height: 1.6;
-  color: rgba(246,241,231,0.72);
+  color: color-mix(in srgb, var(--paper) 72%, transparent);
   margin: 0 0 30px;
 }
 :where(html[data-stil="mork"]) .hero-staff {
@@ -691,7 +689,7 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
 :where(html[data-side="intervaller-og-sanger.html"]) .hero-staff .staff-caption {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 12px;
-  color: rgba(246,241,231,0.55);
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
   max-width: 280px;
   line-height: 1.5;
 }
@@ -712,7 +710,7 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
 :where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) .hero-staff .staff-caption {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 12px;
-  color: rgba(246,241,231,0.55);
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
   max-width: 300px;
   line-height: 1.5;
 }
@@ -754,7 +752,7 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
   font-size: 12.5px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(246,241,231,0.55);
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
   padding: 9px 16px;
   border-radius: 7px;
   display: inline-block;
@@ -765,7 +763,7 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
   font-size: 10.5px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: rgba(246,241,231,0.55);
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
   padding: 8px 10px;
   border-radius: 7px;
   display: inline-block;
@@ -800,7 +798,7 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
   padding: 6px 11px;
   border-radius: 999px;
   border: 1px solid var(--rule-dark);
-  color: rgba(246,241,231,0.65);
+  color: color-mix(in srgb, var(--paper) 65%, transparent);
   display: inline-block;
   pointer-events: none;
   white-space: nowrap;
@@ -813,13 +811,13 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
 :where(html[data-side="intervaller-og-sanger.html"]) .hint {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 11.5px;
-  color: rgba(246,241,231,0.55);
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
   margin: 10px 0 0;
 }
 :where(html[data-side="lytteguide-septim-og-nonakkorder.html"]) .hint {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 11.5px;
-  color: rgba(246,241,231,0.55);
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
   margin: 10px 0 0;
   text-align: center;
 }
@@ -879,7 +877,7 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
   display: none;
   text-align: center;
   padding: 60px 20px;
-  color: rgba(246,241,231,0.4);
+  color: color-mix(in srgb, var(--paper) 40%, transparent);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 13px;
 }
@@ -981,7 +979,7 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
   padding: 0 28px 60px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 11.5px;
-  color: rgba(246,241,231,0.6);
+  color: color-mix(in srgb, var(--paper) 60%, transparent);
   line-height: 1.7;
 }
 :where(html[data-stil="mork"]) footer .vbm-signatur {
@@ -1090,10 +1088,8 @@ html.sh .legend, html.sh .cover-band{ display:none !important; }
   padding-bottom: env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark) {
-  :root:where([data-side="index.html"]):not([data-theme="light"]) {
-    --ink: #12151A;
-    --paper: #F6F1E7;
-  }
+  :root:not([data-tema="lys"]):where([data-side="index.html"]):not([data-theme="light"]) { --ink: #12151A;
+    --paper: #F6F1E7; }
 }
 :root:where([data-side="index.html"])[data-theme="dark"] {
   --ink: #12151A;
@@ -1210,7 +1206,7 @@ html:where([data-side="index.html"]) {
   max-width: 560px;
   font-size: 16px;
   line-height: 1.6;
-  color: rgba(246,241,231,.72);
+  color: color-mix(in srgb, var(--paper) 72%, transparent);
   margin: 0 0 20px;
 }
 :where(html[data-side="index.html"]) .grid {
@@ -1304,7 +1300,7 @@ html:where([data-side="index.html"]) {
   white-space: nowrap;
 }
 :where(html[data-side="index.html"]) .empty {
-  color: rgba(246,241,231,.72);
+  color: color-mix(in srgb, var(--paper) 72%, transparent);
   font-size: 15px;
   line-height: 1.6;
   padding-top: 44px;
@@ -1320,7 +1316,7 @@ html:where([data-side="index.html"]) {
   border-top: 1px solid var(--rule-dark);
   font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   font-size: 12px;
-  color: rgba(246,241,231,.5);
+  color: color-mix(in srgb, var(--paper) 50%, transparent);
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -1416,7 +1412,7 @@ html:where([data-side="index.html"]) {
   max-width: 580px;
   font-size: 16.5px;
   line-height: 1.6;
-  color: rgba(246,241,231,0.72);
+  color: color-mix(in srgb, var(--paper) 72%, transparent);
   margin: 0 0 14px;
 }
 :where(html[data-stil="ovelse"]) .hero p.lede:last-child { margin-bottom: 0; }
@@ -1624,7 +1620,7 @@ html:where([data-side="index.html"]) {
   border-top: 1px solid var(--rule-dark);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 12px;
-  color: rgba(246,241,231,0.5);
+  color: color-mix(in srgb, var(--paper) 50%, transparent);
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -2158,7 +2154,7 @@ html.sh .viktig strong { color: var(--ink) !important; }
 :where([data-stil="ovelse"], [data-stil="mork"]) body { --lenke: var(--lenke-mork); }
 :where([data-stil="ovelse"], [data-stil="mork"]) :where(.card, .cover) { --lenke: var(--lenke-lys); }
 @media (prefers-color-scheme: dark) {
-  :where([data-stil="bok"]) body { --lenke: var(--lenke-mork); }
+  html:not([data-tema="lys"]):where([data-stil="bok"]) body { --lenke: var(--lenke-mork); }
 }
 :where(main, .hero, .chapter, article, .lede, .wrap) a:not(.btn):not(.spotify-link):not(.card-link):not(.vbm-meny-lenke):not(.vbm-hjem) {
   color: var(--lenke);
@@ -2184,8 +2180,11 @@ a.btn:hover::after { transform: translateX(3px); }
 /* ---------- Menylinjen øverst ---------- */
 .vbm-back.vbm-topp {
   position: sticky; top: 0; z-index: 40;
-  max-width: none; margin: 0; padding: 8px max(1.25rem, calc((100% - 60rem) / 2 + 1.25rem));
-  background: var(--vbm-topp-bg, #fff);
+  max-width: none; margin: 0;
+  /* --utvid: sidemargen i juksebøkene, så knappene står nøyaktig der de står på alle andre sider */
+  padding: 8px max(1.25rem, calc((100% - 60rem) / 2 + 1.25rem + var(--utvid, 0px)));
+  background: #12151A; color: #F6F1E7;   /* samme mørke linje på alle sider */
+  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
   box-shadow: 0 4px 14px rgba(0, 0, 0, .12);
 }
@@ -2820,7 +2819,7 @@ html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="indigo-lt"] { fill: var(-
 html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="violet"] { fill: var(--nf-violet); }
 html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="violet-dk"] { fill: var(--nf-violet-dk); }
 html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f="violet-lt"] { fill: var(--nf-violet-lt); }
-html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f] { stroke: #1E1E1A; stroke-width: .8px; }
+html.vbm-tonefarger .vbm-notebilde[data-fast] [data-f] { stroke: var(--ink, #1E1E1A); stroke-width: .8px; }
 html.vbm-tonefarger.vbm-sh .vbm-notebilde[data-fast] [data-f] { fill: currentColor; stroke: none; }
 html.vbm-tonefarger.vbm-sh .vbm-notebilde[data-fast] [data-f].spilles { fill: transparent !important; stroke: currentColor !important; stroke-width: 2.2px !important; }
 .vbm-notebilde { color: var(--ink, currentColor); }
@@ -2887,4 +2886,114 @@ html.vbm-tonefarger.vbm-sh .tn-tangent.tn-trykket.svart { fill: #55554F !importa
 .vbm-melding.vis { opacity: 1; transform: translate(-50%, 0); }
 @media (forced-colors: active) { .vbm-melding { background: Canvas; color: CanvasText; border: 2px solid CanvasText; } }
 
-.vbm-tips { font-size: 15px; opacity: .9; margin-top: 4px; }
+.vbm-tips { font-size: 15px; margin-top: 4px; color: var(--ink) !important; }
+
+/* Juksebøkene: samme mørke side som resten av nettstedet, og boken på ett stort, lyst kort i midten */
+html:where([data-stil="bok"]), html:where([data-stil="bok"]) body { background: #12151A; }
+:where(html[data-stil="bok"]) body > main { background: var(--bg); border-radius: 16px; padding: 36px 32px 44px; }
+@media (max-width: 600px) { :where(html[data-stil="bok"]) body > main { padding: 24px 16px 32px; } }
+@media (forced-colors: active) { :where(html[data-stil="bok"]) body > main { border: 1px solid CanvasText; } }
+
+
+/* =====================================================================
+   Lys og mørk modus følger nettleseren.
+   Lys: fargene fra Akkordheftet (beige side, lyse ark, mørk skifergrå tekst).
+   Mørk: som før, men kortene er helt hvite (#FFFFFF i stedet for #F6F1E7).
+   Menylinjen og instrumentvelgeren er like i begge.
+   ===================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="lys"]):where([data-stil="ovelse"], [data-stil="mork"], [data-side="index.html"]) { --paper: #FFFFFF; }
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-tema="mork"]):where([data-stil="ovelse"], [data-stil="mork"], [data-side="index.html"]) { --paper: #22252A; --text-on-paper: #22252A; --text-muted: #5B5A54;
+    --rule: rgba(34,37,42,.16); --rule-dark: rgba(34,37,42,.16);
+    --knapp-valgt-bg: #22252A; --knapp-valgt-tekst: #F2EEE3; }
+  html:not([data-tema="mork"]):where([data-stil="ovelse"], [data-stil="mork"], [data-side="index.html"], [data-stil="bok"]), html:not([data-tema="mork"]):where([data-stil="ovelse"], [data-stil="mork"], [data-side="index.html"], [data-stil="bok"]) body { background: #DCD6C6 !important; }
+  :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"]):not([data-tema="mork"]) .card, :where(html[data-side="index.html"]):not([data-tema="mork"]) .cover { background: #F2EEE3 !important; color: #22252A; }
+  :root:not([data-tema="mork"]):where([data-stil="bok"]) { --bg: #FAF9F6; }
+  :where(html[data-stil="ovelse"]):not([data-tema="mork"]) .btn[aria-pressed="true"] { color: #F2EEE3; }
+  :where(html[data-side="intervaller-og-sanger.html"]):not([data-tema="mork"]) .chip-option input:checked + span { background: #22252A; color: #F2EEE3; border-color: #22252A; }
+  :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"]):not([data-tema="mork"]) .eyebrow, :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"]):not([data-tema="mork"]) .hero h1 em, :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"]):not([data-tema="mork"]) h2 em { color: #7A5410; }
+  :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"]):not([data-tema="mork"]) body { --lenke: var(--lenke-lys); }
+}
+/* Radioknappene (Oppover/Nedover og fanene i lytteguiden) ser ut som de andre knappene på nettstedet */
+:where(html[data-stil="mork"]) .tabs { background: transparent !important; border: 0 !important; padding: 0 !important; gap: 8px; display: flex; flex-wrap: wrap; }
+:where(html[data-stil="mork"]) .tab-option span {
+  font: 600 14px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important; letter-spacing: 0 !important; text-transform: none !important;
+  padding: 9px 16px !important; border-radius: 999px !important; border: 1.5px solid color-mix(in srgb, currentColor 45%, transparent) !important;
+  background: transparent !important; color: inherit !important; display: inline-block;
+}
+:where(html[data-stil="mork"]) .tab-option input:checked + span { background: var(--knapp-valgt-bg, var(--paper)) !important; color: var(--knapp-valgt-tekst, var(--ink)) !important; border-color: var(--knapp-valgt-bg, var(--paper)) !important; }
+:where(html[data-stil="mork"]) .tab-option input:focus-visible + span { outline: 2px solid currentColor; outline-offset: 2px; }
+@media (forced-colors: active) { :where(html[data-stil="mork"]) .tab-option input:checked + span { background: Highlight !important; color: HighlightText !important; border-color: Highlight !important; forced-color-adjust: none; } }
+@media (prefers-color-scheme: light) {
+  :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"]):not([data-tema="mork"]) footer, :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"]):not([data-tema="mork"]) footer *, :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"]):not([data-tema="mork"]) .vbm-signatur, :where(html[data-stil="mork"]):not([data-tema="mork"]) .staff-caption, :where(html[data-stil="mork"]):not([data-tema="mork"]) .hint, :where(html[data-side="intervaller-og-sanger.html"]):not([data-tema="mork"]) .chip-option input:not(:checked) + span { color: #4A4943 !important; }
+  :where(html[data-stil="mork"]):not([data-tema="mork"]) footer, :where(html[data-stil="mork"]):not([data-tema="mork"]) footer * { opacity: 1 !important; }
+  :where(html[data-stil="mork"]):not([data-tema="mork"]) .spotify-link { color: #4C5566 !important; border-color: rgba(76,85,102,.45) !important; }
+  :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"]):not([data-tema="mork"]) :where(.hero, footer, main > p) a:not(.btn) { color: #7A5410 !important; }
+}
+@media (prefers-color-scheme: light) {
+  html:not([data-tema="mork"]) .vbm-back.vbm-topp { background: #DCD6C6; color: #22252A; border-bottom-color: rgba(34,37,42,.18); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  html:not([data-tema="mork"]) .vbm-instr-float { background: #DCD6C6 !important; color: #22252A !important; }
+}
+@media (prefers-color-scheme: light) {
+  :where(html[data-side="kvintsirkelen.html"]):not([data-tema="mork"]) .midt { fill: #F2EEE3; }
+  :where(html[data-side="kvintsirkelen.html"]):not([data-tema="mork"]) .plass.valgt text { fill: #F2EEE3; }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="lys"]):where([data-side="index.html"]):not([data-theme="light"]) { --paper: #FFFFFF; }
+}
+/* Quizer med knapperad rett under overskriften og notelinjen under knappene: litt luft, så lappen ikke kommer nær streken */
+.card-head + .row + .noter.har-tn { margin-top: 18px !important; }   /* vinner over regler for enkelte notelinjer (#ov-stav) */
+
+/* =====================================================================
+   Utseende valgt under Innstillinger (Lys eller Mørk). Laget automatisk fra
+   reglene for lys og mørk modus over, så de alltid er like. Automatisk følger nettleseren.
+   ===================================================================== */
+:root[data-tema="mork"]:where([data-stil="bok"]) { --bg: #12151A;
+    --ink: #EDEBE2;
+    --ink-soft: #A6A499;
+    --line: #3A382E;
+    --surface: #201F17;
+    --crimson-ink: #CCA9AE;
+    --red-ink: #DFACB1;
+    --orange-ink: #EDC5B0;
+    --yellow-ink: #E9D8A9;
+    --green-ink: #B7D6C1;
+    --teal-ink: #B5D5D4;
+    --blue-ink: #B2CCE0;
+    --purple-ink: #BEB5C7;
+    --magenta-ink: #D3B5C4;
+    --taupe-ink: #C6C0BA;
+    --indigo-ink: #B9C0E6;
+    --violet-ink: #D0C0E6;
+    --rose-ink: #EBC2D2;
+    --orange-dk-ink: #E4B89F;
+    --yellow-dk-ink: #DCC99A;
+    --indigo-dk-ink: #AEB5DC;
+    --violet-dk-ink: #C6B7DB;
+    --octave: #CFCBC1;
+    --octave-ink: #E4E1D8; }
+:root[data-tema="mork"]:where([data-side="index.html"]):not([data-theme="light"]) { --ink: #12151A;
+    --paper: #F6F1E7; }
+html[data-tema="mork"]:where([data-stil="bok"]) body { --lenke: var(--lenke-mork); }
+:root[data-tema="mork"]:where([data-stil="ovelse"], [data-stil="mork"], [data-side="index.html"]) { --paper: #FFFFFF; }
+:root[data-tema="lys"]:where([data-stil="ovelse"], [data-stil="mork"], [data-side="index.html"]) { --paper: #22252A; --text-on-paper: #22252A; --text-muted: #5B5A54;
+    --rule: rgba(34,37,42,.16); --rule-dark: rgba(34,37,42,.16);
+    --knapp-valgt-bg: #22252A; --knapp-valgt-tekst: #F2EEE3; }
+html[data-tema="lys"]:where([data-stil="ovelse"], [data-stil="mork"], [data-side="index.html"], [data-stil="bok"]), html[data-tema="lys"]:where([data-stil="ovelse"], [data-stil="mork"], [data-side="index.html"], [data-stil="bok"]) body { background: #DCD6C6 !important; }
+:where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"])[data-tema="lys"] .card, :where(html[data-side="index.html"])[data-tema="lys"] .cover { background: #F2EEE3 !important; color: #22252A; }
+:root[data-tema="lys"]:where([data-stil="bok"]) { --bg: #FAF9F6; }
+:where(html[data-stil="ovelse"])[data-tema="lys"] .btn[aria-pressed="true"] { color: #F2EEE3; }
+:where(html[data-side="intervaller-og-sanger.html"])[data-tema="lys"] .chip-option input:checked + span { background: #22252A; color: #F2EEE3; border-color: #22252A; }
+:where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"])[data-tema="lys"] .eyebrow, :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"])[data-tema="lys"] .hero h1 em, :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"])[data-tema="lys"] h2 em { color: #7A5410; }
+:where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"])[data-tema="lys"] body { --lenke: var(--lenke-lys); }
+:where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"])[data-tema="lys"] footer, :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"])[data-tema="lys"] footer *, :where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"])[data-tema="lys"] .vbm-signatur, :where(html[data-stil="mork"])[data-tema="lys"] .staff-caption, :where(html[data-stil="mork"])[data-tema="lys"] .hint, :where(html[data-side="intervaller-og-sanger.html"])[data-tema="lys"] .chip-option input:not(:checked) + span { color: #4A4943 !important; }
+:where(html[data-stil="mork"])[data-tema="lys"] footer, :where(html[data-stil="mork"])[data-tema="lys"] footer * { opacity: 1 !important; }
+:where(html[data-stil="mork"])[data-tema="lys"] .spotify-link { color: #4C5566 !important; border-color: rgba(76,85,102,.45) !important; }
+:where(html[data-stil="ovelse"], html[data-stil="mork"], html[data-side="index.html"])[data-tema="lys"] :where(.hero, footer, main > p) a:not(.btn) { color: #7A5410 !important; }
+html[data-tema="lys"] .vbm-back.vbm-topp { background: #DCD6C6; color: #22252A; border-bottom-color: rgba(34,37,42,.18); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+html[data-tema="lys"] .vbm-instr-float { background: #DCD6C6 !important; color: #22252A !important; }
+:where(html[data-side="kvintsirkelen.html"])[data-tema="lys"] .midt { fill: #F2EEE3; }
+:where(html[data-side="kvintsirkelen.html"])[data-tema="lys"] .plass.valgt text { fill: #F2EEE3; }
+:root[data-tema="mork"]:where([data-side="index.html"]):not([data-theme="light"]) { --paper: #FFFFFF; }

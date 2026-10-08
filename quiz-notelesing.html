@@ -75,11 +75,13 @@
       <div class="step-label">Øvemodus</div>
       <h2 id="ov-sporsmal"></h2>
     </div>
-    <div class="noter" id="ov-stav"></div>
+    <!-- Knappene står over notelinjen, som i de andre quizene; navnelappen bruker plassen ved siden av dem -->
     <div class="row">
+      <button type="button" class="btn" id="ov-spill" aria-label="Spill tonen">&#9658;&#xFE0E; <span>spill</span></button>
       <button type="button" class="btn" id="ov-svar-knapp" hidden disabled>Svar</button>
       <button type="button" class="btn" id="ov-neste" hidden>Neste oppgave</button>
     </div>
+    <div class="noter" id="ov-stav"></div>
     <!-- Svaret står rett under «Neste oppgave», over svarknappene. -->
     <p class="feedback" id="ov-fb" aria-live="polite"></p>
     <div class="noter" id="ov-fasit" hidden></div>
@@ -282,6 +284,15 @@
     k.disabled = false; k.setAttribute('aria-pressed', 'true');
     ferdig(svar.b === ov.o.n.b && svar.f === ov.o.n.f, svar);
   }
+  /* Spill tonen. Fargen og navnelappen vises bare etter svaret, så de ikke røper det. */
+  $('ov-spill').addEventListener('click', function(){
+    if (!ov || !window.VBM_LYD_SEKVENS) return;
+    var btn = this, besvart = ov.besvart;
+    window.VBM_LYD_SEKVENS([[midi(ov.o.n)]], btn, function(k){
+      if (!besvart || ov.o.type !== 'les') return;
+      var e = $('ov-stav').querySelector('ellipse[data-f]'); if (e) e.classList.toggle('spilles', k >= 0);
+    });
+  });
   function ferdig(riktig, svar){
     ov.besvart = true;
     var o = ov.o, m = '', nk = nkTekst(o.nk);

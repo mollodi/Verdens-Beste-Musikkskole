@@ -140,7 +140,12 @@ VBM_ORDBOK("pl", {
     "Viser tonene på notelinjen på et piano under hver notelinje. Du kan trykke på tangentene for å høre dem.": "Pokazuje dźwięki z pięciolinii na fortepianie pod każdą pięciolinią. Możesz dotykać klawiszy, aby je usłyszeć.",
     "En oktav ned": "Oktawę w dół",
     "En oktav opp": "Oktawę w górę",
-    "{instrument} når ikke så dype eller høye toner, så de spilles på piano.": "{instrument} nie sięga tak niskich ani wysokich dźwięków, więc grane są na fortepianie."
+    "{instrument} når ikke så dype eller høye toner, så de spilles på piano.": "{instrument} nie sięga tak niskich ani wysokich dźwięków, więc grane są na fortepianie.",
+    "Utseende": "Wygląd",
+    "Automatisk": "Automatyczny",
+    "Lys": "Jasny",
+    "Mørk": "Ciemny",
+    "Automatisk følger innstillingen i nettleseren.": "Tryb automatyczny podąża za ustawieniem przeglądarki."
   },
   sider: {
     "index.html": {
@@ -2021,7 +2026,8 @@ VBM_ORDBOK("pl", {
         "Du er på god vei. Bruk øvemodus på det du bommet på, og prøv igjen.": "Jesteś na dobrej drodze. Poćwicz w trybie ćwiczeń to, co sprawiło trudność, i spróbuj ponownie.",
         "Ikke gi opp. Begynn i øvemodus med én nøkkel, og legg til flere etter hvert.": "Nie poddawaj się. Zacznij w trybie ćwiczeń od jednego klucza i stopniowo dodawaj kolejne.",
         "{n} kryss": function(v){ var n = v.n; return n + (n >= 2 && n <= 4 ? ' krzyżyki' : ' krzyżyków'); },
-        "{n} b-er": function(v){ var n = v.n; return n + (n >= 2 && n <= 4 ? ' bemole' : ' bemoli'); }
+        "{n} b-er": function(v){ var n = v.n; return n + (n >= 2 && n <= 4 ? ' bemole' : ' bemoli'); },
+        "Spill tonen": "Odtwórz dźwięk"
       },
     "rytme.html": {
         "Musikkteori": "Teoria muzyki",
