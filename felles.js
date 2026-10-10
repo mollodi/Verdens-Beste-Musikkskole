@@ -18,8 +18,12 @@
 
    Alt utseende ligger i stil.css. Denne filen lager ingen CSS.
    ===================================================================== */
+/* Versjonsnummeret fra lenken til denne fila (felles.js?v=39) brukes også for filene som lastes herfra (språk og materialer),
+   så nettleseren henter nye utgaver etter en oppdatering i stedet for gamle kopier fra hurtigminnet. */
+window.VBM_VERSJON = (function(){ var s = document.currentScript && document.currentScript.src, m = s && /[?&]v=([^&#]+)/.exec(s); return m ? m[1] : ''; })();
 (function(){
   'use strict';
+  var VERSJON = window.VBM_VERSJON ? '?v=' + window.VBM_VERSJON : '';
 
   /* ==================== 1. Innstillinger ==================== */
   var SPRAK = ['no', 'en', 'pl'];                        // rekkefølgen på knappene
@@ -78,7 +82,7 @@
     oversettHode();
   };
   var trengs = sprak !== 'no' || kilde !== 'no';
-  if (trengs && !window.VBM_INGEN_LASTING) document.write('<script src="sprak-' + sprak + '.js"><\/script>');
+  if (trengs && !window.VBM_INGEN_LASTING) document.write('<script src="sprak-' + sprak + '.js' + VERSJON + '"><\/script>');
   if (trengs) root.classList.add('vbm-oversetter');      // siden vises når teksten er byttet
   setTimeout(function(){ root.classList.remove('vbm-oversetter'); }, 2500);   // sikkerhet
 
@@ -265,7 +269,7 @@
   var NIVANAVN = { grunnleggende: 'Grunnleggende', avansert: 'Avansert', ekspert: 'Ekspert' };
   function hentMaterialer(ferdigFn){
     if (window.VBM && window.VBM.materialer) { ferdigFn(); return; }
-    var sk = document.createElement('script'); sk.src = 'materialer.js';
+    var sk = document.createElement('script'); sk.src = 'materialer.js' + VERSJON;
     sk.onload = ferdigFn; document.head.appendChild(sk);
   }
   /* Nivåmerke under overskriften og «Se også» nederst, fra materialer.js (niva og relatert) */
@@ -287,14 +291,15 @@
       /* Leksjonene i Musikkteori henger sammen som et kurs: forrige og neste leksjon i rekkefølgen fra materialer.js */
       var kurs = alle.filter(function(m){ return m.seksjon === meg.seksjon && meg.seksjon === 'teori' && !m.skjult; }), nr = kurs.indexOf(meg), steg = '';
       if (nr >= 0) {
-        if (nr > 0) steg += '<a class="vbm-kurs-lenke" href="' + kurs[nr - 1].fil + '">&larr; ' + T('Forrige leksjon') + ': ' + menyT(kurs[nr - 1].tittel) + '</a>';
-        if (nr < kurs.length - 1) steg += '<a class="vbm-kurs-lenke vbm-kurs-neste" href="' + kurs[nr + 1].fil + '">' + T('Neste leksjon') + ': ' + menyT(kurs[nr + 1].tittel) + ' &rarr;</a>';
+        if (nr > 0) steg += '<a class="vbm-rel-lenke vbm-kurs-lenke" href="' + kurs[nr - 1].fil + '"><span class="vbm-kurs-retning">&larr; ' + T('Forrige leksjon') + '</span><span>' + menyT(kurs[nr - 1].tittel) + '</span></a>';
+        if (nr < kurs.length - 1) steg += '<a class="vbm-rel-lenke vbm-kurs-lenke vbm-kurs-neste" href="' + kurs[nr + 1].fil + '"><span class="vbm-kurs-retning">' + T('Neste leksjon') + ' &rarr;</span><span>' + menyT(kurs[nr + 1].tittel) + '</span></a>';
       }
       nav.innerHTML = (steg ? '<div class="vbm-kurs">' + steg + '</div>' : '') + '<p class="vbm-relatert-tittel">' + T('Se også') + '</p><ul>' + rel.map(function(m){
-        return '<li><a href="' + m.fil + '">' + menyT(m.tittel) + '</a>' + (m.niva ? ' <span class="vbm-niva niva-' + m.niva + '">' + T(NIVANAVN[m.niva]) + '</span>' : '') + '</li>';
+        return '<li><a class="vbm-rel-lenke" href="' + m.fil + '"><span>' + menyT(m.tittel) + '</span>' + (m.niva ? '<span class="vbm-niva niva-' + m.niva + '">' + T(NIVANAVN[m.niva]) + '</span>' : '') + '</a></li>';
       }).join('') + '</ul>';
-      var fot = document.querySelector('footer');
-      if (fot) fot.parentNode.insertBefore(nav, fot); else document.body.appendChild(nav);
+      /* Inni <main>, så blokken holder seg i samme ramme og bredde som resten av siden */
+      var hoved = document.querySelector('main'), fot = document.querySelector('footer');
+      if (hoved) hoved.appendChild(nav); else if (fot) fot.parentNode.insertBefore(nav, fot); else document.body.appendChild(nav);
     });
   }
   function byggMeny(){

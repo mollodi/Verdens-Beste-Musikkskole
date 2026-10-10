@@ -157,3 +157,15 @@ Tempo (Innstillinger): raskt 100, middels 65 og sakte 45 slag i minuttet. Resten
 ## Nivå og «Se også»
 
 Hver oppføring i `materialer.js` har `niva` (grunnleggende, avansert eller ekspert) og `relatert` (filnavn). Startsiden viser nivået på kortet, og Innstillinger har et nivåfilter (`vbm-niva`) for startsiden og menyen. På hver side legger `felles.js` til nivået under overskriften og en «Se også»-blokk nederst, og leksjonene i Musikkteori får «Forrige leksjon» og «Neste leksjon» i rekkefølgen fra `materialer.js`. Rekkefølgen i lista er læringsrekkefølgen.
+
+## Tonenavn og akkordsymboler
+
+Løpende tekst bruker norske tonenavn (Ess, Fiss, Ass) med `K.tone()`. Akkordsymboler bruker ♯ og ♭ (E♭, F♯m, A♭7) med `K.akkordTone()`, men B og H beholder de norske betydningene på norsk og polsk. Engelsk bruker engelske navn i begge. Funksjonsanalysen følger opptaksprøvens system (T, S, D, Ts, Ss, Tm, store bokstaver også i moll) på alle sider; parallellnavnene står som forklaring i «Ulike navn og systemer».
+
+## Versjonsnummer (hurtigminne)
+
+Alle felles filer lenkes med et versjonsnummer, for eksempel `felles.js?v=40` og `stil.css?v=40`, så nettleseren henter nye utgaver etter en oppdatering. Språkfilene og `materialer.js` får samme nummer automatisk (felles.js leser det fra sin egen lenke). Når en felles fil endres: søk og erstatt `?v=40` med neste nummer i alle sider, og last opp alle sidene.
+
+## Omvendinger
+
+Leksjonen Omvendinger er slått sammen med Akkordanalyse (kort 5, `akkordanalyse.html#omvendinger`). `omvendinger.html` sender videre dit, så gamle lenker og bokmerker virker.

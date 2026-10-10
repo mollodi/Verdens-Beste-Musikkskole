@@ -72,7 +72,7 @@ window.VBM_FORLOP = (function(){
     var x = H.rekke(nr, f.moll, objekter, null, 'sym');
     x.akkorder.forEach(function(a, i){
       var o = objekter[i], grunn = S.toner(x.rot, [o.rot])[0];
-      if (o.dim) a.sym = K.tone(grunn) + 'dim';
+      if (o.dim) a.sym = K.akkordTone(grunn) + 'dim';
       a.tall = medBegge ? [a.sym, merke(f.moll, o.rom, system)] : [merke(f.moll, o.rom, system)];
       a.rom = o.rom;
     });

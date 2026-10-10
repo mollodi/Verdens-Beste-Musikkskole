@@ -66,7 +66,7 @@ window.VBM = {
       svartHvitt: false,
       lagtTil: "",
       niva: "avansert",
-      relatert: ["akkordanalyse.html", "omvendinger.html", "lytteguide-septim-og-nonakkorder.html"]
+      relatert: ["akkordanalyse.html", "lytteguide-septim-og-nonakkorder.html"]
     },
     {
       seksjon: "oretrening",
@@ -169,17 +169,6 @@ window.VBM = {
     },
     {
       seksjon: "teori",
-      merke: "Omvendinger",
-      tittel: "Omvendinger",
-      beskrivelse: "Alle stillingene til treklanger og septimakkorder, fra sekstakkord til sekundakkord, i alle tonearter.",
-      fil: "omvendinger.html",
-      svartHvitt: false,
-      lagtTil: "2026-10-06",
-      niva: "avansert",
-      relatert: ["akkordhefte.html", "akkordanalyse.html", "gehorquiz-omvendinger.html"]
-    },
-    {
-      seksjon: "teori",
       merke: "Akkordanalyse",
       tittel: "Akkordanalyse",
       beskrivelse: "Finn grunntone, akkordtype og omvending, skriv besifringen, og finn trinn og funksjon, for treklanger og septimakkorder i dur og moll.",
@@ -187,7 +176,7 @@ window.VBM = {
       svartHvitt: false,
       lagtTil: "2026-10-09",
       niva: "avansert",
-      relatert: ["akkordhefte.html", "omvendinger.html", "harmonilaere.html", "quiz-akkordanalyse.html"]
+      relatert: ["akkordhefte.html", "harmonilaere.html", "quiz-akkordanalyse.html"]
     },
     {
       seksjon: "teori",
@@ -242,7 +231,7 @@ window.VBM = {
       svartHvitt: false,
       lagtTil: "",
       niva: "grunnleggende",
-      relatert: ["intervaller-teori.html", "akkordanalyse.html", "omvendinger.html"]
+      relatert: ["intervaller-teori.html", "akkordanalyse.html"]
     },
     {
       seksjon: "gehorquiz",
@@ -308,7 +297,7 @@ window.VBM = {
       svartHvitt: false,
       lagtTil: "2026-10-06",
       niva: "avansert",
-      relatert: ["omvendinger.html", "akkordanalyse.html"]
+      relatert: ["akkordanalyse.html"]
     },
     {
       seksjon: "gehorquiz",
@@ -429,7 +418,7 @@ window.VBM = {
       svartHvitt: false,
       lagtTil: "2026-10-09",
       niva: "avansert",
-      relatert: ["akkordanalyse.html", "omvendinger.html", "gehorquiz-akkorder.html"]
+      relatert: ["akkordanalyse.html", "gehorquiz-akkorder.html"]
     },
     {
       seksjon: "teoriquiz",

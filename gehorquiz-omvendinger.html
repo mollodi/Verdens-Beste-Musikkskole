@@ -17,8 +17,8 @@
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Gehørquiz: omvendinger</title>
-<script src="felles.js"></script>
-<link rel="stylesheet" href="stil.css">
+<script src="felles.js?v=40"></script>
+<link rel="stylesheet" href="stil.css?v=40">
 <meta name="description" content="Hør en akkord og finn stillingen: grunnstilling, sekstakkord, kvartsekstakkord, kvintsekstakkord, terskvartakkord eller sekundakkord.">
 </head>
 <body>
@@ -27,7 +27,7 @@
   <div class="eyebrow">Quiz</div>
   <h1>Gehør<em>quiz</em>: omvendinger</h1>
   <p class="lede">Hør en akkord og finn stillingen: grunnstilling eller en av omvendingene. Lytt etter bassen, den nederste tonen, så hører du hvilken tone i akkorden som ligger nederst.</p>
-  <p class="lede">Alle stillingene er forklart i leksjonen <a href="omvendinger.html">Omvendinger</a>. Velg piano, strykere eller sinustoner nederst til høyre.</p>
+  <p class="lede">Alle stillingene er forklart i leksjonen <a href="akkordanalyse.html#omvendinger">Omvendinger</a>. Velg piano, strykere eller sinustoner nederst til høyre.</p>
 </header>
 
 <main>
@@ -121,8 +121,8 @@
 
 <footer data-lyd="alle"></footer>
 
-<script src="tonearter.js"></script>
-<script src="skalaer.js"></script>
+<script src="tonearter.js?v=40"></script>
+<script src="skalaer.js?v=40"></script>
 <script>/* VBM K7Q4-QOMV */
 (function(){
   'use strict';
@@ -148,7 +148,7 @@
   var AKKORDER = [
     { gr: 'tre', trinn: [[0,0],[2,4],[4,7]], navn: function(r){ return K.dur(r); }, sym: '' },
     { gr: 'tre', trinn: [[0,0],[2,3],[4,7]], navn: function(r){ return K.moll(r); }, sym: 'm' },
-    { gr: 'fire', trinn: [[0,0],[2,4],[4,7],[6,10]], navn: function(r){ return K.tone(r) + '7'; }, sym: '7' }
+    { gr: 'fire', trinn: [[0,0],[2,4],[4,7],[6,10]], navn: function(r){ return K.akkordTone(r) + '7'; }, sym: '7' }
   ];
   var STAMME = ['prim', 'sekund', 'ters', 'kvart', 'kvint', 'sekst', 'septim', 'oktav'];
   function intervall(steg, halv){
@@ -328,6 +328,6 @@
   visValg(); nyOvOppgave(); visFremgang();
 })();
 </script>
-<script src="lyd.js"></script>
+<script src="lyd.js?v=40"></script>
 </body>
 </html>

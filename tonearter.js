@@ -25,6 +25,15 @@ window.VBM_TONEARTER = (function(){
     if (t[n.f]) return t[n.f][n.b];
     return t[0][n.b] + (n.f > 0 ? '𝄪' : '𝄫');   // dobbeltfortegn (vises sjelden som tekst)
   }
+  /* Tonen slik den skrives i akkordsymboler: bokstav med ♯ eller ♭ (E♭, F♯m, A♭7), som i jukseboka og de fleste sangbøker.
+     På norsk og polsk beholdes B (= engelsk B♭) og H (= engelsk B); på engelsk er det vanlige engelske navn.
+     I løpende tekst brukes tone() (Ess, Fiss, Ass). */
+  function akkordTone(n){
+    if (sprak() === 'en') return tone(n);
+    if (n.b === 6 && n.f === -1) return 'B';
+    var L = ['C', 'D', 'E', 'F', 'G', 'A', 'H'][n.b];
+    return L + ({ 1: '♯', 2: '𝄪', '-1': '♭', '-2': '𝄫' }[n.f] || '');
+  }
   function dur(n){ return sprak() === 'en' ? tone(n) + ' major' : tone(n) + '-dur'; }
   function moll(n){ return sprak() === 'en' ? tone(n) + ' minor' : tone(n).toLowerCase() + '-moll'; }
   /* Korte navn til sirkelen: stor bokstav for dur, liten for moll (engelsk: «Am»). */
@@ -97,7 +106,7 @@ window.VBM_TONEARTER = (function(){
   }
   function treklang(n, mollklang){ var g = grunntone(n); return [g, g + (mollklang ? 3 : 4), g + 7]; }
 
-  return { ALLE: ALLE, SIRKEL: SIRKEL, medFortegn: medFortegn, tone: tone, dur: dur, moll: moll,
+  return { ALLE: ALLE, SIRKEL: SIRKEL, medFortegn: medFortegn, tone: tone, akkordTone: akkordTone, dur: dur, moll: moll,
            kortDur: kortDur, kortMoll: kortMoll, fortegnNavn: fortegnNavn, liste: liste, antall: antall,
            fortegnSvg: fortegnSvg, skala: skala, treklang: treklang, T: T };
 })();

@@ -17,8 +17,8 @@
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Quiz: stemming og temperatur</title>
-<script src="felles.js"></script>
-<link rel="stylesheet" href="stil.css">
+<script src="felles.js?v=40"></script>
+<link rel="stylesheet" href="stil.css?v=40">
 <meta name="description" content="Hør om et intervall er rent eller svever, og regn med frekvensforhold, cent og frekvenser. Øvemodus og prøvemodus med 20 oppgaver.">
 </head>
 <body>
@@ -27,7 +27,7 @@
   <div class="eyebrow">Quiz</div>
   <h1><em>Quiz</em>: stemming og temperatur</h1>
   <p class="lede">Hør om et intervall er rent eller svever, og regn med frekvensforhold, cent og frekvenser. Øv i ditt eget tempo, eller ta en prøve med 20 oppgaver.</p>
-  <p class="lede">Alt er forklart i leksjonen <a href="stemming.html">Stemming og temperatur</a>. Svevninger høres best med orgel, som er valgt nederst til høyre. Bruk gjerne hodetelefoner.</p>
+  <p class="lede">Alt er forklart i leksjonen <a href="stemming.html">Stemming og temperatur</a>. Svevninger høres best med overtonetonen, som er valgt nederst til høyre. Bruk gjerne hodetelefoner.</p>
 </header>
 
 <main>
@@ -127,9 +127,9 @@
 
 <footer data-lyd="stemming"></footer>
 
-<script src="tonearter.js"></script>
-<script src="skalaer.js"></script>
-<script src="stemming.js"></script>
+<script src="tonearter.js?v=40"></script>
+<script src="skalaer.js?v=40"></script>
+<script src="stemming.js?v=40"></script>
 <script>/* VBM K7Q4-QSTM */
 (function(){
   'use strict';
@@ -268,7 +268,7 @@
   /* =================== Øvemodus =================== */
   var STAT = {}, MAL = 5, paRad = 0, best = 0, klar = false, ov = null, knapper = [];
   var FEIL = {
-    svevning: ['Ikke gi opp. Øret blir bedre for hver oppgave.', 'Lytt etter om lyden pulserer, som en langsom eller rask vibrasjon.', 'Hør med orgel eller piano: sinustoner svever nesten ikke, og strykerne har vibrato.', 'Pust rolig, lytt godt, og prøv neste.'],
+    svevning: ['Ikke gi opp. Øret blir bedre for hver oppgave.', 'Lytt etter om lyden pulserer, som en langsom eller rask vibrasjon.', 'Hør med overtonetonen eller orgel: sinustoner svever nesten ikke.', 'Pust rolig, lytt godt, og prøv neste.'],
     forhold: ['Ikke gi opp. Du blir bedre for hver oppgave.', 'Tenk på overtonerekken: 1, 2, 3, 4, 5, 6.', 'Les gjerne kort 3 til 5 i leksjonen en gang til.', 'Pust rolig, tenk deg om, og prøv neste.'],
     frekvens: ['Ikke gi opp. Du blir bedre for hver oppgave.', 'Gang frekvensen med forholdet: en kvint over er ganger 3/2.', 'En oktav over er dobbelt så høy frekvens, en oktav under er halvparten.', 'Pust rolig, tenk deg om, og prøv neste.']
   };
@@ -388,6 +388,6 @@
 </script>
 <script>window.VBM_LYD = { chordDur: 6 };   /* intervallene holdes lenge, så svevningene høres */</script>
 <script>window.VBM_LYD_ORGEL_SIDE = true;   /* orgel i lydvalget, valgt som standard her */</script>
-<script src="lyd.js"></script>
+<script src="lyd.js?v=40"></script>
 </body>
 </html>

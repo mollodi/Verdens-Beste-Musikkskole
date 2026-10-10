@@ -17,8 +17,8 @@
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Akkordanalyse</title>
-<script src="felles.js"></script>
-<link rel="stylesheet" href="stil.css">
+<script src="felles.js?v=40"></script>
+<link rel="stylesheet" href="stil.css?v=40">
 <meta name="description" content="Akkordanalyse forklart: finn grunntonen, akkordtypen og omvendingen, skriv besifringen, og finn trinn og funksjon, for treklanger og septimakkorder i dur og moll, med lyd.">
 </head>
 <body>
@@ -120,17 +120,25 @@
       <li><strong>Septimakkorder:</strong> grunnstilling (⁷), kvintsekstakkord med tersen i bassen (⁶₅), terskvartakkord med kvinten i bassen (⁴₃) og sekundakkord med septimen i bassen (⁴₂).</li>
       <li><strong>Besifring:</strong> basstonen skrives etter en skråstrek, for eksempel C/E, G7/H og G7/F.</li>
     </ul>
-    <p class="task">Alle stillingene i alle tonearter finner du i <a href="omvendinger.html">Omvendinger</a>.</p>
+    <p class="task">Navnene kommer fra generalbass (besifring), der tallene under bassnoten forteller hvilke intervaller som ligger over den. En treklang i grunnstilling har en ters og en kvint over bassen (5 og 3, som regel ikke skrevet). I første omvending ligger tersen nederst, og over den kommer en ters og en sekst: sekstakkord (6). I andre omvending ligger kvinten nederst, og over den kommer en kvart og en sekst: kvartsekstakkord (6 over 4).</p>
+    <p class="task">Velg en akkord og en grunntone, så ser og hører du alle stillingene, med intervallene over bassen.</p>
+    <p class="label" id="om-t3-label">Treklanger</p>
+    <div class="row brikker" id="om-typer-3" role="group" aria-labelledby="om-t3-label"></div>
+    <p class="label" id="om-t4-label">Septimakkorder</p>
+    <div class="row brikker" id="om-typer-4" role="group" aria-labelledby="om-t4-label"></div>
+    <p class="label" id="om-g-label">Grunntone</p>
+    <div class="row brikker" id="om-grunntoner" role="group" aria-labelledby="om-g-label"></div>
     <div class="stav-blokk">
-      <p class="label" id="om3-merke"></p>
-      <div class="row"><button type="button" class="btn" data-spill="om3-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
-      <div class="noter" id="om3-noter"></div>
+      <p class="label" id="om-tittel"></p>
+      <div class="row"><button type="button" class="btn" id="om-spill-alle">&#9658;&#xFE0E; <span>Spill alle stillingene</span></button></div>
+      <div class="noter" id="om-rekke"></div>
     </div>
-    <div class="stav-blokk">
-      <p class="label" id="om4-merke"></p>
-      <div class="row"><button type="button" class="btn" data-spill="om4-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
-      <div class="noter" id="om4-noter"></div>
+    <ul class="stillinger" id="om-stillinger"></ul>
+    <div class="viktig">
+      <p class="task"><strong>Sekstakkord betyr to ting.</strong> I klassisk teori er en sekstakkord en treklang i første omvending, for eksempel C/E. I pop og jazz betyr sekstakkord en treklang med tilføyd sekst, for eksempel C6 (C–E–G–A). Det er to helt ulike akkorder med samme navn, så se alltid etter om det står C/E eller C6. De to henger likevel sammen: C6 har nøyaktig de samme tonene som Am7, altså Am7 i første omvending. På samme måte er Cm6 det samme som Am7♭5 med C i bassen. Begge står i Den ultimate jukseboka.</p>
     </div>
+    <p class="task"><strong>Akkorder som ikke endrer seg.</strong> Forstørret treklang består av to store terser, så hver omvending klinger som en ny forstørret treklang: C+ i første omvending har de samme tangentene som E+. Forminsket septimakkord består av fire små terser, så hver omvending klinger som en ny forminsket septimakkord: Cdim7, E♭dim7, G♭dim7 og Adim7 er de samme fire tangentene. Velg en av dem over og hør at alle stillingene klinger likt, bare lysere eller mørkere.</p>
+    <p class="task">Hvordan kvartsekstakkorden brukes i kadenser, forskjellen på omvending og beliggenhet, og skråstrekakkorder med en bass utenfor akkorden, står i leksjonen <a href="harmonilaere.html">Harmonilære</a>.</p>
   </section>
 
   <section class="card bred" id="analyse">
@@ -184,9 +192,13 @@
     <ul class="ulike-liste">
       <li><strong>Akkordsymboler.</strong> Samme akkord skrives ulikt: Cmaj7, CΔ, CM7 og Cma7; Cm, Cmi og C−; Cm7♭5 og Cø; Cdim og C°; C+ og Caug. Her brukes skrivemåten fra Den ultimate jukseboka.</li>
       <li><strong>Romertall.</strong> Engelskspråklige bøker og dette nettstedet skriver moll og forminsket med små bokstaver (ii, vii°). Opptaksprøven bruker store bokstaver for alle trinn og lar tonearten avgjøre typen. Halvforminsket skrives viiø⁷ i noen bøker og vii⁷ eller vii°⁷ i andre.</li>
-      <li><strong>Funksjoner i moll.</strong> Opptaksprøven og denne siden bruker store bokstaver også i moll (T, S, D). Tysk og dansk tradisjon, og Harmonilære på dette nettstedet, skriver t og s for mollakkorder.</li>
+      <li><strong>Funksjoner i moll.</strong> Opptaksprøven og dette nettstedet bruker store bokstaver også i moll (T, S, D). Tysk og dansk tradisjon skriver t og s for mollakkorder.</li>
       <li><strong>Basstallet.</strong> Det norske og danske systemet skriver basstonen som et tall under funksjonsbokstaven (D₃). Andre tradisjoner bruker bare generalbasstall eller skråstrek.</li>
       <li><strong>Kadensens kvartsekstakkord.</strong> Mange bøker skriver I⁶₄, fordi tonene er de samme som i I. Opptaksprøven og mange nyere bøker skriver V⁶₄ (funksjon D⁶₄), fordi akkorden virker som en del av dominanten. Se Bitreklanger og forholdninger.</li>
+      <li><strong>Tonenavn og akkordsymboler.</strong> På dette nettstedet skrives tonene med norske navn i løpende tekst (Ess, Fiss, Ass), mens akkordsymbolene bruker ♯ og ♭ (E♭, F♯m, A♭7), slik de fleste sangbøker og jukseboka gjør. B og H beholder de norske betydningene også i akkordsymboler: B er engelsk B♭, og H er engelsk B. Mange nyere sangbøker bruker i stedet de engelske navnene (B♭ og B), så sjekk alltid hvilket system en bok bruker.</li>
+      <li><strong>Navn på omvendingene.</strong> Norsk bruker gjerne generalbassnavnene: sekstakkord og kvartsekstakkord for treklanger, og kvintsekstakkord, terskvartakkord og sekundakkord for septimakkorder. Engelsk sier first, second og third inversion.</li>
+      <li><strong>Generalbasstallene.</strong> I de fleste bøker står tallene over hverandre (⁶₅), men i tekst og i noen bøker skrives de som 6/5 eller 65. Sekundakkorden skrives både ⁴₂ og bare 2.</li>
+      <li><strong>Skråstrekakkorder.</strong> C/E er en omvending når basstonen er en akkordtone. I jazz og pop kan basstonen også være en tone utenfor akkorden, som i C/D. Se Harmonilære.</li>
     </ul>
     <p class="kilde">Kilder: Esa Lilja, «Harmony Analysis Tasks in the Music Theory Admission Test for Higher Music Education in Norway», PlaySpace 3/1 (2024). Bjørnar Utne-Reitan, «Funksjonsteori – en musikkteoretisk tradisjon» (2023).</p>
   </section>
@@ -199,18 +211,17 @@
     <p class="task">I teoriquizen leser du akkorder på notelinjen og finner besifring, trinn og omvending, eller funksjonen. Med øvemodus og en prøve med 20 oppgaver.</p>
     <div class="row">
       <a class="btn" href="quiz-akkordanalyse.html">Gå til quizen</a>
-      <a class="btn" href="omvendinger.html">Omvendinger</a>
-      <a class="btn" href="akkordhefte.html">Akkordhefte</a>
+            <a class="btn" href="akkordhefte.html">Akkordhefte</a>
     </div>
   </section>
 </main>
 
 <footer data-lyd="alle"></footer>
 
-<script src="tonearter.js"></script>
-<script src="intervall.js"></script>
-<script src="skalaer.js"></script>
-<script src="akkord.js"></script>
+<script src="tonearter.js?v=40"></script>
+<script src="intervall.js?v=40"></script>
+<script src="skalaer.js?v=40"></script>
+<script src="akkord.js?v=40"></script>
 <script>/* VBM K7Q4-AKKT */
 (function(){
   'use strict';
@@ -278,9 +289,67 @@
   [].forEach.call(document.querySelectorAll('[data-modus-tk]'), function(b){ b.addEventListener('click', function(){ stopp(); tkMoll = b.getAttribute('data-modus-tk') === 'moll'; tegnTrinn(); }); });
 
   /* =================== 5. Omvendinger =================== */
-  var C = A.akkord(C_DUR, false, 0, false);
-  rekke('om3-noter', [0, 1, 2].map(function(i){ return { noter: A.tett(C, i), tall: [A.symbol(C, i), A.romertall(C, i)] }; }), T('C-dur: grunnstilling, sekstakkord og kvartsekstakkord'));
-  rekke('om4-noter', [0, 1, 2, 3].map(function(i){ return { noter: A.tett(G7, i), tall: [A.symbol(G7, i), A.romertall(G7, i)] }; }), T('G7: grunnstilling, kvintsekstakkord, terskvartakkord og sekundakkord'));
+  /* Alle stillingene for en valgt akkord og grunntone (tidligere leksjonen Omvendinger) */
+  var OM_TYPER = [
+    { navn: 'Durtreklang', sym: '', trinn: [[0,0],[2,4],[4,7]] },
+    { navn: 'Molltreklang', sym: 'm', trinn: [[0,0],[2,3],[4,7]] },
+    { navn: 'Forminsket treklang', sym: 'dim', trinn: [[0,0],[2,3],[4,6]] },
+    { navn: 'Forstørret treklang', sym: '+', trinn: [[0,0],[2,4],[4,8]] },
+    { navn: 'Dominantseptimakkord', sym: '7', trinn: [[0,0],[2,4],[4,7],[6,10]] },
+    { navn: 'Majorseptimakkord', sym: 'maj7', trinn: [[0,0],[2,4],[4,7],[6,11]] },
+    { navn: 'Mollseptimakkord', sym: 'm7', trinn: [[0,0],[2,3],[4,7],[6,10]] },
+    { navn: 'Halvforminsket septimakkord', sym: 'm7♭5', trinn: [[0,0],[2,3],[4,6],[6,10]] },
+    { navn: 'Forminsket septimakkord', sym: 'dim7', trinn: [[0,0],[2,3],[4,6],[6,9]] }
+  ];
+  var OM_STILL3 = [{ navn: 'Grunnstilling', tall: ['5', '3'] }, { navn: 'Sekstakkord (første omvending)', tall: ['6'] }, { navn: 'Kvartsekstakkord (andre omvending)', tall: ['6', '4'] }];
+  var OM_STILL4 = [{ navn: 'Grunnstilling', tall: ['7'] }, { navn: 'Kvintsekstakkord (første omvending)', tall: ['6', '5'] }, { navn: 'Terskvartakkord (andre omvending)', tall: ['4', '3'] }, { navn: 'Sekundakkord (tredje omvending)', tall: ['4', '2'] }];
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var omType = 0, omRot = 0, omStillinger = [];
+  try { var lo = JSON.parse(localStorage.getItem('vbm-omvendinger')); if (lo) { omType = lo.t || 0; omRot = lo.r || 0; } } catch(e){}
+  function omKnapp(tekst, ved){ var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = tekst; b.addEventListener('click', ved); return b; }
+  OM_TYPER.forEach(function(t, i){ $(t.trinn.length === 3 ? 'om-typer-3' : 'om-typer-4').appendChild(omKnapp(T(t.navn), function(){ omType = i; omLagre(); tegnOm(); })); });
+  S.GRUNN.forEach(function(r, i){ $('om-grunntoner').appendChild(omKnapp(r.map(K.akkordTone).join('/'), function(){ omRot = i; omLagre(); tegnOm(); })); });
+  function omLagre(){ try { localStorage.setItem('vbm-omvendinger', JSON.stringify({ t: omType, r: omRot })); } catch(e){} }
+  function tegnOm(){
+    stopp();
+    [].forEach.call(document.querySelectorAll('#om-typer-3 .btn, #om-typer-4 .btn'), function(b, i){ b.setAttribute('aria-pressed', i === omType ? 'true' : 'false'); });
+    [].forEach.call(document.querySelectorAll('#om-grunntoner .btn'), function(b, i){ b.setAttribute('aria-pressed', i === omRot ? 'true' : 'false'); });
+    var type = OM_TYPER[omType], rot = S.rotFor(omRot, { trinn: type.trinn }), grunn = S.toner(rot, type.trinn), STILL = type.trinn.length === 3 ? OM_STILL3 : OM_STILL4;
+    var symbol = K.akkordTone(rot) + type.sym;
+    $('om-tittel').textContent = T('{navn} på {tone}', { navn: T(type.navn), tone: K.tone(rot) }) + ' (' + symbol + ')';
+    omStillinger = STILL.map(function(st, k){
+      var noter = grunn.slice(k).concat(grunn.slice(0, k).map(function(n){ return { b: n.b, f: n.f, oktav: n.oktav + 1 }; }));
+      return { st: st, noter: noter };
+    });
+    $('om-rekke').innerHTML = S.akkordrekke(omStillinger.map(function(x){ return { noter: x.noter, tall: x.st.tall }; }), T('Alle stillingene'));
+    $('om-stillinger').innerHTML = omStillinger.map(function(x, k){
+      var b0 = x.noter[0], m0 = S.midi(b0);
+      var over = x.noter.slice(1).map(function(n){ var iv = I.navn(b0, n); return T(iv.kval + ' ' + I.TALL[iv.tall - 1]); });
+      return '<li><div class="still-tekst"><span class="still-navn">' + esc(T(x.st.navn)) + '</span>'
+        + '<span class="still-symbol">' + esc(k ? symbol + '/' + K.akkordTone(b0) : symbol) + '</span>'
+        + '<span class="still-over">' + esc(T('Over bassen ({bass}): {liste}', { bass: K.tone(b0), liste: K.liste(over) })) + '</span></div>'
+        + '<button type="button" class="btn" data-still="' + k + '" aria-label="' + esc(T('Spill {navn}', { navn: T(x.st.navn) })) + '">&#9658;&#xFE0E; <span>' + esc(T('spill')) + '</span></button></li>';
+    }).join('');
+  }
+  function omFarg(svg, ak, i){
+    [].forEach.call(svg.querySelectorAll('.spilles'), function(x){ x.classList.remove('spilles'); });
+    if (ak < 0) return;
+    [].forEach.call(svg.querySelectorAll('[data-a="' + ak + '"]'), function(e){ if (i < 0 || +e.getAttribute('data-i') === i) e.classList.add('spilles'); });
+  }
+  $('om-stillinger').addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('[data-still]');
+    if (!b || !window.VBM_LYD_SEKVENS) return;
+    var k = +b.getAttribute('data-still'), m = omStillinger[k].noter.map(S.midi), svg = $('om-rekke').querySelector('svg');
+    var steg = m.map(function(x){ return [x]; }); steg.push(m);
+    window.VBM_LYD_SEKVENS(steg, b, function(s){ omFarg(svg, s < 0 ? -1 : k, s < m.length ? s : -1); });
+  });
+  $('om-spill-alle').addEventListener('click', function(){
+    if (!window.VBM_LYD_SEKVENS) return;
+    var svg = $('om-rekke').querySelector('svg'), steg = [];
+    omStillinger.forEach(function(x){ steg.push(x.noter.map(S.midi)); steg.push([]); });
+    window.VBM_LYD_SEKVENS(steg, this, function(s){ omFarg(svg, s < 0 ? -1 : Math.floor(s / 2), -1); });
+  });
+  tegnOm();
 
   /* =================== 6. Hele navnet på én gang =================== */
   var an = { nr: 0, moll: false, trinn: 4, sept: true, inv: 1 };
@@ -352,6 +421,6 @@
   tegnTrinn(); tegnAnalyse();
 })();
 </script>
-<script src="lyd.js"></script>
+<script src="lyd.js?v=40"></script>
 </body>
 </html>

@@ -1871,7 +1871,7 @@ html:where([data-side="index.html"]) {
 :where(html[data-side="skalaer.html"]) .formel .label { display: inline-block; min-width: 82px; margin: 0; }
 :where(html[data-side="skalaer.html"]) .noter { color: var(--text-on-paper); margin: 8px 0 10px; }
 :where(html[data-side="skalaer.html"]) .noter svg { display: block; width: 100%; max-width: 460px; height: auto; }
-:where(html[data-side="skalaer.html"]) .noter .kjenne { fill: transparent; stroke: currentColor; stroke-width: 2px; }   /* kjennetegnende tone: hul note, fargen betyr tonehøyde */
+:where(html[data-side="skalaer.html"]) .noter .kjenne { fill: #C2187A; stroke: #C2187A; stroke-width: 1px; }   /* kjennetegnende tone: magenta, en farge som ikke er blant Newtons tonefarger */
 :where(html[data-side="skalaer.html"]) .noter .spilles, :where(html[data-side="kvintsirkelen.html"]) .noter .spilles { fill: var(--green-dk); stroke: var(--green-dk); stroke-width: 2.5; }
 :where(html[data-side="skalaer.html"]) .to-noter { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px 18px; }
 :where(html[data-side="skalaer.html"]) .noter-blokk { border-top: 1px solid var(--rule); padding-top: 8px; margin-top: 4px; }
@@ -1900,7 +1900,7 @@ html:where([data-side="index.html"]) {
 /* ---------- Bare Skalaquiz (quiz-skalaer.html) ---------- */
 :where(html[data-side="quiz-skalaer.html"]) #ov-bilde, :where(html[data-side="quiz-skalaer.html"]) #prove-bilde { border-top: none; padding-top: 0; margin: 0 0 12px; }
 :where(html[data-side="quiz-skalaer.html"]) .noter svg { max-width: 460px; margin: 0; }
-:where(html[data-side="quiz-skalaer.html"]) .noter .kjenne { fill: transparent; stroke: currentColor; stroke-width: 2px; }   /* kjennetegnende tone: hul note, fargen betyr tonehøyde */
+:where(html[data-side="quiz-skalaer.html"]) .noter .kjenne { fill: #C2187A; stroke: #C2187A; stroke-width: 1px; }   /* kjennetegnende tone: magenta, en farge som ikke er blant Newtons tonefarger */
 :where(html[data-side="quiz-skalaer.html"]) .prove-sporsmal {
   font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   font-size: 18px; font-weight: 700; margin: 0 0 12px;
@@ -1913,7 +1913,7 @@ html:where([data-side="index.html"]) {
 
 /* ---------- Bare Omvendinger (omvendinger.html) ---------- */
 :where(html[data-side="omvendinger.html"]) main { align-items: stretch; }
-:where(html[data-side="omvendinger.html"]) .valg-kort, :where(html[data-side="omvendinger.html"]) .stillinger-kort, :where(html[data-side="omvendinger.html"]) .ovelse-kort { grid-column: 1 / -1; }
+:where(html[data-side="omvendinger.html"]) .valg-kort, :where(html[data-side="omvendinger.html"], html[data-side="akkordanalyse.html"]) .stillinger-kort, :where(html[data-side="omvendinger.html"]) .ovelse-kort { grid-column: 1 / -1; }
 :where(html[data-side="omvendinger.html"]) .valg-kort .label { margin: 12px 0 6px; }
 :where(html[data-side="omvendinger.html"]) .valg-kort .label:first-of-type { margin-top: 0; }
 :where(html[data-side="omvendinger.html"]) #grunntoner .btn { min-width: 52px; justify-content: center; }
@@ -1921,20 +1921,20 @@ html:where([data-side="index.html"]) {
 :where(html[data-side="omvendinger.html"]) .noter svg { display: block; width: 100%; max-width: 560px; height: auto; }
 :where(html[data-side="omvendinger.html"]) .noter .besifring { fill: currentColor; font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 19px; font-weight: 700; }
 :where(html[data-side="omvendinger.html"]) .noter .spilles { fill: var(--green-dk); stroke: var(--green-dk); stroke-width: 2.5; }
-:where(html[data-side="omvendinger.html"]) .stillinger { list-style: none; margin: 8px 0 0; padding: 0; }
-:where(html[data-side="omvendinger.html"]) .stillinger li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--rule); }
-:where(html[data-side="omvendinger.html"]) .still-tekst { display: flex; flex-direction: column; gap: 2px; }
-:where(html[data-side="omvendinger.html"]) .still-navn { font-weight: 600; font-size: 15.5px; }
-:where(html[data-side="omvendinger.html"]) .still-symbol { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 16px; }
-:where(html[data-side="omvendinger.html"]) .still-over { font-size: 14px; color: var(--text-muted); }
-:where(html[data-side="omvendinger.html"]) .stillinger .btn { flex-shrink: 0; }
+:where(html[data-side="omvendinger.html"], html[data-side="akkordanalyse.html"]) .stillinger { list-style: none; margin: 8px 0 0; padding: 0; }
+:where(html[data-side="omvendinger.html"], html[data-side="akkordanalyse.html"]) .stillinger li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--rule); }
+:where(html[data-side="omvendinger.html"], html[data-side="akkordanalyse.html"]) .still-tekst { display: flex; flex-direction: column; gap: 2px; }
+:where(html[data-side="omvendinger.html"], html[data-side="akkordanalyse.html"]) .still-navn { font-weight: 600; font-size: 15.5px; }
+:where(html[data-side="omvendinger.html"], html[data-side="akkordanalyse.html"]) .still-symbol { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 16px; }
+:where(html[data-side="omvendinger.html"], html[data-side="akkordanalyse.html"]) .still-over { font-size: 14px; color: var(--text-muted); }
+:where(html[data-side="omvendinger.html"], html[data-side="akkordanalyse.html"]) .stillinger .btn { flex-shrink: 0; }
 :where(html[data-side="omvendinger.html"]) a.btn { text-decoration: none; }
 @media (forced-colors: active) {
   :where(html[data-side="omvendinger.html"]) .noter { color: CanvasText; }
   :where(html[data-side="omvendinger.html"]) .noter svg { forced-color-adjust: none; }
   :where(html[data-side="omvendinger.html"]) .noter .spilles { fill: LinkText; stroke: LinkText; stroke-width: 3; }
-  :where(html[data-side="omvendinger.html"]) .stillinger li { border-color: CanvasText; }
-  :where(html[data-side="omvendinger.html"]) .still-over { color: CanvasText; }
+  :where(html[data-side="omvendinger.html"], html[data-side="akkordanalyse.html"]) .stillinger li { border-color: CanvasText; }
+  :where(html[data-side="omvendinger.html"], html[data-side="akkordanalyse.html"]) .still-over { color: CanvasText; }
 }
 
 
@@ -2058,18 +2058,29 @@ html.sh .viktig strong { color: var(--ink) !important; }
 .vbm-niva-linje { margin: 4px 0 12px; }
 .hero .vbm-niva { color: inherit; opacity: .9; }
 .vbm-meny-niva { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; opacity: .75; margin-left: 4px; }
-.vbm-relatert { max-width: 1100px; margin: 28px auto 8px; padding: 18px 20px; box-sizing: border-box; border-top: 1px solid var(--rule); }
+.vbm-relatert { box-sizing: border-box; margin: 28px 0 8px; padding: 20px 22px; border-radius: 14px; background: var(--paper, #F2EEE4); color: var(--text-on-paper, #22252A); grid-column: 1 / -1; }
 .vbm-relatert-tittel { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px; }
-.vbm-relatert ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; }
-.vbm-relatert li { display: flex; align-items: center; gap: 8px; }
-.vbm-relatert a { font-weight: 600; }
+.vbm-relatert ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+/* Lenkene ser ut som knappene på resten av siden, så de er lette å se i alle temaer */
+.vbm-relatert a.vbm-rel-lenke { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 9px 15px; border: 1.5px solid currentColor; border-radius: 999px;
+  color: inherit !important; text-decoration: none !important; font-weight: 600; font-size: 15px; line-height: 1.3; background: transparent; box-shadow: none; }
+.vbm-relatert a.vbm-rel-lenke span { color: inherit !important; text-decoration: none !important; }
+.vbm-relatert a.vbm-rel-lenke { border-radius: 999px !important; }
+.vbm-relatert a.vbm-kurs-lenke { border-radius: 14px !important; }
+.vbm-relatert a.vbm-rel-lenke:hover, .vbm-relatert a.vbm-rel-lenke:focus-visible { background: var(--text-on-paper, #22252A); color: var(--paper, #F2EEE4) !important; }
+.vbm-rel-lenke:hover .vbm-niva, .vbm-rel-lenke:focus-visible .vbm-niva { color: inherit; }
 .vbm-relatert .vbm-niva { font-size: 9.5px; padding: 2px 6px; }
-.vbm-kurs { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 18px; margin: 0 0 16px; padding: 0 0 14px; border-bottom: 1px solid var(--rule); }
-.vbm-kurs-lenke { font-weight: 600; }
-.vbm-kurs-neste { margin-left: auto; text-align: right; }
+.vbm-kurs { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin: 0 0 18px; padding: 0 0 16px; border-bottom: 1px solid currentColor; }
+.vbm-kurs-lenke { flex-direction: column; align-items: flex-start; gap: 2px; border-radius: 14px; max-width: 100%; }
+.vbm-kurs-neste { margin-left: auto; align-items: flex-end; text-align: right; }
+.vbm-kurs-retning { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; }
+:where(html[data-stil="ovelse"]) main > .vbm-relatert { margin: 12px 0 0; }
 @media (forced-colors: active) {
   .niva-merke, .vbm-niva { color: CanvasText; border-color: CanvasText; forced-color-adjust: none; }
-  .vbm-relatert, .vbm-kurs { border-color: CanvasText; }
+  .vbm-relatert { border: 1px solid CanvasText; }
+  .vbm-kurs { border-color: CanvasText; }
+  .vbm-relatert a.vbm-rel-lenke { border-color: LinkText; color: LinkText !important; }
+  .vbm-relatert a.vbm-rel-lenke:hover, .vbm-relatert a.vbm-rel-lenke:focus-visible { background: Highlight; color: HighlightText !important; forced-color-adjust: none; }
 }
 
 
@@ -2162,6 +2173,9 @@ html.sh .viktig strong { color: var(--ink) !important; }
   :where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .steg-liste, :where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .analyse-liste dt { color: CanvasText; }
 }
 
+
+:where(html[data-side="stemming.html"]) .lydtips { font-size: 14px; padding: 8px 12px; border-left: 3px solid var(--brass); margin: 0 0 12px; }
+@media (forced-colors: active) { :where(html[data-side="stemming.html"]) .lydtips { border-color: CanvasText; } }
 
 /* Bare Intervaller */
 :where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .regler { margin: 0 0 12px; padding: 0 0 0 1.2em; font-size: 14.5px; line-height: 1.55; color: #3E3A32; }

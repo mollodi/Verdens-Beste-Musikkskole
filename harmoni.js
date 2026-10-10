@@ -22,10 +22,10 @@ window.VBM_HARMONI = (function(){
     IV:    a('IV', 'S', [3,5], '',  [[-4,-7],  [-2,-3], [3,5], [7,12]]),
     V:     a('V', 'D', [4,7], '',   [[-10,-17], [-3,-5], [1,2], [6,11]]),
     V7:    a('V7', 'D', [4,7], '7', [[-10,-17], [-1,-1], [3,5], [8,14]]),
-    vi_s:  a('vi', 'Tp', [5,9], 'm', [[-9,-15], [-5,-8], [0,0], [7,12]]),
-    vi:    a('vi', 'Tp', [5,9], 'm', [[-9,-15], [-5,-8], [0,0], [5,9]]),
-    ii:    a('ii', 'Sp', [1,2], 'm', [[-6,-10], [-2,-3], [3,5], [8,14]]),
-    iii:   a('iii', 'Dp', [2,4], 'm', [[-5,-8], [-1,-1], [4,7], [9,16]]),
+    vi_s:  a('vi', 'Ts', [5,9], 'm', [[-9,-15], [-5,-8], [0,0], [7,12]]),
+    vi:    a('vi', 'Ts', [5,9], 'm', [[-9,-15], [-5,-8], [0,0], [5,9]]),
+    ii:    a('ii', 'Ss', [1,2], 'm', [[-6,-10], [-2,-3], [3,5], [8,14]]),
+    iii:   a('iii', 'Tm', [2,4], 'm', [[-5,-8], [-1,-1], [4,7], [9,16]]),
     I64:   a('I', 'T', [0,0], '',   [[-10,-17], [-3,-5], [2,4], [7,12]]),
     /* Kadensens kvartsekstakkord: tonene i I, men skrevet V⁶₄ og D, slik opptaksprøven og mange nyere bøker gjør */
     K64:   a('V', 'D', [0,0], '',   [[-10,-17], [-3,-5], [2,4], [7,12]]),
@@ -35,23 +35,24 @@ window.VBM_HARMONI = (function(){
     Ikv:   a('I', 'T', [0,0], '',   [[-7,-12], [0,0],   [2,4], [4,7]]),
     Iters: a('I', 'T', [0,0], '',   [[-7,-12], [0,0],   [4,7], [9,16]]),
     CH:    a('I', 'T', [0,0], '',   [[-8,-13], [-3,-5], [2,4], [7,12]]),
-    Am:    a('vi', 'Tp', [5,9], 'm', [[-9,-15], [-2,-3], [2,4], [7,12]]),
-    AmG:   a('vi', 'Tp', [5,9], 'm', [[-10,-17], [-2,-3], [2,4], [7,12]]),
+    Am:    a('vi', 'Ts', [5,9], 'm', [[-9,-15], [-2,-3], [2,4], [7,12]]),
+    AmG:   a('vi', 'Ts', [5,9], 'm', [[-10,-17], [-2,-3], [2,4], [7,12]]),
     F:     a('IV', 'S', [3,5], '',  [[-11,-19], [-2,-3], [3,5], [7,12]]),
     CD:    a('I', 'T', [0,0], '',   [[-6,-10], [-3,-5], [2,4], [7,12]]),
     GC:    a('V', 'D', [4,7], '',   [[-7,-12], [-1,-1], [1,2], [4,7]]),
     I_slutt: a('I', 'T', [0,0], '', [[-7,-12], [0,0],   [2,4], [7,12]])
   };
-  /* Moll: tersen i tonika og subdominant og VI er senket; dominanten har ledetonen (harmonisk moll). */
+  /* Moll: tersen i tonika og subdominant og VI er senket; dominanten har ledetonen (harmonisk moll).
+     Funksjonene følger opptaksprøvens system (Tveit): store bokstaver også i moll, og VI heter Ts. */
   function moll(x, endr){ var y = JSON.parse(JSON.stringify(x)); endr(y); return y; }
   var MOLL = {
-    I:     moll(DUR.I, function(y){ y.rom = 'i'; y.fun = 't'; y.kval = 'm'; y.stemmer[2] = [2,3]; }),
-    I_hel: moll(DUR.I_hel, function(y){ y.rom = 'i'; y.fun = 't'; y.kval = 'm'; y.stemmer[2] = [2,3]; }),
-    IV:    moll(DUR.IV, function(y){ y.rom = 'iv'; y.fun = 's'; y.kval = 'm'; y.stemmer[1] = [-2,-4]; }),
+    I:     moll(DUR.I, function(y){ y.rom = 'i'; y.fun = 'T'; y.kval = 'm'; y.stemmer[2] = [2,3]; }),
+    I_hel: moll(DUR.I_hel, function(y){ y.rom = 'i'; y.fun = 'T'; y.kval = 'm'; y.stemmer[2] = [2,3]; }),
+    IV:    moll(DUR.IV, function(y){ y.rom = 'iv'; y.fun = 'S'; y.kval = 'm'; y.stemmer[1] = [-2,-4]; }),
     V:     DUR.V,
     V7:    DUR.V7,
-    vi_s:  moll(DUR.vi_s, function(y){ y.rom = 'VI'; y.fun = 'sP'; y.rot = [5,8]; y.kval = ''; y.stemmer[0] = [-9,-16]; y.stemmer[1] = [-5,-9]; }),
-    I64:   moll(DUR.I64, function(y){ y.rom = 'i'; y.fun = 't'; y.kval = 'm'; y.stemmer[2] = [2,3]; }),
+    vi_s:  moll(DUR.vi_s, function(y){ y.rom = 'VI'; y.fun = 'Ts'; y.rot = [5,8]; y.kval = ''; y.stemmer[0] = [-9,-16]; y.stemmer[1] = [-5,-9]; }),
+    I64:   moll(DUR.I64, function(y){ y.rom = 'i'; y.fun = 'T'; y.kval = 'm'; y.stemmer[2] = [2,3]; }),
     K64:   moll(DUR.K64, function(y){ y.kval = 'm'; y.stemmer[2] = [2,3]; })
   };
 
@@ -105,8 +106,8 @@ window.VBM_HARMONI = (function(){
   }
   function symbol(rot, akk){
     var r = S.toner(rot, [akk.rot])[0], bass = noterFor(rot, akk)[0];
-    var navn = K.tone(r) + (akk.kval === 'm' ? 'm' : akk.kval === '7' ? '7' : '');
-    return bass.b === r.b && bass.f === r.f ? navn : navn + '/' + K.tone(bass);
+    var navn = K.akkordTone(r) + (akk.kval === 'm' ? 'm' : akk.kval === '7' ? '7' : '');
+    return bass.b === r.b && bass.f === r.f ? navn : navn + '/' + K.akkordTone(bass);
   }
   /* Bygger en rekke: [{ noter, tall, midi, sym, akk }] i tonearten nr (0 = C).
      navn er navnene over (['I', 'IV', 'V7']) eller egne akkorder i samme form (transponering.js bruker det). */

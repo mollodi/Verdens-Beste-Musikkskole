@@ -17,8 +17,8 @@
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Teoriquiz: akkordanalyse</title>
-<script src="felles.js"></script>
-<link rel="stylesheet" href="stil.css">
+<script src="felles.js?v=40"></script>
+<link rel="stylesheet" href="stil.css?v=40">
 <meta name="description" content="Les akkorder på notelinjen og finn besifring, trinn og omvending, eller funksjonen, for treklanger og septimakkorder i dur og moll. Øvemodus og prøvemodus med 20 oppgaver.">
 </head>
 <body>
@@ -131,10 +131,10 @@
 
 <footer data-lyd="alle"></footer>
 
-<script src="tonearter.js"></script>
-<script src="intervall.js"></script>
-<script src="skalaer.js"></script>
-<script src="akkord.js"></script>
+<script src="tonearter.js?v=40"></script>
+<script src="intervall.js?v=40"></script>
+<script src="skalaer.js?v=40"></script>
+<script src="akkord.js?v=40"></script>
 <script>/* VBM K7Q4-QAKK */
 (function(){
   'use strict';
@@ -198,7 +198,7 @@
     if (typeId === 'symbol') {
       o.sporsmal = T('Hvilken besifring har akkorden?');
       var bassAk = A.akkord(o.r, o.moll, trinnAv(o.r, o.moll, ak2.toner[inv2]), ak2.septim);
-      var rot = K.tone(ak2.toner[0]), slash = inv2 ? '/' + K.tone(ak2.toner[inv2]) : '';
+      var rot = K.akkordTone(ak2.toner[0]), slash = inv2 ? '/' + K.akkordTone(ak2.toner[inv2]) : '';
       var kand = [inv2 ? A.symbol(bassAk, 0) : null];
       ANDRE_TYPE[ak2.type].forEach(function(t){ kand.push(rot + A.SUFFIKS[t] + slash); });
       kand.push(inv2 ? rot + A.SUFFIKS[ak2.type] : A.symbol(ak2, 1));
@@ -350,6 +350,6 @@
   visValg(); nyOvOppgave(); visFremgang();
 })();
 </script>
-<script src="lyd.js"></script>
+<script src="lyd.js?v=40"></script>
 </body>
 </html>

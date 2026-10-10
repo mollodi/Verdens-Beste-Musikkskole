@@ -54,7 +54,7 @@ window.VBM_AKKORD = (function(){
   var BASS_TALL = ['', '₃', '₅', '₇'];
   var ROMER = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 
-  function symbol(ak, inv){ var s = K.tone(ak.toner[0]) + SUFFIKS[ak.type]; return inv ? s + '/' + K.tone(ak.toner[inv]) : s; }
+  function symbol(ak, inv){ var s = K.akkordTone(ak.toner[0]) + SUFFIKS[ak.type]; return inv ? s + '/' + K.akkordTone(ak.toner[inv]) : s; }
   function typeNavn(ak){ return T(TYPE_NAVN[ak.type]); }
   function invNavn(ak, inv){ return T(INV_NAVN[ak.septim ? 1 : 0][inv]); }
   /* Romertall: store for dur og forstørret, små for moll og forminsket, med ° (forminsket), ø (halvforminsket) og + (forstørret) */

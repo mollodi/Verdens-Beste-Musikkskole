@@ -17,8 +17,8 @@
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Gehørquiz: kadenser og funksjoner</title>
-<script src="felles.js"></script>
-<link rel="stylesheet" href="stil.css">
+<script src="felles.js?v=40"></script>
+<link rel="stylesheet" href="stil.css?v=40">
 <meta name="description" content="Hør en kadens og finn typen, eller hør en akkord etter tonika og finn funksjonen. Øvemodus og prøvemodus med 20 oppgaver.">
 </head>
 <body>
@@ -123,9 +123,9 @@
 
 <footer data-lyd="alle"></footer>
 
-<script src="tonearter.js"></script>
-<script src="skalaer.js"></script>
-<script src="harmoni.js"></script>
+<script src="tonearter.js?v=40"></script>
+<script src="skalaer.js?v=40"></script>
+<script src="harmoni.js?v=40"></script>
 <script>/* VBM K7Q4-QHRM */
 (function(){
   'use strict';
@@ -141,7 +141,7 @@
   var KADENS = H.KADENSER.map(function(k){ return { id: k.id, navn: k.navn, gr: 'kadens' }; });
   var FUNK = [
     { id: 'T', navn: 'Tonika (T)', akk: 'I' }, { id: 'S', navn: 'Subdominant (S)', akk: 'IV' }, { id: 'D', navn: 'Dominant (D)', akk: 'V' },
-    { id: 'Tp', navn: 'Tonikaparallell (Tp, i opptaksprøven Ts)', akk: 'vi' }, { id: 'Sp', navn: 'Subdominantparallell (Sp, i opptaksprøven Ss)', akk: 'ii' }, { id: 'Dp', navn: 'Dominantparallell (Dp, i opptaksprøven Tm)', akk: 'iii' }
+    { id: 'Tp', navn: 'Ts, 6. trinn (også kalt Tp)', akk: 'vi' }, { id: 'Sp', navn: 'Ss, 2. trinn (også kalt Sp)', akk: 'ii' }, { id: 'Dp', navn: 'Tm, 3. trinn (også kalt Dp)', akk: 'iii' }
   ].map(function(f){ f.gr = 'funksjon'; return f; });
   var GRUPPE = { kadens: 'Kadens', funksjon: 'Funksjon' };
 
@@ -324,6 +324,6 @@
   visValg(); nyOvOppgave(); visFremgang();
 })();
 </script>
-<script src="lyd.js"></script>
+<script src="lyd.js?v=40"></script>
 </body>
 </html>

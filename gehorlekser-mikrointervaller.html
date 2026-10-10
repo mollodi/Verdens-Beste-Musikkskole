@@ -17,8 +17,8 @@
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Gehørlekser med mikrointervaller: forberedelse til pianostemmerutdanningen</title>
-<script src="felles.js"></script>
-<link rel="stylesheet" href="stil.css">
+<script src="felles.js?v=40"></script>
+<link rel="stylesheet" href="stil.css?v=40">
 </head>
 <body>
 <nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
@@ -26,7 +26,7 @@
   <div class="eyebrow">Øretrening for pianostemmere</div>
   <h1>Gehørlekser med <em>mikrointervaller</em></h1>
   <p class="lede">Seks øvelser som trener øret på svært små forskjeller i tonehøyde, som forberedelse til opptaksprøven på pianostemmerutdanningen ved Norges musikkhøgskole. En cent er en hundredel av en halvtone.</p>
-  <p class="lede">Velg sinustoner eller piano nederst til høyre. Bruk gjerne hodetelefoner.</p>
+  <p class="lede">Velg lyd nederst til høyre: overtonetone, orgel, piano eller sinustoner. Overtonetonen viser svevningene tydeligst. Bruk gjerne hodetelefoner.</p>
 </header>
 <p class="notice" id="notice" hidden>Pianolyden kunne ikke lastes, så sinustoner brukes i stedet.</p>
 
@@ -113,7 +113,7 @@
       <div class="step-label">Øvelse 4</div>
       <h2>Rent eller surt intervall</h2>
     </div>
-    <p class="task">Du hører en oktav, en kvint eller en kvart. Er intervallet rent (oktav 2:1, kvint 3:2, kvart 4:3), eller er det litt surt? Med piano hører du et surt intervall som svevninger. Med sinustoner er svevningene svake, så lytt etter om samklangen er rolig eller urolig.</p>
+    <p class="task">Du hører en oktav, en kvint eller en kvart. Er intervallet rent (oktav 2:1, kvint 3:2, kvart 4:3), eller er det litt surt? Med overtonetonen, orgel og piano hører du et surt intervall som svevninger, tydeligst med overtonetonen. Med sinustoner er svevningene svake, så lytt etter om samklangen er rolig eller urolig.</p>
     <div class="row">
       <button type="button" class="btn" data-spill aria-label="Spill oppgaven">&#9658;&#xFE0E; <span>spill</span></button>
       <button type="button" class="btn" data-neste hidden>Neste oppgave</button>
@@ -169,159 +169,28 @@
   </section>
 </main>
 
-<footer data-lyd="piano"></footer>
+<footer data-lyd="alle"></footer>
 
 <script>/* VBM K7Q4-J9W5 */
 (function(){
   'use strict';
 
   /* =================== Lyd =================== */
-  var B = window.VBM_LYD_BASE || {};
-  var PIANO = B.piano || 'https://tonejs.github.io/audio/salamander/';
-  var PC = ['C','Cs','D','Ds','E','F','Fs','G','Gs','A','As','B'];
-  function nameOf(m){ return PC[m % 12] + (Math.floor(m / 12) - 1); }
-  function hz(m){ return 440 * Math.pow(2, (m - 69) / 12); }
-  /* Opptakene finnes for hver tredje halvtone (A, C, Diss, Fiss). Øvelsene bruker bare disse,
-     så pianoklangen strekkes så lite som mulig. */
+  /* Lyden kommer fra den felles lydmotoren (lyd.js), med samme lydvelger som resten av nettstedet.
+     Opptakene finnes for hver tredje halvtone (A, C, Diss, Fiss). Øvelsene bruker bare disse,
+     så klangen strekkes så lite som mulig. */
   var SAMPLES = [57, 60, 63, 66, 69, 72];   // A3, C4, Diss4, Fiss4, A4, C5
-
+  function hz(m){ return 440 * Math.pow(2, (m - 69) / 12); }
   var T = window.VBM_T || function(t, v){ return t.replace(/\{(\w+)\}/g, function(m, k){ return v && v[k] != null ? v[k] : m; }); };
-  var LYDER = { sinus: T('Sinustoner'), piano: T('Piano') };
-  var mode = 'piano';
-  try { var lagret = localStorage.getItem('vbm-mikro-lyd'); if (LYDER[lagret]) mode = lagret; } catch(e){}
-
-  var AC = window.AudioContext || window.webkitAudioContext;
-  var ctx = null, out = null;
-  function ensureCtx(){
-    if (!ctx) { ctx = new AC(); out = ctx.createGain(); out.gain.value = 0.9; out.connect(ctx.destination); }
-    if (ctx.state === 'suspended') ctx.resume();
-    return ctx;
-  }
-
-  var cache = {};
-  function decode(data){
-    return new Promise(function(res, rej){
-      var p = ctx.decodeAudioData(data, res, rej);
-      if (p && p.then) p.then(res, rej);
-    });
-  }
-  function load(s){
-    var url = PIANO + nameOf(s) + '.mp3';
-    if (!cache[url]) {
-      cache[url] = fetch(url).then(function(r){ if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); }).then(decode);
-      cache[url].catch(function(){ delete cache[url]; });
-    }
-    return cache[url];
-  }
-
-  /* Bare én lyd om gangen: alt som spiller, samles her og stoppes før noe nytt starter. */
-  var voices = [], token = 0, activeBtn = null, timer = null;
-  function stopAll(){
-    token++;
-    if (ctx) {
-      var now = ctx.currentTime;
-      voices.forEach(function(v){
-        try {
-          v.gain.gain.cancelScheduledValues(now);
-          v.gain.gain.setValueAtTime(v.gain.gain.value, now);
-          v.gain.gain.linearRampToValueAtTime(0, now + 0.06);
-          v.src.stop(now + 0.08);
-        } catch(e){}
-      });
-    }
-    voices = [];
-    if (timer) { clearTimeout(timer); timer = null; }
-    if (activeBtn) { activeBtn.classList.remove('playing', 'loading'); activeBtn = null; }
-  }
-
-  /* Én tone. m = tonehøyde i halvtoner (MIDI) med desimaler, s = opptaket som brukes. */
-  function voice(m, s, buf, t0, dur, level){
-    var g = ctx.createGain(), src, v;
-    g.connect(out);
-    if (buf) {
-      src = ctx.createBufferSource(); src.buffer = buf;
-      src.playbackRate.value = Math.pow(2, (m - s) / 12);
-      src.connect(g);
-      g.gain.setValueAtTime(0.0001, t0);
-      g.gain.linearRampToValueAtTime(level, t0 + 0.005);
-      g.gain.setValueAtTime(level, t0 + dur);
-      g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur + 0.35);
-      src.start(t0); src.stop(t0 + dur + 0.4);
-    } else {
-      src = ctx.createOscillator(); src.type = 'sine'; src.frequency.value = hz(m);
-      src.connect(g);
-      g.gain.setValueAtTime(0, t0);
-      g.gain.linearRampToValueAtTime(level * 0.8, t0 + 0.03);
-      g.gain.setValueAtTime(level * 0.8, t0 + dur);
-      g.gain.linearRampToValueAtTime(0, t0 + dur + 0.2);
-      src.start(t0); src.stop(t0 + dur + 0.25);
-    }
-    v = { src: src, gain: g, set: function(nm){
-      var now = ctx.currentTime;
-      if (buf) src.playbackRate.setTargetAtTime(Math.pow(2, (nm - s) / 12), now, 0.015);
-      else src.frequency.setTargetAtTime(hz(nm), now, 0.015);
-    }};
-    voices.push(v);
-    src.onended = function(){ var i = voices.indexOf(v); if (i > -1) voices.splice(i, 1); };
-    return v;
-  }
-
-  /* Spiller en liste med toner: {m, s, t (start), d (lengde)}. d = 0 betyr så lenge opptaket varer. */
+  function stopAll(){ if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); }
+  function ensureCtx(){}   /* lyd.js starter lyden selv ved første trykk */
+  function spiller(btn){ return btn.classList.contains('playing'); }
+  /* Spiller en liste med toner: {m, t (start), d (lengde)}. d = 0 betyr så lenge opptaket varer.
+     ferdig(handles) får tonene, og handles[i].set(m) endrer tonehøyden mens den klinger. */
   function spill(btn, toner, ferdig){
-    stopAll();
-    var my = token;
-    activeBtn = btn; btn.classList.add('playing');
-    function start(bufs){
-      if (my !== token) return;
-      btn.classList.remove('loading');
-      var t0 = ctx.currentTime + 0.05, slutt = 0, vs = [];
-      toner.forEach(function(n, i){
-        var buf = bufs ? bufs[i] : null;
-        var d = n.d || (buf ? buf.duration / Math.pow(2, (n.m - n.s) / 12) - 0.5 : 60);
-        vs.push(voice(n.m, n.s, buf, t0 + n.t, d, 0.3));
-        slutt = Math.max(slutt, n.t + d + 0.4);
-      });
-      if (ferdig) ferdig(vs);
-      timer = setTimeout(function(){
-        if (my === token && activeBtn === btn) { btn.classList.remove('playing'); activeBtn = null; }
-      }, (slutt + 0.1) * 1000);
-    }
-    if (mode === 'piano') {
-      btn.classList.add('loading');
-      Promise.all(toner.map(function(n){ return load(n.s); })).then(start).catch(function(){
-        if (my !== token) return;
-        velgLyd('sinus', true);
-        document.getElementById('notice').hidden = false;
-        start(null);
-      });
-    } else start(null);
+    if (!window.VBM_LYD_TONER) return;
+    window.VBM_LYD_TONER(toner.map(function(n){ return { m: n.m, t: n.t, d: n.d }; }), btn, ferdig);
   }
-
-  /* Velger for lyd nederst til høyre, i samme stil som på resten av nettsiden */
-  /* Utseendet ligger i stil.css (.vbm-pille og .vbm-instr-float). */
-
-  var velger = document.createElement('div');
-  velger.className = 'vbm-pille vbm-instr vbm-instr-float';
-  velger.setAttribute('role', 'region'); velger.setAttribute('aria-label', T('Velg lyd'));
-  velger.style.background = '#12151A'; velger.style.color = '#F6F1E7';
-  Object.keys(LYDER).forEach(function(k){
-    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('data-lyd', k);
-    b.innerHTML = '<span>' + LYDER[k] + '</span>';
-    b.addEventListener('click', function(){
-      if (k === mode) return;
-      stopAll(); velgLyd(k);
-      if (k === 'piano') document.getElementById('notice').hidden = true;
-    });
-    velger.appendChild(b);
-  });
-  document.body.appendChild(velger);
-  function velgLyd(k, ikkeLagre){
-    mode = k;
-    if (!ikkeLagre) { try { localStorage.setItem('vbm-mikro-lyd', k); } catch(e){} }
-    velger.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', x.getAttribute('data-lyd') === k ? 'true' : 'false'); });
-  }
-  velgLyd(mode, true);
-  document.addEventListener('touchstart', function(){ ensureCtx(); }, {once: true, passive: true});
 
   /* =================== Samlet resultat og motivasjon =================== */
   var OVELSER = [['ov1', T('Høyere eller lavere')], ['ov2', T('Hører du svevninger?')], ['ov3', T('Stem selv')],
@@ -402,7 +271,7 @@
     }
     function spillNa(){
       ensureCtx();
-      if (spillBtn === activeBtn) { stopAll(); return; }
+      if (spiller(spillBtn)) { stopAll(); return; }
       spill(spillBtn, toner(q.oppgave));
       if (!q.besvart) svar.forEach(function(b){ b.disabled = false; });
     }
@@ -482,11 +351,11 @@
     function avvik(){ return o.start + parseFloat(slider.value); }   // cent over referansetonen
     spillBtn.addEventListener('click', function(){
       ensureCtx();
-      if (spillBtn === activeBtn) { stopAll(); return; }
+      if (spiller(spillBtn)) { stopAll(); return; }
       stemt = null;
       spill(spillBtn, [{ m: o.s, s: o.s, t: 0, d: 0 }, { m: o.s + avvik() / 100, s: o.s, t: 0, d: 0 }], function(vs){ stemt = vs[1]; });
     });
-    function oppdaterTone(){ if (stemt && activeBtn === spillBtn) stemt.set(o.s + avvik() / 100); }
+    function oppdaterTone(){ if (stemt && spiller(spillBtn)) stemt.set(o.s + avvik() / 100); }
     slider.addEventListener('input', oppdaterTone);
     // Finjustering: et halvt cent om gangen, mer presist enn en finger på glidebryteren.
     kort.querySelectorAll('[data-fin]').forEach(function(b){
@@ -556,7 +425,7 @@
     }
     function spillNa(){
       ensureCtx();
-      if (spillBtn === activeBtn) { stopAll(); return; }
+      if (spiller(spillBtn)) { stopAll(); return; }
       var halv = o.retning * o.c / 200;   // tonene ligger like langt over og under opptaket
       spill(spillBtn, [{ m: o.s - halv, s: o.s, t: 0, d: 1.0 }, { m: o.s + halv, s: o.s, t: 1.35, d: 1.0 }]);
       if (!besvart) alleValg.forEach(function(b){ b.disabled = false; });
@@ -619,7 +488,7 @@
     }
     function spillNa(){
       ensureCtx();
-      if (spillBtn === activeBtn) { stopAll(); return; }
+      if (spiller(spillBtn)) { stopAll(); return; }
       // Begge tonene hentes fra samme opptak, likt strukket ned og opp, så klangen blir lik.
       var under = o.s - o.iv / 2;
       spill(spillBtn, [{ m: under, s: o.s, t: 0, d: 1.2 }, { m: under + o.iv + o.c / 100, s: o.s, t: 1.5, d: 1.2 }]);
@@ -660,5 +529,7 @@
   })();
 })();
 </script>
+<script>window.VBM_LYD_ORGEL_SIDE = true;   /* samme lyder som Stemming og temperatur: overtonetone, orgel, piano og sinustoner */</script>
+<script src="lyd.js?v=40"></script>
 </body>
 </html>
