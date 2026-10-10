@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-INTT
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="intervaller-teori.html" data-stil="ovelse" data-vbm="K7Q4-INTT">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Intervaller</title>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
+<meta name="description" content="Intervaller forklart: tell bokstavene, tell halvtonene, rene, store, små, forstørrede og forminskede intervaller, omvending, sammensatte intervaller, og konsonans og dissonans, med lyd.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Musikkteori</div>
+  <h1>Inter<em>valler</em></h1>
+  <p class="lede">Et intervall er avstanden mellom to toner. Her lærer du å finne navnet på hvilket som helst intervall, og å skrive det riktig på notelinjen: først tallet, så kvaliteten.</p>
+  <p class="lede">Trykk på spill for å høre eksemplene. Velg piano, strykere eller sinustoner nederst til høyre.</p>
+</header>
+
+<main>
+  <section class="card bred" id="hva">
+    <div class="card-head">
+      <div class="step-label">1</div>
+      <h2>Hva er et intervall?</h2>
+    </div>
+    <p class="task">Et intervall er avstanden mellom to toner. Spilles tonene etter hverandre, er intervallet melodisk. Spilles de samtidig, er det harmonisk. Navnet har to deler: et tall (for eksempel kvint) og en kvalitet (for eksempel ren). C opp til G er en ren kvint.</p>
+    <div class="stav-blokk">
+      <p class="label" id="hva-mel-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="hva-mel">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="hva-mel"></div>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="hva-harm-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="hva-harm">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="hva-harm"></div>
+    </div>
+  </section>
+
+  <section class="card bred" id="tall">
+    <div class="card-head">
+      <div class="step-label">2</div>
+      <h2>Tallet: tell bokstavene</h2>
+    </div>
+    <p class="task">Tell bokstavene fra den nederste til den øverste tonen, og ta med begge. Fra C til E er det tre bokstaver (C, D, E), så det er en ters. Tallnavnene er prim (1), sekund (2), ters (3), kvart (4), kvint (5), sekst (6), septim (7) og oktav (8).</p>
+    <p class="task">Fortegnene endrer aldri tallet. C til Ess er også en ters, og C til Eiss er også en ters, selv om de klinger ulikt.</p>
+    <div class="viktig"><p class="task"><strong>Lesetriks på notelinjen:</strong> terser, kvinter og septimer går fra linje til linje eller fra mellomrom til mellomrom. Sekunder, kvarter og sekster går fra en linje til et mellomrom.</p></div>
+    <div class="stav-blokk">
+      <p class="label" id="tall-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="tall-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="tall-noter"></div>
+    </div>
+  </section>
+
+  <section class="card bred" id="kvalitet">
+    <div class="card-head">
+      <div class="step-label">3</div>
+      <h2>Kvaliteten: tell halvtonene</h2>
+    </div>
+    <p class="task">Prim, kvart, kvint og oktav er rene. Sekund, ters, sekst og septim er store eller små. Er et rent eller stort intervall en halvtone større, blir det forstørret. Er et rent eller lite intervall en halvtone mindre, blir det forminsket.</p>
+    <p class="task">Den enkleste metoden: tenk deg dur-skalaen fra den nederste tonen. Står den øverste tonen i skalaen, er intervallet stort eller rent. Er den en halvtone lavere, er et stort intervall lite, og et rent intervall forminsket.</p>
+    <p class="label" id="lav-label">Nederste tone</p>
+    <div class="row brikker" id="lav-valg" role="group" aria-labelledby="lav-label"></div>
+    <div class="row brikker" id="fortegn-valg" role="group" aria-label="Fortegn"></div>
+    <p class="label" id="iv-label">Intervall</p>
+    <div class="row brikker" id="iv-valg" role="group" aria-labelledby="iv-label"></div>
+    <div class="stav-blokk">
+      <p class="label" id="iv-merke"></p>
+      <div class="row">
+        <button type="button" class="btn" data-spill="iv-noter" data-maate="opp">&#9658;&#xFE0E; <span>Opp</span></button>
+        <button type="button" class="btn" data-spill="iv-noter" data-maate="ned">&#9658;&#xFE0E; <span>Ned</span></button>
+        <button type="button" class="btn" data-spill="iv-noter" data-maate="samtidig">&#9658;&#xFE0E; <span>Samtidig</span></button>
+      </div>
+      <div class="noter" id="iv-noter"></div>
+    </div>
+    <p class="task" id="iv-tekst" aria-live="polite"></p>
+    <table class="iv-tabell">
+      <caption class="label">Intervallene innen en oktav</caption>
+      <thead><tr><th scope="col">Halvtoner</th><th scope="col">Intervall</th><th scope="col">Fra C</th></tr></thead>
+      <tbody id="iv-tabell"></tbody>
+    </table>
+  </section>
+
+  <section class="card bred" id="enharmonisk">
+    <div class="card-head">
+      <div class="step-label">4</div>
+      <h2>Samme klang, ulikt navn</h2>
+    </div>
+    <p class="task">To intervaller kan klinge helt likt og likevel ha ulike navn, fordi tallet kommer fra bokstavene. C til Fiss er en forstørret kvart, og C til Gess er en forminsket kvint. Begge er seks halvtoner, og begge kalles tritonus.</p>
+    <p class="task">På samme måte er C til Ess en liten ters, mens C til Diss er en forstørret sekund. Hvilket navn som er riktig, avhenger av hvordan tonen er skrevet, og det henger sammen med tonearten. I c-moll står det Ess, og i harmonisk a-moll ligger det en forstørret sekund mellom F og Giss.</p>
+    <div class="stav-blokk">
+      <p class="label" id="en1-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="en1-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="en1-noter"></div>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="en2-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="en2-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="en2-noter"></div>
+    </div>
+  </section>
+
+  <section class="card bred" id="omvending">
+    <div class="card-head">
+      <div class="step-label">5</div>
+      <h2>Omvending av intervaller</h2>
+    </div>
+    <p class="task">Flytter du den nederste tonen en oktav opp (eller den øverste en oktav ned), blir intervallet omvendt. Da gjelder tre regler:</p>
+    <ul class="regler">
+      <li>Tallene blir 9 til sammen: sekund blir septim, ters blir sekst, og kvart blir kvint.</li>
+      <li>Halvtonene blir 12 til sammen.</li>
+      <li>Kvaliteten snus: stor blir liten, liten blir stor, forstørret blir forminsket, og ren forblir ren.</li>
+    </ul>
+    <p class="task">Det er et nyttig triks for store intervaller og for intervaller nedover: en liten sekst opp er det samme som en stor ters ned, flyttet en oktav. Her ser du omvendingen av intervallet du valgte i kort 3.</p>
+    <div class="stav-blokk">
+      <p class="label" id="om-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="om-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="om-noter"></div>
+    </div>
+    <p class="task" id="om-tekst" aria-live="polite"></p>
+  </section>
+
+  <section class="card bred" id="sammensatte">
+    <div class="card-head">
+      <div class="step-label">6</div>
+      <h2>Sammensatte intervaller</h2>
+    </div>
+    <p class="task">Intervaller som er større enn en oktav, kalles sammensatte. Tallene fortsetter oppover: none (9), decim (10), undecim (11), duodecim (12), tredecim (13), kvartdecim (14) og dobbel oktav (15). Trekk fra 7, så finner du det enkle intervallet: en none er en oktav pluss en sekund, og en decim er en oktav pluss en ters. Kvaliteten er den samme som i det enkle intervallet.</p>
+    <div class="stav-blokk">
+      <p class="label" id="sm-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="sm-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="sm-noter"></div>
+    </div>
+    <p class="task">Alle de sammensatte intervallene med begge navnene finner du i Intervall-jukseboka.</p>
+  </section>
+
+  <section class="card bred" id="konsonans">
+    <div class="card-head">
+      <div class="step-label">7</div>
+      <h2>Konsonans og dissonans</h2>
+    </div>
+    <p class="task">Noen intervaller klinger rolig og stabilt (konsonanser), andre klinger spent og vil videre (dissonanser). Jo enklere forholdet mellom frekvensene er, jo flere overtoner har tonene felles, og jo roligere klinger intervallet (se <a href="stemming.html">Stemming og temperatur</a>).</p>
+    <ul class="regler">
+      <li><strong>Fullkomne konsonanser:</strong> ren prim, ren oktav og ren kvint.</li>
+      <li><strong>Ufullkomne konsonanser:</strong> store og små terser og sekster.</li>
+      <li><strong>Dissonanser:</strong> sekunder, septimer og alle forstørrede og forminskede intervaller, også tritonus.</li>
+      <li><strong>Den rene kvarten</strong> er et særtilfelle. Den klinger rolig mellom to øvre stemmer, men i tradisjonell flerstemmig sats regnes den som dissonans når den står mot bassen.</li>
+    </ul>
+    <div class="stav-blokk">
+      <p class="label" id="k1-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="k1-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="k1-noter"></div>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="k2-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="k2-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="k2-noter"></div>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="k3-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="k3-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="k3-noter"></div>
+    </div>
+  </section>
+
+  <section class="card bred" id="hore">
+    <div class="card-head">
+      <div class="step-label">8</div>
+      <h2>Hør intervallene</h2>
+    </div>
+    <p class="task">Å kjenne igjen intervaller på gehør er noe av det viktigste på opptaksprøver. Spill intervallene i kort 3 opp, ned og samtidig, og knytt hvert intervall til begynnelsen av en sang du kjenner. Øv deretter i gehørquizen, der hvert lydeksempel spilles tre ganger, slik som på prøven.</p>
+    <div class="row">
+      <a class="btn" href="intervaller-og-sanger.html">Intervaller &amp; sanger</a>
+      <a class="btn" href="gehorquiz.html">Gehørquiz: intervaller</a>
+    </div>
+  </section>
+
+  <section class="card ulike-kort" id="ulike-navn">
+    <div class="card-head">
+      <div class="step-label">Merk</div>
+      <h2>Ulike navn og systemer</h2>
+    </div>
+    <p class="task">Musikkteori er ikke helt standardisert. Her er stedene der bøker, land og opptaksprøven bruker ulike navn eller systemer for det du har lært på denne siden.</p>
+    <ul class="ulike-liste">
+      <li><strong>Prim eller unison.</strong> To like toner heter ren prim på norsk og <em>unison</em> på engelsk.</li>
+      <li><strong>Tritonus.</strong> Noen bøker bruker tritonus bare om den forstørrede kvarten (tre heltoner), andre om både forstørret kvart og forminsket kvint.</li>
+      <li><strong>Sammensatte intervaller.</strong> Norsk har egne navn (none, decim, undecim), mens engelsk bruker tall (9th, 10th, 11th). Mange bøker nøyer seg med det enkle intervallet, for eksempel «stor ters» for en stor decim, særlig i akkordsymboler som C9 og C11.</li>
+      <li><strong>Kvarten.</strong> Om den rene kvarten er en konsonans eller en dissonans, avhenger av tradisjon og sammenheng (se kort 7).</li>
+    </ul>
+  </section>
+
+  <section class="card bred ovelse-kort">
+    <div class="card-head">
+      <div class="step-label">Øv</div>
+      <h2>Test deg selv</h2>
+    </div>
+    <p class="task">I teoriquizen leser du intervaller på notelinjen og skriver dem selv, i G- og F-nøkkel. Med øvemodus og en prøve med 20 oppgaver.</p>
+    <div class="row">
+      <a class="btn" href="quiz-intervaller.html">Gå til quizen</a>
+      <a class="btn" href="intervaller.html">Intervall-jukseboka</a>
+    </div>
+  </section>
+</main>
+
+<footer data-lyd="alle"></footer>
+
+<script src="tonearter.js"></script>
+<script src="intervall.js"></script>
+<script src="skalaer.js"></script>
+<script>/* VBM K7Q4-INTT */
+(function(){
+  'use strict';
+  var K = window.VBM_TONEARTER, S = window.VBM_SKALAER, I = window.VBM_INTERVALL, T = K.T;
+  function $(id){ return document.getElementById(id); }
+  function stopp(){ if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); }
+  function n(b, f, o){ return { b: b, f: f, oktav: o }; }
+  var C4 = n(0, 0, 4);
+  /* Navnet i to linjer under en samklang: kvalitet og tall (på polsk tall først, «kwinta czysta») */
+  function linjer(iv){
+    if (iv.tall === 15 && iv.kval === 'ren') return [T('dobbel oktav')];
+    var a = T(iv.kval), b = T(I.TALL[iv.tall - 1]);
+    return (window.VBM_SPRAK || 'no') === 'pl' ? [b, a] : [a, b];
+  }
+  function navnFra(a, b){ return I.navn(a, b); }
+  /* Alt som kan spilles: id -> { steg, akkord } (akkord: én samklang per to steg) */
+  var lyd = {};
+  function samklanger(id, par, merke, ekstra){
+    $(id.replace('-noter', '') + '-merke').textContent = merke;
+    $(id).innerHTML = S.akkordrekke(par.map(function(p, i){ return { noter: p, tall: ekstra ? ekstra[i] : linjer(navnFra(p[0], p[1])) }; }), merke);
+    var steg = []; par.forEach(function(p){ steg.push(p.map(S.midi)); steg.push([]); });
+    lyd[id] = { steg: steg, akkord: true };
+  }
+
+  /* =================== 1. Hva er et intervall =================== */
+  var G4 = n(4, 0, 4);
+  $('hva-mel-merke').textContent = T('Melodisk: C og G etter hverandre');
+  $('hva-mel').innerHTML = S.noter([C4, G4], 0, null, T('Melodisk: C og G etter hverandre'));
+  lyd['hva-mel'] = { steg: [[60], [67]] };
+  $('hva-harm-merke').textContent = T('Harmonisk: C og G samtidig');
+  $('hva-harm').innerHTML = S.akkordrekke([{ noter: [C4, G4], tall: [] }], T('Harmonisk: C og G samtidig')).replace(/viewBox="([\d.-]+) ([\d.-]+) ([\d.]+) ([\d.]+)"/, function(m, x, y, w, h){ return 'viewBox="' + x + ' ' + y + ' ' + w + ' ' + (+h - 40) + '"'; });
+  lyd['hva-harm'] = { steg: [[60, 67], []], akkord: true };
+
+  /* =================== 2. Tallet =================== */
+  var E4 = n(2, 0, 4), F4 = n(3, 0, 4), A4 = n(5, 0, 4), H4 = n(6, 0, 4);
+  samklanger('tall-noter', [[E4, n(4, 0, 4)], [F4, A4], [E4, A4], [E4, H4]], T('Linje eller mellomrom'),
+    [[T('ters'), T('linje–linje')], [T('ters'), T('rom–rom')], [T('kvart'), T('linje–rom')], [T('kvint'), T('linje–linje')]]);
+
+  /* =================== 3. Kvaliteten =================== */
+  var VALG = [[2, 'liten'], [2, 'stor'], [2, 'forstørret'], [3, 'liten'], [3, 'stor'], [4, 'ren'], [4, 'forstørret'], [5, 'forminsket'],
+              [5, 'ren'], [5, 'forstørret'], [6, 'liten'], [6, 'stor'], [7, 'forminsket'], [7, 'liten'], [7, 'stor'], [8, 'ren']];
+  var lavB = 0, lavF = 0, ivNr = 4;
+  try { var l = JSON.parse(localStorage.getItem('vbm-intervaller')); if (l) { if (l.b >= 0 && l.b < 7) lavB = l.b; if (l.f >= -1 && l.f <= 1) lavF = l.f; if (l.iv >= 0 && l.iv < VALG.length) ivNr = l.iv; } } catch(e){}
+  function lagre(){ try { localStorage.setItem('vbm-intervaller', JSON.stringify({ b: lavB, f: lavF, iv: ivNr })); } catch(e){} }
+  function knapp(rad, tekst, ved, attr){
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = tekst;
+    if (attr) b.setAttribute('aria-label', attr);
+    b.addEventListener('click', function(){ stopp(); ved(); });
+    rad.appendChild(b); return b;
+  }
+  for (var bb = 0; bb < 7; bb++) (function(b){ knapp($('lav-valg'), K.tone(n(b, 0, 4)), function(){ lavB = b; lagre(); tegn(); }); })(bb);
+  [[-1, '♭', T('b')], [0, '♮', T('uten fortegn')], [1, '♯', T('kryss')]].forEach(function(x){ knapp($('fortegn-valg'), x[1], function(){ lavF = x[0]; lagre(); tegn(); }, x[2]); });
+  VALG.forEach(function(v, i){ knapp($('iv-valg'), I.stor(I.tekst({ tall: v[0], kval: v[1] })), function(){ ivNr = i; lagre(); tegn(); }); });
+  function merk(rad, fn){ [].forEach.call(rad.children, function(b, i){ b.setAttribute('aria-pressed', fn(i) ? 'true' : 'false'); }); }
+  var AVSTAND = { '-2': 'to halvtoner lavere', '-1': 'en halvtone lavere', '1': 'en halvtone høyere' };
+  function tegn(){
+    var lav = n(lavB, lavF, 4), v = VALG[ivNr], iv = { tall: v[0], kval: v[1] }, hoy = I.lag(lav, v[0], v[1], true), x = I.navn(lav, hoy);
+    merk($('lav-valg'), function(i){ return i === lavB; });
+    merk($('fortegn-valg'), function(i){ return i - 1 === lavF; });
+    merk($('iv-valg'), function(i){ return i === ivNr; });
+    var navn = I.tekst(iv), merke = T('{a}–{b}: {navn}, {halvtoner}', { a: K.tone(lav), b: K.tone(hoy), navn: navn, halvtoner: x.h === 1 ? T('1 halvtone') : T('{h} halvtoner', { h: x.h }) });
+    $('iv-merke').textContent = merke;
+    $('iv-noter').innerHTML = S.noter([lav, hoy], 0, null, merke);
+    lyd['iv-noter'] = { lav: S.midi(lav), hoy: S.midi(hoy) };
+    /* Forklaringen: sammenlign med dur-skalaen fra den nederste tonen */
+    /* Antall fortegn i dur-tonearten fra den nederste tonen (Diss-dur har 9 kryss, så den hjelper ikke) */
+    var fortegn = [0, 2, 4, -1, 1, 3, 5][lav.b] + 7 * lav.f, skala = K.dur(lav), tekst;
+    if (Math.abs(fortegn) <= 7) {
+      var ref = I.lag(lav, v[0], I.erRen(v[0]) ? 'ren' : 'stor', true), d = S.midi(hoy) - S.midi(ref);
+      tekst = d === 0 ? T('{tone} er {trinn}. trinn i {skala}, så intervallet er en {navn}.', { tone: K.tone(hoy), trinn: v[0], skala: skala, navn: navn })
+        : T('I {skala} er {trinn}. trinn {ref}. {tone} ligger {avstand}, så intervallet er en {navn}.', { skala: skala, trinn: v[0], ref: K.tone(ref), tone: K.tone(hoy), avstand: T(AVSTAND[d]), navn: navn });
+    } else {
+      tekst = T('{skala} har for mange fortegn til å være til hjelp her. Tell halvtonene i stedet: {h} halvtoner og {t} bokstaver gir en {navn}.', { skala: skala, h: x.h, t: v[0], navn: navn });
+    }
+    if (Math.abs(hoy.f) === 2) tekst += ' ' + T(hoy.f > 0 ? '{tone} skrives med dobbeltkryss.' : '{tone} skrives med dobbelt-b.', { tone: K.tone(hoy) });
+    $('iv-tekst').textContent = tekst;
+    tegnOmvending(lav, hoy, x);
+  }
+  /* Tabellen over intervallene fra C */
+  var rader = '';
+  [[0, 1, 'ren'], [1, 2, 'liten'], [2, 2, 'stor'], [3, 3, 'liten'], [4, 3, 'stor'], [5, 4, 'ren'], [6, 4, 'forstørret'], [6, 5, 'forminsket'], [7, 5, 'ren'],
+   [8, 6, 'liten'], [9, 6, 'stor'], [10, 7, 'liten'], [11, 7, 'stor'], [12, 8, 'ren']].forEach(function(r){
+    var t = I.lag(C4, r[1], r[2], true);
+    rader += '<tr><td>' + r[0] + '</td><td>' + I.stor(I.tekst({ tall: r[1], kval: r[2] })) + '</td><td>C–' + K.tone(t) + '</td></tr>';
+  });
+  $('iv-tabell').innerHTML = rader;
+
+  /* =================== 4. Samme klang, ulikt navn =================== */
+  samklanger('en1-noter', [[C4, n(3, 1, 4)], [C4, n(4, -1, 4)]], T('Tritonus: C–Fiss og C–Gess'));
+  samklanger('en2-noter', [[C4, n(2, -1, 4)], [C4, n(1, 1, 4)]], T('Tre halvtoner: C–Ess og C–Diss'));
+
+  /* =================== 5. Omvending =================== */
+  function tegnOmvending(lav, hoy, x){
+    var opp = { b: lav.b, f: lav.f, oktav: lav.oktav + 1 }, om = I.navn(hoy, opp);
+    samklanger('om-noter', [[lav, hoy], [hoy, opp]], T('{a} og omvendingen {b}', { a: I.tekst(x), b: I.tekst(om) }));
+    $('om-tekst').textContent = T('{t1} + {t2} = 9, og {h1} + {h2} = 12 halvtoner. {a} blir {b}.', { t1: x.tall, t2: om.tall, h1: x.h, h2: om.h, a: I.stor(I.tekst(x)), b: I.tekst(om) });
+  }
+
+  /* =================== 6. Sammensatte intervaller =================== */
+  samklanger('sm-noter', [[C4, n(1, 0, 5)], [C4, n(2, 0, 5)], [C4, n(4, 0, 5)]], T('None, decim og duodecim fra C'));
+
+  /* =================== 7. Konsonans og dissonans =================== */
+  samklanger('k1-noter', [[C4, n(0, 0, 5)], [C4, G4]], T('Fullkomne konsonanser'));
+  samklanger('k2-noter', [[C4, E4], [C4, n(2, -1, 4)], [C4, A4], [C4, n(5, -1, 4)]], T('Ufullkomne konsonanser'));
+  samklanger('k3-noter', [[C4, n(1, 0, 4)], [C4, H4], [C4, n(3, 1, 4)]], T('Dissonanser'));
+
+  /* =================== Avspilling =================== */
+  document.querySelector('main').addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('[data-spill]');
+    if (!b || !window.VBM_LYD_SEKVENS) return;
+    var id = b.getAttribute('data-spill'), x = lyd[id], svg = $(id).querySelector('svg');
+    if (!x) return;
+    var steg = x.steg, maate = b.getAttribute('data-maate');
+    if (maate === 'opp') steg = [[x.lav], [x.hoy]];
+    else if (maate === 'ned') steg = [[x.hoy], [x.lav]];
+    else if (maate === 'samtidig') steg = [[x.lav, x.hoy], []];
+    window.VBM_LYD_SEKVENS(steg, b, function(s){
+      if (!svg) return;
+      [].forEach.call(svg.querySelectorAll('.spilles'), function(q){ q.classList.remove('spilles'); });
+      if (s < 0) return;
+      var sel = x.akkord ? '[data-a="' + Math.floor(s / 2) + '"]' : maate === 'samtidig' ? '[data-i]' : maate === 'ned' ? '[data-i="' + (1 - s) + '"]' : '[data-i="' + s + '"]';
+      [].forEach.call(svg.querySelectorAll(sel), function(q){ q.classList.add('spilles'); });
+    });
+  });
+
+  tegn();
+})();
+</script>
+<script src="lyd.js"></script>
+</body>
+</html>

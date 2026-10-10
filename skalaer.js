@@ -160,7 +160,9 @@ window.VBM_SKALAER = (function(){
     + '</defs></svg>';
   function sikreDefs(){
     K.fortegnSvg(0);   // legger inn g-nøkkel, kryss og b fra tonearter.js
-    if (!document.getElementById('acc-natural')) document.body.insertAdjacentHTML('afterbegin', EKSTRA);
+    /* Bare symbolene siden ikke har fra før (juksebøkene har noen av dem selv), så ingen id finnes to ganger */
+    var mangler = EKSTRA.replace(/<g id="([^"]+)">[\s\S]*?<\/g>(?=<g id=|<\/defs>)/g, function(m, id){ return document.getElementById(id) ? '' : m; });
+    if (/<g id=/.test(mangler)) document.body.insertAdjacentHTML('afterbegin', mangler);
   }
   var KRYSS = [[3,5],[0,5],[4,5],[1,5],[5,4],[2,5],[6,4]], BER = [[6,4],[2,5],[5,4],[1,5],[4,4],[0,5],[3,4]];
   function yAv(b, okt){ return 140 - (okt * 7 + b - 30) * 6.5; }

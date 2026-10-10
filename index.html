@@ -51,7 +51,8 @@
     return !isNaN(t) && Date.now() - t < 30 * 864e5 && Date.now() >= t;
   }
   function card(m){
-    var top = '<div class="card-top"><p class="card-eyebrow">' + esc(m.merke) + '</p>' + (isNew(m.lagtTil) ? '<p class="new">Nytt</p>' : '') + '</div>';
+    var niva = m.niva ? '<p class="niva-merke niva-' + m.niva + '">' + esc(NIVANAVN[m.niva]) + '</p>' : '';
+    var top = '<div class="card-top"><p class="card-eyebrow">' + esc(m.merke) + '</p><div class="card-merker">' + niva + (isNew(m.lagtTil) ? '<p class="new">Nytt</p>' : '') + '</div></div>';
     var fil = encodeURI(m.fil);
     if (m.svartHvitt) {
       return '<article class="card">' + top + '<h3>' + esc(m.tittel) + '</h3>' +
@@ -63,16 +64,26 @@
       '<p class="card-desc">' + esc(m.beskrivelse) + '</p>' +
       '<div class="card-foot"><span class="open">Åpne</span></div></article>';
   }
-  var html = '';
+  var NIVANAVN = { grunnleggende: 'Grunnleggende', avansert: 'Avansert', ekspert: 'Ekspert' };
+  /* Nivåfilteret fra Innstillinger (vbm-niva): tom eller «alle» viser alt */
+  function valgtNiva(){ try { return localStorage.getItem('vbm-niva') || 'alle'; } catch(e){ return 'alle'; } }
+  function tegn(){
+  var filter = valgtNiva(), html = '';
+  [].forEach.call(main.querySelectorAll('.vbm-innhold-seksjon, .niva-info'), function(el){ el.parentNode.removeChild(el); });
+  var INFO = { grunnleggende: 'Viser bare materiell på grunnleggende nivå. Endre nivå i Innstillinger øverst.', avansert: 'Viser bare materiell på avansert nivå. Endre nivå i Innstillinger øverst.', ekspert: 'Viser bare materiell på ekspertnivå. Endre nivå i Innstillinger øverst.' };
+  if (INFO[filter]) html += '<p class="niva-info">' + esc(INFO[filter]) + '</p>';
   (data.seksjoner || []).forEach(function(sek){
-    var items = (data.materialer || []).filter(function(m){ return m.seksjon === sek.id && !m.skjult; });
+    var items = (data.materialer || []).filter(function(m){ return m.seksjon === sek.id && !m.skjult && (filter === 'alle' || m.niva === filter); });
     if (!items.length) return;
-    html += '<section><p class="eyebrow">' + esc(sek.overskrift) + '</p>' +
+    html += '<section class="vbm-innhold-seksjon"><p class="eyebrow">' + esc(sek.overskrift) + '</p>' +
       '<h2>' + esc(sek.tittel) + (sek.uthevet ? ' <em>' + esc(sek.uthevet) + '</em>' : '') + '</h2>' +
       (sek.ingress ? '<p class="lede">' + esc(sek.ingress) + '</p>' : '') +
       '<div class="grid">' + items.map(card).join('') + '</div></section>';
   });
   main.insertAdjacentHTML('beforeend', html);
+  }
+  tegn();
+  window.addEventListener('vbm-niva', tegn);
 })();
 </script>
 

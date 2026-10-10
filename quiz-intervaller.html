@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-QINT
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="quiz-intervaller.html" data-stil="ovelse" data-quiz data-vbm="K7Q4-QINT">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Teoriquiz: intervaller</title>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
+<meta name="description" content="Les intervaller på notelinjen og skriv dem selv, i G- og F-nøkkel, med rene, store, små, forstørrede og forminskede intervaller. Øvemodus og prøvemodus med 20 oppgaver.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Quiz</div>
+  <h1>Teori<em>quiz</em>: intervaller</h1>
+  <p class="lede">Les intervaller på notelinjen, og skriv dem selv ved å velge riktig notebilde, slik som på opptaksprøver. Øv i ditt eget tempo, eller ta en prøve med 20 oppgaver.</p>
+  <p class="lede">Alt er forklart i leksjonen <a href="intervaller-teori.html">Intervaller</a>. Etter svaret kan du høre intervallet. Velg piano, strykere eller sinustoner nederst til høyre.</p>
+</header>
+
+<main>
+  <section class="card" id="ov-fremgang-kort" data-modus-del="ov" aria-live="polite">
+    <div class="card-head">
+      <div class="step-label">Øvemodus</div>
+      <h2>Din fremgang</h2>
+    </div>
+    <p class="task">Målet er fem riktige svar på rad. Resultatet nullstilles når du laster siden på nytt.</p>
+    <ul class="fremgang" id="ov-fremgang"></ul>
+    <p class="total" id="ov-total"></p>
+  </section>
+  <section class="card modus-kort">
+    <div class="card-head">
+      <div class="step-label">Modus</div>
+      <h2>Hva vil du gjøre?</h2>
+    </div>
+    <div class="row answers" role="group" aria-label="Velg modus">
+      <button type="button" class="btn" data-modus="ov" aria-pressed="true">Øvemodus</button>
+      <button type="button" class="btn" data-modus="prove" aria-pressed="false">Prøvemodus</button>
+    </div>
+    <p class="task modus-tekst" data-for="ov">Du får svaret med en gang, med intervallet på notelinjen, og kan høre det.</p>
+    <p class="task modus-tekst" data-for="prove" hidden>20 oppgaver med valgene under, og du får resultatet til slutt.</p>
+    <p class="label" id="type-label">Oppgaver</p>
+    <div class="row answers tre" role="group" aria-labelledby="type-label">
+      <button type="button" class="btn" data-valg="type" data-verdi="les">Les intervallet</button>
+      <button type="button" class="btn" data-valg="type" data-verdi="skriv">Skriv intervallet</button>
+      <button type="button" class="btn" data-valg="type" data-verdi="begge">Begge</button>
+    </div>
+    <p class="label" id="niva-label">Nivå</p>
+    <div class="row answers" role="group" aria-labelledby="niva-label">
+      <button type="button" class="btn" data-valg="niva" data-verdi="enkel">Grunnleggende</button>
+      <button type="button" class="btn" data-valg="niva" data-verdi="avansert">Avansert</button>
+    </div>
+    <p class="task">Grunnleggende: rene, store og små intervaller oppover i G-nøkkel, fra toner uten fortegn. Avansert: også forstørrede og forminskede intervaller, fortegn på begge tonene, intervaller nedover, og både G- og F-nøkkel.</p>
+  </section>
+
+  <!-- ===== Øvemodus ===== -->
+  <section class="card" id="ov-oppgave" data-modus-del="ov">
+    <div class="card-head">
+      <div class="step-label" id="ov-type">Øvemodus</div>
+      <h2 id="ov-sporsmal"></h2>
+    </div>
+    <div class="row" id="ov-knapper">
+      <button type="button" class="btn" id="ov-spill" aria-label="Spill intervallet" hidden>&#9658;&#xFE0E; <span>spill</span></button>
+      <button type="button" class="btn" id="ov-neste" hidden>Neste oppgave</button>
+    </div>
+    <p class="label noter-merke" id="ov-merke"></p>
+    <div class="noter" id="ov-bilde"></div>
+    <p class="feedback" id="ov-fb" aria-live="polite"></p>
+    <div class="svar-grupper" id="ov-svar"></div>
+  </section>
+
+  <section class="card" id="ov-valg" data-modus-del="ov">
+    <div class="card-head">
+      <div class="step-label">Øvemodus</div>
+      <h2>Oppgavetypene</h2>
+    </div>
+    <p class="task"><strong>Les intervallet:</strong> to toner står på notelinjen, etter hverandre eller samtidig. Finn navnet: tall og kvalitet.</p>
+    <p class="task"><strong>Skriv intervallet:</strong> en tone og et intervall er gitt. Velg notebildet der den andre tonen er riktig skrevet.</p>
+    <p class="task">Tell bokstavene først, så halvtonene. Står den andre tonen i dur-skalaen fra den nederste tonen, er intervallet stort eller rent.</p>
+  </section>
+
+  <!-- ===== Prøvemodus ===== -->
+  <section class="card prove-kort" id="prove" data-modus-del="prove" hidden>
+    <div class="card-head">
+      <div class="step-label">Prøvemodus</div>
+      <h2 id="prove-tittel">Prøve med 20 oppgaver</h2>
+    </div>
+    <div id="prove-start">
+      <p class="task">Du kan endre svaret til du går videre. Etter prøven kan du høre hvert intervall i gjennomgangen.</p>
+      <div class="row">
+        <button type="button" class="btn" id="prove-start-btn">Start prøven</button>
+      </div>
+    </div>
+    <div id="prove-oppgave" hidden>
+      <p class="prove-sporsmal" id="prove-sporsmal"></p>
+      <p class="label noter-merke" id="prove-merke"></p>
+      <div class="noter" id="prove-bilde"></div>
+      <div class="svar-grupper" id="prove-svar"></div>
+      <div class="row">
+        <button type="button" class="btn" id="prove-neste" disabled>Neste oppgave</button>
+      </div>
+    </div>
+    <div id="prove-resultat" hidden>
+      <p class="poeng" id="prove-poeng"></p>
+      <p class="task" id="prove-melding"></p>
+      <p class="label">Gjennomgang. Trykk på spill for å høre intervallet.</p>
+      <ol class="gjennomgang" id="prove-liste"></ol>
+      <div class="row">
+        <button type="button" class="btn" id="prove-igjen">Ta en ny prøve</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-lyd="alle"></footer>
+
+<script src="tonearter.js"></script>
+<script src="intervall.js"></script>
+<script src="skalaer.js"></script>
+<script>/* VBM K7Q4-QINT */
+(function(){
+  'use strict';
+  var K = window.VBM_TONEARTER, S = window.VBM_SKALAER, I = window.VBM_INTERVALL, T = K.T;
+  function $(id){ return document.getElementById(id); }
+  function tilfeldig(a){ return a[Math.floor(Math.random() * a.length)]; }
+  function blandet(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
+  function lag(tag, klasse, tekst){ var e = document.createElement(tag); if (klasse) e.className = klasse; if (tekst != null) e.textContent = tekst; return e; }
+  function stopp(){ if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); }
+
+  var TYPER = [{ id: 'les', navn: 'Les intervallet' }, { id: 'skriv', navn: 'Skriv intervallet' }];
+  var BASIS = [[2, 'liten'], [2, 'stor'], [3, 'liten'], [3, 'stor'], [4, 'ren'], [5, 'ren'], [6, 'liten'], [6, 'stor'], [7, 'liten'], [7, 'stor'], [8, 'ren']];
+  var EKSTRA = [[2, 'forstørret'], [4, 'forminsket'], [4, 'forstørret'], [5, 'forminsket'], [5, 'forstørret'], [6, 'forstørret'], [7, 'forminsket']];
+  var SJELDNE = { '2,1': 1, '6,1': 1, '0,-1': 1, '3,-1': 1 };   // Eiss, Hiss, Ces og Fes
+
+  /* =================== Valg =================== */
+  var NOKKEL = 'vbm-quiz-intervaller', valg = { type: 'begge', niva: 'enkel' };
+  try { var l = JSON.parse(localStorage.getItem(NOKKEL)); if (l) for (var k in valg) if (l[k]) valg[k] = l[k]; } catch(e){}
+  function lagre(){ try { localStorage.setItem(NOKKEL, JSON.stringify(valg)); } catch(e){} }
+  var valgKnapper = [].slice.call(document.querySelectorAll('[data-valg]'));
+  function visValg(){ valgKnapper.forEach(function(b){ b.setAttribute('aria-pressed', valg[b.getAttribute('data-valg')] === b.getAttribute('data-verdi') ? 'true' : 'false'); }); }
+  valgKnapper.forEach(function(b){ b.addEventListener('click', function(){
+    var k = b.getAttribute('data-valg'), v = b.getAttribute('data-verdi');
+    if (valg[k] === v) return;
+    valg[k] = v; visValg(); lagre(); nyOvOppgave();
+  }); });
+  var modusKnapper = [].slice.call(document.querySelectorAll('[data-modus]'));
+  modusKnapper.forEach(function(b){ b.addEventListener('click', function(){
+    var m = b.getAttribute('data-modus'); stopp();
+    modusKnapper.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    [].forEach.call(document.querySelectorAll('[data-modus-del]'), function(el){ el.hidden = el.getAttribute('data-modus-del') !== m; });
+    [].forEach.call(document.querySelectorAll('.modus-tekst'), function(el){ el.hidden = el.getAttribute('data-for') !== m; });
+  }); });
+  function mulige(){ return TYPER.filter(function(t){ return valg.type === 'begge' || t.id === valg.type; }); }
+
+  /* =================== Notebildene =================== */
+  function trinn(n){ return n.oktav * 7 + n.b; }
+  /* Fjerner plassen akkordrekka setter av til besifring under notelinjen */
+  function trim(svg){ return svg.replace(/viewBox="([\d.-]+) ([\d.-]+) ([\d.]+) ([\d.]+)"/, function(m, x, y, w, h){ return 'viewBox="' + x + ' ' + y + ' ' + w + ' ' + (+h - 40) + '"'; }); }
+  /* Intervallet på notelinjen: G-nøkkel samtidig (harmonisk) eller etter hverandre, F-nøkkel etter hverandre */
+  function bilde(o, andre, etikett){
+    var to = andre ? [o.forste, andre] : [o.forste];
+    if (o.nokkel === 'F') return S.enStav('F', to, { bredde: 220, x0: 120, etikett: etikett });
+    if (o.harmonisk && andre) return trim(S.akkordrekke([{ noter: to, tall: [] }], etikett));
+    return S.noter(to, 0, null, etikett);
+  }
+  function navnTekst(iv){ return I.stor(I.tekst(iv)); }
+
+  /* =================== Oppgavene =================== */
+  function lagGrunnlag(avansert){
+    for (var forsok = 0; forsok < 200; forsok++) {
+      var liste = avansert ? BASIS.concat(EKSTRA) : BASIS, v = tilfeldig(liste), opp = avansert ? Math.random() < 0.7 : true;
+      var nokkel = avansert && Math.random() < 0.4 ? 'F' : 'G';
+      var lav = nokkel === 'F' ? [16, 26] : [27, 36];
+      var d = lav[0] + Math.floor(Math.random() * (lav[1] - lav[0] + 1));
+      var forste = { b: d % 7, oktav: Math.floor(d / 7), f: avansert ? tilfeldig([-1, 0, 0, 1]) : 0 };
+      if (SJELDNE[forste.b + ',' + forste.f]) continue;
+      var andre = I.lag(forste, v[0], v[1], opp);
+      if (Math.abs(andre.f) > 1 || (SJELDNE[andre.b + ',' + andre.f] && !avansert)) continue;
+      var t2 = trinn(andre), grenser = nokkel === 'F' ? [12, 30] : [26, 41];
+      if (t2 < grenser[0] || t2 > grenser[1]) continue;
+      return { iv: { tall: v[0], kval: v[1] }, forste: forste, andre: andre, opp: opp, nokkel: nokkel, harmonisk: nokkel === 'G' && opp && Math.random() < 0.5 };
+    }
+  }
+  /* Seks navn: svaret, samme tall med annen kvalitet, samme klang med annet tall, og naboer */
+  function navnevalg(svar, avansert){
+    var alle = (avansert ? BASIS.concat(EKSTRA) : BASIS).map(function(v){ return { tall: v[0], kval: v[1], h: I.grunnHalv(v[0]) + 0 }; });
+    alle.forEach(function(x){ x.h = halv(x); });
+    var hs = halv(svar), valgt = [svar];
+    function legg(x){ if (valgt.length < 6 && !valgt.some(function(y){ return I.like(x, y); })) valgt.push(x); }
+    alle.filter(function(x){ return x.tall === svar.tall; }).forEach(legg);
+    alle.filter(function(x){ return x.h === hs; }).forEach(legg);
+    blandet(alle).sort(function(a, b){ return Math.abs(a.h - hs) - Math.abs(b.h - hs); }).forEach(legg);
+    valgt.sort(function(a, b){ return a.tall - b.tall || halv(a) - halv(b); });
+    return valgt.map(function(x){ return { tekst: navnTekst(x), riktig: I.like(x, svar) }; });
+  }
+  function halv(iv){ var a = { b: 0, f: 0, oktav: 4 }; return I.midi(I.lag(a, iv.tall, iv.kval, true)) - 60; }
+  /* Fire notebilder til «skriv»: riktig tone, samme klang med annen bokstav, samme bokstav med annet fortegn, og naboer */
+  function notevalg(o){
+    var riktig = o.andre, m = I.midi(riktig), kand = [riktig];
+    function legg(n){ if (kand.length < 4 && Math.abs(n.f) <= 1 && !SJELDNE[n.b + ',' + n.f] && !kand.some(function(x){ return x.b === n.b && x.f === n.f && x.oktav === n.oktav; })) kand.push(n); }
+    var forslag = [];
+    [-1, 1].forEach(function(db){ var d = trinn(riktig) + db, x = { b: ((d % 7) + 7) % 7, oktav: Math.floor(d / 7), f: 0 }; x.f = m - I.midi(x); forslag.push(x); });
+    [-1, 1].forEach(function(df){ forslag.push({ b: riktig.b, f: riktig.f + df, oktav: riktig.oktav }); });
+    [-1, 1].forEach(function(db){ var d = trinn(riktig) + db; forslag.push({ b: ((d % 7) + 7) % 7, oktav: Math.floor(d / 7), f: tilfeldig([-1, 0, 1]) }); });
+    blandet(forslag.slice(0, 2)).concat(blandet(forslag.slice(2, 4)), blandet(forslag.slice(4))).forEach(legg);
+    /* Fyll opp med de nærmeste tonene (bokstaven under, samme og over, med alle fortegn) */
+    var rest = [];
+    [-1, 0, 1].forEach(function(db){ var d = trinn(riktig) + db; [-1, 0, 1].forEach(function(f){ rest.push({ b: ((d % 7) + 7) % 7, oktav: Math.floor(d / 7), f: f }); }); });
+    rest.sort(function(x, y){ return Math.abs(I.midi(x) - m) - Math.abs(I.midi(y) - m) || Math.random() - 0.5; }).forEach(legg);
+    return blandet(kand).map(function(n, i){
+      return { svg: bilde(o, n, T('Alternativ {n}', { n: i + 1 })), tekst: T('Alternativ {n}: {tone}', { n: i + 1, tone: K.tone(n) }), kort: K.tone(n), riktig: n === riktig };
+    });
+  }
+  function lagOppgave(typeId, forrige){
+    var avansert = valg.niva === 'avansert', g, n = 0;
+    do { g = lagGrunnlag(avansert); n++; } while (forrige && n < 30 && g.forste.b === forrige.forste.b && I.like(g.iv, forrige.iv));
+    var navn = I.tekst(g.iv), a = K.tone(g.forste), b = K.tone(g.andre);
+    var o = { type: typeId, iv: g.iv, forste: g.forste, andre: g.andre, opp: g.opp, nokkel: g.nokkel, harmonisk: g.harmonisk };
+    o.lyd = [I.midi(g.forste), I.midi(g.andre)];
+    var h = Math.abs(o.lyd[1] - o.lyd[0]), halvtekst = h === 1 ? T('1 halvtone') : T('{h} halvtoner', { h: h });
+    o.fasitMerke = T('{a}–{b}: {navn}, {halvtoner}', { a: a, b: b, navn: navn, halvtoner: halvtekst });
+    o.fasit = bilde(o, g.andre, o.fasitMerke);
+    if (typeId === 'les') {
+      o.sporsmal = T('Hvilket intervall er dette?');
+      o.merke = g.nokkel === 'F' ? T('F-nøkkel') : T('G-nøkkel');
+      o.bilde = bilde(o, g.andre, o.merke);
+      o.svar = navnevalg(g.iv, avansert);
+    } else {
+      o.sporsmal = T(g.opp ? 'Skriv en {navn} opp fra {tone}.' : 'Skriv en {navn} ned fra {tone}.', { navn: navn, tone: a });
+      o.merke = T('Gitt tone: {tone}', { tone: a });
+      o.bilde = bilde(o, null, o.merke);
+      o.svar = notevalg(o);
+      o.noteSvar = true;
+    }
+    o.beskriv = T('{a} til {b} er en {navn}: {t} bokstaver og {halvtoner}.', { a: a, b: b, navn: navn, t: g.iv.tall, halvtoner: halvtekst });
+    return o;
+  }
+  function svarKnapper(rot, o, ved){
+    rot.innerHTML = '';
+    var rad = lag('div', 'row answers svar' + (o.noteSvar ? ' stav-valg' : '')), knapper = [];
+    rad.setAttribute('role', 'group'); rad.setAttribute('aria-label', T('Svaralternativer'));
+    if (o.noteSvar) rad.setAttribute('data-uten-navn', '');
+    o.svar.forEach(function(a){
+      var b = lag('button', 'btn'); b.type = 'button'; b.setAttribute('translate', 'no');
+      if (o.noteSvar) { b.innerHTML = a.svg; b.setAttribute('aria-label', a.tekst); } else b.textContent = a.tekst;
+      b.addEventListener('click', function(){ ved(a, b); });
+      rad.appendChild(b); knapper.push(b);
+    });
+    rot.appendChild(rad);
+    return knapper;
+  }
+  function spill(o, knapp, holder){ if (window.VBM_LYD_SPILL) window.VBM_LYD_SPILL(o.lyd, knapp, 1, null, false, holder && window.VBM_FARG ? window.VBM_FARG(holder) : null); }
+
+  /* =================== Øvemodus =================== */
+  var STAT = {}, MAL = 5, paRad = 0, best = 0, klar = false, ov = null, knapper = [];
+  var FEIL = ['Ikke gi opp. Du blir bedre for hver oppgave.', 'Tell bokstavene først, og ta med begge tonene.', 'Tenk på dur-skalaen fra den nederste tonen.', 'Pust rolig, tenk deg om, og prøv neste.'];
+  function nyOvOppgave(){
+    stopp();
+    var ty = tilfeldig(mulige());
+    ov = { o: lagOppgave(ty.id, ov && ov.o), besvart: false };
+    $('ov-type').textContent = T(ty.navn);
+    $('ov-sporsmal').textContent = ov.o.sporsmal;
+    $('ov-merke').textContent = ov.o.merke;
+    $('ov-bilde').innerHTML = ov.o.bilde;
+    $('ov-spill').hidden = true;
+    knapper = svarKnapper($('ov-svar'), ov.o, svarOv);
+    $('ov-fb').innerHTML = ''; $('ov-neste').hidden = true;
+  }
+  $('ov-spill').addEventListener('click', function(){ spill(ov.o, this, $('ov-bilde')); });
+  function svarOv(a, b){
+    if (ov.besvart) return;
+    ov.besvart = true;
+    var o = ov.o, riktig = a.riktig, m = '';
+    var st = STAT[o.type] = STAT[o.type] || { r: 0, t: 0 }; st.t++; if (riktig) st.r++;
+    knapper.forEach(function(k){ k.disabled = k !== b; });
+    b.setAttribute('aria-pressed', 'true');
+    if (riktig) {
+      paRad++; best = Math.max(best, paRad);
+      if (paRad === MAL && !klar) { klar = true; m = T('Fem riktige på rad. Målet er nådd!'); }
+      else if (paRad === 3) m = T('Tre riktige på rad. Bra jobbet!');
+      else if (paRad === 10) m = T('Ti riktige på rad. Imponerende!');
+    } else { paRad = 0; m = T(tilfeldig(FEIL)); }
+    $('ov-fb').innerHTML = '<strong class="' + (riktig ? 'ok' : 'nei') + '">' + (riktig ? T('Riktig.') : T('Feil.')) + '</strong> ' + o.beskriv
+      + (m ? '<span class="motiv">' + m + '</span>' : '');
+    /* Samme notelinje som før svaret, nå med begge tonene */
+    $('ov-merke').textContent = o.fasitMerke;
+    $('ov-bilde').innerHTML = o.fasit;
+    $('ov-spill').hidden = false; $('ov-neste').hidden = false;
+    visFremgang();
+  }
+  $('ov-neste').addEventListener('click', function(){ nyOvOppgave(); $('ov-sporsmal').scrollIntoView({ block: 'nearest' }); });
+  function visFremgang(){
+    var html = '', r = 0, t = 0;
+    TYPER.forEach(function(ty){
+      var st = STAT[ty.id]; if (!st) return; r += st.r; t += st.t;
+      html += '<li><span>' + T(ty.navn) + '</span><span class="tall">' + T('{r} av {t} riktige.', { r: st.r, t: st.t }) + '</span></li>';
+    });
+    $('ov-fremgang').innerHTML = html || '<li><span class="tall">' + T('Ingen svar ennå.') + '</span></li>';
+    $('ov-total').innerHTML = '<strong>' + T('Totalt: {r} av {t} riktige', { r: r, t: t }) + (t ? ' (' + Math.round(100 * r / t) + ' %)' : '') + '.</strong> '
+      + (klar ? '<span class="klar">' + T('Målet er nådd.') + '</span> ' : '')
+      + T('På rad nå: {n}. Beste rekke: {b}.', { n: paRad, b: best });
+  }
+
+  /* =================== Prøvemodus =================== */
+  var ANTALL = 20, pr = null, pKnapper = [], resultat = [];
+  function startProve(){
+    var typer = mulige(), liste = [], forrige = null;
+    for (var i = 0; i < ANTALL; i++) { forrige = lagOppgave(typer[i % typer.length].id, forrige); liste.push(forrige); }
+    pr = { oppgaver: blandet(liste), svar: [], nr: 0 };
+    $('prove-start').hidden = true; $('prove-resultat').hidden = true; $('prove-oppgave').hidden = false;
+    visProve();
+  }
+  function visProve(){
+    var o = pr.oppgaver[pr.nr];
+    $('prove-tittel').textContent = T('Oppgave {n} av {t}', { n: pr.nr + 1, t: ANTALL });
+    $('prove-sporsmal').textContent = o.sporsmal;
+    $('prove-merke').textContent = o.merke;
+    $('prove-bilde').innerHTML = o.bilde;
+    pKnapper = svarKnapper($('prove-svar'), o, function(a, b){
+      pr.svar[pr.nr] = a;
+      pKnapper.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      $('prove-neste').disabled = false;
+    });
+    $('prove-neste').disabled = true;
+    $('prove-neste').textContent = pr.nr === ANTALL - 1 ? T('Se resultatet') : T('Neste oppgave');
+  }
+  $('prove-neste').addEventListener('click', function(){
+    if (pr.nr < ANTALL - 1) { pr.nr++; visProve(); $('prove-sporsmal').scrollIntoView({ block: 'nearest' }); }
+    else visResultat();
+  });
+  function visResultat(){
+    stopp();
+    var r = 0, html = '';
+    resultat = pr.oppgaver.slice();
+    pr.oppgaver.forEach(function(o, i){
+      var s = pr.svar[i], ok = s.riktig; if (ok) r++;
+      html += '<li><div class="gj-tekst"><strong class="' + (ok ? 'ok' : 'nei') + '">' + (ok ? T('Riktig.') : T('Feil.')) + '</strong> ' + o.beskriv
+        + (ok ? '' : ' <span class="ditt">' + T('Ditt svar: {s}.', { s: s.kort || s.tekst }) + '</span>') + '</div>'
+        + '<button type="button" class="btn" data-gj="' + i + '" aria-label="' + T('Spill oppgave {n}', { n: i + 1 }) + '">&#9658;&#xFE0E; <span>' + T('spill') + '</span></button></li>';
+    });
+    var p = Math.round(100 * r / ANTALL);
+    $('prove-tittel').textContent = T('Resultat');
+    $('prove-poeng').innerHTML = '<strong>' + T('{r} av {t} riktige', { r: r, t: ANTALL }) + '</strong> (' + p + ' %)';
+    $('prove-melding').textContent = p === 100 ? T('Alle riktige. Du leser intervaller som en proff!')
+      : p >= 85 ? T('Svært bra. Du er godt forberedt.')
+      : p >= 65 ? T('Bra. Øv litt mer på oppgavene du bommet på.')
+      : p >= 40 ? T('Du er på god vei. Bruk øvemodus på det du bommet på, og prøv igjen.')
+      : T('Ikke gi opp. Les leksjonen en gang til, og begynn i øvemodus på grunnleggende nivå.');
+    $('prove-liste').innerHTML = html;
+    $('prove-oppgave').hidden = true; $('prove-resultat').hidden = false;
+    $('prove-poeng').scrollIntoView({ block: 'center', behavior: 'smooth' });
+    pr = null;
+  }
+  $('prove-liste').addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('[data-gj]');
+    if (b) spill(resultat[+b.getAttribute('data-gj')], b, null);
+  });
+  $('prove-start-btn').addEventListener('click', startProve);
+  $('prove-igjen').addEventListener('click', function(){
+    $('prove-resultat').hidden = true; $('prove-start').hidden = false;
+    $('prove-tittel').textContent = T('Prøve med 20 oppgaver');
+  });
+
+  visValg(); nyOvOppgave(); visFremgang();
+})();
+</script>
+<script src="lyd.js"></script>
+</body>
+</html>

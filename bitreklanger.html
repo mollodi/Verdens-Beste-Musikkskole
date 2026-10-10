@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-BITT
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="bitreklanger.html" data-stil="ovelse" data-vbm="K7Q4-BITT">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Bitreklanger og forholdninger</title>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
+<meta name="description" content="Bitreklanger og forholdninger: hoved- og bitreklanger i dur og moll, navnene i opptaksprøven og i andre systemer, typiske akkordforløp, omvendinger, forholdninger og hvordan du hører et akkordforløp.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Musikkteori</div>
+  <h1>Bitreklanger og <em>forholdninger</em></h1>
+  <p class="lede">På opptaksprøven skal du analysere korte akkordforløp på gehør og fra noter, med hoved- og bitreklanger, omvendinger og forholdninger. Her lærer du akkordene, navnene og de vanligste forløpene, og du får vite hvor fagfolk er uenige.</p>
+  <p class="lede">Velg toneart, så skrives alle eksemplene om. Trykk på spill for å høre dem. Velg piano, strykere eller sinustoner nederst til høyre.</p>
+</header>
+
+<main>
+  <section class="card bred" id="trinn">
+    <div class="card-head">
+      <div class="step-label">1</div>
+      <h2>Hoved- og bitreklanger</h2>
+    </div>
+    <p class="task">Hovedtreklangene er tonika (I), subdominant (IV) og dominant (V). De andre treklangene i tonearten kalles bitreklanger. Hver bitreklang har to toner felles med en hovedtreklang og kan ofte ta plassen dens: vi har to toner felles med både I og IV, iii med både I og V, og ii med IV.</p>
+    <p class="label" id="tk-label">Toneart</p>
+    <div class="row brikker" id="tk-valg" role="group" aria-labelledby="tk-label"></div>
+    <div class="row answers" role="group" aria-label="Dur eller moll">
+      <button type="button" class="btn" data-moll="0">Dur</button>
+      <button type="button" class="btn" data-moll="1">Moll</button>
+    </div>
+    <div class="tabell-ramme">
+      <table class="navn-tabell">
+        <caption class="label" id="tab-tittel"></caption>
+        <thead><tr><th scope="col">Akkord</th><th scope="col">Romertall</th><th scope="col">Romertall i prøven</th><th scope="col">Funksjon i prøven</th><th scope="col">Parallellnavn</th></tr></thead>
+        <tbody id="navn-tabell"></tbody>
+      </table>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="tre-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="tre-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="tre-noter"></div>
+    </div>
+  </section>
+
+  <section class="card bred" id="systemer">
+    <div class="card-head">
+      <div class="step-label">2</div>
+      <h2>Navnene i opptaksprøven</h2>
+    </div>
+    <p class="task">På opptaksprøven kan du velge mellom to systemer: romertall med generalbasstall (for eksempel V⁶₅) eller norsk funksjonsanalyse (for eksempel D⁷₃). Du trenger bare å kunne ett av dem.</p>
+    <ul class="regler">
+      <li><strong>Hovedtreklangene</strong> heter T, S og D. Prøven bruker store bokstaver både i dur og moll, og tonearten avgjør om akkorden er dur eller moll.</li>
+      <li><strong>Bitreklangene</strong> får en liten m eller s etter bokstaven. m står for mediant, akkorden en ters over hovedtreklangen. s står for submediant, akkorden en ters under. I C-dur er Em altså Tm (en ters over C), og Am er Ts (en ters under C).</li>
+      <li><strong>Tallet under bokstaven</strong> viser hvilken tone som ligger i bassen, slik du lærte i <a href="akkordanalyse.html">Akkordanalyse</a>.</li>
+      <li><strong>Den forminskede treklangen på 7. trinn</strong> regnes som en dominantseptimakkord uten grunntone. Den skrives med en strek gjennom D: Đ⁷.</li>
+    </ul>
+    <div class="viktig" id="kontroverser">
+      <p class="task"><strong>Her er fagfolk uenige</strong></p>
+      <ul class="regler">
+        <li><strong>Ett eller to navn?</strong> De fleste funksjonsteorier lar iii og vi ha to navn, fordi de har to toner felles med to hovedtreklanger: iii kan være Tm eller Ds, og vi kan være Ts eller Sm. Prøven følger Sigvald Tveits lærebok, der hver akkord har ett fast navn (Tm og Ts).</li>
+        <li><strong>Mediant og parallell.</strong> Det norske systemet er unikt for Norge. I Tyskland og Sverige, og i Harmonilære her på nettstedet, kalles bitreklangene paralleller: Tp, Sp og Dp. Tp betyr ikke det samme i de to systemene i moll, så pass på hvilket system en bok bruker.</li>
+        <li><strong>Store eller små romertall?</strong> Engelskspråklige bøker og resten av dette nettstedet skriver moll og forminsket med små bokstaver (ii, vi, vii°). Opptaksprøven skriver alle romertall med store bokstaver og lar tonearten avgjøre typen.</li>
+        <li><strong>Akkorden på 7. trinn.</strong> De fleste lærebøker og prøven tolker vii° som Đ⁷. Bjerkestrand og Nesheim og Tveit kaller den en egen akkord, Dm.</li>
+        <li><strong>Kadensens kvartsekstakkord.</strong> Den består av tonene i I, men virker som en del av dominanten. Prøven krever ett navn per akkord og regner V⁶₄ (D⁶₄) som riktig. Mange søkere har svart I⁶₄ og fått det regnet som feil. Se kort 4.</li>
+        <li><strong>Litteraturen og prøven stemmer ikke helt overens.</strong> Ingen av bøkene på den anbefalte listen bruker nøyaktig samme symboler som prøven. Inger Elise Reitans «Akkordrekker på gehør» kommer nærmest, og Tveits «Harmonilære fra en ny innfallsvinkel» har alle symbolene, men står ikke på listen.</li>
+        <li><strong>Forslag om et tredje system.</strong> Musikkteoretikeren Esa Lilja (Universitetet i Stavanger) mener begge systemene er unødvendig kompliserte for en opptaksprøve, og at de passer dårlig for jazz, folkemusikk og pop. Han foreslår Berklee-systemet med besifring som et tredje alternativ.</li>
+      </ul>
+      <p class="kilde">Kilder: Esa Lilja, «Harmony Analysis Tasks in the Music Theory Admission Test for Higher Music Education in Norway», PlaySpace 3/1 (2024). Bjørnar Utne-Reitan, «Funksjonsteori – en musikkteoretisk tradisjon» (2023). Anbefalt litteratur fra NMH og NTNU: Benestad, Bjerkestrand og Nesheim, Johansen, Reitan og Øye.</p>
+    </div>
+  </section>
+
+  <section class="card bred" id="forlop">
+    <div class="card-head">
+      <div class="step-label">3</div>
+      <h2>Typiske akkordforløp</h2>
+    </div>
+    <p class="task">Noen forløp kommer igjen i all slags musikk. Velg et forløp og et analysesystem. Tonearten velger du i kort 1.</p>
+    <ul class="regler">
+      <li><strong>I–vi–IV–V</strong> og <strong>I–vi–ii–V–I</strong>: bitreklangen vi står mellom tonika og subdominanten, og ii tar subdominantens plass før dominanten.</li>
+      <li><strong>ii–V–I</strong>: det vanligste forløpet i jazz, og en sterk kadens i klassisk musikk.</li>
+      <li><strong>Skuffende kadens (V–vi, i moll V–VI)</strong>: du venter tonika, men får bitreklangen en ters under. Tersen i vi dobles, slik at ledetonen kan gå opp.</li>
+      <li><strong>Kvintfallsekvens</strong>: grunntonene faller i kvinter (eller stiger i kvarter) gjennom hele skalaen, I–IV–vii°–iii–vi–ii–V–I.</li>
+    </ul>
+    <p class="label" id="fl-label">Forløp</p>
+    <div class="row brikker" id="fl-valg" role="group" aria-labelledby="fl-label"></div>
+    <div class="row answers" role="group" aria-label="Analysesystem">
+      <button type="button" class="btn" data-system="rom">Romertall</button>
+      <button type="button" class="btn" data-system="fun">Funksjoner</button>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="fl-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="fl-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="fl-noter"></div>
+    </div>
+  </section>
+
+  <section class="card bred" id="omvendinger">
+    <div class="card-head">
+      <div class="step-label">4</div>
+      <h2>Omvendinger i akkordforløp</h2>
+    </div>
+    <p class="task">Omvendinger gjør bassen mer melodisk. Sekstakkorder brukes fritt midt i en frase. Kvartsekstakkorden er mer begrenset og brukes nesten bare på tre måter (se <a href="harmonilaere.html">Harmonilære</a>). To av dem er viktige når du analyserer:</p>
+    <ul class="regler">
+      <li><strong>Gjennomgangskvartsekstakkord:</strong> bassen går trinnvis, for eksempel I–V⁶₄–I⁶.</li>
+      <li><strong>Kadensens kvartsekstakkord:</strong> rett før dominanten i en kadens. Tonene er de samme som i I, men akkorden er en forholdning som løser seg til V. Derfor skriver opptaksprøven V⁶₄ eller D⁶₄, ikke I⁶₄ eller T₅.</li>
+    </ul>
+    <div class="stav-blokk">
+      <p class="label" id="om1-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="om1-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="om1-noter"></div>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="om2-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="om2-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="om2-noter"></div>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="om3-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="om3-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="om3-noter"></div>
+    </div>
+  </section>
+
+  <section class="card bred" id="forholdninger">
+    <div class="card-head">
+      <div class="step-label">5</div>
+      <h2>Forholdninger</h2>
+    </div>
+    <p class="task">En forholdning er en tone som blir liggende fra én akkord inn i den neste, der den blir dissonant, og så går et trinn ned til en akkordtone. Den har tre faser: forberedelse (tonen er akkordtone), dissonans (tonen holdes mens akkorden skifter) og oppløsning (tonen går et trinn ned). Navnet er intervallene over bassen, før og etter oppløsningen.</p>
+    <ul class="regler">
+      <li><strong>4–3:</strong> kvarten over bassen løser seg til tersen. Den vanligste, ofte i dominanten før en slutt.</li>
+      <li><strong>9–8:</strong> nonen løser seg til oktaven.</li>
+      <li><strong>7–6:</strong> septimen løser seg til seksten, ofte over sekstakkorder.</li>
+      <li><strong>2–3 (forholdning i bassen):</strong> her er det bassen som blir liggende og så går ned, slik at sekunden blir en ters.</li>
+    </ul>
+    <p class="task">Eksemplene spilles langsomt, så du hører dissonansen og oppløsningen.</p>
+    <div id="fh-blokker"></div>
+  </section>
+
+  <section class="card bred" id="fremmedtoner">
+    <div class="card-head">
+      <div class="step-label">6</div>
+      <h2>Gjennomgangstoner og vekseltoner</h2>
+    </div>
+    <p class="task">Ikke alle toner hører til akkorden. En gjennomgangstone fyller et sprang mellom to akkordtoner trinnvis, for eksempel E, F, G over en C-durakkord. En vekseltone går et trinn bort fra en akkordtone og tilbake igjen, for eksempel E, F, E. Når du analyserer, hopper du over slike toner og ser på akkorden rundt dem.</p>
+    <div class="stav-blokk">
+      <p class="label" id="ft-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="ft-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="ft-noter"></div>
+    </div>
+  </section>
+
+  <section class="card bred" id="hore">
+    <div class="card-head">
+      <div class="step-label">7</div>
+      <h2>Slik hører du et akkordforløp</h2>
+    </div>
+    <ol class="steg-liste">
+      <li><strong>Finn tonika.</strong> Syng grunntonen før du lytter, og hør om forløpet begynner og slutter der.</li>
+      <li><strong>Følg bassen.</strong> Syng bassen og tenk trinn: 1, 6, 4, 5 er I–vi–IV–V. Bassen forteller både akkord og omvending.</li>
+      <li><strong>Dur eller moll?</strong> Durakkorder på 1, 4 og 5 er hovedtreklanger, mollakkorder på 2, 3 og 6 er bitreklanger (i dur).</li>
+      <li><strong>Hør slutten.</strong> Dominant til tonika er en hel kadens, dominant til vi er en skuffende kadens.</li>
+    </ol>
+    <p class="task">Øv videre i gehørquizen om kadenser og funksjoner, og i Musicificium fra UiT, en gratis ressurs med lytteeksempler som brukes til opptaksforberedelse.</p>
+    <div class="row">
+      <a class="btn" href="gehorquiz-harmoni.html">Gehørquiz: kadenser og funksjoner</a>
+      <a class="btn" href="https://result.uit.no/musicificium/eksempelbank/harmonikk/hoved-og-bitreklanger/hovedtreklanger/" target="_blank" rel="noopener">Musicificium (UiT)</a>
+    </div>
+  </section>
+
+  <section class="card bred ovelse-kort">
+    <div class="card-head">
+      <div class="step-label">Øv</div>
+      <h2>Test deg selv</h2>
+    </div>
+    <p class="task">I quizen hører eller leser du korte akkordforløp og velger analysen, med romertall eller funksjoner, og finner typen forholdning. Med øvemodus og en prøve med 20 oppgaver.</p>
+    <div class="row">
+      <a class="btn" href="quiz-akkordforlop.html">Gå til quizen</a>
+      <a class="btn" href="akkordanalyse.html">Akkordanalyse</a>
+      <a class="btn" href="harmonilaere.html">Harmonilære</a>
+    </div>
+  </section>
+</main>
+
+<footer data-lyd="alle"></footer>
+
+<script src="tonearter.js"></script>
+<script src="intervall.js"></script>
+<script src="skalaer.js"></script>
+<script src="harmoni.js"></script>
+<script src="akkord.js"></script>
+<script src="forlop.js"></script>
+<script>/* VBM K7Q4-BITT */
+(function(){
+  'use strict';
+  var K = window.VBM_TONEARTER, S = window.VBM_SKALAER, A = window.VBM_AKKORD, F = window.VBM_FORLOP, T = K.T;
+  function $(id){ return document.getElementById(id); }
+  function stopp(){ if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); }
+  var lyd = {};
+  /* Akkorder på to linjer (firstemmig sats), delt på flere linjer når det er mer enn fire */
+  function sats(id, x, merke, steg){
+    $(id.replace('-noter', '') + '-merke').textContent = merke;
+    var akk = x.akkorder, g = window.VBM_GRUPPER(akk, function(del){ return S.storSats(del, x.fortegn, merke); }, $(id));
+    $(id).innerHTML = g.html;
+    var ut = []; akk.forEach(function(a){ ut.push(a.midi); for (var k = 1; k < (steg || 2); k++) ut.push([]); });
+    lyd[id] = { steg: ut, str: g.str, per: steg || 2 };
+  }
+  var st = { nr: 0, moll: false, fl: 0, system: 'rom' };
+  try { var l = JSON.parse(localStorage.getItem('vbm-bitreklanger')); if (l) for (var k in st) if (l[k] != null) st[k] = l[k]; } catch(e){}
+  function lagre(){ try { localStorage.setItem('vbm-bitreklanger', JSON.stringify(st)); } catch(e){} }
+  function merk(rad, fn){ [].forEach.call(rad.children, function(b, i){ b.setAttribute('aria-pressed', fn(i) ? 'true' : 'false'); }); }
+
+  /* =================== 1. Hoved- og bitreklanger =================== */
+  function tegnTrinn(){
+    var rad = $('tk-valg'); rad.innerHTML = '';
+    for (var nr = 0; nr < 12; nr++) (function(n){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = A.tonartNavn(A.rot(n, st.moll), st.moll);
+      b.addEventListener('click', function(){ stopp(); st.nr = n; lagre(); tegnAlt(); });
+      rad.appendChild(b);
+    })(nr);
+    merk(rad, function(i){ return i === st.nr; });
+    [].forEach.call(document.querySelectorAll('[data-moll]'), function(b){ b.setAttribute('aria-pressed', (b.getAttribute('data-moll') === '1') === st.moll ? 'true' : 'false'); });
+    var r = A.rot(st.nr, st.moll), toneart = A.tonartNavn(r, st.moll), rader = '', akk = [];
+    F.NAVN[st.moll ? 'moll' : 'dur'].forEach(function(x, t){
+      var ak = A.akkord(r, st.moll, t, false), alt = x.funAlt ? ' ' + T('(også {navn})', { navn: T(x.funAlt) }) : '';
+      var L = [T('Akkord'), T('Romertall'), T('Romertall i prøven'), T('Funksjon i prøven'), T('Parallellnavn')];
+      rader += '<tr><td translate="no" data-label="' + L[0] + '">' + A.symbol(ak, 0) + '</td><td translate="no" data-label="' + L[1] + '">' + x.side + '</td><td translate="no" data-label="' + L[2] + '">' + x.prove
+        + '</td><td data-label="' + L[3] + '">' + T(x.fun) + alt + '</td><td translate="no" data-label="' + L[4] + '">' + x.par + '</td></tr>';
+      akk.push({ noter: A.tett(ak, 0), tall: [A.symbol(ak, 0), x.side] });
+    });
+    $('tab-tittel').textContent = T('Akkordene i {toneart}', { toneart: toneart });
+    $('navn-tabell').innerHTML = rader;
+    /* Treklangene på én linje (G-nøkkel), delt i to */
+    $('tre-merke').textContent = T('Treklangene i {toneart}', { toneart: toneart });
+    var gT = window.VBM_GRUPPER(akk, function(del){ return S.akkordrekke(del, T('Treklangene i {toneart}', { toneart: toneart })); }, $('tre-noter'));
+    $('tre-noter').innerHTML = gT.html;
+    var ut = []; akk.forEach(function(a){ ut.push(a.noter.map(S.midi)); ut.push([]); });
+    lyd['tre-noter'] = { steg: ut, str: gT.str, per: 2 };
+  }
+  [].forEach.call(document.querySelectorAll('[data-moll]'), function(b){ b.addEventListener('click', function(){ stopp(); st.moll = b.getAttribute('data-moll') === '1'; st.fl = 0; lagre(); tegnAlt(); }); });
+
+  /* =================== 3. Typiske akkordforløp =================== */
+  function mulige(){ return F.FORLOP.filter(function(f){ return f.moll === st.moll; }); }
+  function tegnForlop(){
+    var liste = mulige(), rad = $('fl-valg'); rad.innerHTML = '';
+    if (st.fl >= liste.length) st.fl = 0;
+    liste.forEach(function(f, i){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = F.analyse(f, 'rom').replace(/, /g, '–');
+      b.addEventListener('click', function(){ stopp(); st.fl = i; lagre(); tegnForlop(); });
+      rad.appendChild(b);
+    });
+    merk(rad, function(i){ return i === st.fl; });
+    [].forEach.call(document.querySelectorAll('[data-system]'), function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-system') === st.system ? 'true' : 'false'); });
+    var f = liste[st.fl], x = F.bygg(f, st.nr, st.system, true);
+    sats('fl-noter', x, A.tonartNavn(x.rot, st.moll) + ': ' + F.analyse(f, st.system), 2);
+  }
+  [].forEach.call(document.querySelectorAll('[data-system]'), function(b){ b.addEventListener('click', function(){ stopp(); st.system = b.getAttribute('data-system'); lagre(); tegnForlop(); tegnOmvendinger(); }); });
+
+  /* =================== 4. Omvendinger (i dur) =================== */
+  function tegnOmvendinger(){
+    var NAVN = [T('Sekstakkord midt i frasen'), T('Gjennomgangskvartsekstakkord'), T('Kadensens kvartsekstakkord')];
+    F.OMVENDING.forEach(function(o, i){
+      var x = F.byggOmvending(o, st.nr, st.system);
+      sats('om' + (i + 1) + '-noter', x, NAVN[i] + ' (' + A.tonartNavn(x.rot, false) + ')', 2);
+    });
+  }
+
+  /* =================== 5. Forholdninger (i dur) =================== */
+  function tegnForholdninger(){
+    var rot = $('fh-blokker'), html = '';
+    F.FORHOLDNING.forEach(function(fh, i){
+      html += '<div class="stav-blokk"><p class="label" id="fh' + i + '-merke"></p><div class="row"><button type="button" class="btn" data-spill="fh' + i + '-noter">&#9658;&#xFE0E; <span>' + T('spill') + '</span></button></div><div class="noter" id="fh' + i + '-noter"></div></div>';
+    });
+    rot.innerHTML = html;
+    F.FORHOLDNING.forEach(function(fh, i){
+      var x = F.byggForholdning(fh, st.nr);
+      x.fortegn = A.fortegn(x.rot, false);
+      sats('fh' + i + '-noter', x, T('Forholdning {navn} i {toneart}', { navn: fh.navn, toneart: A.tonartNavn(x.rot, false) }), 4);
+    });
+  }
+
+  /* =================== 6. Gjennomgangs- og vekseltoner (i dur) =================== */
+  function tegnFremmed(){
+    var r = A.rot(st.nr, false), I1 = A.akkord(r, false, 0, false), bass = { b: r.b, f: r.f, oktav: 3 };
+    var t = A.tett(I1, 0), ters = t[1], kvint = t[2], sk = A.skala(r, false);
+    var mellom = { b: sk[3].b, f: sk[3].f, oktav: ters.oktav + (sk[3].b < ters.b ? 1 : 0) };
+    var kol = [ters, mellom, kvint, mellom, ters].map(function(sop, i){ return { noter: [bass, { b: t[0].b, f: t[0].f, oktav: 3 }, t[0], sop], tall: [i === 1 ? T('gj.') : i === 3 ? T('veks.') : ''] }; });
+    sats('ft-noter', { akkorder: kol.map(function(a){ a.midi = a.noter.map(S.midi); return a; }), fortegn: A.fortegn(r, false) }, T('Gjennomgangstone og vekseltone over {akkord}', { akkord: A.symbol(I1, 0) }), 2);
+  }
+
+  /* =================== Avspilling =================== */
+  document.querySelector('main').addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('[data-spill]');
+    if (!b || !window.VBM_LYD_SEKVENS) return;
+    var id = b.getAttribute('data-spill'), x = lyd[id], svgs = $(id).querySelectorAll(':scope > svg');
+    if (!x) return;
+    window.VBM_LYD_SEKVENS(x.steg, b, function(s){
+      [].forEach.call(svgs, function(svg){ [].forEach.call(svg.querySelectorAll('.spilles'), function(q){ q.classList.remove('spilles'); }); });
+      if (s < 0) return;
+      var k = Math.floor(s / x.per), svg = svgs[Math.floor(k / x.str)];
+      if (svg) [].forEach.call(svg.querySelectorAll('[data-a="' + (k % x.str) + '"]'), function(q){ q.classList.add('spilles'); });
+    });
+  });
+
+  function tegnAlt(){ tegnTrinn(); tegnForlop(); tegnOmvendinger(); tegnForholdninger(); tegnFremmed(); }
+  tegnAlt();
+  window.VBM_VED_BREDDE(tegnAlt);
+})();
+</script>
+<script src="lyd.js"></script>
+</body>
+</html>

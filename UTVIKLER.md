@@ -11,10 +11,16 @@ Ren HTML, CSS og JavaScript. Ingen byggesteg, ingen rammeverk. Alle filer ligger
 | `materialer.js` | Kortene på startsiden | Ja |
 | `sprak-en.js`, `sprak-pl.js` | Oversettelser fra norsk | Ja |
 | `sprak-no.js` | Oversettelse til norsk for sider skrevet på engelsk (lytteguiden) | Sjelden |
-| `lyd.js` | Lydmotor for spill-knappene (piano, gitar, strykere) | Nesten aldri |
+| `lyd.js` | Lydmotor for spill-knappene (piano, strykere og sinustoner). Toner er MIDI-tall, og desimaltall gir toner mellom tangentene (60.14 = C pluss 14 cent) | Nesten aldri |
 | `tonearter.js` | Tonearter, fortegn og tonenavn på tre språk, brukt av kvintsirkelen, skalaene og quizene deres | Sjelden |
 | `skalaer.js` | Alle skalaene (trinn, tekster, sangeksempler), noter for skalaer, akkorder side om side, firstemmig sats på to notelinjer og enkeltnoter i fire nøkler, brukt av skalaleksjonen, skalaquizen, kvintsirkelen, omvendingene, harmonilæren og notelesingen | Sjelden |
-| `harmoni.js` | Firstemmige akkorder for funksjoner, kadenser, kvartsekstakkorder, beliggenhet og skråstrekakkorder, brukt av harmonilæren og quizen | Sjelden |
+| `harmoni.js` | Firstemmige akkorder for funksjoner, kadenser, kvartsekstakkorder, beliggenhet og skråstrekakkorder, brukt av harmonilæren, quizen og transponeringen | Sjelden |
+| `intervall.js` | Felles regler for intervaller: navn (tall og kvalitet), bygge et intervall fra en tone, omvending og konsonans. Brukes av Intervaller, Teoriquiz: intervaller og transponering.js. Må lastes etter `tonearter.js` | Sjelden |
+| `akkord.js` | Akkordanalyse: akkordene på hvert trinn i dur og harmonisk moll, akkordtype, besifring, trinnanalyse, funksjonsanalyse og stemmeføring (tett beliggenhet og firstemmig sats). Brukes av Akkordanalyse og Teoriquiz: akkordanalyse. Må lastes etter `tonearter.js`, `intervall.js` og `skalaer.js` | Sjelden |
+| `forlop.js` | Akkordforløp i firstemmig sats (kontrollert stemmeføring), navnene på hvert trinn i opptaksprøvens system (Tveit: T, S, D, Tm, Ts, Ss, Đ⁷) og i parallellsystemet, omvendinger i forløp og forholdninger. Brukes av Bitreklanger og forholdninger og Quiz: akkordforløp. Må lastes etter `tonearter.js`, `skalaer.js` og `harmoni.js` | Sjelden |
+| `melodi.js` | Skalatrinn i dur og harmonisk moll, en generator for tonale melodier (trinnvis, sprang i tonikatreklangen, slutt på 2–1 eller 7–1, aldri forstørret sekund) og varianter med endrede toner. Brukes av Melodilesing og melodidiktat og Gehørquiz: melodi. Må lastes etter `tonearter.js`, `intervall.js`, `skalaer.js` og `akkord.js` | Sjelden |
+| `transponering.js` | Intervaller med riktig stavemåte, melodiene, akkordrekkene (firstemmig sats, kontrollert stemmeføring) og de transponerende instrumentene, brukt av transponeringsleksjonen og quizen. Må lastes etter `tonearter.js`, `intervall.js`, `skalaer.js` og `harmoni.js` | Sjelden |
+| `stemming.js` | Frekvenser, cent, rene intervaller, svevninger og fire temperaturer (pytagoreisk, midttone, Werckmeister III, likesvevende), brukt av leksjonen og quizen om stemming og temperatur | Sjelden |
 | `rytme.js` | Rytmer, taktarter, rytmenoter på én linje, avspilling med inntelling og metronom, og trommegrooves, brukt av rytmeleksjonen og rytmequizen | Sjelden |
 | `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` | Favikonet (G-nøkkel i messing på mørk bakgrunn): SVG for nye nettlesere, 32 px PNG for eldre, og 180 px for telefonens hjemskjerm. Lenkes i `<head>` på alle sider | Aldri |
 | `rytme-skarptromme.mp3`, `rytme-basstromme.mp3`, `rytme-hihat.mp3`, `rytme-treblokk.mp3` | Ekte trommeopptak fra Versilian Community Sample Library (CC0), brukt av rytmesidene. Treblokken er metronomen | Aldri |
@@ -83,7 +89,7 @@ Skriv bare dette nederst i siden. Resten fylles inn av `felles.js`:
 ```html
 <footer data-lyd="alle"></footer>
 ```
-`data-lyd="alle"` gir kreditt for piano, gitar og strykere, `data-lyd="piano"` bare for piano, og `data-lyd=""` ingen lydkreditt. Tekst du skriver inne i `<footer>` (for eksempel en merknad) står over signaturen. Dato og tekst endres ett sted: øverst i `felles.js`, under «Innstillinger». Husk å endre de samme ordene i `sprak-en.js` og `sprak-pl.js`.
+`data-lyd="alle"` gir kreditt for piano og strykere, `data-lyd="piano"` bare for piano, og `data-lyd=""` ingen lydkreditt. Tekst du skriver inne i `<footer>` (for eksempel en merknad) står over signaturen. Dato og tekst endres ett sted: øverst i `felles.js`, under «Innstillinger». Husk å endre de samme ordene i `sprak-en.js` og `sprak-pl.js`.
 
 ### Tekst som lages i JavaScript
 ```js
@@ -136,3 +142,18 @@ Nettsiden ligger på https://verdensbestemusikkskole.no/ (GitHub Pages med eget 
 - Under Innstillinger kan man velge Lys eller Mørk. Valget lagres i `localStorage` (`vbm-tema`) og settes som `data-tema` på `<html>`.
 - Reglene for valgt tema nederst i `stil.css` er laget automatisk fra reglene for lys og mørk modus. Endrer du en farge i en av dem, lag de valgte reglene på nytt på samme måte, så de fortsatt er like.
 
+## Ulike navn og systemer
+
+Musikkteori er ikke standardisert. Leksjonene har derfor et eget kort, «Ulike navn og systemer» (`<section class="card ulike-kort" id="ulike-navn">`), rett før «Test deg selv». Der står det hvor bøker, land og opptaksprøven bruker ulike navn eller systemer, med kilder når det er en faglig uenighet. Nye leksjoner får det samme kortet når det finnes slike forskjeller.
+
+Funksjonsanalyse: Harmonilære og gehørquizen om kadenser bruker parallellnavnene (Tp, Sp, Dp, t og s i moll, sP for VI i moll). Akkordanalyse og Bitreklanger og forholdninger bruker opptaksprøvens system etter Sigvald Tveit (T, S, D, Tm, Ts, Ss, store bokstaver også i moll). Begge systemene er forklart på sidene, og de andre navnene står i parentes der det trengs. Kadensens kvartsekstakkord skrives V⁶₄ (D⁶₄), slik som i opptaksprøven (`K64` i `harmoni.js`).
+
+## Lange rekker med akkorder
+
+Bruk `window.VBM_GRUPPER(liste, lag, holder)` (felles.js) når en rekke med mer enn fire akkorder skal på notelinjen. Den tegner alt på én linje når det får plass i full målestokk, og deler på flere linjer (høyst fire i hver) bare på smale skjermer. Kall tegningen på nytt med `window.VBM_VED_BREDDE(fn)`, som bare reagerer når bredden endres.
+
+Tempo (Innstillinger): raskt 100, middels 65 og sakte 45 slag i minuttet. Resten av lyden følger samme forhold (lyd.js).
+
+## Nivå og «Se også»
+
+Hver oppføring i `materialer.js` har `niva` (grunnleggende, avansert eller ekspert) og `relatert` (filnavn). Startsiden viser nivået på kortet, og Innstillinger har et nivåfilter (`vbm-niva`) for startsiden og menyen. På hver side legger `felles.js` til nivået under overskriften og en «Se også»-blokk nederst, og leksjonene i Musikkteori får «Forrige leksjon» og «Neste leksjon» i rekkefølgen fra `materialer.js`. Rekkefølgen i lista er læringsrekkefølgen.

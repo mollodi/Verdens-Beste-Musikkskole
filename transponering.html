@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-TRSP
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="transponering.html" data-stil="ovelse" data-vbm="K7Q4-TRSP">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Transponering</title>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
+<meta name="description" content="Transponering forklart: flytt en melodi med et intervall eller til en ny toneart, transponer akkordsymboler, bruk kapo, og lær hva som klinger på transponerende instrumenter.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Musikkteori</div>
+  <h1>Trans<em>ponering</em></h1>
+  <p class="lede">Å transponere betyr å flytte musikk til en annen toneart. Melodien eller akkordene blir høyere eller lavere, men avstandene mellom tonene er de samme, så musikken er lett å kjenne igjen.</p>
+  <p class="lede">Velg et intervall, en toneart eller et instrument i eksemplene, så skrives notene om. Trykk på spill for å høre dem. Velg piano, strykere eller sinustoner nederst til høyre.</p>
+</header>
+
+<main>
+  <section class="card bred" id="hva">
+    <div class="card-head">
+      <div class="step-label">1</div>
+      <h2>Hva er transponering?</h2>
+    </div>
+    <p class="task">Du transponerer for eksempel når en sang ligger for høyt eller for lavt for stemmen din, når en gitarist vil bruke andre grep, eller når du skriver noter til et instrument som klinger i en annen toneart.</p>
+    <p class="task">Her er «Lisa gikk til skolen» i C-dur og i F-dur. Tonene er forskjellige, men intervallene mellom dem er de samme: ned en liten ters, samme tone, opp en liten sekund, og så videre. Derfor kjenner du igjen melodien.</p>
+    <div class="stav-blokk">
+      <p class="label" id="hva-c-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="hva-c">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="hva-c"></div>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="hva-f-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="hva-f">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="hva-f"></div>
+    </div>
+    <ul class="sanger"><li><div class="song-info"><div class="song-title">Lisa gikk til skolen</div><div class="song-meta">Tradisjonell barnesang</div></div><a class="spotify-link" href="https://open.spotify.com/search/Lisa%20gikk%20til%20skolen" target="_blank" rel="noopener">Spotify</a></li></ul>
+  </section>
+
+  <section class="card bred" id="intervall">
+    <div class="card-head">
+      <div class="step-label">2</div>
+      <h2>Transponere med et intervall</h2>
+    </div>
+    <p class="task">Den enkleste måten er å flytte hver tone like langt, med samme intervall. Tell bokstavene først, og juster så fortegnet. En stor ters er alltid to bokstavsteg og fire halvtoner: fra D blir det F med kryss, altså Fiss, ikke Gess.</p>
+    <p class="label" id="iv-label">Intervall</p>
+    <div class="row brikker" id="intervaller" role="group" aria-labelledby="iv-label"></div>
+    <p class="label" id="retning-label">Retning</p>
+    <div class="row answers" role="group" aria-labelledby="retning-label">
+      <button type="button" class="btn" data-retning="opp">Opp</button>
+      <button type="button" class="btn" data-retning="ned">Ned</button>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="iv-org-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="iv-org">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="iv-org"></div>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="iv-ny-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="iv-ny">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="iv-ny"></div>
+    </div>
+    <p class="task" id="iv-tekst" aria-live="polite"></p>
+    <div class="viktig"><p class="task"><strong>Samme klang, ulik stavemåte:</strong> en forstørret kvart og en forminsket kvint er begge seks halvtoner, men den ene er tre bokstavsteg og den andre fire. Fra C gir en forstørret kvart opp Fiss-dur, og en forminsket kvint opp gir Gess-dur. Prøv begge.</p></div>
+  </section>
+
+  <section class="card bred" id="fortegn">
+    <div class="card-head">
+      <div class="step-label">3</div>
+      <h2>Transponere med fortegn</h2>
+    </div>
+    <p class="task">Når du transponerer en hel melodi, er det ofte enklere å tenke toneart. Skriv fortegnene for den nye tonearten (se Kvintsirkelen), og flytt hver note like mange trinn på notelinjen. Fortegnene sørger for resten.</p>
+    <p class="task">Bare de tilfeldige fortegnene, de som står foran enkelttoner i melodien, må du tenke på. En tone som er hevet i originalen, skal være hevet i den nye tonearten også, og en senket tone skal være senket. Derfor kan et kryss bli et oppløsningstegn, og en b kan bli et oppløsningstegn.</p>
+    <p class="label" id="ft-label">Ny toneart</p>
+    <div class="row brikker" id="ft-tonearter" role="group" aria-labelledby="ft-label"></div>
+    <div class="stav-blokk">
+      <p class="label" id="ft-org-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="ft-org">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="ft-org"></div>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="ft-ny-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="ft-ny">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="ft-ny"></div>
+    </div>
+    <p class="task" id="ft-tekst" aria-live="polite"></p>
+  </section>
+
+  <section class="card bred" id="akkorder">
+    <div class="card-head">
+      <div class="step-label">4</div>
+      <h2>Akkorder og akkordsymboler</h2>
+    </div>
+    <p class="task">Akkordsymboler transponeres på samme måte: flytt grunntonen, og behold akkordtypen. Am blir Em når du går fra C-dur til G-dur, fordi A flyttes en ren kvint opp til E, mens m-en (moll) står fast.</p>
+    <p class="task">Romertallene under akkordene viser trinnet i tonearten, og de er like i alle tonearter. C, Am, F og G er I, vi, IV og V i C-dur, og i G-dur blir de G, Em, C og D. Am er parallellakkorden til C (tonikaparallellen, se <a href="harmonilaere.html">Harmonilære</a>), og etter transponeringen er Em parallellakkorden til G.</p>
+    <p class="label" id="ak-label">Toneart</p>
+    <div class="row brikker" id="ak-tonearter" role="group" aria-labelledby="ak-label"></div>
+    <div class="stav-blokk">
+      <p class="label" id="ak-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="ak-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="ak-noter"></div>
+    </div>
+    <h3 class="del-tittel">Kapo på gitaren</h3>
+    <p class="task">En kapo klemmer alle strengene fast på ett bånd, og hvert bånd hever en halvtone. Da kan gitaristen ta de samme grepene og likevel spille i en annen toneart.</p>
+    <p class="task" id="kapo-tekst" aria-live="polite"></p>
+  </section>
+
+  <section class="card bred" id="instrumenter">
+    <div class="card-head">
+      <div class="step-label">5</div>
+      <h2>Transponerende instrumenter</h2>
+    </div>
+    <p class="task">Noen instrumenter klinger en annen tone enn den som står skrevet. Når klarinetten i B spiller en skrevet C, klinger det B, en stor sekund lavere. Instrumentet har navn etter tonen som klinger når det står C i notene. Piano, fiolin og fløyte klinger som skrevet.</p>
+    <ul class="instrument-liste">
+      <li><strong>Klarinett og trompet i B</strong> klinger en stor sekund lavere enn skrevet, så stemmen skrives en stor sekund høyere.</li>
+      <li><strong>Altsaksofon i Ess</strong> klinger en stor sekst lavere, så stemmen skrives en stor sekst høyere.</li>
+      <li><strong>Valthorn i F</strong> klinger en ren kvint lavere, så stemmen skrives en ren kvint høyere. Valthornstemmer ble tradisjonelt skrevet uten fortegn, men i nyere noter er fortegn vanlig.</li>
+      <li><strong>Gitar</strong> klinger en oktav lavere, så stemmen skrives en oktav høyere. Da slipper du mange hjelpelinjer under notelinjen i G-nøkkel.</li>
+    </ul>
+    <p class="label" id="ins-label">Instrument</p>
+    <div class="row brikker" id="ins-valg" role="group" aria-labelledby="ins-label"></div>
+    <div class="stav-blokk">
+      <p class="label" id="ins-klinger-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="ins-klinger">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="ins-klinger"></div>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="ins-skrevet-merke"></p>
+      <div class="row"><button type="button" class="btn" data-spill="ins-skrevet">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="ins-skrevet"></div>
+    </div>
+    <p class="task" id="ins-tekst" aria-live="polite"></p>
+  </section>
+
+  <section class="card ulike-kort" id="ulike-navn">
+    <div class="card-head">
+      <div class="step-label">Merk</div>
+      <h2>Ulike navn og systemer</h2>
+    </div>
+    <p class="task">Musikkteori er ikke helt standardisert. Her er stedene der bøker, land og opptaksprøven bruker ulike navn eller systemer for det du har lært på denne siden.</p>
+    <ul class="ulike-liste">
+      <li><strong>«Klarinett i B».</strong> På norsk betyr B tonen som heter B♭ på engelsk, så klarinett i B er det samme som engelsk <em>B♭ clarinet</em>, og altsaksofon i Ess er <em>E♭ alto saxophone</em>.</li>
+      <li><strong>Gitarnøkkelen.</strong> Gitarnoter skrives en oktav høyere enn de klinger. Noen noter viser det med et lite 8-tall under G-nøkkelen, men mange sløyfer det.</li>
+      <li><strong>Partitur i C.</strong> Noen partiturer skrives med alle stemmene slik de klinger (i C), andre med de transponerte stemmene. Det står vanligvis på første side.</li>
+    </ul>
+  </section>
+
+  <section class="card bred ovelse-kort">
+    <div class="card-head">
+      <div class="step-label">Øv</div>
+      <h2>Test deg selv</h2>
+    </div>
+    <p class="task">I quizen transponerer du toner og akkordrekker, og finner ut hva som klinger og hva som står skrevet for de transponerende instrumentene. Med øvemodus og en prøve med 20 oppgaver.</p>
+    <div class="row">
+      <a class="btn" href="quiz-transponering.html">Gå til quizen</a>
+      <a class="btn" href="kvintsirkelen.html">Kvintsirkelen</a>
+      <a class="btn" href="harmonilaere.html">Harmonilære</a>
+    </div>
+  </section>
+</main>
+
+<footer data-lyd="alle"></footer>
+
+<script src="tonearter.js"></script>
+<script src="intervall.js"></script>
+<script src="skalaer.js"></script>
+<script src="harmoni.js"></script>
+<script src="transponering.js"></script>
+<script>/* VBM K7Q4-TRSP */
+(function(){
+  'use strict';
+  var K = window.VBM_TONEARTER, S = window.VBM_SKALAER, X = window.VBM_TRANSPONERING, T = K.T;
+  function $(id){ return document.getElementById(id); }
+  function stopp(){ if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); }
+  var C = { b: 0, f: 0, oktav: 4 };
+  function liste(ord){ return K.liste(ord); }
+  /* Alt som kan spilles: id -> { steg, svg-holder, akkord } */
+  var lyd = {};
+  function visMelodi(id, toner, fortegn, merke){
+    $(id + '-merke').textContent = merke;
+    $(id).innerHTML = S.noter(toner, fortegn, null, merke);
+    lyd[id] = { steg: toner.map(function(n){ return [S.midi(n)]; }) };
+  }
+  function knapper(rot, liste, tekst, ved){
+    liste.forEach(function(x, i){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = tekst(x);
+      b.addEventListener('click', function(){ stopp(); ved(i); });
+      rot.appendChild(b);
+    });
+  }
+  function merk(rot, nr){ [].forEach.call(rot.children, function(b, i){ b.setAttribute('aria-pressed', i === nr ? 'true' : 'false'); }); }
+  /* De 12 tonartene, med færrest fortegn: C, Dess, D, Ess, E, F, Fiss, G, Ass, A, B, H */
+  var TONEARTER = []; for (var i = 0; i < 12; i++) TONEARTER.push(X.durRot(i));
+
+  /* =================== 1. Hva er transponering =================== */
+  var F = { b: 3, f: 0, oktav: 4 };
+  visMelodi('hva-c', S.toner(C, X.MELODIER.lisa), 0, K.dur(C));
+  visMelodi('hva-f', S.toner(F, X.MELODIER.lisa), S.fortegnFor(F), K.dur(F));
+
+  /* =================== 2. Med et intervall =================== */
+  var ivNr = 1, opp = true;
+  try { var l2 = JSON.parse(localStorage.getItem('vbm-transponering')); if (l2) { if (l2.iv >= 0 && l2.iv < X.INTERVALLER.length) ivNr = l2.iv; if (l2.opp === false) opp = false; } } catch(e){}
+  function lagre(){ try { localStorage.setItem('vbm-transponering', JSON.stringify({ iv: ivNr, opp: opp, ft: ftNr, ak: akNr, ins: insNr })); } catch(e){} }
+  knapper($('intervaller'), X.INTERVALLER, function(iv){ return T(iv.navn.replace(/^./, function(c){ return c.toUpperCase(); })); }, function(i){ ivNr = i; lagre(); tegnIntervall(); });
+  [].forEach.call(document.querySelectorAll('[data-retning]'), function(b){
+    b.addEventListener('click', function(){ stopp(); opp = b.getAttribute('data-retning') === 'opp'; lagre(); tegnIntervall(); });
+  });
+  function tegnIntervall(){
+    var iv = X.INTERVALLER[ivNr], org = S.toner(C, X.MELODIER.lisa), ny = X.flyttListe(org, iv, opp), rot = X.flytt(C, iv, opp);
+    merk($('intervaller'), ivNr);
+    [].forEach.call(document.querySelectorAll('[data-retning]'), function(b){ b.setAttribute('aria-pressed', (b.getAttribute('data-retning') === 'opp') === opp ? 'true' : 'false'); });
+    visMelodi('iv-org', org, 0, T('Original: {toneart}', { toneart: K.dur(C) }));
+    visMelodi('iv-ny', ny, 0, T('Transponert {frase}: {toneart}', { frase: X.frase(iv, opp), toneart: K.dur(rot) }));
+    /* «G blir A, E blir Fiss, ...», hver tone bare én gang, i rekkefølgen i melodien */
+    var sett = {}, par = [];
+    org.forEach(function(n, i){ var k = n.b + '' + n.f; if (sett[k]) return; sett[k] = 1; par.push(T('{fra} blir {til}', { fra: K.tone(n), til: K.tone(ny[i]) })); });
+    $('iv-tekst').textContent = T('Hver tone flyttes {frase}: {par}. Melodien står nå i {toneart}.', { frase: X.frase(iv, opp), par: liste(par), toneart: K.dur(rot) });
+  }
+
+  /* =================== 3. Med fortegn =================== */
+  var ftNr = 2;
+  try { var l3 = JSON.parse(localStorage.getItem('vbm-transponering')); if (l3 && l3.ft >= 0 && l3.ft < 12) ftNr = l3.ft; } catch(e){}
+  knapper($('ft-tonearter'), TONEARTER, function(r){ return K.dur(r); }, function(i){ ftNr = i; lagre(); tegnFortegn(); });
+  var TEGN = { '-2': 'skrevet med dobbelt-b', '-1': 'skrevet med b', '0': 'skrevet med oppløsningstegn', '1': 'skrevet med kryss', '2': 'skrevet med dobbeltkryss' };
+  var KRYSS = [3, 0, 4, 1, 5, 2, 6], BER = [6, 2, 5, 1, 4, 0, 3];
+  function iFortegn(b, fortegn){ var n = Math.abs(fortegn); return (fortegn > 0 ? KRYSS : BER).slice(0, n).indexOf(b) >= 0 ? (fortegn > 0 ? 1 : -1) : 0; }
+  function tegnFortegn(){
+    var rot = TONEARTER[ftNr], fortegn = S.fortegnFor(rot), org = S.toner(C, X.MELODIER.ovelse), ny = X.melodi(rot, X.MELODIER.ovelse);
+    merk($('ft-tonearter'), ftNr);
+    visMelodi('ft-org', org, 0, T('Original: {toneart}', { toneart: K.dur(C) }));
+    visMelodi('ft-ny', ny, fortegn, T('Transponert til {toneart}, {antall}', { toneart: K.dur(rot), antall: K.antall(fortegn) }));
+    /* Melodien har Fiss (3. tone) og B (6. tone) */
+    var fiss = ny[2], b = ny[5], tekst = [];
+    [[fiss, 'Fiss er 4. trinn hevet en halvtone. I {toneart} blir det {tone}, {tegn}.'], [b, 'B er 7. trinn senket en halvtone. I {toneart} blir det {tone}, {tegn}.']].forEach(function(x){
+      var n = x[0], sig = iFortegn(n.b, fortegn);
+      tekst.push(T(x[1], { toneart: K.dur(rot), tone: K.tone(n), tegn: n.f === sig ? T('uten eget tegn') : T(TEGN[n.f]) }));
+    });
+    if (ftNr === 0) tekst = [T('Velg en annen toneart for å se hva som skjer med Fiss og B.')];
+    $('ft-tekst').textContent = tekst.join(' ');
+  }
+
+  /* =================== 4. Akkorder =================== */
+  var akNr = 7, REKKE = X.REKKER[0];
+  try { var l4 = JSON.parse(localStorage.getItem('vbm-transponering')); if (l4 && l4.ak >= 0 && l4.ak < 12) akNr = l4.ak; } catch(e){}
+  knapper($('ak-tonearter'), TONEARTER, function(r){ return K.dur(r); }, function(i){ akNr = i; lagre(); tegnAkkorder(); });
+  function tegnAkkorder(){
+    var rot = TONEARTER[akNr], r = X.rekke(REKKE, akNr, true), merke = T('{toneart}: {akkorder}', { toneart: K.dur(rot), akkorder: r.symboler.join(', ') });
+    merk($('ak-tonearter'), akNr);
+    $('ak-merke').textContent = merke;
+    $('ak-noter').innerHTML = S.storSats(r.akkorder, r.fortegn, merke);
+    lyd['ak-noter'] = { steg: X.rekkeLyd(r), akkord: true };
+    var k = X.kapo(akNr), grep = X.rekke(REKKE, k.grep, false).symboler.join(', '), klang = r.symboler.join(', ');
+    $('kapo-tekst').textContent = akNr === 0 ? T('I C-dur trenger du ingen kapo: grepene er {grep}.', { grep: grep })
+      : k.grep === 0 ? T('Til {toneart}: sett kapoen på {n}. bånd og ta grepene {grep}. Det klinger {klang}.', { toneart: K.dur(rot), n: k.baand, grep: grep, klang: klang })
+      : T('Til {toneart}: sett kapoen på {n}. bånd og ta grepene fra G-dur, {grep}. Det klinger {klang}.', { toneart: K.dur(rot), n: k.baand, grep: grep, klang: klang });
+  }
+
+  /* =================== 5. Transponerende instrumenter =================== */
+  var insNr = 0;
+  try { var l5 = JSON.parse(localStorage.getItem('vbm-transponering')); if (l5 && l5.ins >= 0 && l5.ins < X.INSTRUMENTER.length) insNr = l5.ins; } catch(e){}
+  knapper($('ins-valg'), X.INSTRUMENTER, function(x){ return T(x.navn); }, function(i){ insNr = i; lagre(); tegnInstrument(); });
+  function tegnInstrument(){
+    var ins = X.INSTRUMENTER[insNr], kl = S.toner(C, X.MELODIER.lisa), skr = kl.map(function(n){ return X.skrevet(n, ins); });
+    var rot = X.skrevet(C, ins), skrRot = { b: rot.b, f: rot.f };
+    merk($('ins-valg'), insNr);
+    visMelodi('ins-klinger', kl, 0, T('Klinger: {toneart}', { toneart: K.dur(C) }));
+    visMelodi('ins-skrevet', skr, S.fortegnFor(skrRot), T('Skrevet for {instrument}: {toneart}', { instrument: T(ins.best), toneart: K.dur(skrRot) }));
+    $('ins-tekst').textContent = T('For at {instrument} skal klinge i C-dur, må stemmen skrives i {toneart}, {hoyere}.', { instrument: T(ins.best), toneart: K.dur(skrRot), hoyere: T(ins.forskjell.replace('lavere', 'høyere')) })
+      + ' ' + T('Spiller du de skrevne notene på piano, hører du hvor mye høyere de står skrevet.');
+  }
+
+  /* =================== Avspilling =================== */
+  document.querySelector('main').addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('[data-spill]');
+    if (!b || !window.VBM_LYD_SEKVENS) return;
+    var id = b.getAttribute('data-spill'), x = lyd[id], svg = $(id).querySelector('svg');
+    if (!x) return;
+    window.VBM_LYD_SEKVENS(x.steg, b, function(s){
+      if (!svg) return;
+      [].forEach.call(svg.querySelectorAll('.spilles'), function(n){ n.classList.remove('spilles'); });
+      if (s < 0) return;
+      var sel = x.akkord ? '[data-a="' + Math.floor(s / 2) + '"]' : '[data-i="' + s + '"]';
+      [].forEach.call(svg.querySelectorAll(sel), function(n){ n.classList.add('spilles'); });
+    });
+  });
+
+  tegnIntervall(); tegnFortegn(); tegnAkkorder(); tegnInstrument();
+})();
+</script>
+<script src="lyd.js"></script>
+</body>
+</html>

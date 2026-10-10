@@ -27,6 +27,8 @@ window.VBM_HARMONI = (function(){
     ii:    a('ii', 'Sp', [1,2], 'm', [[-6,-10], [-2,-3], [3,5], [8,14]]),
     iii:   a('iii', 'Dp', [2,4], 'm', [[-5,-8], [-1,-1], [4,7], [9,16]]),
     I64:   a('I', 'T', [0,0], '',   [[-10,-17], [-3,-5], [2,4], [7,12]]),
+    /* Kadensens kvartsekstakkord: tonene i I, men skrevet V⁶₄ og D, slik opptaksprøven og mange nyere bøker gjør */
+    K64:   a('V', 'D', [0,0], '',   [[-10,-17], [-3,-5], [2,4], [7,12]]),
     V64g:  a('V', 'D', [4,7], '',   [[-6,-10], [-3,-5], [1,2], [6,11]]),
     I6:    a('I', 'T', [0,0], '',   [[-5,-8],  [-3,-5], [0,0], [7,12]]),
     IV64:  a('IV', 'S', [3,5], '',  [[-7,-12], [-2,-3], [3,5], [7,12]]),
@@ -48,8 +50,9 @@ window.VBM_HARMONI = (function(){
     IV:    moll(DUR.IV, function(y){ y.rom = 'iv'; y.fun = 's'; y.kval = 'm'; y.stemmer[1] = [-2,-4]; }),
     V:     DUR.V,
     V7:    DUR.V7,
-    vi_s:  moll(DUR.vi_s, function(y){ y.rom = 'VI'; y.fun = 'tP'; y.rot = [5,8]; y.kval = ''; y.stemmer[0] = [-9,-16]; y.stemmer[1] = [-5,-9]; }),
-    I64:   moll(DUR.I64, function(y){ y.rom = 'i'; y.fun = 't'; y.kval = 'm'; y.stemmer[2] = [2,3]; })
+    vi_s:  moll(DUR.vi_s, function(y){ y.rom = 'VI'; y.fun = 'sP'; y.rot = [5,8]; y.kval = ''; y.stemmer[0] = [-9,-16]; y.stemmer[1] = [-5,-9]; }),
+    I64:   moll(DUR.I64, function(y){ y.rom = 'i'; y.fun = 't'; y.kval = 'm'; y.stemmer[2] = [2,3]; }),
+    K64:   moll(DUR.K64, function(y){ y.kval = 'm'; y.stemmer[2] = [2,3]; })
   };
 
   /* ---------- Rekkene ---------- */
@@ -60,7 +63,7 @@ window.VBM_HARMONI = (function(){
     { id: 'skuff', navn: 'Skuffende kadens', eng: 'deceptive cadence', rekke: ['I', 'IV', 'V', 'vi_s'] }
   ];
   var KVARTSEKST = [
-    { id: 'kadens', navn: 'Kadensens kvartsekstakkord', rekke: ['I', 'IV', 'I64', 'V', 'I'], tall: [null, null, ['6', '4'], null, null] },
+    { id: 'kadens', navn: 'Kadensens kvartsekstakkord', rekke: ['I', 'IV', 'K64', 'V', 'I'], tall: [null, null, ['6', '4'], null, null] },
     { id: 'gjennom', navn: 'Gjennomgangskvartsekstakkord', rekke: ['I', 'V64g', 'I6'], tall: [null, ['6', '4'], ['6']] },
     { id: 'ligg', navn: 'Liggende kvartsekstakkord (orgelpunkt)', rekke: ['I', 'IV64', 'I'], tall: [null, ['6', '4'], null] }
   ];
@@ -105,9 +108,10 @@ window.VBM_HARMONI = (function(){
     var navn = K.tone(r) + (akk.kval === 'm' ? 'm' : akk.kval === '7' ? '7' : '');
     return bass.b === r.b && bass.f === r.f ? navn : navn + '/' + K.tone(bass);
   }
-  /* Bygger en rekke: [{ noter, tall, midi, sym, akk }] i tonearten nr (0 = C). */
+  /* Bygger en rekke: [{ noter, tall, midi, sym, akk }] i tonearten nr (0 = C).
+     navn er navnene over (['I', 'IV', 'V7']) eller egne akkorder i samme form (transponering.js bruker det). */
   function rekke(nr, erMoll, navn, tall, merk){
-    var bok = erMoll ? MOLL : DUR, liste = navn.map(function(n){ return bok[n] || DUR[n]; });
+    var bok = erMoll ? MOLL : DUR, liste = navn.map(function(n){ return typeof n === 'string' ? (bok[n] || DUR[n]) : n; });
     var rot = plasser(tonikk(nr, erMoll), liste);
     return { rot: rot, fortegn: fortegn(rot, erMoll), akkorder: liste.map(function(akk, i){
       var noter = noterFor(rot, akk);

@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
-<title>Rytmequiz</title>
+<title>Quiz: rytme</title>
 <script>window.VBM_LYD_RYTME_SIDE = true;</script>
 <script src="felles.js"></script>
 <link rel="stylesheet" href="stil.css">
@@ -26,9 +26,9 @@
 <nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
 <header class="hero">
   <div class="eyebrow">Quiz</div>
-  <h1>Rytme<em>quiz</em></h1>
-  <p class="lede">Hør en rytme og finn notene, hør hvilken taktart musikken går i, eller les en rytme og tell. Velg kapitlene du vil øve på, fra nivå 1 til nivå 5.</p>
-  <p class="lede">Alt er forklart i leksjonen <a href="rytme.html">Rytme og taktarter</a>. Trommer er valgt nederst til høyre, men du kan også velge piano, gitar eller strykere.</p>
+  <h1><em>Quiz</em>: rytme</h1>
+  <p class="lede">Hør en rytme og finn notene, hør hvilken taktart musikken går i, eller les en rytme og tell. Velg kapitlene du vil øve på, fra grunnleggende til ekspert.</p>
+  <p class="lede">Alt er forklart i leksjonen <a href="rytme.html">Rytme og taktarter</a>. Trommer er valgt nederst til høyre, men du kan også velge piano, strykere eller sinustoner.</p>
 </header>
 
 <main>
@@ -59,11 +59,13 @@
       <button type="button" class="btn" data-valg="type" data-verdi="horRytme">Hør rytmen</button>
       <button type="button" class="btn" data-valg="type" data-verdi="horTakt">Hør taktarten</button>
       <button type="button" class="btn" data-valg="type" data-verdi="les">Les og tell</button>
+      <button type="button" class="btn" data-valg="type" data-verdi="korreksjon">Finn feilen</button>
+      <button type="button" class="btn" data-valg="type" data-verdi="taktstrek">Taktstreker</button>
       <button type="button" class="btn" data-valg="type" data-verdi="alle">Alle</button>
     </div>
     <p class="label" id="kap-label">Kapitler</p>
     <div class="row brikker" id="kapitler" role="group" aria-labelledby="kap-label"></div>
-    <p class="task">«Hør rytmen» begynner med én takt metronom. «Les og tell» veksler mellom å finne taktarten og å finne noten som mangler.</p>
+    <p class="task">«Hør rytmen» begynner med én takt metronom. «Les og tell» veksler mellom å finne taktarten og å finne noten som mangler. «Finn feilen»: du ser rytmen i notene, men én takt klinger annerledes. «Taktstreker»: velg notebildet der taktstrekene står riktig.</p>
   </section>
 
   <!-- ===== Øvemodus ===== -->
@@ -72,11 +74,12 @@
       <div class="step-label">Øvemodus</div>
       <h2 id="ov-sporsmal"></h2>
     </div>
-    <div class="noter rytme" id="ov-bilde"></div>
+    <!-- Knappene står over notelinjen, som i de andre quizene -->
     <div class="row">
       <button type="button" class="btn" id="ov-spill" aria-label="Spill lydeksemplet">&#9658;&#xFE0E; <span>spill</span></button>
       <button type="button" class="btn" id="ov-neste" hidden>Neste oppgave</button>
     </div>
+    <div class="noter rytme" id="ov-bilde"></div>
     <!-- Svaret står rett under «Neste oppgave», over svarknappene. -->
     <p class="feedback" id="ov-fb" aria-live="polite"></p>
     <div class="noter rytme" id="ov-fasit" hidden></div>
@@ -150,7 +153,7 @@
     valg[k] = v; lagre(); visValg(); nyOvOppgave();
   }); });
   R.KAPITLER.forEach(function(k, i){
-    var b = lag('button', 'btn', T('{n}. {navn} (nivå {niva})', { n: i + 1, navn: T(k.navn), niva: k.niva })); b.type = 'button'; b._k = k.id;
+    var b = lag('button', 'btn', T('{n}. {navn} ({niva})', { n: i + 1, navn: T(k.navn), niva: T({ 1: 'Grunnleggende', 2: 'Grunnleggende', 3: 'Avansert', 4: 'Avansert', 5: 'Ekspert' }[k.niva]).toLowerCase() })); b.type = 'button'; b._k = k.id;
     b.addEventListener('click', function(){
       var j = valg.kap.indexOf(k.id);
       if (j >= 0) { if (valg.kap.length === 1) return; valg.kap.splice(j, 1); } else valg.kap.push(k.id);
@@ -175,7 +178,7 @@
   function anslag(takter){ var s = [], pos = 0; takter.forEach(function(t){ t.forEach(function(e){ if (!e.p) s.push(pos + (e.t ? 't' : '')); pos += e.d; }); }); return s; }
   function likhet(a, b){ var A = anslag(a), B = anslag(b), f = A.filter(function(x){ return B.indexOf(x) >= 0; }).length; return f / Math.max(A.length, B.length); }
   function lagOppgave(forrige){
-    var typer = valg.type === 'alle' ? ['horRytme', 'horTakt', 'les'] : [valg.type];
+    var typer = valg.type === 'alle' ? ['horRytme', 'horTakt', 'les', 'korreksjon', 'taktstrek'] : [valg.type];
     var type = tilfeldig(typer), kap = tilfeldig(kapitler()), takt = tilfeldig(kap.takter), o;
     if (type === 'les') type = Math.random() < 0.5 ? 'lesTakt' : 'lesMangler';
     if (type === 'horRytme') {
@@ -202,6 +205,36 @@
       if (muligeT.length < 2) muligeT = ['2/4', '3/4', '4/4', '5/4'].concat(takt === '3/4' || takt === '2/4' || takt === '4/4' || takt === '5/4' ? [] : [takt]);
       if (muligeT.indexOf(takt) < 0) muligeT.push(takt);
       o = { type: type, kap: kap, takt: takt, takter: takter, alternativer: muligeT, svar: muligeT.indexOf(takt) };
+    } else if (type === 'korreksjon') {
+      /* Rytmekorreksjon: tre takter i notene, og én av dem klinger annerledes (en lignende takt) */
+      var skrevet = [], plass = Math.floor(Math.random() * 3), hort;
+      for (var a = 0; a < 3; a++) skrevet.push(R.lagTakt(kap, takt));
+      var kandK = [];
+      for (var k4 = 0; k4 < 30; k4++) { var c4 = R.lagTakt(kap, takt); if (!likeTakter([c4], [skrevet[plass]])) kandK.push(c4); }
+      kandK.sort(function(x, y){ return likhet([y], [skrevet[plass]]) - likhet([x], [skrevet[plass]]); });
+      hort = R.kopi(skrevet); hort[plass] = kandK.length ? kandK[0] : R.lagTakt(kap, takt);
+      o = { type: type, kap: kap, takt: takt, takter: skrevet, lydTakter: hort, alternativer: [0, 1, 2], svar: plass };
+    } else if (type === 'taktstrek') {
+      /* Sett taktstreker: samme noter, taktstrekene på ulike steder. Bare ett alternativ har riktig taktlengde. */
+      var T2 = R.TAKTER[takt], funnet = null;
+      for (var g = 0; g < 40 && !funnet; g++) {
+        /* Tre korte takter eller to lange, og ikke for mange noter, så notebildene er lette å lese også på mobil */
+        var antallT = T2.tikk <= 36 ? 3 : 2, flat = []; for (var a2 = 0; a2 < antallT; a2++) flat = flat.concat(R.lagTakt(kap, takt));
+        if (flat.length > 11 && g < 35) continue;
+        var grense = [0], pos2 = 0; flat.forEach(function(e){ pos2 += e.d; grense.push(pos2); });
+        var total = pos2;
+        var punkter = function(start, L){ var pp = []; for (var x = start; x < total; x += L) { if (grense.indexOf(x) < 0) return null; pp.push(x); } return pp.length ? pp : null; };
+        var riktigP = punkter(T2.tikk, T2.tikk), kandT = [];
+        [T2.tikk - T2.puls, T2.tikk + T2.puls, T2.tikk - 2 * T2.puls, T2.tikk + 2 * T2.puls].forEach(function(L){ if (L > 0) { var pp = punkter(L, L); if (pp) kandT.push(pp); } });
+        [T2.puls, -T2.puls].forEach(function(s){ var pp = punkter(T2.tikk + s, T2.tikk); if (pp) kandT.push(pp); });
+        var unike = [];
+        kandT.forEach(function(pp){ var key = pp.join(','); if (key !== riktigP.join(',') && unike.map(function(u){ return u.join(','); }).indexOf(key) < 0) unike.push(pp); });
+        if (unike.length >= 2) funnet = { flat: flat, riktig: riktigP, feil: blandet(unike).slice(0, 2) };
+      }
+      var bygg = function(pp){ var res = [], cur = [], p2 = 0, k5 = 0; funnet.flat.forEach(function(e){ if (k5 < pp.length && p2 === pp[k5]) { res.push(cur); cur = []; k5++; } cur.push(R.kopi(e)); p2 += e.d; }); res.push(cur); return res; };
+      if (!funnet) return lagOppgave(forrige);
+      var altP = blandet([funnet.riktig].concat(funnet.feil)), alt = altP.map(bygg);
+      o = { type: type, kap: kap, takt: takt, takter: bygg(funnet.riktig), alternativer: alt, svar: altP.indexOf(funnet.riktig) };
     } else {
       var takt1, idx, tries = 0;
       do { takt1 = R.lagTakt(kap, takt); var kand = []; takt1.forEach(function(e, k3){ if (!e.p && !e.t && R.VERDINAVN[e.d]) kand.push(k3); }); idx = kand.length ? tilfeldig(kand) : -1; tries++; } while (idx < 0 && tries < 50);
@@ -213,12 +246,13 @@
     return o;
   }
   function sporsmal(o){
-    return { horRytme: T('Hvilken rytme hører du?'), horTakt: T('Hvilken taktart går musikken i?'), lesTakt: T('Hvilken taktart passer til takten?'), lesMangler: T('Hvilken note mangler?') }[o.type];
+    return { horRytme: T('Hvilken rytme hører du?'), horTakt: T('Hvilken taktart går musikken i?'), lesTakt: T('Hvilken taktart passer til takten?'), lesMangler: T('Hvilken note mangler?'),
+      korreksjon: T('Én takt klinger annerledes enn notene. Hvilken?'), taktstrek: T('Taktarten er {takt}. Hvor står taktstrekene riktig?', { takt: o.takt }) }[o.type];
   }
   function lyd(o, ganger){
     var h;
     if (o.type === 'horTakt') h = R.groove(o.takt, tempoFor(o.takt), 4);
-    else h = R.hendelser(o.takter, o.takt, tempoFor(o.takt));
+    else h = R.hendelser(o.lydTakter || o.takter, o.takt, tempoFor(o.takt));
     if (ganger > 1) {
       var lengde = h.reduce(function(m, x){ return Math.max(m, x.t); }, 0) + 60 / tempoFor(o.takt) * 2;
       h = h.concat(h.map(function(x){ return { t: x.t + lengde, lyd: x.lyd, v: x.v, m: x.m, d: x.d }; }));
@@ -229,14 +263,18 @@
     if (o.type === 'lesTakt') return R.noter(o.takter, { takt: o.takt, visTakt: !!visSvar, etikett: sporsmal(o) });
     if (o.type === 'lesMangler') return R.noter(o.takter, { takt: o.takt, mangler: visSvar ? null : o.mangler, etikett: sporsmal(o) });
     if (o.type === 'horRytme' && visSvar) return R.noter(o.takter, { takt: o.takt, telling: true, etikett: sporsmal(o) });
+    if (o.type === 'korreksjon') return visSvar ? R.noter(o.lydTakter, { takt: o.takt, telling: true, etikett: T('Det som ble spilt') }) : R.noter(o.takter, { takt: o.takt, etikett: sporsmal(o) });
+    if (o.type === 'taktstrek' && visSvar) return R.noter(o.takter, { takt: o.takt, telling: true, etikett: T('Riktige taktstreker') });
     return '';
   }
   function svarKnapper(rot, o, ved){
     rot.innerHTML = '';
-    var rad = lag('div', 'row answers svar' + (o.type === 'horRytme' ? ' rytme-svar' : '')); rad.setAttribute('role', 'group'); rad.setAttribute('aria-label', T('Svar'));
+    var noteSvar = o.type === 'horRytme' || o.type === 'taktstrek';
+    var rad = lag('div', 'row answers svar' + (noteSvar ? ' rytme-svar' : '')); rad.setAttribute('role', 'group'); rad.setAttribute('aria-label', T('Svar'));
     var knapper = o.alternativer.map(function(a, i){
-      var b = lag('button', 'btn' + (o.type === 'horRytme' ? ' rytme-valg' : '')); b.type = 'button';
-      if (o.type === 'horRytme') b.innerHTML = '<span class="valg-nr">' + 'ABCD'.charAt(i) + '</span>' + R.noter(a, { takt: o.takt, skala: 1, etikett: T('Alternativ {n}', { n: 'ABCD'.charAt(i) }) });
+      var b = lag('button', 'btn' + (noteSvar ? ' rytme-valg' : '')); b.type = 'button';
+      if (o.type === 'korreksjon') b.textContent = T('Takt {n}', { n: a + 1 });
+      else if (noteSvar) b.innerHTML = '<span class="valg-nr">' + 'ABCD'.charAt(i) + '</span>' + R.noter(a, { takt: o.takt, skala: 1, etikett: T('Alternativ {n}', { n: 'ABCD'.charAt(i) }) });
       else if (o.type === 'lesMangler') b.textContent = T(R.VERDINAVN[a]);
       else b.textContent = a;
       b.addEventListener('click', function(){ ved(i, b); });
@@ -247,6 +285,8 @@
   }
   function forklaring(o){
     if (o.type === 'horRytme') return T('Rytmen står under.');
+    if (o.type === 'korreksjon') return T('Takt {n} var annerledes. Under ser du det som ble spilt.', { n: o.svar + 1 });
+    if (o.type === 'taktstrek') { var T3 = R.TAKTER[o.takt]; return T(T3.bunn === 8 ? 'Hver takt i {takt} varer {n} åttendeler. Tell sammen notelengdene fra taktstrek til taktstrek.' : 'Hver takt i {takt} varer {n} firedeler. Tell sammen notelengdene fra taktstrek til taktstrek.', { takt: o.takt, n: T3.topp }); }
     if (o.type === 'horTakt') { var T0 = R.TAKTER[o.takt]; return T('Det var {takt}: {slag} slag i takten.', { takt: o.takt, slag: T0.grupper.length }) + (T0.sammensatt ? ' ' + T('Hvert slag deles i tre.') : ''); }
     if (o.type === 'lesTakt') {
       var T1 = R.TAKTER[o.takt];
@@ -257,7 +297,8 @@
   /* Notenavn midt i en setning skrives med liten forbokstav på alle språk */
   function liten(t){ return t.charAt(0).toLowerCase() + t.slice(1); }
   function svarTekst(o, i){
-    if (o.type === 'horRytme') return 'ABCD'.charAt(i);
+    if (o.type === 'horRytme' || o.type === 'taktstrek') return 'ABCD'.charAt(i);
+    if (o.type === 'korreksjon') return T('takt {n}', { n: i + 1 });
     if (o.type === 'lesMangler') return liten(T(R.VERDINAVN[o.alternativer[i]]));
     return o.alternativer[i];
   }
@@ -265,11 +306,11 @@
   /* =================== Øvemodus =================== */
   var STAT = {}, MAL = 5, paRad = 0, best = 0, klar = false, ov = null, knapper = [];
   var FEIL = ['Ikke gi opp. Du blir bedre for hver oppgave.', 'Tell slagene høyt mens du lytter eller leser.', 'Klapp rytmen selv, så kjenner du den bedre igjen.', 'Pust rolig, tenk deg om, og prøv neste.'];
-  var TYPENAVN = { horRytme: 'Hør rytmen', horTakt: 'Hør taktarten', lesTakt: 'Finn taktarten', lesMangler: 'Finn noten som mangler' };
+  var TYPENAVN = { horRytme: 'Hør rytmen', horTakt: 'Hør taktarten', lesTakt: 'Finn taktarten', lesMangler: 'Finn noten som mangler', korreksjon: 'Finn feilen', taktstrek: 'Taktstreker' };
   function nyOvOppgave(){
     stopp();
     ov = { o: lagOppgave(ov && ov.o), besvart: false };
-    var o = ov.o, lytt = o.type === 'horRytme' || o.type === 'horTakt';
+    var o = ov.o, lytt = o.type === 'horRytme' || o.type === 'horTakt' || o.type === 'korreksjon';
     $('ov-sporsmal').textContent = sporsmal(o);
     $('ov-bilde').innerHTML = bilde(o, false); $('ov-bilde').hidden = !$('ov-bilde').innerHTML;
     $('ov-spill').hidden = !lytt;
@@ -334,7 +375,7 @@
     visProve();
   }
   function visProve(){
-    var o = pr.oppgaver[pr.nr], lytt = o.type === 'horRytme' || o.type === 'horTakt';
+    var o = pr.oppgaver[pr.nr], lytt = o.type === 'horRytme' || o.type === 'horTakt' || o.type === 'korreksjon';
     $('prove-tittel').textContent = T('Oppgave {n} av {t}', { n: pr.nr + 1, t: ANTALL });
     $('prove-sporsmal').textContent = sporsmal(o);
     $('prove-bilde').innerHTML = bilde(o, false); $('prove-bilde').hidden = !$('prove-bilde').innerHTML;
@@ -361,7 +402,7 @@
       html += '<li><div class="gj-tekst"><strong class="' + (ok ? 'ok' : 'nei') + '">' + (ok ? T('Riktig.') : T('Feil.')) + '</strong> '
         + T(TYPENAVN[o.type]) + ': ' + T('svaret er {svar}.', { svar: svarTekst(o, o.svar) })
         + (ok ? '' : ' <span class="ditt">' + T('Ditt svar: {s}.', { s: svarTekst(o, s) }) + '</span>') + '</div>'
-        + (o.takter ? '<div class="noter rytme gj-noter">' + R.noter(o.takter, { takt: o.takt, telling: true, skala: 1, etikett: T('Riktig svar') }) + '</div>' : '')
+        + (o.takter ? '<div class="noter rytme gj-noter">' + R.noter(o.lydTakter || o.takter, { takt: o.takt, telling: true, skala: 1, etikett: T('Riktig svar') }) + '</div>' : '')
         + '</li>';
     });
     var p = Math.round(100 * r / ANTALL);

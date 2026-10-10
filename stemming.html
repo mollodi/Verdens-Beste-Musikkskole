@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-STMT
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="stemming.html" data-stil="ovelse" data-vbm="K7Q4-STMT">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Stemming og temperatur</title>
+<script src="felles.js"></script>
+<link rel="stylesheet" href="stil.css">
+<meta name="description" content="Stemming og temperatur forklart: frekvens og kammertone, overtonerekken, rene intervaller og svevninger, det pytagoreiske kommaet, og pytagoreisk, midttone, Werckmeister og likesvevende temperatur, med lyd.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Musikkteori</div>
+  <h1>Stemming og <em>temperatur</em></h1>
+  <p class="lede">Hvorfor er ikke tonene på et piano helt rene? Her lærer du hva en frekvens er, hvordan overtonene gir de rene intervallene, hvorfor tolv rene kvinter ikke går opp, og hvordan musikere gjennom tidene har løst det med ulike temperaturer.</p>
+  <p class="lede">Trykk på spill for å høre eksemplene. Orgel er valgt nederst til høyre, fordi orgeltoner holdes jevnt og har mange overtoner, så svevningene høres tydelig. Du kan også velge piano, strykere eller sinustoner. Bruk gjerne hodetelefoner.</p>
+</header>
+
+<main>
+  <section class="card bred" id="frekvens">
+    <div class="card-head">
+      <div class="step-label">1</div>
+      <h2>Frekvens og kammertone</h2>
+    </div>
+    <p class="task">En tone er luft som svinger. Frekvensen er hvor mange svingninger det er i sekundet, målt i hertz (Hz). Jo høyere frekvens, jo høyere tone. Når frekvensen dobles, blir tonen en oktav høyere.</p>
+    <p class="task">For at instrumenter skal kunne spille sammen, er det avtalt en kammertone: a¹ (A4) er 440 Hz. Mange orkestre stemmer litt høyere, gjerne 442 Hz, og barokkmusikk spilles ofte på 415 Hz, nesten en halvtone lavere.</p>
+    <div class="stav-blokk">
+      <p class="label" id="a-merke"></p>
+      <div class="row" id="a-knapper">
+        <button type="button" class="btn" data-hz="415">&#9658;&#xFE0E; <span>415 Hz</span></button>
+        <button type="button" class="btn" data-hz="440">&#9658;&#xFE0E; <span>440 Hz</span></button>
+        <button type="button" class="btn" data-hz="442">&#9658;&#xFE0E; <span>442 Hz</span></button>
+      </div>
+      <div class="noter" id="a-noter"></div>
+    </div>
+    <p class="task">Små forskjeller i tonehøyde måles i cent. En halvtone på pianoet er 100 cent, og en oktav er 1200 cent. Fra 440 til 442 Hz er omtrent 8 cent, og fra 440 ned til 415 Hz er omtrent 101 cent.</p>
+  </section>
+
+  <section class="card bred" id="overtoner">
+    <div class="card-head">
+      <div class="step-label">2</div>
+      <h2>Overtonerekken</h2>
+    </div>
+    <p class="task">En tone fra et instrument er ikke bare én frekvens. Over grunntonen klinger svakere deltoner med to, tre, fire ganger frekvensen, og så videre. De kalles overtonerekken, og det er den som gir instrumentene klangfarge. Her er de åtte første deltonene over store C (C2, 65,4 Hz).</p>
+    <div class="stav-blokk">
+      <p class="label" id="ot-merke-1"></p>
+      <div class="row">
+        <button type="button" class="btn" id="ot-ren">&#9658;&#xFE0E; <span>Rene deltoner</span></button>
+        <button type="button" class="btn" id="ot-piano">&#9658;&#xFE0E; <span>På pianotangentene</span></button>
+      </div>
+      <div class="noter" id="ot-bass"></div>
+    </div>
+    <div class="stav-blokk uten-strek">
+      <p class="label" id="ot-merke-2"></p>
+      <div class="noter" id="ot-disk"></div>
+    </div>
+    <ol class="deltoner" id="ot-liste"></ol>
+    <p class="task">Mellom deltonene ligger de rene intervallene: 1 til 2 er en oktav (2:1), 2 til 3 en kvint (3:2), 3 til 4 en kvart (4:3), 4 til 5 en stor ters (5:4) og 5 til 6 en liten ters (6:5). Den 5. og 7. deltonen ligger tydelig lavere enn tangentene på pianoet. Hør forskjellen med de to knappene.</p>
+  </section>
+
+  <section class="card bred" id="rene">
+    <div class="card-head">
+      <div class="step-label">3</div>
+      <h2>Rene intervaller og svevninger</h2>
+    </div>
+    <p class="task">Når to toner danner et rent intervall, faller noen av overtonene deres sammen, og samklangen er helt rolig. Er intervallet litt for stort eller for lite, ligger to overtoner nesten likt, og du hører at lyden pulserer. Det kalles svevninger, og antallet i sekundet er forskjellen mellom de to overtonene i hertz.</p>
+    <p class="label" id="iv-label">Intervall</p>
+    <div class="row brikker" id="iv-valg" role="group" aria-labelledby="iv-label"></div>
+    <p class="label" id="st-label">Stemming</p>
+    <div class="row answers tre" role="group" aria-labelledby="st-label">
+      <button type="button" class="btn" data-st="ren">Rent</button>
+      <button type="button" class="btn" data-st="lik">Som på piano</button>
+      <button type="button" class="btn" data-st="feil">8 cent for stort</button>
+    </div>
+    <div class="stav-blokk">
+      <p class="label" id="iv-merke"></p>
+      <div class="row"><button type="button" class="btn" id="iv-spill">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="iv-noter"></div>
+    </div>
+    <p class="task" id="iv-tekst" aria-live="polite"></p>
+    <div class="viktig"><p class="task"><strong>Hør med orgel eller piano:</strong> sinustoner har ingen overtoner, så en kvint eller en ters svever nesten ikke med dem. Strykerne spiller med vibrato, og det skjuler svevningene. Bytt lyd og hør selv.</p></div>
+  </section>
+
+  <section class="card bred" id="komma">
+    <div class="card-head">
+      <div class="step-label">4</div>
+      <h2>Det pytagoreiske kommaet</h2>
+    </div>
+    <p class="task">Gå tolv rene kvinter oppover fra C: C, G, D, A, E, H, Fiss, Ciss, Giss, Diss, Aiss, Eiss og Hiss. På pianoet er Hiss den samme tangenten som C, sju oktaver høyere. Men tolv rene kvinter er (3/2)¹² = 129,75, mens sju oktaver er 2⁷ = 128.</p>
+    <p class="task">Hiss blir derfor omtrent 23,5 cent høyere enn C. Den forskjellen kalles det pytagoreiske kommaet, og den gjør at et instrument med tolv faste toner aldri kan ha alle kvintene rene. Se også Kvintsirkelen.</p>
+    <div class="stav-blokk">
+      <p class="label" id="km-merke"></p>
+      <div class="row"><button type="button" class="btn" id="km-spill">&#9658;&#xFE0E; <span>Hør kommaet</span></button></div>
+      <div class="noter" id="km-noter"></div>
+    </div>
+    <p class="task">Du hører først C, så Hiss fra de rene kvintene (flyttet ned i samme oktav), og til slutt begge samtidig. Da svever de tydelig.</p>
+  </section>
+
+  <section class="card bred" id="temperaturer">
+    <div class="card-head">
+      <div class="step-label">5</div>
+      <h2>Temperaturer</h2>
+    </div>
+    <p class="task">En temperatur er en måte å fordele kommaet på: noen intervaller gjøres litt urene, så resten kan brukes. Velg en temperatur og en toneart, og hør den samme kadensen (I, IV, V7, I).</p>
+    <p class="label" id="tm-label">Temperatur</p>
+    <div class="row brikker" id="tm-valg" role="group" aria-labelledby="tm-label"></div>
+    <p class="label" id="tk-label">Toneart</p>
+    <div class="row brikker" id="tk-valg" role="group" aria-labelledby="tk-label"></div>
+    <p class="task" id="tm-beskrivelse" aria-live="polite"></p>
+    <div class="stav-blokk">
+      <p class="label" id="tm-merke"></p>
+      <div class="row"><button type="button" class="btn" id="tm-spill">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="tm-noter"></div>
+    </div>
+    <p class="task" id="tm-tall" aria-live="polite"></p>
+    <p class="task">Johann Sebastian Bach skrev Das Wohltemperierte Klavier med preludier og fuger i alle 24 dur- og molltonearter (to bind, 1722 og 1742). Veltemperert betyr en temperatur der alle tonearter kan brukes, ikke nødvendigvis likesvevende. Mange mener Bach brukte en temperatur der tonearter med mange fortegn klinger litt skarpere.</p>
+    <ul class="sanger"><li><div class="song-info"><div class="song-title">Das Wohltemperierte Klavier</div><div class="song-meta">Johann Sebastian Bach, 1722 og 1742</div></div><a class="spotify-link" href="https://open.spotify.com/search/Bach%20Das%20Wohltemperierte%20Klavier" target="_blank" rel="noopener">Spotify</a></li></ul>
+  </section>
+
+  <section class="card bred" id="praksis">
+    <div class="card-head">
+      <div class="step-label">6</div>
+      <h2>Stemming i praksis</h2>
+    </div>
+    <h3 class="del-tittel">Pianoet</h3>
+    <p class="task">En pianostemmer stemmer først én oktav midt på pianoet, temperaturoktaven, ved å telle svevninger. Kvintene skal sveve sakte, omtrent én gang i sekundet rundt midtre C, og de store tersene raskere, jo høyere de ligger. Resten av pianoet stemmes i oktaver ut fra denne oktaven.</p>
+    <p class="task">Strengene på et piano er stive, så overtonene ligger litt høyere enn de rene forholdene. Derfor stemmes oktavene litt større enn 2:1, mest i diskanten og bassen. Det kalles strekking, og det gjør at pianoet høres rent ut selv om oktavene målt med en stemmeapp er litt for store.</p>
+    <h3 class="del-tittel">Gitaren</h3>
+    <p class="task">Flageoletter over 5. og 7. bånd gir rene kvarter mellom strengene. En ren kvart er 2 cent større enn på et likesvevende instrument, så det går fint, men mellom G- og H-strengen er intervallet en stor ters. Der blir feilen 14 cent, og H-strengen stemmes heller etter bånd eller med en stemmeapp.</p>
+    <h3 class="del-tittel">Orkesteret</h3>
+    <p class="task">Før konserten gir oboisten en a, og hele orkesteret stemmer etter den. Oboen har en klar tone som høres godt, og den er vanskelig å stemme om i farten. Strykere, blåsere og sangere kan justere hver tone mens de spiller, og spiller ofte terser og kvinter renere enn pianoet.</p>
+  </section>
+
+  <section class="card ulike-kort" id="ulike-navn">
+    <div class="card-head">
+      <div class="step-label">Merk</div>
+      <h2>Ulike navn og systemer</h2>
+    </div>
+    <p class="task">Musikkteori er ikke helt standardisert. Her er stedene der bøker, land og opptaksprøven bruker ulike navn eller systemer for det du har lært på denne siden.</p>
+    <ul class="ulike-liste">
+      <li><strong>Bachs temperatur.</strong> Ingen vet sikkert hvilken temperatur Bach brukte. Noen forskere, blant andre Bradley Lehman (2005), leser den sløyfete tegningen på tittelbladet til Das Wohltemperierte Klavier som en oppskrift på en temperatur. Mange andre er uenige.</li>
+      <li><strong>Kammertonen.</strong> 440 Hz er en internasjonal standard (ISO 16), men mange orkestre stemmer til 442 eller 443 Hz, og gjennom historien har kammertonen variert mye. Påstander om at 432 Hz er mer «naturlig», har ikke støtte i forskning.</li>
+      <li><strong>Mange midttonetemperaturer.</strong> Kvartkomma-midttone, som her, er den mest kjente, men varianter med en sjettedels og en femtedels komma ble også brukt.</li>
+    </ul>
+  </section>
+
+  <section class="card bred ovelse-kort">
+    <div class="card-head">
+      <div class="step-label">Øv</div>
+      <h2>Test deg selv</h2>
+    </div>
+    <p class="task">I quizen hører du om et intervall er rent eller svever, og regner med forhold, cent og frekvenser. Øv deg også på små forskjeller i tonehøyde i Gehørlekser med mikrointervaller.</p>
+    <div class="row">
+      <a class="btn" href="quiz-stemming.html">Gå til quizen</a>
+      <a class="btn" href="gehorlekser-mikrointervaller.html">Gehørlekser med mikrointervaller</a>
+      <a class="btn" href="kvintsirkelen.html">Kvintsirkelen</a>
+    </div>
+  </section>
+</main>
+
+<footer data-lyd="stemming"></footer>
+
+<script src="tonearter.js"></script>
+<script src="skalaer.js"></script>
+<script src="harmoni.js"></script>
+<script src="stemming.js"></script>
+<script>/* VBM K7Q4-STMT */
+(function(){
+  'use strict';
+  var K = window.VBM_TONEARTER, S = window.VBM_SKALAER, H = window.VBM_HARMONI, St = window.VBM_STEMMING, T = K.T, tall = St.tall;
+  function $(id){ return document.getElementById(id); }
+  function stopp(){ if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); }
+  function n(b, f, o){ return { b: b, f: f, oktav: o }; }
+  /* Lyser opp notene som klinger: hvem(steg) gir [[holder, data-i], ...] */
+  function farg(hvem){
+    var holdere = [].slice.call(document.querySelectorAll('main .noter'));
+    return function(s){
+      holdere.forEach(function(h){ [].forEach.call(h.querySelectorAll('.spilles'), function(x){ x.classList.remove('spilles'); }); });
+      if (s < 0) return;
+      (hvem(s) || []).forEach(function(p){ var svg = $(p[0]).querySelector('svg'); if (svg) [].forEach.call(svg.querySelectorAll(p[1]), function(x){ x.classList.add('spilles'); }); });
+    };
+  }
+  function trykk(rad, liste, tekst, ved){
+    liste.forEach(function(x, i){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = tekst(x);
+      b.addEventListener('click', function(){ stopp(); ved(i); });
+      rad.appendChild(b);
+    });
+  }
+  function merk(rad, nr){ [].forEach.call(rad.children, function(b, i){ b.setAttribute('aria-pressed', i === nr ? 'true' : 'false'); }); }
+  /* =================== 1. Frekvens og kammertone =================== */
+  var A4 = n(5, 0, 4);
+  $('a-merke').textContent = T('a¹ (A4)');
+  $('a-noter').innerHTML = S.noter([A4], 0, null, T('a¹ (A4)'));
+  $('a-knapper').addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('[data-hz]'); if (!b || !window.VBM_LYD_SEKVENS) return;
+    window.VBM_LYD_SEKVENS([[St.midiAv(+b.getAttribute('data-hz'))], []], b, farg(function(s){ return s === 0 ? [['a-noter', '[data-i="0"]']] : null; }));
+  });
+
+  /* =================== 2. Overtonerekken =================== */
+  var DELTONER = [n(0, 0, 2), n(0, 0, 3), n(4, 0, 3), n(0, 0, 4), n(2, 0, 4), n(4, 0, 4), n(6, -1, 4), n(0, 0, 5)];
+  $('ot-merke-1').textContent = T('Deltone 1 til 3 (F-nøkkel)');
+  $('ot-merke-2').textContent = T('Deltone 4 til 8 (G-nøkkel)');
+  $('ot-bass').innerHTML = S.enStav('F', DELTONER.slice(0, 3), { bredde: 250, x0: 140, etikett: T('Deltone 1 til 3 (F-nøkkel)') });
+  $('ot-disk').innerHTML = S.enStav('G', DELTONER.slice(3), { bredde: 320, x0: 190, etikett: T('Deltone 4 til 8 (G-nøkkel)') });
+  var html = '';
+  DELTONER.forEach(function(t, i){
+    var nr = i + 1, m = St.deltone(36, nr), avvik = (m - Math.round(m)) * 100;
+    html += '<li><span class="dt-navn">' + T('{n}. deltone: {tone}', { n: nr, tone: K.tone(t) }) + '</span><span class="tall">'
+      + tall(St.hz(m), 1) + ' Hz' + (Math.abs(avvik) < 0.05 ? '' : ', ' + T('{c} cent fra pianoet', { c: (avvik > 0 ? '+' : '−') + tall(Math.abs(avvik), 1) })) + '</span></li>';
+  });
+  $('ot-liste').innerHTML = html;
+  function deltoneLyd(ren){ return DELTONER.map(function(t, i){ return [ren ? St.deltone(36, i + 1) : S.midi(t)]; }); }
+  var otFarg = farg(function(s){ return s < 3 ? [['ot-bass', '[data-i="' + s + '"]']] : s < 8 ? [['ot-disk', '[data-i="' + (s - 3) + '"]']] : null; });
+  $('ot-ren').addEventListener('click', function(){ if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS(deltoneLyd(true), this, otFarg); });
+  $('ot-piano').addEventListener('click', function(){ if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS(deltoneLyd(false), this, otFarg); });
+
+  /* =================== 3. Rene intervaller og svevninger =================== */
+  var OVRE = { oktav: n(0, 0, 5), kvint: n(4, 0, 4), kvart: n(3, 0, 4), sters: n(2, 0, 4), lters: n(2, -1, 4) };
+  var ivNr = 1, st = 'lik';
+  trykk($('iv-valg'), St.RENE, function(x){ return T(x.navn); }, function(i){ ivNr = i; tegnIntervall(); });
+  [].forEach.call(document.querySelectorAll('[data-st]'), function(b){ b.addEventListener('click', function(){ stopp(); st = b.getAttribute('data-st'); tegnIntervall(); }); });
+  var ivLyd = [];
+  function tegnIntervall(){
+    var iv = St.RENE[ivNr], lav = n(0, 0, 4), hoy = OVRE[iv.id];
+    merk($('iv-valg'), ivNr);
+    [].forEach.call(document.querySelectorAll('[data-st]'), function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-st') === st ? 'true' : 'false'); });
+    var c = st === 'ren' ? iv.cent : st === 'lik' ? iv.halv * 100 : iv.cent + 8;
+    ivLyd = [60, 60 + c / 100];
+    var merke = K.tone(lav) + '–' + K.tone(hoy) + ': ' + T('{c} cent', { c: tall(c, 1) });
+    $('iv-merke').textContent = merke;
+    $('iv-noter').innerHTML = St.samklang([lav, hoy], merke);
+    var sv = St.svevninger(St.hz(60), St.hz(60 + c / 100), iv);
+    var tekst = T('Rent forhold {p}:{q} er {r} cent.', { p: iv.p, q: iv.q, r: tall(iv.cent, 1) }) + ' ';
+    if (st === 'lik' && iv.id === 'oktav') tekst += T('Oktaven er ren også på pianoet, så den svever ikke.');
+    else if (sv < 0.05) tekst += T('Intervallet er rent og svever ikke.');
+    else tekst += T('Den {p}. deltonen til C og den {q}. deltonen til den øverste tonen ligger {sv} Hz fra hverandre, så du hører omtrent {sv} svevninger i sekundet.', { p: iv.p, q: iv.q, sv: tall(sv, 1) });
+    if (st === 'lik' && iv.id !== 'oktav') tekst += ' ' + T('På pianoet er intervallet {d} cent {retning} enn rent.', { d: tall(Math.abs(iv.avvik), 1), retning: iv.avvik > 0 ? T('større') : T('mindre') });
+    $('iv-tekst').textContent = tekst;
+  }
+  $('iv-spill').addEventListener('click', function(){
+    if (window.VBM_LYD_SPILL) window.VBM_LYD_SPILL(ivLyd, this, 1, null, true, window.VBM_FARG($('iv-noter')));
+  });
+
+  /* =================== 4. Det pytagoreiske kommaet =================== */
+  $('km-merke').textContent = T('C og Hiss: samme tangent, ulik tone');
+  $('km-noter').innerHTML = S.noter([n(0, 0, 4), n(6, 1, 3)], 0, null, T('C og Hiss: samme tangent, ulik tone'));
+  var hiss = 60 + St.PYT_KOMMA / 100;
+  $('km-spill').addEventListener('click', function(){
+    if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS([[60], [], [hiss], [], [60, hiss], [], [], []], this, farg(function(s){
+      return s < 2 ? [['km-noter', '[data-i="0"]']] : s < 4 ? [['km-noter', '[data-i="1"]']] : s < 8 ? [['km-noter', '[data-i]']] : null;
+    }));
+  });
+
+  /* =================== 5. Temperaturer =================== */
+  var tmNr = 1, tkNr = 0, TONEARTER = []; for (var i = 0; i < 12; i++) TONEARTER.push(S.durRot(i));
+  var BESKRIV = {
+    pytagoreisk: 'Alle kvintene er rene, unntatt én. Den siste kvinten, Giss–Ess, blir et pytagoreisk komma for liten og hyler. De store tersene blir 408 cent, omtrent 22 cent større enn rene, så pytagoreisk stemming passer best til musikk med kvinter og oktaver, slik som i middelalderen.',
+    midttone: 'Kvintene gjøres en fjerdedel av et syntonisk komma mindre, omtrent 5,4 cent, slik at de store tersene blir helt rene. Det klinger vakkert i tonearter med få fortegn, men kvinten Giss–Ess blir 738 cent og hyler. Den kalles ulvekvinten. Prøv Ass-dur eller Fiss-dur.',
+    werckmeister: 'Fire av kvintene (C–G, G–D, D–A og H–Fiss) gjøres en fjerdedel av et pytagoreisk komma mindre, og resten er rene. Alle tonearter kan brukes, men de klinger ulikt: tonearter med få fortegn har renere terser, og tonearter med mange fortegn har skarpere.',
+    likesvevende: 'Alle kvintene er 2 cent mindre enn rene, så alle tolv halvtoner er like store (100 cent). Alle tonearter klinger likt, og ingen kvint hyler. Prisen er at de store tersene er 14 cent større enn rene og svever raskt. Slik er nesten alle pianoer stemt i dag.'
+  };
+  trykk($('tm-valg'), St.TEMPERATURER, function(t){ return T(t.navn); }, function(i){ tmNr = i; tegnTemperatur(); });
+  trykk($('tk-valg'), TONEARTER, function(r){ return K.dur(r); }, function(i){ tkNr = i; tegnTemperatur(); });
+  var tmLyd = [];
+  function tegnTemperatur(){
+    var t = St.TEMPERATURER[tmNr], r = H.rekke(tkNr, false, ['I', 'IV', 'V7', 'I_hel'], null, 'sym'), toneart = K.dur(r.rot);
+    merk($('tm-valg'), tmNr); merk($('tk-valg'), tkNr);
+    $('tm-beskrivelse').textContent = T(BESKRIV[t.id]);
+    var merke = T('{temperatur}, {toneart}: {akkorder}', { temperatur: T(t.navn), toneart: toneart, akkorder: r.akkorder.map(function(a){ return a.sym; }).join(', ') });
+    $('tm-merke').textContent = merke;
+    $('tm-noter').innerHTML = S.storSats(r.akkorder, r.fortegn, merke);
+    tmLyd = [];
+    r.akkorder.forEach(function(a, k){ tmLyd.push(a.midi.map(function(m){ return St.stem(m, t); })); tmLyd.push([]); if (k < r.akkorder.length - 1) tmLyd.push([]); });
+    var tre = S.toner(r.rot, [[0, 0], [2, 4], [4, 7]]), m = tre.map(S.midi);
+    $('tm-tall').textContent = T('I {toneart} er kvinten {a}–{c} {k} cent (ren: {kr}) og den store tersen {a}–{b} {s} cent (ren: {sr}).', {
+      toneart: toneart, a: K.tone(tre[0]), b: K.tone(tre[1]), c: K.tone(tre[2]),
+      k: tall(St.storrelse(m[0], m[2], t), 1), kr: tall(St.REN_KVINT, 1), s: tall(St.storrelse(m[0], m[1], t), 1), sr: tall(St.RENE[3].cent, 1) });
+  }
+  $('tm-spill').addEventListener('click', function(){
+    if (window.VBM_LYD_SEKVENS) window.VBM_LYD_SEKVENS(tmLyd, this, farg(function(s){ return [['tm-noter', '[data-a="' + Math.min(3, Math.floor(s / 3)) + '"]']]; }));
+  });
+
+  tegnIntervall(); tegnTemperatur();
+})();
+</script>
+<script>window.VBM_LYD = { chordDur: 6 };   /* intervallene i kort 3 holdes lenge, så svevningene høres */</script>
+<script>window.VBM_LYD_ORGEL_SIDE = true;   /* orgel i lydvalget, valgt som standard her */</script>
+<script src="lyd.js"></script>
+</body>
+</html>

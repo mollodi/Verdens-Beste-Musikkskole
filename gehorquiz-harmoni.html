@@ -27,7 +27,7 @@
   <div class="eyebrow">Quiz</div>
   <h1>Gehør<em>quiz</em>: kadenser og funksjoner</h1>
   <p class="lede">Hør en kadens og finn typen, eller hør en akkord etter tonika og finn funksjonen. Øv i ditt eget tempo, eller ta en prøve med 20 oppgaver.</p>
-  <p class="lede">Alt er forklart i leksjonen <a href="harmonilaere.html">Harmonilære</a>. Velg piano, gitar eller strykere nederst til høyre.</p>
+  <p class="lede">Alt er forklart i leksjonen <a href="harmonilaere.html">Harmonilære</a>. Velg piano, strykere eller sinustoner nederst til høyre.</p>
 </header>
 
 <main>
@@ -141,7 +141,7 @@
   var KADENS = H.KADENSER.map(function(k){ return { id: k.id, navn: k.navn, gr: 'kadens' }; });
   var FUNK = [
     { id: 'T', navn: 'Tonika (T)', akk: 'I' }, { id: 'S', navn: 'Subdominant (S)', akk: 'IV' }, { id: 'D', navn: 'Dominant (D)', akk: 'V' },
-    { id: 'Tp', navn: 'Tonikaparallell (Tp)', akk: 'vi' }, { id: 'Sp', navn: 'Subdominantparallell (Sp)', akk: 'ii' }, { id: 'Dp', navn: 'Dominantparallell (Dp)', akk: 'iii' }
+    { id: 'Tp', navn: 'Tonikaparallell (Tp, i opptaksprøven Ts)', akk: 'vi' }, { id: 'Sp', navn: 'Subdominantparallell (Sp, i opptaksprøven Ss)', akk: 'ii' }, { id: 'Dp', navn: 'Dominantparallell (Dp, i opptaksprøven Tm)', akk: 'iii' }
   ].map(function(f){ f.gr = 'funksjon'; return f; });
   var GRUPPE = { kadens: 'Kadens', funksjon: 'Funksjon' };
 

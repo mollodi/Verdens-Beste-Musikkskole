@@ -1,6 +1,8 @@
 /* © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt. Verk-ID: VBM-K7Q4-KCX8. Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9 */
 /* Verdens Beste Musikkskole – felles lydmotor for juksebøkene.
-   Ekte opptak av piano, akustisk gitar og strykere (fiolin + cello).
+   Ekte opptak av piano og strykere (kontrabass, cello, bratsj og fiolin), og rene sinustoner.
+   Tonene er MIDI-tall (60 = midtre C). Desimaltall gir toner mellom tangentene:
+   60.14 er C pluss 14 cent (brukes av leksjonen om stemming og temperatur).
    Bare én lyd spiller om gangen: et nytt trykk stopper den forrige,
    og et nytt trykk på samme knapp stopper lyden.
    Hvis lydfilene ikke kan lastes, brukes den innebygde synthen. */
@@ -10,9 +12,9 @@
   var STEP = cfg.step || 0.66, NOTE = cfg.noteDur || 1.4, CHORD = cfg.chordDur || 3.2;
   var GAP1 = cfg.gap1 || 0.33, GAP2 = cfg.gap2 || 0.52;
   /* Tempo fra Innstillinger (vbm-tempo): «raskt» er standard og dagens fart. «middels» og «sakte» gir
-     mer tid mellom tonene, i samme forhold som rytmesidens tempo 100, 80 og 60. Tonelengdene endres ikke. */
+     mer tid mellom tonene, i samme forhold som rytmesidens tempo 100, 65 og 45. Tonelengdene endres ikke. */
   var STEP0 = STEP, GAP10 = GAP1, GAP20 = GAP2, S_STEG0 = 0.5;
-  function tempoFaktor(){ var v = ''; try { v = localStorage.getItem('vbm-tempo') || ''; } catch(e){} return v === 'sakte' ? 100 / 60 : v === 'middels' ? 100 / 80 : 1; }
+  function tempoFaktor(){ var v = ''; try { v = localStorage.getItem('vbm-tempo') || ''; } catch(e){} return v === 'sakte' ? 100 / 45 : v === 'middels' ? 100 / 65 : 1; }
   function oppdaterTempo(){ var k = tempoFaktor(); STEP = STEP0 * k; GAP1 = GAP10 * k; GAP2 = GAP20 * k; S_STEG = S_STEG0 * k; }
 
   /* ---------- tonenavn <-> MIDI (filnavn bruker s for #, f.eks. Cs4) ---------- */
@@ -28,34 +30,55 @@
   var B = window.VBM_LYD_BASE || {};
   var CDN = 'https://cdn.jsdelivr.net/npm/';
   var pianoNotes = []; for (var m = 21; m <= 108; m += 3) pianoNotes.push(m);
-  var GUITAR = names('D2 Ds2 E2 F2 Fs2 G2 Gs2 A2 As2 B2 C3 Cs3 D3 Ds3 E3 F3 Fs3 G3 Gs3 A3 As3 B3 ' +
-                     'C4 Cs4 D4 Ds4 E4 F4 Fs4 G4 Gs4 A4 As4 B4 C5 Cs5 D5');
-  var VIOLIN = names('G3 A3 C4 E4 G4 A4 C5 E5 G5 A5 C6 E6 G6 A6 C7');
-  var CELLO  = names('C2 D2 Ds2 E2 F2 G2 Gs2 A2 As2 B2 C3 Cs3 D3 Ds3 E3 F3 Fs3 G3 Gs3 A3 As3 B3 ' +
-                     'C4 Cs4 D4 Ds4 E4 F4 Fs4 G4 Gs4 A4 As4 B4 C5');
+  /* Strykere fra VS Chamber Orchestra Community Edition (CC0), stemt til nøyaktige halvtoner. Filene ligger på nettstedet. */
+  var KB   = names('E1 Fs1 G1 As1 C2');
+  var VC   = names('C2 E2 G2 B2 D3 F3 A3 C4 E4 G4 B4 D5 F5');
+  var VLA  = names('C3 D3 E3');
+  var VL   = names('G3 A3 B3 D4 Fs4 A4 C5 E5 G5 B5 D6');
+  var SOLO = names('E6 G6 A6 C7');
+  var SB = B.strykere || '';
+  /* Orgel: principalstemme (Man3Open) og pedal fra samme orgel, spilt inn av Simon Dalzell (Ivy Audio), i VS Chamber Orchestra
+     Community Edition. Stemt til nøyaktige halvtoner. Orgeltoner holdes jevnt og har mange overtoner, så svevninger høres tydelig. */
+  var ORGEL_PEDAL = names('C1 Ds1 Fs1 A1');
+  var ORGEL_MAN = []; for (var om = 36; om <= 96; om += 3) ORGEL_MAN.push(om);
+  var OB = B.orgel || '';
 
   var INSTR = {
     piano: { label: 'Piano', attack: 0.005, release: 0.35, layers: [
       { base: B.piano || 'https://tonejs.github.io/audio/salamander/', notes: pianoNotes, level: 0.9 }
     ]},
-    /* Gitar klinger en oktav lavere enn den er notert – slik som en ekte gitar. */
-    gitar: { label: 'Gitar', attack: 0.005, release: 0.35, layers: [
-      { base: B.gitar || CDN + 'tonejs-instrument-guitar-acoustic-mp3@1.1.2/', notes: GUITAR, shift: -12, level: 1.0 }
-    ]},
-    /* Strykere: fiolin på tonen, en svakt forstemt fiolin for et fyldigere «ensemble»,
-       og cello en oktav under som gir varme i bunnen. Myk start og lang utklinging. */
+    /* Strykere med realistisk område, H0 til C7 (engelsk B0 til C7): kontrabass helt nederst (fem strenger når ned til H0),
+       så celloer, bratsjer og fioliner, og en solofiolin øverst. I fiolinområdet spiller celloene med en oktav under,
+       som gir varme i bunnen. min og max er tonene hvert lag spiller. */
     strykere: { label: 'Strykere', attack: 0.09, release: 0.6, sustain: true, layers: [
-      { base: B.fiolin || CDN + 'tonejs-instrument-violin-mp3@1.1.1/', notes: VIOLIN, level: 0.55 },
-      { base: B.fiolin || CDN + 'tonejs-instrument-violin-mp3@1.1.1/', notes: VIOLIN, level: 0.32, cents: 8, delay: 0.018 },
-      { base: B.cello  || CDN + 'tonejs-instrument-cello-mp3@1.1.1/',  notes: CELLO,  level: 0.38, shift: -12, range: 2 }
-    ]}
+      { base: SB + 'strykere-kb-',   notes: KB,   level: 0.75, min: 23, max: 35, range: 5 },
+      { base: SB + 'strykere-vc-',   notes: VC,   level: 0.75, min: 36, max: 47, range: 3 },
+      { base: SB + 'strykere-vla-',  notes: VLA,  level: 0.7,  min: 48, max: 54, range: 3 },
+      { base: SB + 'strykere-vl-',   notes: VL,   level: 0.7,  min: 55, max: 87, range: 3 },
+      { base: SB + 'strykere-solo-', notes: SOLO, level: 0.6,  min: 88, max: 96, range: 3 },
+      { base: SB + 'strykere-vc-',   notes: VC,   level: 0.45, min: 43, max: 75, range: 3, shift: -12 }
+    ]},
+    /* Sinustoner: rene toner uten overtoner, laget i nettleseren (ingen lydfiler). Holder tonen like sterkt. */
+    sinus: { label: 'Sinustoner', sinus: true, attack: 0.02, release: 0.25, layers: [] }
   };
-  INSTR.piano.layers.concat(INSTR.gitar.layers, INSTR.strykere.layers)
+  INSTR.piano.layers.concat(INSTR.strykere.layers)
     .forEach(function(L){ L.shift = L.shift || 0; L.cents = L.cents || 0; L.delay = L.delay || 0; L.range = L.range || 12; });
+
+  /* Sidene om stemming og temperatur (window.VBM_LYD_ORGEL_SIDE = true) får også orgel, og orgel er valgt som standard der,
+     fordi svevninger høres best med jevne toner som har mange overtoner. */
+  var ORGEL = !!window.VBM_LYD_ORGEL_SIDE;
+  if (ORGEL) {
+    var medOrgel = { orgel: { label: 'Orgel', attack: 0.03, release: 0.5, sustain: true, layers: [
+      { base: OB + 'orgel-', notes: ORGEL_PEDAL, level: 0.8, min: 23, max: 35, range: 2, shift: 0, cents: 0, delay: 0 },
+      { base: OB + 'orgel-', notes: ORGEL_MAN,   level: 0.8, min: 36, max: 96, range: 2, shift: 0, cents: 0, delay: 0 }
+    ]}};
+    Object.keys(INSTR).forEach(function(k){ medOrgel[k] = INSTR[k]; });
+    INSTR = medOrgel;
+  }
 
   /* Rytmesidene (window.VBM_LYD_RYTME_SIDE = true) får også trommer, og trommer er valgt som standard der.
      Trommelydene er ekte opptak fra Versilian Community Sample Library (CC0) og ligger på nettstedet selv. */
-  var RYTME = !!window.VBM_LYD_RYTME_SIDE, LAGRE = RYTME ? 'vbm-instrument-rytme' : 'vbm-instrument';
+  var RYTME = !!window.VBM_LYD_RYTME_SIDE, LAGRE = RYTME ? 'vbm-instrument-rytme' : ORGEL ? 'vbm-instrument-stemming' : 'vbm-instrument';
   /* window.VBM_LYD_TROMMEFILER kan erstatte filene (brukes i forhåndsvisninger der lydene ligger inne i siden). */
   var TROMMER = window.VBM_LYD_TROMMEFILER || { skarp: 'rytme-skarptromme.mp3', bass: 'rytme-basstromme.mp3', hihat: 'rytme-hihat.mp3', klikk: 'rytme-treblokk.mp3' };
   var TROMME_NIVA = { skarp: 0.75, bass: 0.95, hihat: 0.55, klikk: 0.7 };
@@ -64,7 +87,7 @@
     Object.keys(INSTR).forEach(function(k){ med[k] = INSTR[k]; });
     INSTR = med;
   }
-  var current = RYTME ? 'trommer' : 'piano';
+  var current = RYTME ? 'trommer' : ORGEL ? 'orgel' : 'piano';
   try { var saved = localStorage.getItem(LAGRE); if (INSTR[saved]) current = saved; } catch(e){}
 
   /* ---------- lydkontekst ---------- */
@@ -87,6 +110,7 @@
   /* ---------- lasting av lydfiler (bare de tonene som trengs, én gang) ---------- */
   var cache = {};
   function nearest(L, p){
+    if ((L.min != null && p < L.min - 0.5) || (L.max != null && p > L.max + 0.5)) return null;   // utenfor lagets område
     var best = L.notes[0];
     L.notes.forEach(function(s){ if (Math.abs(s - p) < Math.abs(best - p)) best = s; });
     return Math.abs(best - p) <= L.range ? best : null;   // null = laget spiller ikke denne tonen
@@ -195,6 +219,19 @@
     track(osc, g);
   }
 
+  /* Ren sinustone: myk start, jevn styrke, og myk slutt (ingen klikk). */
+  function sinusVoice(m, t0, dur, level){
+    var osc = ctx.createOscillator(), g = ctx.createGain(), inst = INSTR.sinus;
+    osc.type = 'sine'; osc.frequency.value = 440 * Math.pow(2, (m - 69) / 12);
+    osc.connect(g); g.connect(out);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.linearRampToValueAtTime(level, t0 + inst.attack);
+    g.gain.setValueAtTime(level, t0 + dur);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur + inst.release);
+    osc.start(t0); osc.stop(t0 + dur + inst.release + 0.05);
+    track(osc, g);
+  }
+
   /* Opp, ned, og til slutt alle tonene samtidig – som før.
      ganger = hvor mange ganger det hele spilles (vanligvis 1, 3 i prøvemodus i gehørquizen). */
   var MELLOM = 1.2;   // sekunder mellom hver gang
@@ -240,18 +277,28 @@
   var stegTimere = [], aktivVedSteg = null;
   function planSekvens(sekvens, voiceFn, vedSteg, my){
     var t = ctx.currentTime + 0.05;
+    /* En tone eller akkord klinger til neste steg med toner begynner (tomme steg er pauser der den fortsatt klinger),
+       med samme lille overlapp som før (S_TONE - S_STEG). Det siste steget med toner klinger minst S_SISTE.
+       Slik holdes akkordene i en akkordrekke like lenge som de varer, i stedet for å bli korte. */
+    var sisteMedToner = -1;
+    sekvens.forEach(function(steg, i){ if (steg.length) sisteMedToner = i; });
     sekvens.forEach(function(steg, i){
-      var siste = i === sekvens.length - 1;
-      steg.forEach(function(m){ voiceFn(m, t + i * S_STEG, siste ? S_SISTE : S_TONE, steg.length > 1, steg.length); });
+      if (!steg.length) return;
+      var neste = i + 1;
+      while (neste < sekvens.length && !sekvens[neste].length) neste++;
+      var lengde = i === sisteMedToner ? Math.max(S_SISTE, (sekvens.length - i) * S_STEG + (S_TONE - S_STEG))
+                                       : Math.max(S_TONE, (neste - i) * S_STEG + (S_TONE - S_STEG));
+      steg.forEach(function(m){ voiceFn(m, t + i * S_STEG, lengde, steg.length > 1, steg.length); });
     });
+    var slutt = sisteMedToner < 0 ? 0 : sisteMedToner * S_STEG + Math.max(S_SISTE, (sekvens.length - sisteMedToner) * S_STEG + (S_TONE - S_STEG));
     if (vedSteg) {
       aktivVedSteg = vedSteg;
       sekvens.forEach(function(steg, i){
         planlegg(t + i * S_STEG, function(){ if (my === token) vedSteg(i); });
       });
-      planlegg(t + (sekvens.length - 1) * S_STEG + S_SISTE, function(){ if (my === token) { aktivVedSteg = null; vedSteg(-1); } });
+      planlegg(t + slutt, function(){ if (my === token) { aktivVedSteg = null; vedSteg(-1); } });
     }
-    return (t + (sekvens.length - 1) * S_STEG + S_SISTE + 0.7) - ctx.currentTime;
+    return (t + slutt + 0.7) - ctx.currentTime;
   }
 
   function play(notes, btn, ganger, kadens, samlet, sekvens, vedSteg, vedToner){
@@ -270,12 +317,17 @@
     activeBtn = btn; btn.classList.add('playing', 'loading');
     var urls = {};
     var alle = notes.concat.apply(notes, (kadens || []).concat(sekvens || []));
-    /* Gitar og strykere har ikke hele pianoets område (A0 til C8). Toner utenfor spilles på piano,
+    /* Strykerne har ikke hele pianoets område (A0 til C8). Toner utenfor spilles på piano,
        og siden får beskjed (felles.js viser en kort melding). */
-    var OMRADE = { gitar: [40, 88], strykere: [36, 100] }, omr = OMRADE[current];
+    var OMRADE = { strykere: [23, 96], orgel: [24, 96] }, omr = OMRADE[current];
     if (omr && alle.some(function(m){ return m < omr[0] || m > omr[1]; })) {
       inst = INSTR.piano;
       try { window.dispatchEvent(new CustomEvent('vbm-utenfor', { detail: { instrument: INSTR[current].label } })); } catch(e){}
+    }
+    if (inst.sinus) {
+      btn.classList.remove('loading');
+      finish(plan(function(m, t0, dur, chord, n){ sinusVoice(m, t0, dur, 0.32 * (chord ? Math.min(1, 2.2 / n) : 1)); }), my);
+      return;
     }
     inst.layers.forEach(function(L){
       alle.forEach(function(m){ var s = nearest(L, m + L.shift); if (s !== null) urls[urlFor(L, s)] = true; });
@@ -363,7 +415,7 @@
   };
   /* VBM_LYD_RYTME(hendelser, knapp, vedSteg): spiller en rytme.
      hendelser: [{ t: sekunder fra start, lyd: 'skarp' | 'bass' | 'hihat' | 'klikk', v: styrke 0–1,
-                   m: tonehøyde for piano, gitar og strykere, d: lengde i sekunder, i: nummer for fargelegging }].
+                   m: tonehøyde for piano, strykere og sinustoner, d: lengde i sekunder, i: nummer for fargelegging }].
      Med trommer spilles lyd-feltet. Med de andre instrumentene spilles tonen m, mens 'klikk'
      (metronomen) alltid er treblokken. vedSteg(i) kalles når en hendelse med i klinger, og vedSteg(-1) til slutt. */
   function spillRytme(hendelser, btn, vedSteg){
@@ -393,6 +445,7 @@
           slutt = Math.max(slutt, h.t + src.buffer.duration);
         } else {
           var d = Math.max(0.12, (h.d || 0.4) * 0.92);
+          if (inst.sinus) { sinusVoice(h.m || 72, t0, d, 0.32 * v); slutt = Math.max(slutt, h.t + d + inst.release); return; }
           inst.layers.forEach(function(L){
             var p = (h.m || 72) + L.shift, s3 = nearest(L, p);
             if (s3 === null) return;
