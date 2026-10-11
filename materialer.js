@@ -32,7 +32,7 @@ window.VBM = {
 
   seksjoner: [
     { id: "jukseboker", overskrift: "Juksebøker", tittel: "Bøker til", uthevet: "oppslag",
-      ingress: "Oppslagsverk med ekte noter i C. Trykk på spill-knappen for å høre, på piano, strykere eller sinustoner." },
+      ingress: "Oppslagsverk med ekte noter i C. Trykk på spill-knappen for å høre, på piano, orgel, strykere eller sinustoner." },
     { id: "oretrening", overskrift: "Øretrening", tittel: "Hør og", uthevet: "lytt",
       ingress: "Kjente sanger og verk som viser lyden av intervaller og akkorder, og gehørlekser i små forskjeller i tonehøyde." },
     { id: "teori", overskrift: "Musikkteori", tittel: "Lær og", uthevet: "forstå",
@@ -42,7 +42,9 @@ window.VBM = {
     { id: "gehorquiz", overskrift: "Gehørquiz", tittel: "Hør og", uthevet: "svar",
       ingress: "Hør intervaller, akkorder, skalaer og kadenser, og finn navnet. Med øvemodus i eget tempo og prøvemodus slik som på opptaksprøver." },
     { id: "teoriquiz", overskrift: "Teoriquiz", tittel: "Les og", uthevet: "svar",
-      ingress: "Les fortegn og noter, og finn svaret. Med øvemodus i eget tempo og prøvemodus med 20 oppgaver." }
+      ingress: "Les fortegn og noter, og finn svaret. Med øvemodus i eget tempo og prøvemodus med 20 oppgaver." },
+    { id: "fremgang", overskrift: "Fremgang", tittel: "Følg med på", uthevet: "fremgangen",
+      ingress: "Alt du svarer i quizene, lagres i nettleseren din, så du kan se hvordan det går over tid." }
   ],
 
   materialer: [
@@ -111,6 +113,17 @@ window.VBM = {
       lagtTil: "2026-10-06",
       niva: "grunnleggende",
       relatert: ["rytme.html", "intervaller-teori.html", "quiz-notelesing.html"]
+    },
+    {
+      seksjon: "teori",
+      merke: "Notasjon",
+      tittel: "Notasjonstegn og form",
+      beskrivelse: "Reprisetegn, volta, D.C. og D.S. al Coda og Fine, dynamikk, tempobetegnelser og artikulasjon, med et veikart du kan høre.",
+      fil: "notasjonstegn.html",
+      svartHvitt: false,
+      lagtTil: "2026-10-10",
+      niva: "grunnleggende",
+      relatert: ["notelesing.html", "rytme.html", "quiz-notasjonstegn.html"]
     },
     {
       seksjon: "teori",
@@ -356,6 +369,17 @@ window.VBM = {
     },
     {
       seksjon: "teoriquiz",
+      merke: "Notasjon",
+      tittel: "Teoriquiz: notasjonstegn og form",
+      beskrivelse: "Kjenn igjen tegnene, finn betydningen av tempo- og dynamikkbetegnelser, og les veikart med repriser og hopp.",
+      fil: "quiz-notasjonstegn.html",
+      svartHvitt: false,
+      lagtTil: "2026-10-10",
+      niva: "grunnleggende",
+      relatert: ["notasjonstegn.html", "quiz-notelesing.html", "quiz-rytme.html"]
+    },
+    {
+      seksjon: "teoriquiz",
       merke: "Rytme",
       tittel: "Teoriquiz: rytme",
       beskrivelse: "Les en rytme og tell: finn taktarten eller noten som mangler.",
@@ -441,6 +465,16 @@ window.VBM = {
       lagtTil: "2026-10-09",
       niva: "ekspert",
       relatert: ["stemming.html", "gehorlekser-mikrointervaller.html"]
+    },
+    {
+      seksjon: "fremgang",
+      merke: "Fremgang",
+      tittel: "Min fremgang",
+      beskrivelse: "Riktige svar, beste rekker og prøveresultater fra alle quizene, og hvor mange dager på rad du har øvd.",
+      fil: "fremgang.html",
+      svartHvitt: false,
+      lagtTil: "2026-10-10",
+      relatert: []
     }
   ]
 

@@ -315,6 +315,38 @@ window.VBM_SKALAER = (function(){
     return '<svg viewBox="0 ' + topp + ' ' + bredde + ' ' + (bunn - topp) + '" role="img" aria-label="' + (etikett || '') + '">' + s + '</svg>';
   }
 
+  /* Storsats med enkelttoner etter hverandre (for eksempel overtonerekken): tonene under c¹ står i F-nøkkel nederst,
+     resten i G-nøkkel øverst. Samme mål og stil som storSats, uten taktstreker mellom tonene. */
+  function storStav(toner, etikett){
+    sikreDefs();
+    var X0 = 92, SP = 58, bredde = X0 + (toner.length - 1) * SP + 60, s = '', i;
+    var info = toner.map(function(n, k){ var d = n.oktav * 7 + n.b, disk = d >= 28; return { n: n, k: k, disk: disk, y: disk ? yAv(n.b, n.oktav) : yBass(n.b, n.oktav) }; });
+    var yT = info.filter(function(p){ return p.disk; }).map(function(p){ return p.y; }).concat([88]);
+    var yB = info.filter(function(p){ return !p.disk; }).map(function(p){ return p.y; }).concat([BASS_BUNN]);
+    var topp = Math.min(62, Math.min.apply(null, yT) - 22), bunn = Math.max(BASS_BUNN, Math.max.apply(null, yB)) + 24;
+    for (i = 0; i < 5; i++) {
+      s += '<line x1="6" y1="' + (88 + i * 13) + '" x2="' + (bredde - 6) + '" y2="' + (88 + i * 13) + '" stroke="currentColor" stroke-width="1.3"/>';
+      s += '<line x1="6" y1="' + (BASS_TOPP + i * 13) + '" x2="' + (bredde - 6) + '" y2="' + (BASS_TOPP + i * 13) + '" stroke="currentColor" stroke-width="1.3"/>';
+    }
+    s += '<line x1="6" y1="88" x2="6" y2="' + BASS_BUNN + '" stroke="currentColor" stroke-width="1.6"/>';
+    s += '<use href="#gclef" transform="translate(10 139.04) scale(0.0767 -0.0767)" fill="currentColor"/>';
+    s += '<use href="#fclef" transform="translate(4 16)" fill="currentColor"/>';
+    var takt = {};
+    info.forEach(function(p){
+      var X = X0 + p.k * SP, l, under = p.disk ? 153 : BASS_BUNN + 13, over = p.disk ? 75 : BASS_TOPP - 13;
+      for (l = under; l <= p.y + 0.1; l += 13) s += '<line x1="' + (X - 14) + '" y1="' + l + '" x2="' + (X + 14) + '" y2="' + l + '" stroke="currentColor" stroke-width="1.3"/>';
+      for (l = over; l >= p.y - 0.1; l -= 13) s += '<line x1="' + (X - 14) + '" y1="' + l + '" x2="' + (X + 14) + '" y2="' + l + '" stroke="currentColor" stroke-width="1.3"/>';
+      var nokkel = p.n.b + '-' + p.n.oktav, forrige = nokkel in takt ? takt[nokkel] : 0;
+      if (p.n.f !== forrige) {
+        var id = { '-2': 'acc-dflat', '-1': 'acc-flat', '0': 'acc-natural', '1': 'acc-sharp', '2': 'acc-dsharp' }[p.n.f];
+        s += '<use href="#' + id + '" transform="translate(' + (X - 22) + ' ' + p.y + ')" fill="currentColor"/>';
+        takt[nokkel] = p.n.f;
+      }
+      s += '<ellipse data-i="' + p.k + '"' + fargeData(p.n) + ' cx="' + X + '" cy="' + p.y + '" rx="7.2" ry="5.6" fill="currentColor" transform="rotate(-18 ' + X + ' ' + p.y + ')"/>';
+    });
+    return '<svg viewBox="0 ' + topp + ' ' + bredde + ' ' + (bunn - topp) + '" role="img" aria-label="' + (etikett || '') + '">' + s + '</svg>';
+  }
+
   /* ---------- Tonefarger ----------
      Newtons regnbue, slik juksebøkene bruker den: C rød, D oransje, E gul, F grønn, G blå, A indigo, H fiolett.
      ♯ gir en lysere og ♭ en mørkere utgave. Notehodene får fargen og navnet som data-f og data-navn,
@@ -414,7 +446,7 @@ window.VBM_SKALAER = (function(){
   }
 
   var DUR_SKALA = { trinn: DUR };
-  return { GRUPPER: GRUPPER, ALLE: ALLE, GRUNN: GRUNN, DUR: DUR, toner: toner, modusIDur: modusIDur, rotFor: rotFor, fargeFor: fargeFor, tegnNotebilder: tegnNotebilder, REGNBUE: REGNBUE, akkordrekke: akkordrekke, storSats: storSats, enStav: enStav, NOKLER: NOKLER, yNokkel: yNokkel, linjeomrade: linjeområde, oktavInfo: oktavInfo, OKTAVNAVN: OKTAVNAVN,
+  return { GRUPPER: GRUPPER, ALLE: ALLE, GRUNN: GRUNN, DUR: DUR, toner: toner, modusIDur: modusIDur, rotFor: rotFor, fargeFor: fargeFor, tegnNotebilder: tegnNotebilder, REGNBUE: REGNBUE, akkordrekke: akkordrekke, storSats: storSats, storStav: storStav, enStav: enStav, NOKLER: NOKLER, yNokkel: yNokkel, linjeomrade: linjeområde, oktavInfo: oktavInfo, OKTAVNAVN: OKTAVNAVN,
            durRot: function(nr){ return rotFor(nr, DUR_SKALA); },
            fortegnFor: fortegnFor, noter: noter, lyd: lyd, midi: midi, T: T };
 })();

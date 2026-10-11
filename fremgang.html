@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-FREM
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="fremgang.html" data-stil="ovelse" data-vbm="K7Q4-FREM">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Min fremgang</title>
+<script src="felles.js?v=47"></script>
+<link rel="stylesheet" href="stil.css?v=47">
+<meta name="description" content="Se hvordan det går i quizene: riktige svar, beste rekker, prøveresultater og hvor mange dager på rad du har øvd.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Fremgang</div>
+  <h1>Min <em>fremgang</em></h1>
+  <p class="lede">Her ser du alt du har svart i quizene: hvor mange som var riktige, din beste rekke og dine beste prøver. Alt lagres bare i denne nettleseren, på denne enheten, og sendes ikke noe sted.</p>
+</header>
+<main>
+  <section class="card bred" id="oversikt">
+    <div class="card-head">
+      <div class="step-label">Oversikt</div>
+      <h2>Totalt</h2>
+    </div>
+    <ul class="fremgang" id="total-liste"></ul>
+  </section>
+  <section class="card bred" id="quizer">
+    <div class="card-head">
+      <div class="step-label">Quizer</div>
+      <h2>Hver quiz</h2>
+    </div>
+    <p class="task" id="ingen" hidden>Du har ikke svart på noen quiz ennå. Velg en quiz på startsiden, så dukker resultatene opp her.</p>
+    <ul class="fremgang" id="quiz-liste"></ul>
+  </section>
+  <section class="card bred" id="nullstill-kort">
+    <div class="card-head">
+      <div class="step-label">Nullstill</div>
+      <h2>Begynn på nytt</h2>
+    </div>
+    <p class="task">Vil du begynne på nytt, kan du slette all lagret fremgang. Det kan ikke angres.</p>
+    <div class="row"><button type="button" class="btn" id="nullstill">Slett all fremgang</button></div>
+  </section>
+</main>
+<footer data-lyd="ingen"></footer>
+<script>/* VBM K7Q4-FREM */
+(function(){
+  'use strict';
+  var T = window.VBM_T || function(s, v){ return String(s).replace(/\{(\w+)\}/g, function(m, k){ return v && v[k] != null ? v[k] : m; }); };
+  function $(id){ return document.getElementById(id); }
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function dato(x){ var d = x.split('-'); return +d[2] + '.' + +d[1] + '.' + d[0]; }
+  function tegn(){
+    var F = window.VBM_FREMGANG, d = F ? F.les() : {}, sider = d.sider || {}, M = (window.VBM && window.VBM.materialer) || [];
+    var r = 0, t = 0, navn = function(fil){ var m = null; M.forEach(function(x){ if (!m && x.fil.split('?')[0] === fil) m = x; }); return m ? (window.VBM_MENY_T ? window.VBM_MENY_T(m.tittel) : T(m.tittel)) : fil; };
+    var rader = Object.keys(sider).map(function(fil){ var p = sider[fil]; r += p.r; t += p.t; return { fil: fil, p: p }; });
+    rader.sort(function(a, b){ return (b.p.sist || '').localeCompare(a.p.sist || ''); });
+    $('total-liste').innerHTML = '<li><span>' + T('Svar totalt') + '</span><span class="tall">' + T('{r} av {t} riktige', { r: r, t: t }) + (t ? ' (' + Math.round(100 * r / t) + ' %)' : '') + '</span></li>'
+      + '<li><span>' + T('Dager du har øvd') + '</span><span class="tall">' + (d.dager || []).length + '</span></li>'
+      + '<li><span>' + T('Dager på rad') + '</span><span class="tall">' + (F ? F.dagerPaRad(d) : 0) + '</span></li>';
+    $('ingen').hidden = rader.length > 0;
+    $('quiz-liste').innerHTML = rader.map(function(x){
+      var p = x.p;
+      return '<li><span><a href="' + esc(x.fil) + '">' + esc(navn(x.fil)) + '</a><br><span class="fremgang-detalj">'
+        + T('Beste rekke: {b}. Sist øvd: {d}.', { b: p.best, d: p.sist ? dato(p.sist) : '' }) + (p.prover ? ' ' + T('Prøver: {n}, beste {p} %.', { n: p.prover, p: p.beste }) : '') + '</span></span>'
+        + '<span class="tall">' + T('{r} av {t} riktige', { r: p.r, t: p.t }) + (p.t ? ' (' + Math.round(100 * p.r / p.t) + ' %)' : '') + '</span></li>';
+    }).join('');
+  }
+  $('nullstill').addEventListener('click', function(){
+    if (!window.confirm(T('Vil du slette all lagret fremgang? Det kan ikke angres.'))) return;
+    if (window.VBM_FREMGANG) window.VBM_FREMGANG.nullstill();
+    tegn();
+  });
+  var sk = document.createElement('script'); sk.src = 'materialer.js' + (window.VBM_VERSJON ? '?v=' + window.VBM_VERSJON : ''); sk.onload = tegn; sk.onerror = tegn;
+  if (window.VBM && window.VBM.materialer) tegn(); else document.head.appendChild(sk);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--
+  Verdens Beste Musikkskole
+  Laget av Verdens Beste Musikklærer. Første gang publisert 2026.
+  © 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.
+  Verk-ID: VBM-K7Q4-NOTT
+  Signatur: bf337bfd3ba9686ea01e757a1996aa9c1cffd86425fb5f5115cfe4cf5e7d08e9
+-->
+<html lang="no" data-side="notasjonstegn.html" data-stil="ovelse" data-vbm="K7Q4-NOTT">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Verdens Beste Musikklærer">
+<meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
+<title>Notasjonstegn og form</title>
+<script src="felles.js?v=47"></script>
+<link rel="stylesheet" href="stil.css?v=47">
+<meta name="description" content="Notasjonstegn og form: reprisetegn, volta, D.C. og D.S. al Coda og Fine, dynamikk, tempobetegnelser og artikulasjon, med ekte notasjon og et veikart du kan høre.">
+</head>
+<body>
+<nav class="vbm-back" aria-label="Nettsted"><a href="index.html">&larr; Alle ressurser</a></nav>
+<header class="hero">
+  <div class="eyebrow">Musikkteori</div>
+  <h1>Notasjonstegn og <em>form</em></h1>
+  <p class="lede">Noter er mer enn tonehøyde og rytme. Tegn forteller hvor du skal gjenta og hoppe, hvor sterkt og hvor raskt du skal spille, og hvordan hver tone skal klinge. Slike tegn står også på opptaksprøver, for eksempel som formnotasjon med D.C. og coda.</p>
+</header>
+
+<main>
+  <section class="card bred" id="form">
+    <div class="card-head">
+      <div class="step-label">1</div>
+      <h2>Gjentakelser og hopp</h2>
+    </div>
+    <ul class="regler">
+      <li><strong>Reprisetegn:</strong> spill det som står mellom tegnene to ganger. Står det bare et sluttegn, gjentar du fra begynnelsen.</li>
+      <li><strong>Volta (1. og 2. gang):</strong> første gang spiller du takten under «1.». Andre gang hopper du over den og spiller «2.».</li>
+      <li><strong>D.C. al Fine</strong> (da capo, fra hodet): begynn på nytt og stopp ved «Fine».</li>
+      <li><strong>D.S. al Coda</strong> (dal segno, fra tegnet): gå tilbake til segno-tegnet, spill til «To Coda», og hopp til codaen.</li>
+    </ul>
+    <p class="task">Velg et eksempel og trykk på spill. Notene lyser opp i den rekkefølgen de spilles.</p>
+    <div class="row brikker" id="vk-valg" role="group" aria-label="Eksempel"></div>
+    <div class="stav-blokk">
+      <p class="label" id="vk-merke"></p>
+      <div class="row"><button type="button" class="btn" id="vk-spill">&#9658;&#xFE0E; <span>spill</span></button></div>
+      <div class="noter" id="vk-noter"></div>
+    </div>
+    <p class="task" id="vk-rekke" aria-live="polite"></p>
+    <ul class="tegn-galleri" id="galleri-form" translate="no"></ul>
+  </section>
+
+  <section class="card bred" id="dynamikk">
+    <div class="card-head">
+      <div class="step-label">2</div>
+      <h2>Dynamikk: hvor sterkt</h2>
+    </div>
+    <p class="task">Dynamikken skrives med forkortelser for italienske ord, fra pianissimo (svært svakt) til fortissimo (svært sterkt). Kilene viser gradvis sterkere eller svakere. Dynamikken er relativ: et forte på en blokkfløyte er svakere enn et forte på en trompet.</p>
+    <ul class="tegn-galleri" id="galleri-dyn" translate="no"></ul>
+  </section>
+
+  <section class="card bred" id="tempo">
+    <div class="card-head">
+      <div class="step-label">3</div>
+      <h2>Tempo og foredrag</h2>
+    </div>
+    <p class="task">Tempobetegnelsene er også italienske. Tallene er omtrentlige slag i minuttet, og ulike kilder oppgir ulike verdier. Mange noter har i tillegg et metronomtall, for eksempel ♩ = 96, som er mer nøyaktig.</p>
+    <div class="tabell-ramme"><table class="tempo-tabell"><thead><tr><th scope="col">Betegnelse</th><th scope="col">Betydning</th><th scope="col">Ca. slag i minuttet</th></tr></thead><tbody id="tempo-tabell" translate="no"></tbody></table></div>
+  </section>
+
+  <section class="card bred" id="artikulasjon">
+    <div class="card-head">
+      <div class="step-label">4</div>
+      <h2>Artikulasjon: hvordan tonen klinger</h2>
+    </div>
+    <p class="task">Artikulasjonstegnene står ved noten, på motsatt side av halsen. De forteller om tonen skal være kort, lang, bundet eller med aksent.</p>
+    <ul class="tegn-galleri" id="galleri-art" translate="no"></ul>
+  </section>
+
+  <section class="card ulike-kort" id="ulike-navn">
+    <div class="card-head">
+      <div class="step-label">Merk</div>
+      <h2>Ulike navn og systemer</h2>
+    </div>
+    <p class="task">Musikkteori er ikke helt standardisert. Her er stedene der bøker, land og opptaksprøven bruker ulike navn eller systemer for det du har lært på denne siden.</p>
+    <ul class="ulike-liste">
+      <li><strong>Ikke alltid italiensk.</strong> Italiensk er standarden, men mange komponister skrev på sitt eget språk: tysk hos Schumann og Mahler (Langsam, Lebhaft), fransk hos Debussy (Modéré, Cédez), og engelsk i pop- og jazznoter (Slowly, Medium swing).</li>
+      <li><strong>Tempo har ingen fast fart.</strong> Allegro, Andante og de andre betegnelsene betyr ikke et bestemt metronomtall. Lærebøker og metronomer oppgir ulike områder, og betydningen har endret seg gjennom historien.</li>
+      <li><strong>Gjentakelser etter D.C. og D.S.</strong> Vanlig regel er at reprisetegn ikke spilles på nytt etter et D.C. eller D.S., med mindre det står «con repetizione». Ikke alle noter og band følger regelen, så avtal det hvis du er usikker.</li>
+      <li><strong>Navn på volta og fermat.</strong> Volta heter «1st and 2nd ending» på amerikansk og «first and second time bar» på britisk engelsk. Fermaten kalles også korona, slik som på polsk og italiensk.</li>
+      <li><strong>Aksent og marcato i jazz.</strong> I jazz kalles marcato ofte «hat» (hatt) etter formen, og aksenten «long accent».</li>
+    </ul>
+  </section>
+
+  <section class="card bred ovelse-kort">
+    <div class="card-head">
+      <div class="step-label">Øv</div>
+      <h2>Test deg selv</h2>
+    </div>
+    <p class="task">I teoriquizen kjenner du igjen tegnene, finner betydningen av tempo- og dynamikkbetegnelser, og leser veikart med repriser, volta, D.C. og D.S. Med øvemodus og en prøve med 20 oppgaver.</p>
+    <div class="row">
+      <a class="btn" href="quiz-notasjonstegn.html">Gå til quizen</a>
+      <a class="btn" href="rytme.html">Rytme og taktarter</a>
+    </div>
+  </section>
+</main>
+
+<footer data-lyd="alle"></footer>
+
+<script src="tonearter.js?v=47"></script>
+<script src="skalaer.js?v=47"></script>
+<script src="notasjon.js?v=47"></script>
+<script>/* VBM K7Q4-NOTT */
+(function(){
+  'use strict';
+  var N = window.VBM_NOTASJON, T = window.VBM_T || function(s, v){ return String(s).replace(/\{(\w+)\}/g, function(m, k){ return v && v[k] != null ? v[k] : m; }); };
+  function $(id){ return document.getElementById(id); }
+  function stopp(){ if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); }
+  function kort(svg, navn, betyr){ return '<li class="tegn-kort"><div class="tegn-bilde">' + svg + '</div><div class="tegn-tekst"><strong>' + navn + '</strong><span>' + betyr + '</span></div></li>'; }
+  function sym(id){ return N.SYMBOLER.filter(function(s){ return s.id === id; })[0]; }
+  /* =================== 1. Veikart =================== */
+  var vkNr = 0, vk = null;
+  N.VEIKART.forEach(function(v, i){
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = N.tr(v.navn);
+    b.addEventListener('click', function(){ stopp(); vkNr = i; tegnVk(); });
+    $('vk-valg').appendChild(b);
+  });
+  function tegnVk(){
+    [].forEach.call($('vk-valg').children, function(b, i){ b.setAttribute('aria-pressed', i === vkNr ? 'true' : 'false'); });
+    var v = N.VEIKART[vkNr], merke = N.tr(v.navn);
+    vk = N.veikart(v, merke);
+    $('vk-merke').textContent = merke;
+    $('vk-noter').innerHTML = vk.svg;
+    $('vk-rekke').textContent = T('Rekkefølge: takt {liste}', { liste: v.rekke.join(' ') });
+  }
+  $('vk-spill').addEventListener('click', function(){
+    if (!window.VBM_LYD_SEKVENS) return;
+    var v = N.VEIKART[vkNr], svg = $('vk-noter').querySelector('svg'), steg = [];
+    vk.lyd.forEach(function(m){ steg.push([m]); steg.push([]); });
+    window.VBM_LYD_SEKVENS(steg, this, function(s){
+      if (!svg) return;
+      [].forEach.call(svg.querySelectorAll('.spilles'), function(q){ q.classList.remove('spilles'); });
+      if (s >= 0) [].forEach.call(svg.querySelectorAll('[data-i="' + (v.rekke[Math.floor(s / 2)] - 1) + '"]'), function(q){ q.classList.add('spilles'); });
+    });
+  });
+  $('galleri-form').innerHTML = ['reprise', 'volta', 'segno', 'coda'].map(function(id){ var s = sym(id); return kort(N.TEGN[id](N.tr(s.navn)), N.tr(s.navn), N.tr(s.betyr)); }).join('');
+  /* =================== 2. Dynamikk =================== */
+  $('galleri-dyn').innerHTML = N.DYNAMIKK.map(function(d){ return kort(N.TEGN.dyn(d.navn, d.t), d.navn, N.tr(d.betyr)); }).join('')
+    + ['cresc', 'dim'].map(function(id){ var s = sym(id); return kort(N.TEGN[id](N.tr(s.navn)), N.tr(s.navn), N.tr(s.betyr)); }).join('');
+  /* =================== 3. Tempo =================== */
+  $('tempo-tabell').innerHTML = N.TERMER.map(function(t){ return '<tr><td><em>' + t.term + '</em></td><td>' + N.tr(t.betyr) + '</td><td>' + (t.bpm || '') + '</td></tr>'; }).join('');
+  /* =================== 4. Artikulasjon =================== */
+  $('galleri-art').innerHTML = ['staccato', 'tenuto', 'aksent', 'marcato', 'legato', 'fermat'].map(function(id){ var s = sym(id); return kort(N.TEGN[id](N.tr(s.navn)), N.tr(s.navn), N.tr(s.betyr)); }).join('');
+  tegnVk();
+})();
+</script>
+<script src="lyd.js?v=47"></script>
+</body>
+</html>

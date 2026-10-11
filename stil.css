@@ -1367,6 +1367,9 @@ html:where([data-side="index.html"]) {
 :root:where([data-side="quiz-akkordforlop.html"]) { --vbm-verk: "K7Q4-QFOR"; }
 :root:where([data-side="melodilesing.html"]) { --vbm-verk: "K7Q4-MELT"; }
 :root:where([data-side="quiz-melodi.html"]) { --vbm-verk: "K7Q4-QMEL"; }
+:root:where([data-side="notasjonstegn.html"]) { --vbm-verk: "K7Q4-NOTT"; }
+:root:where([data-side="quiz-notasjonstegn.html"]) { --vbm-verk: "K7Q4-2W68"; }
+:root:where([data-side="fremgang.html"]) { --vbm-verk: "K7Q4-FREM"; }
 :where(html[data-side="quiz-rytme.html"]) .gj-noter { margin-top: 6px; color: var(--text-on-paper); }
 :where(html[data-side="quiz-rytme.html"]) .gjennomgang li { flex-wrap: wrap; }
 :root:where([data-stil="ovelse"]) {
@@ -2044,6 +2047,12 @@ html.sh .viktig strong { color: var(--ink) !important; }
 }
 
 
+/* ---------- Lagret fremgang ---------- */
+.vbm-lagret { font-size: 13.5px; margin: 10px 0 0; padding-top: 10px; border-top: 1px solid var(--rule); }
+.fremgang-detalj { font-size: 13px; color: var(--text-muted); }
+:where(html[data-side="fremgang.html"]) #quizer, :where(html[data-side="fremgang.html"]) #oversikt, :where(html[data-side="fremgang.html"]) #nullstill-kort { grid-column: 1 / -1; }
+@media (forced-colors: active) { .fremgang-detalj { color: CanvasText; } .vbm-lagret { border-color: CanvasText; } }
+
 /* ---------- Nivåmerker og «Se også» (alle sider) ---------- */
 .niva-merke, .vbm-niva { display: inline-block; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10.5px; font-weight: 700;
   letter-spacing: .05em; text-transform: uppercase; border-radius: 999px; padding: 3px 8px; margin: 0; white-space: nowrap; border: 1.5px solid currentColor; }
@@ -2058,31 +2067,28 @@ html.sh .viktig strong { color: var(--ink) !important; }
 .vbm-niva-linje { margin: 4px 0 12px; }
 .hero .vbm-niva { color: inherit; opacity: .9; }
 .vbm-meny-niva { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; opacity: .75; margin-left: 4px; }
-.vbm-relatert { box-sizing: border-box; margin: 28px 0 8px; padding: 20px 22px; border-radius: 14px; background: var(--paper, #F2EEE4); color: var(--text-on-paper, #22252A); grid-column: 1 / -1; }
-.vbm-relatert-tittel { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px; }
-.vbm-relatert ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
-/* Lenkene ser ut som knappene på resten av siden, så de er lette å se i alle temaer */
-.vbm-relatert a.vbm-rel-lenke { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 9px 15px; border: 1.5px solid currentColor; border-radius: 999px;
-  color: inherit !important; text-decoration: none !important; font-weight: 600; font-size: 15px; line-height: 1.3; background: transparent; box-shadow: none; }
-.vbm-relatert a.vbm-rel-lenke span { color: inherit !important; text-decoration: none !important; }
-.vbm-relatert a.vbm-rel-lenke { border-radius: 999px !important; }
-.vbm-relatert a.vbm-kurs-lenke { border-radius: 14px !important; }
-.vbm-relatert a.vbm-rel-lenke:hover, .vbm-relatert a.vbm-rel-lenke:focus-visible { background: var(--text-on-paper, #22252A); color: var(--paper, #F2EEE4) !important; }
-.vbm-rel-lenke:hover .vbm-niva, .vbm-rel-lenke:focus-visible .vbm-niva { color: inherit; }
-.vbm-relatert .vbm-niva { font-size: 9.5px; padding: 2px 6px; }
-.vbm-kurs { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin: 0 0 18px; padding: 0 0 16px; border-bottom: 1px solid currentColor; }
-.vbm-kurs-lenke { flex-direction: column; align-items: flex-start; gap: 2px; border-radius: 14px; max-width: 100%; }
-.vbm-kurs-neste { margin-left: auto; align-items: flex-end; text-align: right; }
-.vbm-kurs-retning { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; }
-:where(html[data-stil="ovelse"]) main > .vbm-relatert { margin: 12px 0 0; }
-@media (forced-colors: active) {
-  .niva-merke, .vbm-niva { color: CanvasText; border-color: CanvasText; forced-color-adjust: none; }
-  .vbm-relatert { border: 1px solid CanvasText; }
-  .vbm-kurs { border-color: CanvasText; }
-  .vbm-relatert a.vbm-rel-lenke { border-color: LinkText; color: LinkText !important; }
-  .vbm-relatert a.vbm-rel-lenke:hover, .vbm-relatert a.vbm-rel-lenke:focus-visible { background: Highlight; color: HighlightText !important; forced-color-adjust: none; }
-}
-
+.vbm-relatert { box-sizing: border-box; max-width: 980px; margin: 8px auto 0; padding: 18px 28px 6px; color: inherit; background: transparent; }
+.vbm-relatert-tittel { font: 700 11px/1.3 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; opacity: .8; margin: 0 0 10px; }
+.vbm-relatert ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+/* Lenkene nederst ser ut som knappene i linjen øverst («Alle ressurser», Meny og Innstillinger) */
+.vbm-relatert a.vbm-rel-lenke { display: inline-flex; align-items: center; gap: 8px;
+  font: 600 14px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  /* samme mørke flate og lyse tekst som linjen øverst, så knappene ser helt like ut i lys og mørk visning */
+  color: #F6F1E7 !important; text-decoration: none !important; background: #12151A !important; cursor: pointer;
+  border: 1.5px solid color-mix(in srgb, #F6F1E7 45%, transparent); border-radius: 999px; padding: 8px 14px; }
+.vbm-relatert a.vbm-rel-lenke:hover, .vbm-relatert a.vbm-rel-lenke:focus-visible { border-color: var(--lenke-mork); outline: none; }
+.vbm-kurs-tittel { margin-top: 22px; }
+.vbm-kurs { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+.vbm-relatert a.vbm-kurs-neste { margin-left: auto; }
+@media (max-width: 520px) { .vbm-relatert { padding: 16px 16px 4px; } }
+@media (forced-colors: active) { .vbm-relatert a.vbm-rel-lenke { background: ButtonFace !important; color: ButtonText !important; border-color: ButtonText; } .vbm-relatert a.vbm-rel-lenke:hover, .vbm-relatert a.vbm-rel-lenke:focus-visible { border-color: Highlight; } .btn.vbm-spillknapp, .btn.vbm-spillknapp:hover { background: ButtonFace !important; color: ButtonText !important; border-color: ButtonText !important; } .btn.vbm-spillknapp.playing { border-color: Highlight !important; box-shadow: none; } }
+/* Mindre luft mellom siste kort og «Se også» */
+main:has(+ .vbm-relatert) { padding-bottom: 16px !important; margin-bottom: 0 !important; }
+/* Spillknappene: svarte med hvit tekst og lys kant, som Meny-knappen. Kanten blir oransje når du peker på dem.
+   Mens lyden spiller, blir teksten oransje og kanten dobbel. */
+.btn.vbm-spillknapp { background: #16191E !important; color: #FFFFFF !important; border: 2px solid color-mix(in srgb, #FFFFFF 45%, transparent) !important; font-weight: 600; }
+.btn.vbm-spillknapp:hover, .btn.vbm-spillknapp:focus-visible { background: #262A31 !important; color: #FFFFFF !important; border-color: var(--lenke-mork) !important; }
+.btn.vbm-spillknapp.playing { color: var(--lenke-mork) !important; box-shadow: 0 0 0 2px var(--lenke-mork); }
 
 /* ---------- Kortet «Ulike navn og systemer» (alle leksjoner som har det) ---------- */
 :where([data-stil="ovelse"]) .ulike-kort { grid-column: 1 / -1; }
@@ -2095,35 +2101,35 @@ html.sh .viktig strong { color: var(--ink) !important; }
 
 
 /* ---------- Transponering, Stemming og temperatur og Intervaller (transponering.html, stemming.html, intervaller-teori.html) ---------- */
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) main { align-items: stretch; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .bred { grid-column: 1 / -1; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .brikker .btn { min-width: 52px; justify-content: center; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .answers { max-width: 360px; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .card > .label { margin: 14px 0 6px; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .stav-blokk { border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 12px; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .stav-blokk .row { margin: 6px 0 12px; min-height: 46px; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .stav-blokk .label { margin: 0; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .noter { color: var(--text-on-paper); margin: 6px 0 8px; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .noter svg { display: block; width: 100%; height: auto; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .noter .besifring { fill: currentColor; font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 17px; font-weight: 700; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .stav-blokk + .task { margin-top: 12px; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .viktig { margin: 4px 0 0; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .del-tittel { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 19px; margin: 22px 0 8px; padding-top: 14px; border-top: 1px solid var(--rule); }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .instrument-liste { margin: 0 0 6px; padding: 0 0 0 1.2em; font-size: 14.5px; line-height: 1.55; color: #3E3A32; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .instrument-liste li { margin: 0 0 8px; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .sanger { list-style: none; margin: 10px 0 0; padding: 0; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .sanger li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; border-top: 1px solid var(--rule); }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .song-title { font-weight: 600; font-size: 15px; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .song-meta { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--text-muted); }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .spotify-link { flex-shrink: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; border: 1.5px solid var(--rule); border-radius: 999px; padding: 4px 10px; text-decoration: none; color: inherit; }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .spotify-link:hover { border-color: var(--brass); }
-:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) a.btn { text-decoration: none; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) main { align-items: stretch; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .bred { grid-column: 1 / -1; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .brikker .btn { min-width: 52px; justify-content: center; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .answers { max-width: 360px; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .card > .label { margin: 14px 0 6px; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .stav-blokk { border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 12px; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .stav-blokk .row { margin: 6px 0 12px; min-height: 46px; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .stav-blokk .label { margin: 0; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .noter { color: var(--text-on-paper); margin: 6px 0 8px; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .noter svg { display: block; width: 100%; height: auto; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .noter .besifring { fill: currentColor; font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 17px; font-weight: 700; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .stav-blokk + .task { margin-top: 12px; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .viktig { margin: 4px 0 0; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .del-tittel { font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 19px; margin: 22px 0 8px; padding-top: 14px; border-top: 1px solid var(--rule); }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .instrument-liste { margin: 0 0 6px; padding: 0 0 0 1.2em; font-size: 14.5px; line-height: 1.55; color: #3E3A32; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .instrument-liste li { margin: 0 0 8px; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .sanger { list-style: none; margin: 10px 0 0; padding: 0; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .sanger li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; border-top: 1px solid var(--rule); }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .song-title { font-weight: 600; font-size: 15px; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .song-meta { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: var(--text-muted); }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .spotify-link { flex-shrink: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; border: 1.5px solid var(--rule); border-radius: 999px; padding: 4px 10px; text-decoration: none; color: inherit; }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .spotify-link:hover { border-color: var(--brass); }
+:where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) a.btn { text-decoration: none; }
 @media (forced-colors: active) {
-  :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .noter { color: CanvasText; }
-  :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .noter svg { forced-color-adjust: none; }
-  :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .stav-blokk, :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .del-tittel, :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .sanger li { border-color: CanvasText; }
-  :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .instrument-liste { color: CanvasText; }
-  :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .spotify-link { border-color: LinkText; color: LinkText; }
+  :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .noter { color: CanvasText; }
+  :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .noter svg { forced-color-adjust: none; }
+  :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .stav-blokk, :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .del-tittel, :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .sanger li { border-color: CanvasText; }
+  :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .instrument-liste { color: CanvasText; }
+  :where(html[data-side="transponering.html"], html[data-side="stemming.html"], html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .spotify-link { border-color: LinkText; color: LinkText; }
 }
 
 
@@ -2135,6 +2141,23 @@ html.sh .viktig strong { color: var(--ink) !important; }
 @media (forced-colors: active) {
   :where(html[data-side="stemming.html"]) .deltoner li { border-color: CanvasText; }
   :where(html[data-side="stemming.html"]) .deltoner .tall { color: CanvasText; }
+}
+
+
+/* Bare Notasjonstegn og form */
+:where(html[data-side="notasjonstegn.html"]) .tegn-galleri { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 10px; }
+:where(html[data-side="notasjonstegn.html"]) .tegn-kort { display: flex; gap: 12px; align-items: center; padding: 10px; border: 1px solid var(--rule); border-radius: 12px; }
+:where(html[data-side="notasjonstegn.html"]) .tegn-bilde { flex: 0 0 84px; color: var(--text-on-paper); }
+:where(html[data-side="notasjonstegn.html"]) .tegn-bilde svg { width: 84px; height: auto; display: block; }
+:where(html[data-side="notasjonstegn.html"]) .tegn-tekst { display: flex; flex-direction: column; gap: 2px; font-size: 14px; }
+:where(html[data-side="notasjonstegn.html"]) .tegn-tekst strong { font-size: 15px; }
+:where(html[data-side="notasjonstegn.html"]) .tempo-tabell { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+:where(html[data-side="notasjonstegn.html"]) .tempo-tabell th, :where(html[data-side="notasjonstegn.html"]) .tempo-tabell td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--rule); }
+:where(html[data-side="notasjonstegn.html"]) .tempo-tabell th { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; font-weight: 600; color: var(--text-muted); }
+@media (forced-colors: active) {
+  :where(html[data-side="notasjonstegn.html"]) .tegn-kort, :where(html[data-side="notasjonstegn.html"]) .tempo-tabell th, :where(html[data-side="notasjonstegn.html"]) .tempo-tabell td { border-color: CanvasText; }
+  :where(html[data-side="notasjonstegn.html"]) .tegn-bilde, :where(html[data-side="notasjonstegn.html"]) .tempo-tabell th { color: CanvasText; }
+  :where(html[data-side="notasjonstegn.html"]) .tegn-bilde svg { forced-color-adjust: none; }
 }
 
 
@@ -2164,13 +2187,13 @@ html.sh .viktig strong { color: var(--ink) !important; }
 
 
 /* Bare Akkordanalyse */
-:where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .steg-liste { margin: 4px 0 6px; padding: 0 0 0 1.4em; font-size: 14.5px; line-height: 1.55; color: #3E3A32; }
-:where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .steg-liste li { margin: 0 0 8px; }
-:where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .analyse-liste { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 8px 0 4px; font-size: 15px; }
-:where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .analyse-liste dt { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; color: var(--text-muted); padding-top: 2px; }
-:where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .analyse-liste dd { margin: 0; font-weight: 600; }
+:where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .steg-liste { margin: 4px 0 6px; padding: 0 0 0 1.4em; font-size: 14.5px; line-height: 1.55; color: #3E3A32; }
+:where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .steg-liste li { margin: 0 0 8px; }
+:where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .analyse-liste { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 8px 0 4px; font-size: 15px; }
+:where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .analyse-liste dt { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; color: var(--text-muted); padding-top: 2px; }
+:where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .analyse-liste dd { margin: 0; font-weight: 600; }
 @media (forced-colors: active) {
-  :where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .steg-liste, :where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .analyse-liste dt { color: CanvasText; }
+  :where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .steg-liste, :where(html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .analyse-liste dt { color: CanvasText; }
 }
 
 
@@ -2178,35 +2201,35 @@ html.sh .viktig strong { color: var(--ink) !important; }
 @media (forced-colors: active) { :where(html[data-side="stemming.html"]) .lydtips { border-color: CanvasText; } }
 
 /* Bare Intervaller */
-:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .regler { margin: 0 0 12px; padding: 0 0 0 1.2em; font-size: 14.5px; line-height: 1.55; color: #3E3A32; }
-:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .regler li { margin: 0 0 6px; }
-:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .iv-tabell { width: 100%; max-width: 520px; border-collapse: collapse; margin: 14px 0 4px; font-size: 14px; }
-:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .iv-tabell caption { text-align: left; margin: 0 0 6px; }
-:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .iv-tabell th, :where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .iv-tabell td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); }
-:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .iv-tabell th { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; font-weight: 600; color: var(--text-muted); }
-:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .iv-tabell td:first-child { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; width: 5.5em; }
+:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .regler { margin: 0 0 12px; padding: 0 0 0 1.2em; font-size: 14.5px; line-height: 1.55; color: #3E3A32; }
+:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .regler li { margin: 0 0 6px; }
+:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .iv-tabell { width: 100%; max-width: 520px; border-collapse: collapse; margin: 14px 0 4px; font-size: 14px; }
+:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .iv-tabell caption { text-align: left; margin: 0 0 6px; }
+:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .iv-tabell th, :where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .iv-tabell td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); }
+:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .iv-tabell th { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; font-weight: 600; color: var(--text-muted); }
+:where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .iv-tabell td:first-child { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; width: 5.5em; }
 @media (forced-colors: active) {
-  :where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .regler, :where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .iv-tabell th { color: CanvasText; }
-  :where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .iv-tabell th, :where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"]) .iv-tabell td { border-color: CanvasText; }
+  :where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .regler, :where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .iv-tabell th { color: CanvasText; }
+  :where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .iv-tabell th, :where(html[data-side="intervaller-teori.html"], html[data-side="akkordanalyse.html"], html[data-side="bitreklanger.html"], html[data-side="melodilesing.html"], html[data-side="notasjonstegn.html"]) .iv-tabell td { border-color: CanvasText; }
 }
 
 
 /* ---------- Quiz: transponering og Quiz: stemming og temperatur (quiz-transponering.html, quiz-stemming.html) ---------- */
-:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) #ov-bilde, :where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) #prove-bilde { border-top: none; padding-top: 0; margin: 0 0 12px; }
-:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) .noter svg { margin: 0; }
-:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) .noter .besifring { fill: currentColor; font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 17px; font-weight: 700; }
-:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) .noter-merke { margin: 0; }
-:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) #ov-fasit-blokk { border-top: 1px solid var(--rule); padding-top: 8px; margin: 0 0 12px; }
-:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) #ov-fasit-blokk .noter { border-top: none; padding-top: 0; margin-top: 0; }
-:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) .oppgave-tekst, :where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) .prove-sporsmal {
+:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) #ov-bilde, :where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) #prove-bilde { border-top: none; padding-top: 0; margin: 0 0 12px; }
+:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) .noter svg { margin: 0; }
+:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) .noter .besifring { fill: currentColor; font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: 17px; font-weight: 700; }
+:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) .noter-merke { margin: 0; }
+:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) #ov-fasit-blokk { border-top: 1px solid var(--rule); padding-top: 8px; margin: 0 0 12px; }
+:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) #ov-fasit-blokk .noter { border-top: none; padding-top: 0; margin-top: 0; }
+:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) .oppgave-tekst, :where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) .prove-sporsmal {
   font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   font-size: 18px; font-weight: 700; line-height: 1.4; margin: 0 0 12px;
 }
-:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) .svar.akkord-svar .btn { flex: 1 1 100%; }
-@media (min-width: 520px) { :where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) .svar.akkord-svar .btn { flex: 1 1 200px; } }
+:where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) .svar.akkord-svar .btn { flex: 1 1 100%; }
+@media (min-width: 520px) { :where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) .svar.akkord-svar .btn { flex: 1 1 200px; } }
 @media (forced-colors: active) {
-  :where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) .noter svg { forced-color-adjust: none; color: CanvasText; }
-  :where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"]) #ov-fasit-blokk { border-color: CanvasText; }
+  :where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) .noter svg { forced-color-adjust: none; color: CanvasText; }
+  :where(html[data-side="quiz-transponering.html"], html[data-side="quiz-stemming.html"], html[data-side="quiz-intervaller.html"], html[data-side="quiz-akkordanalyse.html"], html[data-side="quiz-akkordforlop.html"], html[data-side="quiz-melodi.html"], html[data-side="quiz-notasjonstegn.html"]) #ov-fasit-blokk { border-color: CanvasText; }
 }
 
 
@@ -2432,14 +2455,17 @@ a.btn:hover::after { transform: translateX(3px); }
 .vbm-meny-ikon::before, .vbm-meny-ikon::after { content: ""; position: absolute; left: 0; }
 .vbm-meny-ikon::before { top: -5px; } .vbm-meny-ikon::after { top: 5px; }
 .vbm-back.vbm-topp .vbm-valg { margin-left: auto; }
+.vbm-back.vbm-topp .vbm-hjem { order: 1; }
 .vbm-back.vbm-topp .vbm-meny-knapp { order: 2; }
 .vbm-back.vbm-topp .vbm-valg { order: 3; }
 /* Menyen med alle sidene */
 .vbm-meny {
   order: 4; flex: 1 1 100%; min-width: 0;
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 6px 24px;
+  /* Gruppene flyter i kolonner, så korte grupper ikke etterlater tomrom under seg */
+  display: block; columns: 3 240px; column-gap: 28px;
   padding: 10px 2px 6px; border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
 }
+.vbm-meny-gruppe { break-inside: avoid; margin: 0 0 12px; }
 .vbm-meny[hidden] { display: none; }
 .vbm-meny-tittel { margin: 6px 0 4px; font: 700 11px/1.3 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; opacity: .75; }
 .vbm-meny ul { list-style: none; margin: 0; padding: 0; }
@@ -2965,6 +2991,7 @@ html.vbm-tonefarger.vbm-sh .tn-knapp { background: transparent !important; borde
 @media (max-width: 520px) {
   .vbm-back .vbm-inst-knapp { padding: 7px 9px; font-size: 13px; }
   .vbm-back .vbm-inst-knapp span { display: none; }   /* bare tannhjulet på mobil, så linjen holder én rad */
+  .vbm-back .vbm-hjem .vbm-hjem-tekst { display: none; }   /* bare pilen på mobil */
 }
 @media (forced-colors: active) { .vbm-back .vbm-inst-knapp { border-color: CanvasText; color: LinkText; } }
 
@@ -3208,3 +3235,21 @@ html[data-tema="lys"] .vbm-instr-float { background: #DCD6C6 !important; color: 
 :where(html[data-side="kvintsirkelen.html"])[data-tema="lys"] .midt { fill: #F2EEE3; }
 :where(html[data-side="kvintsirkelen.html"])[data-tema="lys"] .plass.valgt text { fill: #F2EEE3; }
 :root[data-tema="mork"]:where([data-side="index.html"]):not([data-theme="light"]) { --paper: #FFFFFF; }
+
+/* Teoriquiz: notasjonstegn og form: tegnet står lite og sentrert, veikartet i full bredde */
+:where(html[data-side="quiz-notasjonstegn.html"]) #ov-bilde svg[viewBox^="0 40"], :where(html[data-side="quiz-notasjonstegn.html"]) #ov-bilde svg[viewBox^="0 60"],
+:where(html[data-side="quiz-notasjonstegn.html"]) #prove-bilde svg[viewBox^="0 40"], :where(html[data-side="quiz-notasjonstegn.html"]) #prove-bilde svg[viewBox^="0 60"] { width: 150px !important; max-width: 60% !important; display: block; margin: 0 auto; }
+
+/* Veikartet i Notasjonstegn og form står i fast målestokk, som andre notelinjer (ikke strukket) */
+svg.vbm-fast-stav { height: auto; }
+:where(html[data-side="notasjonstegn.html"], html[data-side="quiz-notasjonstegn.html"]) .noter svg.vbm-fast-stav { width: auto; }
+
+/* Søk på startsiden: nederst i banneret, midtstilt */
+:where(html[data-side="index.html"]) .vbm-sok { margin: 18px auto 0; max-width: 520px; text-align: center; }
+:where(html[data-side="index.html"]) #vbm-sok { width: 100%; box-sizing: border-box; font: 16px/1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  padding: 11px 18px; border-radius: 999px; border: 2px solid var(--lenke-mork); background: #FFFFFF; color: #22252A; }
+:where(html[data-side="index.html"]) #vbm-sok::placeholder { color: #6B6558; opacity: 1; }
+:where(html[data-side="index.html"]) #vbm-sok:focus-visible { outline: 3px solid color-mix(in srgb, #e8b866 60%, transparent); outline-offset: 2px; }
+:where(html[data-side="index.html"]) .vbm-sok-info { margin: 8px 0 0; font-size: 14px; min-height: 1.2em; }
+:where(html[data-side="index.html"]) .vbm-sok-treff h2 { margin-top: 0; }
+@media (forced-colors: active) { :where(html[data-side="index.html"]) #vbm-sok { border-color: CanvasText; background: Field; color: FieldText; } }

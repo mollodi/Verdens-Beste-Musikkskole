@@ -12,13 +12,12 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Quiz: stemming og temperatur</title>
-<script src="felles.js?v=40"></script>
-<link rel="stylesheet" href="stil.css?v=40">
+<script src="felles.js?v=47"></script>
+<link rel="stylesheet" href="stil.css?v=47">
 <meta name="description" content="Hør om et intervall er rent eller svever, og regn med frekvensforhold, cent og frekvenser. Øvemodus og prøvemodus med 20 oppgaver.">
 </head>
 <body>
@@ -27,7 +26,7 @@
   <div class="eyebrow">Quiz</div>
   <h1><em>Quiz</em>: stemming og temperatur</h1>
   <p class="lede">Hør om et intervall er rent eller svever, og regn med frekvensforhold, cent og frekvenser. Øv i ditt eget tempo, eller ta en prøve med 20 oppgaver.</p>
-  <p class="lede">Alt er forklart i leksjonen <a href="stemming.html">Stemming og temperatur</a>. Svevninger høres best med overtonetonen, som er valgt nederst til høyre. Bruk gjerne hodetelefoner.</p>
+  <p class="lede">Alt er forklart i leksjonen <a href="stemming.html">Stemming og temperatur</a>. Svevninger høres best med overtonetonen, som du velger nederst til høyre. Bruk gjerne hodetelefoner.</p>
 </header>
 
 <main>
@@ -36,7 +35,7 @@
       <div class="step-label">Øvemodus</div>
       <h2>Din fremgang</h2>
     </div>
-    <p class="task">Målet er fem riktige svar på rad. Resultatet nullstilles når du laster siden på nytt.</p>
+    <p class="task">Målet er fem riktige svar på rad. Tallene her gjelder dette besøket, men alt du svarer, lagres også i nettleseren under Min fremgang.</p>
     <ul class="fremgang" id="ov-fremgang"></ul>
     <p class="total" id="ov-total"></p>
   </section>
@@ -127,9 +126,9 @@
 
 <footer data-lyd="stemming"></footer>
 
-<script src="tonearter.js?v=40"></script>
-<script src="skalaer.js?v=40"></script>
-<script src="stemming.js?v=40"></script>
+<script src="tonearter.js?v=47"></script>
+<script src="skalaer.js?v=47"></script>
+<script src="stemming.js?v=47"></script>
 <script>/* VBM K7Q4-QSTM */
 (function(){
   'use strict';
@@ -172,7 +171,14 @@
   /* =================== Oppgavene =================== */
   var RENT = T('Rent (rolig)'), SVEVER = T('Svever (urolig)');
   /* Svaralternativer: riktig tekst og feil tekster, i fast eller tilfeldig rekkefølge */
-  function alt(riktig, feil, fast){ var liste = [riktig].concat(feil.filter(function(x, i){ return x !== riktig && feil.indexOf(x) === i; })); if (!fast) liste = blandet(liste); return liste.map(function(t){ return { tekst: t, riktig: t === riktig }; }); }
+  /* fast = true: alternativene står i den faste rekkefølgen i lista (for eksempel alltid «Rent» før «Svever»),
+     så plasseringen aldri avslører svaret. Ellers blandes de. */
+  function alt(riktig, feil, fast){
+    var liste;
+    if (fast) { liste = feil.filter(function(x, i){ return feil.indexOf(x) === i; }); if (liste.indexOf(riktig) < 0) liste.push(riktig); }
+    else liste = blandet([riktig].concat(feil.filter(function(x, i){ return x !== riktig && feil.indexOf(x) === i; })));
+    return liste.map(function(t){ return { tekst: t, riktig: t === riktig }; });
+  }
   var OVRE = { oktav: [7, 0], kvint: [4, 0], kvart: [3, 0], sters: [2, 0], lters: [2, -1] };   // bokstavsteg og fortegn over grunntonen
   var GRUNN = [{ b: 0, f: 0 }, { b: 3, f: 0 }, { b: 4, f: 0 }, { b: 1, f: 0 }];   // C, F, G og D (avansert)
   var LAG = {
@@ -388,6 +394,6 @@
 </script>
 <script>window.VBM_LYD = { chordDur: 6 };   /* intervallene holdes lenge, så svevningene høres */</script>
 <script>window.VBM_LYD_ORGEL_SIDE = true;   /* orgel i lydvalget, valgt som standard her */</script>
-<script src="lyd.js?v=40"></script>
+<script src="lyd.js?v=47"></script>
 </body>
 </html>

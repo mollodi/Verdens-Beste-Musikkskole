@@ -12,13 +12,12 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Stemming og temperatur</title>
-<script src="felles.js?v=40"></script>
-<link rel="stylesheet" href="stil.css?v=40">
+<script src="felles.js?v=47"></script>
+<link rel="stylesheet" href="stil.css?v=47">
 <meta name="description" content="Stemming og temperatur forklart: frekvens og kammertone, overtonerekken, rene intervaller og svevninger, det pytagoreiske kommaet, og pytagoreisk, midttone, Werckmeister og likesvevende temperatur, med lyd.">
 </head>
 <body>
@@ -27,7 +26,7 @@
   <div class="eyebrow">Musikkteori</div>
   <h1>Stemming og <em>temperatur</em></h1>
   <p class="lede">Hvorfor er ikke tonene på et piano helt rene? Her lærer du hva en frekvens er, hvordan overtonene gir de rene intervallene, hvorfor tolv rene kvinter ikke går opp, og hvordan musikere gjennom tidene har løst det med ulike temperaturer.</p>
-  <p class="lede">Sammenlign lydene nederst til høyre. Overtonetonen (valgt) lages i nettleseren med alle overtonene og jevn styrke, og viser svevningene tydeligst. Orgelet er et ekte opptak med jevne toner. Pianoet er også ekte, men tonen dør ut, så svevningene er svakere. Sinustoner har ingen overtoner, så rene og urene kvinter og terser klinger nesten likt med dem. Hvert kort sier hvilken lyd som passer best der. Bruk gjerne hodetelefoner.</p>
+  <p class="lede">Sammenlign lydene nederst til høyre. Overtonetonen (standard) lages i nettleseren med alle overtonene og jevn styrke, og viser svevningene tydeligst. Orgelet er et ekte opptak med jevne toner. Pianoet er også ekte, men tonen dør ut, så svevningene er svakere. Sinustoner har ingen overtoner, så rene og urene kvinter og terser klinger nesten likt med dem. Hvert kort sier hvilken lyd som passer best der. Bruk gjerne hodetelefoner.</p>
 </header>
 
 <main>
@@ -175,10 +174,10 @@
 
 <footer data-lyd="stemming"></footer>
 
-<script src="tonearter.js?v=40"></script>
-<script src="skalaer.js?v=40"></script>
-<script src="harmoni.js?v=40"></script>
-<script src="stemming.js?v=40"></script>
+<script src="tonearter.js?v=47"></script>
+<script src="skalaer.js?v=47"></script>
+<script src="harmoni.js?v=47"></script>
+<script src="stemming.js?v=47"></script>
 <script>/* VBM K7Q4-STMT */
 (function(){
   'use strict';
@@ -215,19 +214,10 @@
 
   /* =================== 2. Overtonerekken =================== */
   var DELTONER = [n(0, 0, 2), n(0, 0, 3), n(4, 0, 3), n(0, 0, 4), n(2, 0, 4), n(4, 0, 4), n(6, -1, 4), n(0, 0, 5)];
-  /* Én notelinje: deltone 1 til 3 i F-nøkkel, så nøkkelskifte til G-nøkkel for deltone 4 til 8.
-     De to delene tegnes hver for seg og settes sammen, med notelinjene i samme høyde. */
-  var otMerke = T('Deltone 1 til 8: F-nøkkel, så G-nøkkel');
+  /* Storsats som ellers på nettstedet: deltone 1 til 3 i F-nøkkel nederst, deltone 4 til 8 i G-nøkkel øverst */
+  var otMerke = T('Deltone 1 til 8 (F-nøkkel nederst, G-nøkkel øverst)');
   $('ot-merke').textContent = otMerke;
-  (function(){
-    var a = S.enStav('F', DELTONER.slice(0, 3), { bredde: 240, x0: 130, etikett: otMerke });
-    var b = S.enStav('G', DELTONER.slice(3), { bredde: 320, x0: 190, etikett: otMerke });
-    var vb = function(s){ return /viewBox="([\d.-]+) ([\d.-]+) ([\d.]+) ([\d.]+)"/.exec(s); };
-    var va = vb(a), vbb = vb(b), wa = +va[3] - 8, inn = function(s){ return s.replace(/^<svg[^>]*>/, '').replace(/<\/svg>\s*$/, ''); };
-    var del2 = inn(b).replace(/data-i="(\d+)"/g, function(m, i){ return 'data-i="' + (+i + 3) + '"'; });
-    $('ot-noter').innerHTML = '<svg viewBox="0 ' + va[2] + ' ' + (wa + +vbb[3]) + ' ' + va[4] + '" role="img" aria-label="' + otMerke + '">'
-      + inn(a) + '<g transform="translate(' + wa + ' 0)">' + del2 + '</g></svg>';
-  })();
+  $('ot-noter').innerHTML = S.storStav(DELTONER, otMerke);
   var html = '';
   DELTONER.forEach(function(t, i){
     var nr = i + 1, m = St.deltone(36, nr), avvik = (m - Math.round(m)) * 100;
@@ -333,6 +323,6 @@
 </script>
 <script>window.VBM_LYD = { chordDur: 6 };   /* intervallene i kort 3 holdes lenge, så svevningene høres */</script>
 <script>window.VBM_LYD_ORGEL_SIDE = true;   /* orgel i lydvalget, valgt som standard her */</script>
-<script src="lyd.js?v=40"></script>
+<script src="lyd.js?v=47"></script>
 </body>
 </html>

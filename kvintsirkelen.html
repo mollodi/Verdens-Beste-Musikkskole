@@ -12,13 +12,12 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Kvintsirkelen</title>
-<script src="felles.js?v=40"></script>
-<link rel="stylesheet" href="stil.css?v=40">
+<script src="felles.js?v=47"></script>
+<link rel="stylesheet" href="stil.css?v=47">
 <meta name="description" content="Kvintsirkelen forklart: alle dur- og molltonearter med fortegn på ekte notelinje, rekkefølgen på kryss og b-er, og lyd for hver toneart.">
 </head>
 <body>
@@ -27,7 +26,7 @@
   <div class="eyebrow">Musikkteori</div>
   <h1>Kvint<em>sirkelen</em></h1>
   <p class="lede">Kvintsirkelen er kartet over alle tonearter. Den viser hvor mange kryss eller b-er hver toneart har, og hvilken molltoneart som hører sammen med hver durtoneart.</p>
-  <p class="lede">Trykk på en toneart i sirkelen for å se fortegnene på notelinjen og høre skalaen og treklangen. Velg piano, strykere eller sinustoner nederst til høyre.</p>
+  <p class="lede">Trykk på en toneart i sirkelen for å se fortegnene på notelinjen og høre skalaen og treklangen. Velg piano, orgel, strykere eller sinustoner nederst til høyre.</p>
 </header>
 
 <main>
@@ -83,6 +82,19 @@
     <p class="task viktig"><strong>Huskeregel:</strong> den nest siste b-en er navnet på durtonearten. Med B, Ess og Ass er den nest siste Ess, og tonearten er Ess-dur. F-dur, med bare én b, må du huske.</p>
   </section>
 
+  <section class="card bred" id="parallell">
+    <div class="card-head">
+      <div class="step-label">Forklaring</div>
+      <h2>Parallelltonearter og varianttonearter</h2>
+    </div>
+    <p class="task">Hver durtoneart har to nære slektninger i moll. <strong>Parallelltonearten</strong> har samme fortegn, og grunntonen ligger en liten ters under durtonika, på 6. trinn i durskalaen. C-dur og a-moll er parallelltonearter. <strong>Varianttonearten</strong> har samme grunntone, men tre fortegn mot b-siden: tre b-er flere eller tre kryss færre. C-dur og c-moll er varianttonearter.</p>
+    <p class="task">I sirkelen står parallelltonearten rett ved siden av durtonearten. Varianttonearten finner du tre steg mot venstre, mot b-siden.</p>
+    <p class="label" id="pv-label">Durtoneart</p>
+    <div class="row brikker" id="pv-valg" role="group" aria-labelledby="pv-label"></div>
+    <div id="pv-staver"></div>
+    <p class="task viktig"><strong>Hør forskjellen:</strong> durskalaen og parallelltonearten bruker akkurat de samme tonene, men begynner på ulike steder. Durskalaen og varianttonearten begynner på samme tone, men tersen, seksten og septimen er senket. Det er derfor varianttonearten høres som «samme sang i moll».</p>
+  </section>
+
   <section class="card ulike-kort" id="ulike-navn">
     <div class="card-head">
       <div class="step-label">Merk</div>
@@ -111,8 +123,8 @@
 
 <footer data-lyd="alle"></footer>
 
-<script src="tonearter.js?v=40"></script>
-<script src="skalaer.js?v=40"></script>
+<script src="tonearter.js?v=47"></script>
+<script src="skalaer.js?v=47"></script>
 <script>/* VBM K7Q4-KVSK */
 (function(){
   'use strict';
@@ -243,6 +255,60 @@
   tegnSirkel(); visInfo();
 })();
 </script>
-<script src="lyd.js?v=40"></script>
+<script>/* VBM K7Q4-KVSK: parallelltonearter og varianttonearter */
+(function(){
+  'use strict';
+  var K = window.VBM_TONEARTER, S = window.VBM_SKALAER, T = K.T;
+  function $(id){ return document.getElementById(id); }
+  var DUR = [[0,0],[1,2],[2,4],[3,5],[4,7],[5,9],[6,11],[7,12]], MOLL = [[0,0],[1,2],[2,3],[3,5],[4,7],[5,8],[6,10],[7,12]];
+  /* Durtonearter der varianttonearten har høyst sju fortegn */
+  var ROTER = [[0,0],[4,0],[1,0],[5,0],[2,0],[6,0],[3,1],[0,1],[3,0],[6,-1],[2,-1],[5,-1]];
+  function fortegn(r){ return [0, 2, 4, -1, 1, 3, 5][r.b] + 7 * r.f; }
+  /* Skalaen i den oktaven som gir færrest hjelpelinjer i G-nøkkel */
+  function skala(r, trinn){
+    var beste = null, bp = Infinity;
+    [3, 4, 5].forEach(function(o){
+      var t = S.toner({ b: r.b, f: r.f, oktav: o }, trinn), p = 0;
+      t.forEach(function(n){ var d = n.oktav * 7 + n.b; p += d < 30 ? Math.ceil((30 - d) / 2) : d > 38 ? Math.ceil((d - 38) / 2) : 0; });
+      if (p < bp) { bp = p; beste = t; }
+    });
+    return beste;
+  }
+  var nr = 0;
+  try { var l = +localStorage.getItem('vbm-parallell'); if (l >= 0 && l < ROTER.length) nr = l; } catch(e){}
+  ROTER.forEach(function(x, i){
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = K.dur({ b: x[0], f: x[1] });
+    b.addEventListener('click', function(){ if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP(); nr = i; try { localStorage.setItem('vbm-parallell', i); } catch(e){} tegn(); });
+    $('pv-valg').appendChild(b);
+  });
+  var lyd = {};
+  function tegn(){
+    [].forEach.call($('pv-valg').children, function(b, i){ b.setAttribute('aria-pressed', i === nr ? 'true' : 'false'); });
+    var dur = { b: ROTER[nr][0], f: ROTER[nr][1] }, fd = fortegn(dur), ds = skala(dur, DUR);
+    var par = { b: ds[5].b, f: ds[5].f }, vari = dur;
+    var rader = [
+      { id: 'pv-dur', toner: ds, f: fd, merke: T('{toneart}: {n}', { toneart: K.dur(dur), n: K.antall(fd) }) },
+      { id: 'pv-par', toner: skala(par, MOLL), f: fd, merke: T('Parallelltonearten {toneart}: samme fortegn, grunntonen en liten ters under', { toneart: K.moll(par) }) },
+      { id: 'pv-var', toner: skala(vari, MOLL), f: fd - 3, merke: T('Varianttonearten {toneart}: samme grunntone, tre fortegn mot b-siden', { toneart: K.moll(vari) }) }
+    ];
+    $('pv-staver').innerHTML = rader.map(function(r){
+      return '<div class="stav-blokk"><p class="label">' + r.merke + '</p><div class="row"><button type="button" class="btn" data-pv="' + r.id + '">&#9658;&#xFE0E; <span>' + T('spill') + '</span></button></div><div class="noter" id="' + r.id + '"></div></div>';
+    }).join('');
+    rader.forEach(function(r){ $(r.id).innerHTML = S.noter(r.toner, r.f, null, r.merke); lyd[r.id] = r.toner.map(function(n){ return [S.midi(n)]; }); });
+  }
+  $('pv-staver').addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('[data-pv]');
+    if (!b || !window.VBM_LYD_SEKVENS) return;
+    var id = b.getAttribute('data-pv'), svg = $(id).querySelector('svg');
+    window.VBM_LYD_SEKVENS(lyd[id], b, function(s){
+      if (!svg) return;
+      [].forEach.call(svg.querySelectorAll('.spilles'), function(q){ q.classList.remove('spilles'); });
+      if (s >= 0) [].forEach.call(svg.querySelectorAll('[data-i="' + s + '"]'), function(q){ q.classList.add('spilles'); });
+    });
+  });
+  tegn();
+})();
+</script>
+<script src="lyd.js?v=47"></script>
 </body>
 </html>

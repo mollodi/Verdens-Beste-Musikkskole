@@ -19,6 +19,8 @@ Gratis undervisningsmateriell i musikkteori for elever og lærere. Juksebøkene 
 
 ### Musikkteori
 - **Notelesing**: notelinjen, G-nøkkel, F-nøkkel, altnøkkel og tenornøkkel, oktavnavnene (Helmholtz og vitenskapelige navn), og et piano som viser hver tone på notelinjen i valgt nøkkel.
+- **Notasjonstegn og form**: reprisetegn, volta, D.C. al Fine og D.S. al Coda med et veikart du kan høre, dynamikk, tempobetegnelser med omtrentlige metronomtall, artikulasjon, og ulike navn og systemer. Med teoriquiz (quiz-notasjonstegn.html).
+- **Min fremgang** (fremgang.html): alle svar i quizene lagres i nettleseren, med beste rekke, prøver og dager på rad.
 - **Rytme og taktarter**: seks kapitler fra nivå 1 til 5, fra puls og notelengder til punktering, trioler, synkoper, sammensatt takt (6/8, 9/8, 12/8) og ujevn takt (5/4, 7/8), med rytmenoter, telling, metronom, trommegrooves og sangeksempler. Kapittel 7, Rytmelesing og rytmediktat: taktstreker (med en rytme der du kan vise og skjule taktstrekene), bjelker, opptakt og en metode for rytmediktat og rytmekorreksjon.
 - **Kvintsirkelen**: interaktiv kvintsirkel med alle dur- og molltonearter, fortegnene på ekte notelinje, rekkefølgen på kryss og b-er, enharmoniske tonearter, og skala og treklang for hver toneart.
 - **Skalaer og modi**: dur, moll (naturlig, harmonisk og melodisk), de sju modiene, pentatonikk, blues, heltone, kromatisk og jazzskalaer, i alle tonearter, med noter, lyd og sangeksempler. Modiene vises både fra samme grunntone og som trinn i durskalaen.

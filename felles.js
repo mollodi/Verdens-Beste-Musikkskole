@@ -36,6 +36,8 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
      og testsiden VBM-test ligger der). */
   var EGNE = ['verdensbestemusikkskole.no', 'www.verdensbestemusikkskole.no', 'mollodi.github.io'];
 
+
+
   /* Bunnteksten. Navnene står alltid på norsk. De andre delene oversettes
      i sprak-XX.js, så husk å endre dem der også hvis du endrer dem her. */
   var BUNN = {
@@ -45,10 +47,10 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
   };
   /* Lydkreditter. Siden velger med <footer data-lyd="alle">, data-lyd="piano" eller data-lyd="stemming". */
   var LYD = {
-    alle: 'Lyd: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Strykere fra VS Chamber Orchestra Community Edition av Versilian Studios (CC0).',
+    alle: 'Lyd: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Orgel spilt inn av Simon Dalzell (Ivy Audio) og strykere, begge fra VS Chamber Orchestra Community Edition av Versilian Studios (CC0).',
     piano: 'Lyd: Salamander Grand Piano av Alexander Holm (CC BY 3.0).',
     stemming: 'Lyd: orgel spilt inn av Simon Dalzell (Ivy Audio) og strykere, begge fra VS Chamber Orchestra Community Edition av Versilian Studios (CC0). Piano: Salamander Grand Piano av Alexander Holm (CC BY 3.0).',
-    rytme: 'Lyd: trommer fra Versilian Community Sample Library (CC0). Piano: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Strykere fra VS Chamber Orchestra Community Edition av Versilian Studios (CC0).'
+    rytme: 'Lyd: trommer fra Versilian Community Sample Library (CC0). Piano: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Orgel spilt inn av Simon Dalzell (Ivy Audio) og strykere, begge fra VS Chamber Orchestra Community Edition av Versilian Studios (CC0).'
   };
 
   /* ==================== 2. Språk ==================== */
@@ -56,10 +58,15 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
   function kort(k){ k = String(k || '').toLowerCase().slice(0, 2); return (k === 'nb' || k === 'nn') ? 'no' : k; }
   var kilde = kort(root.getAttribute('lang') || 'no');   // språket siden er skrevet på
 
+  /* Språkadresser: side.html er sidens eget språk, side.html?sprak=en og ?sprak=pl er de andre språkene.
+     Valget lagres ikke, så adressen kan deles og testes. */
+  var ADRESSE = (location.search.match(/[?&]sprak=(\w+)/) || [])[1];
+  if (SPRAK.indexOf(ADRESSE) < 0) ADRESSE = null;
+  /* Søkemotorer og lenkeforhåndsvisninger får alltid språket i adressen, ikke et gjettet språk */
+  var ROBOT = /bot|crawl|spider|slurp|facebookexternalhit|embedly|whatsapp|telegram|skype|pinterest|bingpreview|lighthouse/i.test(navigator.userAgent);
   function finnSprak(){
-    /* For testing: side.html?sprak=en viser siden på engelsk uten å lagre valget. */
-    var m = location.search.match(/[?&]sprak=(\w+)/);
-    if (m && SPRAK.indexOf(m[1]) >= 0) return m[1];
+    if (ADRESSE) return ADRESSE;
+    if (ROBOT) return kilde;
     try { var s = localStorage.getItem(NOKKEL); if (SPRAK.indexOf(s) >= 0) return s; } catch(e){}
     var liste = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
     for (var i = 0; i < liste.length; i++) { var k = kort(liste[i]); if (SPRAK.indexOf(k) >= 0) return k; }
@@ -71,6 +78,21 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
   root.setAttribute('data-sprak', sprak);
 
   var side = root.getAttribute('data-side') || (location.pathname.split('/').pop() || 'index.html');
+
+  /* Søkemotorer: hovedadressen for siden og språket (uten ?svart-hvitt), og alle kopier av nettsiden
+     (VBM-test og andre) skjules for søk. Bare verdensbestemusikkskole.no vises i søkeresultatene. */
+  (function(){
+    if (!document.querySelector('link[rel="canonical"]')) {
+      var l = document.createElement('link'); l.rel = 'canonical';
+      l.href = ORIGINAL + (side === 'index.html' ? '' : side) + (ADRESSE && ADRESSE !== kilde ? '?sprak=' + ADRESSE : '');
+      document.head.appendChild(l);
+    }
+    var host = location.hostname.replace(/^www\./, '');
+    if (host !== 'verdensbestemusikkskole.no' && !document.querySelector('meta[name="robots"]')) {
+      var r = document.createElement('meta'); r.name = 'robots'; r.content = 'noindex, nofollow';
+      document.head.appendChild(r);
+    }
+  })();
   var ord = {}, menyOrd = {};
   /* Ordbøkene (sprak-XX.js) kaller denne funksjonen. Menyen bruker startsidens oversettelser av titlene. */
   window.VBM_ORDBOK = function(sp, bok){
@@ -264,6 +286,7 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
      «Alle ressurser» fører til startsiden, og «Meny» viser alle sidene, gruppert som på startsiden.
      Listen hentes fra materialer.js, så en ny side kommer med i menyen av seg selv. */
   function menyT(s){ var o = menyOrd[s]; if (typeof o === 'string') return o; return T(s); }
+  window.VBM_MENY_T = menyT;   /* titlene fra startsiden, oversatt (brukes av Min fremgang) */
   /* Nivåfilteret (Innstillinger): «alle», «grunnleggende», «avansert» eller «ekspert» */
   function nivaValg(){ try { return localStorage.getItem('vbm-niva') || 'alle'; } catch(e){ return 'alle'; } }
   var NIVANAVN = { grunnleggende: 'Grunnleggende', avansert: 'Avansert', ekspert: 'Ekspert' };
@@ -272,7 +295,81 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
     var sk = document.createElement('script'); sk.src = 'materialer.js' + VERSJON;
     sk.onload = ferdigFn; document.head.appendChild(sk);
   }
+  /* ==================== Lagret fremgang (alle quizene) ====================
+     Alt du svarer i quizene, lagres i nettleseren (vbm-fremgang), uten at noe sendes noe sted.
+     felles.js følger med på svarfeltet (#ov-fb og .feedback) og prøveresultatet (#prove-poeng), så quizene trenger ingen egen kode. */
+  var FREMGANG = 'vbm-fremgang';
+  function lesF(){ try { return JSON.parse(localStorage.getItem(FREMGANG)) || {}; } catch(e){ return {}; } }
+  function skrivF(d){ try { localStorage.setItem(FREMGANG, JSON.stringify(d)); } catch(e){} }
+  function idag(){ var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function merkDag(d){ d.dager = d.dager || []; var t = idag(); if (d.dager.indexOf(t) < 0) { d.dager.push(t); if (d.dager.length > 500) d.dager = d.dager.slice(-500); } }
+  function sideF(d){ d.sider = d.sider || {}; return d.sider[side] = d.sider[side] || { r: 0, t: 0, rad: 0, best: 0 }; }
+  function registrerSvar(riktig){
+    var d = lesF(), p = sideF(d);
+    p.t++; if (riktig) { p.r++; p.rad++; p.best = Math.max(p.best, p.rad); } else p.rad = 0;
+    p.sist = idag(); merkDag(d); skrivF(d); visLagret();
+  }
+  function registrerProve(prosent){
+    var d = lesF(), p = sideF(d);
+    p.prover = (p.prover || 0) + 1; p.beste = Math.max(p.beste || 0, prosent); p.sisteProve = prosent;
+    p.sist = idag(); merkDag(d); skrivF(d); visLagret();
+  }
+  /* Dager på rad: teller bakover fra i dag (eller i går, hvis du ikke har øvd ennå i dag) */
+  function dagerPaRad(d){
+    var sett = {}; (d.dager || []).forEach(function(x){ sett[x] = true; });
+    var dag = new Date(), n = 0, fmt = function(x){ return x.getFullYear() + '-' + ('0' + (x.getMonth() + 1)).slice(-2) + '-' + ('0' + x.getDate()).slice(-2); };
+    if (!sett[fmt(dag)]) dag.setDate(dag.getDate() - 1);
+    while (sett[fmt(dag)]) { n++; dag.setDate(dag.getDate() - 1); }
+    return n;
+  }
+  window.VBM_FREMGANG = { les: lesF, dagerPaRad: dagerPaRad, nullstill: function(){ try { localStorage.removeItem(FREMGANG); } catch(e){} } };
+  function visLagret(){
+    var liste = document.getElementById('ov-fremgang'); if (!liste) return;
+    var kort = liste.parentNode, el = kort.querySelector('.vbm-lagret');
+    if (!el) { el = document.createElement('p'); el.className = 'task vbm-lagret'; kort.appendChild(el); }
+    var p = (lesF().sider || {})[side];
+    el.innerHTML = p && p.t ? T('Lagret i nettleseren: {r} av {t} riktige ({p} %), beste rekke {b}.', { r: p.r, t: p.t, p: Math.round(100 * p.r / p.t), b: p.best })
+      + (p.prover ? ' ' + T('Beste prøve: {p} %.', { p: p.beste }) : '') + ' <a href="fremgang.html">' + T('Se all fremgang') + '</a>'
+      : T('Svarene dine lagres i nettleseren.') + ' <a href="fremgang.html">' + T('Min fremgang') + '</a>';
+  }
+  function folgSvar(){
+    var felt = [];
+    var fb = document.getElementById('ov-fb'); if (fb) felt.push(fb);
+    [].forEach.call(document.querySelectorAll('main .feedback'), function(el){ if (felt.indexOf(el) < 0) felt.push(el); });
+    felt.forEach(function(el){
+      new MutationObserver(function(){
+        var s = el.querySelector('strong.ok, strong.nei, .ok, .nei');
+        if (!s) { el.__vbmTalt = false; return; }
+        if (el.__vbmTalt) return;
+        el.__vbmTalt = true;
+        registrerSvar(s.classList.contains('ok'));
+      }).observe(el, { childList: true, subtree: true, characterData: true });
+    });
+    var poeng = document.getElementById('prove-poeng');
+    if (poeng) new MutationObserver(function(){
+      var m = /(\d+)\s*%/.exec(poeng.textContent || '');
+      if (!m) { poeng.__vbmTalt = false; return; }
+      if (poeng.__vbmTalt) return;
+      poeng.__vbmTalt = true; registrerProve(+m[1]);
+    }).observe(poeng, { childList: true, subtree: true, characterData: true });
+    visLagret();
+  }
+
   /* Nivåmerke under overskriften og «Se også» nederst, fra materialer.js (niva og relatert) */
+  /* Spillknapper (▶) får en egen kantfarge, så de er lette å finne */
+  function merkSpillknapper(rot){
+    [].forEach.call((rot || document).querySelectorAll('button, a.btn'), function(b){
+      var t = (b.textContent || '').trim();
+      if (b.classList.contains('tn-pil') || b.closest('.tn-piano')) return;   /* pilene ved pianoet blar, de spiller ikke */
+      if (t.charAt(0) === '\u25BA' || t.charAt(0) === '\u25B6') b.classList.add('vbm-spillknapp');
+    });
+  }
+  function folgSpillknapper(){
+    merkSpillknapper();
+    var hoved = document.querySelector('main') || document.body;
+    new MutationObserver(function(liste){ liste.forEach(function(m){ [].forEach.call(m.addedNodes, function(n){ if (n.nodeType === 1) { if (n.matches && n.matches('button')) merkSpillknapper(n.parentNode); else merkSpillknapper(n); } }); }); })
+      .observe(hoved, { childList: true, subtree: true });
+  }
   function byggNivaOgRelatert(){
     if (side === 'index.html') return;
     hentMaterialer(function(){
@@ -291,15 +388,18 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
       /* Leksjonene i Musikkteori henger sammen som et kurs: forrige og neste leksjon i rekkefølgen fra materialer.js */
       var kurs = alle.filter(function(m){ return m.seksjon === meg.seksjon && meg.seksjon === 'teori' && !m.skjult; }), nr = kurs.indexOf(meg), steg = '';
       if (nr >= 0) {
-        if (nr > 0) steg += '<a class="vbm-rel-lenke vbm-kurs-lenke" href="' + kurs[nr - 1].fil + '"><span class="vbm-kurs-retning">&larr; ' + T('Forrige leksjon') + '</span><span>' + menyT(kurs[nr - 1].tittel) + '</span></a>';
-        if (nr < kurs.length - 1) steg += '<a class="vbm-rel-lenke vbm-kurs-lenke vbm-kurs-neste" href="' + kurs[nr + 1].fil + '"><span class="vbm-kurs-retning">' + T('Neste leksjon') + ' &rarr;</span><span>' + menyT(kurs[nr + 1].tittel) + '</span></a>';
+        if (nr > 0) steg += '<a class="vbm-rel-lenke" href="' + kurs[nr - 1].fil + '" aria-label="' + T('Forrige leksjon') + ': ' + menyT(kurs[nr - 1].tittel) + '"><span aria-hidden="true">&larr;</span> ' + menyT(kurs[nr - 1].tittel) + '</a>';
+        if (nr < kurs.length - 1) steg += '<a class="vbm-rel-lenke vbm-kurs-neste" href="' + kurs[nr + 1].fil + '" aria-label="' + T('Neste leksjon') + ': ' + menyT(kurs[nr + 1].tittel) + '">' + menyT(kurs[nr + 1].tittel) + ' <span aria-hidden="true">&rarr;</span></a>';
       }
-      nav.innerHTML = (steg ? '<div class="vbm-kurs">' + steg + '</div>' : '') + '<p class="vbm-relatert-tittel">' + T('Se også') + '</p><ul>' + rel.map(function(m){
-        return '<li><a class="vbm-rel-lenke" href="' + m.fil + '"><span>' + menyT(m.tittel) + '</span>' + (m.niva ? '<span class="vbm-niva niva-' + m.niva + '">' + T(NIVANAVN[m.niva]) + '</span>' : '') + '</a></li>';
-      }).join('') + '</ul>';
-      /* Inni <main>, så blokken holder seg i samme ramme og bredde som resten av siden */
-      var hoved = document.querySelector('main'), fot = document.querySelector('footer');
-      if (hoved) hoved.appendChild(nav); else if (fot) fot.parentNode.insertBefore(nav, fot); else document.body.appendChild(nav);
+      /* Rekkefølgen nederst på alle sider: «Se også», så forrige og neste leksjon, så bunnteksten */
+      nav.innerHTML = '<p class="vbm-relatert-tittel">' + T('Se også') + '</p><ul>' + rel.map(function(m){
+        return '<li><a class="vbm-rel-lenke" href="' + m.fil + '">' + menyT(m.tittel) + '</a></li>';
+      }).join('') + '</ul>' + (steg ? '<p class="vbm-relatert-tittel vbm-kurs-tittel">' + T('Leksjonene i rekkefølge') + '</p><div class="vbm-kurs">' + steg + '</div>' : '');
+      /* Rett over bunnteksten på alle sider, i samme bredde som innholdet */
+      var fot = document.querySelector('footer'), hoved = document.querySelector('main');
+      if (fot) fot.parentNode.insertBefore(nav, fot);
+      else if (hoved) hoved.parentNode.insertBefore(nav, hoved.nextSibling);
+      else document.body.appendChild(nav);
     });
   }
   function byggMeny(){
@@ -315,9 +415,14 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
     }
     if (!nav || nav.querySelector('.vbm-meny-knapp')) return;
     nav.classList.add('vbm-topp');
-    /* «Alle ressurser» står ikke lenger i linjen, men øverst inne i menyen */
-    var hjem = nav.querySelector('a[href="index.html"]'), hjemTekst = '';
-    if (hjem) { hjemTekst = hjem.innerHTML; hjem.parentNode.removeChild(hjem); }
+    /* «Alle ressurser» står først i linjen øverst på alle sider (unntatt startsiden, som selv er oversikten).
+       På smale skjermer vises bare pilen, så linjen holder én rad. */
+    var hjem = nav.querySelector('a[href="index.html"]');
+    if (hjem) {
+      hjem.className = 'vbm-hjem';
+      hjem.setAttribute('aria-label', T('Alle ressurser'));
+      hjem.innerHTML = '<span aria-hidden="true">&larr;</span><span class="vbm-hjem-tekst">' + T('Alle ressurser') + '</span>';
+    }
     /* Samme menylinje på alle sider: helt øverst over hele bredden, mørk med lys tekst.
        I juksebøkene står linjen inne i innholdet, så den flyttes ut til toppen av siden. */
     /* Banneret om originalen står også helt øverst over hele bredden, som på de andre sidene */
@@ -352,9 +457,10 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
       if (!panel.hidden) { lukk(); return; }
       hentMaterialer(function(){
         var M = window.VBM || {}, html = '';
-        if (hjemTekst) html += '<div class="vbm-meny-hjem"><a class="vbm-hjem" href="index.html">' + hjemTekst + '</a></div>';
-        (M.seksjoner || []).forEach(function(sk){
-          var nf = nivaValg(), liste = (M.materialer || []).filter(function(m){ return m.seksjon === sk.id && !m.skjult && (nf === 'alle' || m.niva === nf); });
+        /* Min fremgang står først i menyen */
+        var seksjoner = (M.seksjoner || []).slice().sort(function(a, b){ return (b.id === 'fremgang') - (a.id === 'fremgang'); });
+        seksjoner.forEach(function(sk){
+          var nf = nivaValg(), liste = (M.materialer || []).filter(function(m){ return m.seksjon === sk.id && !m.skjult && (nf === 'alle' || !m.niva || m.niva === nf); });
           if (!liste.length) return;
           html += '<div class="vbm-meny-gruppe"><p class="vbm-meny-tittel">' + menyT(sk.overskrift) + '</p><ul>';
           liste.forEach(function(m){
@@ -479,6 +585,7 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
      Plassen over notelinjen er alltid satt av (fast minstehøyde), så ingenting flytter seg når lappen kommer.
      Bare når én tone klinger (skalaer, melodier); når en akkord klinger, vises ikke noe navn. Quizene viser ingen navn. */
   function synkFarger(svg){
+    if (!svg.isConnected || !svg.parentNode) return;   /* notelinjen er tatt bort (ny oppgave), så det er ingenting å farge */
     if (svg.closest('[data-uten-navn]')) return;
     var holder = svg.parentNode, lapp = holder.querySelector(':scope > .tn-knapp');
     if (!lapp) { lapp = document.createElement('span'); lapp.className = 'tn-knapp tn-tom'; lapp.setAttribute('aria-hidden', 'true'); holder.appendChild(lapp); }
@@ -560,6 +667,7 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
      Tangenten som klinger får en kraftig kant. Alle tangenter kan spilles. I quizene merkes ingen tangenter
      før tonene spilles etter svaret, så pianoet aldri røper svaret. */
   var PIANO = 'vbm-piano';
+  /* Pianoet under notene er av som standard; det slås på i Innstillinger */
   function pianoPaa(){ try { return localStorage.getItem(PIANO) === '1'; } catch(e){ return false; } }
   var SVARTE = [1, 3, 6, 8, 10];
   function cNavn(m, langt){
@@ -724,7 +832,7 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
       if (!svg.closest('[data-uten-navn]')) { svg.parentNode.classList.add('har-tn'); plassSjekk(svg.parentNode); }
       utvidStav(svg);
       lagPiano(svg);
-      new MutationObserver(function(){ synkFarger(svg); pianoSynk(svg); }).observe(svg, { attributes: true, subtree: true, attributeFilter: ['class'] });
+      new MutationObserver(function(){ if (!svg.isConnected) return; synkFarger(svg); pianoSynk(svg); }).observe(svg, { attributes: true, subtree: true, attributeFilter: ['class'] });
     });
   }
 
@@ -738,7 +846,7 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
   brukTema();
   /* Tempo for hele nettstedet: «raskt» (standard), «middels» eller «sakte». Rytmesidene bruker 100, 65 og 45 slag i minuttet,
      og resten av lyden blir langsommere i samme forhold (lyd.js). */
-  function tempoValg(){ var v = ''; try { v = localStorage.getItem(TEMPO) || ''; } catch(e){} return v === 'sakte' || v === 'middels' ? v : 'raskt'; }
+  function tempoValg(){ var v = ''; try { v = localStorage.getItem(TEMPO) || ''; } catch(e){} return v === 'sakte' || v === 'raskt' ? v : 'middels'; }   /* middels er standard */
   window.VBM_TEMPO = tempoValg;
   window.VBM_TEMPO_BPM = function(){ return { raskt: 100, middels: 65, sakte: 45 }[tempoValg()]; };
   /* Svart-hvitt er standard. Fargene slås på under Innstillinger (lagres som «farger»). */
@@ -767,11 +875,14 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
       + '<div class="vbm-pille vbm-inst-valg" role="group" aria-label="' + T('Piano under notene') + '">'
       + '<button type="button" data-piano-valg="1"><span>' + T('På') + '</span></button><button type="button" data-piano-valg="0"><span>' + T('Av') + '</span></button></div>'
       + '<p class="vbm-inst-tekst">' + T('Viser tonene på notelinjen på et piano under hver notelinje. Du kan trykke på tangentene for å høre dem.') + '</p>'
-      + '<p class="vbm-inst-tittel">' + T('Nivå') + '</p>'
+      + '<p class="vbm-meny-tittel">' + T('Nivå') + '</p>'
       + '<div class="vbm-pille vbm-inst-valg vbm-niva-valg" role="group" aria-label="' + T('Nivå') + '">'
       + '<button type="button" data-niva-valg="alle"><span>' + T('Alle') + '</span></button><button type="button" data-niva-valg="grunnleggende"><span>' + T('Grunnleggende') + '</span></button>'
       + '<button type="button" data-niva-valg="avansert"><span>' + T('Avansert') + '</span></button><button type="button" data-niva-valg="ekspert"><span>' + T('Ekspert') + '</span></button></div>'
-      + '<p class="vbm-inst-tekst">' + T('Viser bare juksebøker, leksjoner og quizer på valgt nivå på startsiden og i menyen.') + '</p>';
+      + '<p class="vbm-inst-tekst">' + T('Viser bare juksebøker, leksjoner og quizer på valgt nivå på startsiden og i menyen.') + '</p>'
+      + '<p class="vbm-meny-tittel">' + T('Standard') + '</p>'
+      + '<div class="vbm-pille vbm-inst-valg" role="group" aria-label="' + T('Standard') + '"><button type="button" data-tilbakestill><span>' + T('Tilbakestill alle innstillinger') + '</span></button></div>'
+      + '<p class="vbm-inst-tekst">' + T('Setter visning, utseende, tempo, piano, nivå og lydvalg tilbake til standard.') + '</p>';
     var meny = nav.querySelector('.vbm-meny-knapp');
     nav.insertBefore(b, meny ? meny.nextSibling : nav.firstChild);
     nav.appendChild(panel);
@@ -784,6 +895,12 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
       [].forEach.call(panel.querySelectorAll('[data-niva-valg]'), function(k){ k.setAttribute('aria-pressed', k.getAttribute('data-niva-valg') === nivaValg() ? 'true' : 'false'); });
     }
     panel.addEventListener('click', function(e){
+      if (e.target.closest && e.target.closest('[data-tilbakestill]')) {
+        /* Alle innstillingene og lydvalgene slettes, og siden lastes på nytt med standardverdiene */
+        try { [VISNING, TEMPO, TEMA, PIANO, NIVA, 'vbm-instrument', 'vbm-instrument-rytme', 'vbm-instrument-stemming'].forEach(function(n){ localStorage.removeItem(n); }); } catch(e3){}
+        if (window.VBM_LYD_STOPP) window.VBM_LYD_STOPP();
+        location.reload(); return;
+      }
       var k = e.target.closest && e.target.closest('[data-visning], [data-tempo-valg], [data-piano-valg], [data-tema-valg], [data-niva-valg]'); if (!k) return;
       try {
         if (k.hasAttribute('data-niva-valg')) { localStorage.setItem(NIVA, k.getAttribute('data-niva-valg')); window.dispatchEvent(new Event('vbm-niva')); vis(); return; }
@@ -830,6 +947,8 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
     byggMeny();
     byggInnstillinger();
     byggNivaOgRelatert();
+    folgSvar();
+    folgSpillknapper();
     root.classList.remove('vbm-oversetter');
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
