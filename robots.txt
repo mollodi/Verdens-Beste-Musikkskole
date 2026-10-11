@@ -1,0 +1,7 @@
+# Verdens Beste Musikkskole
+# Alle søkemotorer får lese hele nettstedet. Sider som ikke skal vises i søk
+# (Min fremgang og videresendingen omvendinger.html), har selv en «noindex»-linje.
+User-agent: *
+Allow: /
+
+Sitemap: https://verdensbestemusikkskole.no/sitemap.xml
