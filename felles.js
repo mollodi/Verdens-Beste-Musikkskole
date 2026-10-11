@@ -43,8 +43,12 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
   var BUNN = {
     designet: 'Designet og levert av',
     hjelp: 'med liten hjelp av Claude AI',
-    dato: 'september 2026'
+    forbehold: 'Innholdet er laget med omhu, men kan inneholde feil.',
+    ansvar: 'Jeg tar ikke ansvar for eventuelle feil eller misvisende informasjon på nettstedet. Har du funnet en feil? Skriv gjerne til',
+    mer: 'Mer', mindre: 'Mindre'
   };
+  /* Årstallet: 2026, og fra 2027 automatisk 2026-2027, 2026-2028 og så videre */
+  function aarTekst(){ var n = new Date().getFullYear(); return n > 2026 ? '2026-' + n : '2026'; }
   /* Lydkreditter. Siden velger med <footer data-lyd="alle">, data-lyd="piano" eller data-lyd="stemming". */
   var LYD = {
     alle: 'Lyd: Salamander Grand Piano av Alexander Holm (CC BY 3.0). Orgel spilt inn av Simon Dalzell (Ivy Audio) og strykere, begge fra VS Chamber Orchestra Community Edition av Versilian Studios (CC0).',
@@ -259,17 +263,28 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
   function byggBunn(){
     var f = document.querySelector('footer[data-lyd]');
     if (!f || f.querySelector('.vbm-signatur')) return;
+    /* Linje 1: signaturen. Linje 2: et kort forbehold og «Mer», som viser ansvarsteksten, e-postadressen og lydkredittene. */
     var sig = document.createElement('span');
     sig.className = 'vbm-signatur';
-    sig.innerHTML = '<span translate="no">&copy; Verdens Beste Musikkskole.</span> <span>' + BUNN.designet + '</span> '
-      + '<span translate="no">Verdens Beste Musikklærer</span>, <span>' + BUNN.hjelp + '</span>, <span>' + BUNN.dato + '</span>.';
+    sig.innerHTML = '<span translate="no">&copy; ' + aarTekst() + ' Verdens Beste Musikkskole.</span> <span>' + BUNN.designet + '</span> '
+      + '<span translate="no">Verdens Beste Musikklærer</span>, <span>' + BUNN.hjelp + '</span>.';
     f.appendChild(sig);
+    var linje = document.createElement('span'); linje.className = 'vbm-fot-linje';
+    linje.innerHTML = '<span>' + BUNN.forbehold + '</span> <button type="button" class="vbm-fot-mer" aria-expanded="false" aria-controls="vbm-fot-resten">' + T(BUNN.mer) + '</button>';
+    f.appendChild(linje);
+    var resten = document.createElement('span'); resten.className = 'vbm-fot-resten'; resten.id = 'vbm-fot-resten'; resten.hidden = true;
+    /* E-postadressen settes sammen her, så den ikke står som ren tekst i sidene (mindre søppelpost) */
+    var epost = ['wojciechhryniewicki', 'gmail.com'].join('@');
+    resten.innerHTML = '<span class="vbm-fot-ansvar"><span>' + BUNN.ansvar + '</span> <a href="mailto:' + epost + '" translate="no">' + epost + '</a>.</span>';
     var lyd = LYD[f.getAttribute('data-lyd')];
-    if (lyd) {
-      var k = document.createElement('span');
-      k.className = 'vbm-kreditt'; k.innerHTML = '<span>' + lyd + '</span>';
-      f.appendChild(k);
-    }
+    if (lyd) resten.innerHTML += '<span class="vbm-kreditt"><span>' + lyd + '</span></span>';
+    f.appendChild(resten);
+    linje.querySelector('.vbm-fot-mer').addEventListener('click', function(){
+      var apen = resten.hidden;
+      resten.hidden = !apen;
+      this.setAttribute('aria-expanded', apen ? 'true' : 'false');
+      this.textContent = T(apen ? BUNN.mindre : BUNN.mer);
+    });
   }
 
   /* ==================== 7. Lenke til originalen ==================== */

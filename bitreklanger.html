@@ -16,8 +16,8 @@
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Bitreklanger og forholdninger</title>
-<script src="felles.js?v=47"></script>
-<link rel="stylesheet" href="stil.css?v=47">
+<script src="felles.js?v=50"></script>
+<link rel="stylesheet" href="stil.css?v=50">
 <meta name="description" content="Bitreklanger og forholdninger: hoved- og bitreklanger i dur og moll, navnene i opptaksprøven og i andre systemer, typiske akkordforløp, omvendinger, forholdninger og hvordan du hører et akkordforløp.">
 </head>
 <body>
@@ -49,6 +49,23 @@
         <tbody id="navn-tabell"></tbody>
       </table>
     </div>
+    <div class="symbol-forklaring">
+      <p class="label">Forklaring på symbolene</p>
+      <dl class="symbol-liste">
+        <dt translate="no">T</dt><dd>tonika, akkorden på 1. trinn</dd>
+        <dt translate="no">S</dt><dd>subdominant, 4. trinn</dd>
+        <dt translate="no">D</dt><dd>dominant, 5. trinn</dd>
+        <dt translate="no">Ts</dt><dd>6. trinn, en ters under tonika (Tp i parallellsystemet)</dd>
+        <dt translate="no">Ss</dt><dd>2. trinn, en ters under subdominanten (Sp)</dd>
+        <dt translate="no">Tm</dt><dd>3. trinn, en ters over tonika (Dp)</dd>
+        <dt translate="no">m og s</dt><dd>liten m betyr en ters over, liten s en ters under. Derfor kan 3. trinn også hete Ds, og 6. trinn Sm.</dd>
+        <dt translate="no">D⁷</dt><dd>dominantseptimakkord: dominanten med septim</dd>
+        <dt translate="no">Đ⁷</dt><dd>D med strek: dominantseptimakkord uten grunntone, altså akkorden på 7. trinn (vii°)</dd>
+        <dt translate="no">D₃, D₅, D₇</dt><dd>tallet under bokstaven er tonen i bassen: D₃ har tersen i bassen, D₅ kvinten og D₇ septimen</dd>
+        <dt translate="no">I, ii, vii°</dt><dd>romertall viser trinnet: store tall for dur, små for moll, ° for forminsket</dd>
+        <dt translate="no">Tp, Sp, Dp</dt><dd>parallellnavnene fra tysk og svensk tradisjon: tonika-, subdominant- og dominantparallell</dd>
+      </dl>
+    </div>
     <div class="stav-blokk">
       <p class="label" id="tre-merke"></p>
       <div class="row"><button type="button" class="btn" data-spill="tre-noter">&#9658;&#xFE0E; <span>spill</span></button></div>
@@ -72,7 +89,7 @@
       <p class="task"><strong>Her er fagfolk uenige</strong></p>
       <ul class="regler">
         <li><strong>Ett eller to navn?</strong> De fleste funksjonsteorier lar iii og vi ha to navn, fordi de har to toner felles med to hovedtreklanger: iii kan være Tm eller Ds, og vi kan være Ts eller Sm. Prøven følger Sigvald Tveits lærebok, der hver akkord har ett fast navn (Tm og Ts).</li>
-        <li><strong>Mediant og parallell.</strong> Det norske systemet er unikt for Norge. I Tyskland og Sverige, og i Harmonilære her på nettstedet, kalles bitreklangene paralleller: Tp, Sp og Dp. Tp betyr ikke det samme i de to systemene i moll, så pass på hvilket system en bok bruker.</li>
+        <li><strong>Mediant og parallell.</strong> Det norske systemet er unikt for Norge. I Tyskland og Sverige kalles bitreklangene paralleller: Tp, Sp og Dp. Tp betyr ikke det samme i de to systemene i moll, så pass på hvilket system en bok bruker.</li>
         <li><strong>Store eller små romertall?</strong> Engelskspråklige bøker og resten av dette nettstedet skriver moll og forminsket med små bokstaver (ii, vi, vii°). Opptaksprøven skriver alle romertall med store bokstaver og lar tonearten avgjøre typen.</li>
         <li><strong>Akkorden på 7. trinn.</strong> De fleste lærebøker og prøven tolker vii° som Đ⁷. Bjerkestrand og Nesheim og Tveit kaller den en egen akkord, Dm.</li>
         <li><strong>Kadensens kvartsekstakkord.</strong> Den består av tonene i I, men virker som en del av dominanten. Prøven krever ett navn per akkord og regner V⁶₄ (D⁶₄) som riktig. Mange søkere har svart I⁶₄ og fått det regnet som feil. Se kort 4.</li>
@@ -198,12 +215,12 @@
 
 <footer data-lyd="alle"></footer>
 
-<script src="tonearter.js?v=47"></script>
-<script src="intervall.js?v=47"></script>
-<script src="skalaer.js?v=47"></script>
-<script src="harmoni.js?v=47"></script>
-<script src="akkord.js?v=47"></script>
-<script src="forlop.js?v=47"></script>
+<script src="tonearter.js?v=50"></script>
+<script src="intervall.js?v=50"></script>
+<script src="skalaer.js?v=50"></script>
+<script src="harmoni.js?v=50"></script>
+<script src="akkord.js?v=50"></script>
+<script src="forlop.js?v=50"></script>
 <script>/* VBM K7Q4-BITT */
 (function(){
   'use strict';
@@ -321,6 +338,6 @@
   window.VBM_VED_BREDDE(tegnAlt);
 })();
 </script>
-<script src="lyd.js?v=47"></script>
+<script src="lyd.js?v=50"></script>
 </body>
 </html>

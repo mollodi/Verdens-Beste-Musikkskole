@@ -2081,14 +2081,14 @@ html.sh .viktig strong { color: var(--ink) !important; }
 .vbm-kurs { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
 .vbm-relatert a.vbm-kurs-neste { margin-left: auto; }
 @media (max-width: 520px) { .vbm-relatert { padding: 16px 16px 4px; } }
-@media (forced-colors: active) { .vbm-relatert a.vbm-rel-lenke { background: ButtonFace !important; color: ButtonText !important; border-color: ButtonText; } .vbm-relatert a.vbm-rel-lenke:hover, .vbm-relatert a.vbm-rel-lenke:focus-visible { border-color: Highlight; } .btn.vbm-spillknapp, .btn.vbm-spillknapp:hover { background: ButtonFace !important; color: ButtonText !important; border-color: ButtonText !important; } .btn.vbm-spillknapp.playing { border-color: Highlight !important; box-shadow: none; } }
+@media (forced-colors: active) { .vbm-relatert a.vbm-rel-lenke { background: ButtonFace !important; color: ButtonText !important; border-color: ButtonText; } .vbm-relatert a.vbm-rel-lenke:hover, .vbm-relatert a.vbm-rel-lenke:focus-visible { border-color: Highlight; } button.vbm-spillknapp, button.vbm-spillknapp:hover { background: ButtonFace !important; color: ButtonText !important; border-color: ButtonText !important; } button.vbm-spillknapp.playing { border-color: Highlight !important; box-shadow: none; } }
 /* Mindre luft mellom siste kort og «Se også» */
 main:has(+ .vbm-relatert) { padding-bottom: 16px !important; margin-bottom: 0 !important; }
 /* Spillknappene: svarte med hvit tekst og lys kant, som Meny-knappen. Kanten blir oransje når du peker på dem.
    Mens lyden spiller, blir teksten oransje og kanten dobbel. */
-.btn.vbm-spillknapp { background: #16191E !important; color: #FFFFFF !important; border: 2px solid color-mix(in srgb, #FFFFFF 45%, transparent) !important; font-weight: 600; }
-.btn.vbm-spillknapp:hover, .btn.vbm-spillknapp:focus-visible { background: #262A31 !important; color: #FFFFFF !important; border-color: var(--lenke-mork) !important; }
-.btn.vbm-spillknapp.playing { color: var(--lenke-mork) !important; box-shadow: 0 0 0 2px var(--lenke-mork); }
+button.vbm-spillknapp { border-radius: 999px !important; background: #16191E !important; color: #FFFFFF !important; border: 2px solid color-mix(in srgb, #FFFFFF 45%, transparent) !important; font-weight: 600; }
+button.vbm-spillknapp:hover, button.vbm-spillknapp:focus-visible { background: #262A31 !important; color: #FFFFFF !important; border-color: var(--lenke-mork) !important; }
+button.vbm-spillknapp.playing { color: var(--lenke-mork) !important; box-shadow: 0 0 0 2px var(--lenke-mork); }
 
 /* ---------- Kortet «Ulike navn og systemer» (alle leksjoner som har det) ---------- */
 :where([data-stil="ovelse"]) .ulike-kort { grid-column: 1 / -1; }
@@ -2162,6 +2162,12 @@ main:has(+ .vbm-relatert) { padding-bottom: 16px !important; margin-bottom: 0 !i
 
 
 /* Bare Bitreklanger og forholdninger */
+:where(html[data-side="bitreklanger.html"]) .symbol-forklaring { margin: 16px 0 6px; padding: 12px 14px; border: 1px solid var(--rule); border-radius: 12px; }
+:where(html[data-side="bitreklanger.html"]) .symbol-liste { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 6px 0 0; font-size: 14px; line-height: 1.45; }
+:where(html[data-side="bitreklanger.html"]) .symbol-liste dt { font-weight: 700; font-family: Charter, Georgia, serif; font-size: 15px; }
+:where(html[data-side="bitreklanger.html"]) .symbol-liste dd { margin: 0; }
+@media (forced-colors: active) { :where(html[data-side="bitreklanger.html"]) .symbol-forklaring { border-color: CanvasText; } }
+
 :where(html[data-side="bitreklanger.html"]) .tabell-ramme { margin: 12px 0 4px; }
 :where(html[data-side="bitreklanger.html"]) .navn-tabell { width: 100%; border-collapse: collapse; font-size: 14px; }
 /* Smal skjerm: hver akkord blir en liten blokk med overskriftene foran verdiene, så tabellen aldri må rulles sidelengs */
@@ -3253,3 +3259,46 @@ svg.vbm-fast-stav { height: auto; }
 :where(html[data-side="index.html"]) .vbm-sok-info { margin: 8px 0 0; font-size: 14px; min-height: 1.2em; }
 :where(html[data-side="index.html"]) .vbm-sok-treff h2 { margin-top: 0; }
 @media (forced-colors: active) { :where(html[data-side="index.html"]) #vbm-sok { border-color: CanvasText; background: Field; color: FieldText; } }
+
+
+/* ---------- Samme utseende på de eldre sidene (juksebøkene, lytteguidene, Akkordhefte og startsiden) ---------- */
+/* Bunnteksten: samme strek over, samme bredde og skrift som på leksjonene */
+html:not([data-stil="ovelse"]) footer {
+  max-width: 980px !important; margin: 24px auto 0 !important; padding: 28px 28px 56px !important; box-sizing: border-box;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent) !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important; font-size: 12px !important; line-height: 1.7 !important;
+}
+html:not([data-stil="ovelse"]) footer .vbm-kreditt { display: block; margin-top: 6px; font-size: 11px !important; }
+/* Innledningen under overskriften: vanlig tekst som resten av innledningen, ikke en smal blokk med skrivemaskinskrift */
+:where(html[data-stil="mork"]) .hero-staff { display: block !important; }
+:where(html[data-stil="mork"]) .hero-staff .staff-box:empty { display: none; }
+:where(html[data-stil="mork"]) .hero-staff .staff-caption { font: 16.5px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif !important;
+  color: inherit !important; opacity: .72; max-width: 560px !important; margin: 12px 0 0; }
+/* Merknaden står nederst i innholdet, rett over «Se også» */
+.side-merk { max-width: 980px; box-sizing: border-box; margin: 28px 0 0; padding: 0; font: 14.5px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; opacity: .85; }
+:where(html[data-stil="mork"]) main > .side-merk { grid-column: 1 / -1; }
+/* «Se også» i juksebøkene: samme knapper, og på linje med innholdet */
+:where(html[data-stil="bok"]) .vbm-relatert { padding: 18px 0 6px; max-width: none; }
+.vbm-relatert a.vbm-rel-lenke { border-radius: 999px !important; }
+@media (forced-colors: active) { html:not([data-stil="ovelse"]) footer { border-top-color: CanvasText !important; } }
+
+/* Lytteguidene: «Se også» på linje med innholdet og merknaden også på mobil */
+@media (max-width: 520px) { :where(html[data-stil="mork"]) .vbm-relatert { padding-left: 28px; padding-right: 28px; } }
+
+/* Bunnteksten: to linjer, og «Mer» viser resten (ansvar, e-post og lydkreditter) */
+footer .vbm-signatur, footer .vbm-fot-linje, footer .vbm-fot-resten { display: block; flex-basis: 100%; }
+footer .vbm-fot-linje { margin-top: 4px; }
+footer .vbm-fot-resten[hidden] { display: none; }
+footer .vbm-fot-resten > span { display: block; margin-top: 8px; }
+footer .vbm-fot-mer { font: inherit; color: inherit; background: none; border: 0; padding: 0 2px; margin-left: 4px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+footer .vbm-fot-mer:hover, footer .vbm-fot-mer:focus-visible { color: var(--lenke-mork, #e8b866); outline: none; }
+footer .vbm-fot-ansvar a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+@media (forced-colors: active) { footer .vbm-fot-mer, footer .vbm-fot-ansvar a { color: LinkText; } }
+
+/* Lite luft under bunnteksten: akkurat nok til lydvelgeren (ca. 29 px høy, 14 px fra kanten) pluss litt mellomrom.
+   Sider uten lydvelger (startsiden, Min fremgang) får enda mindre. */
+footer[data-lyd] { padding-bottom: 56px !important; }
+html body:not(:has(.vbm-instr-float)) footer[data-lyd] { padding-bottom: 28px !important; }
+html[data-stil="bok"] body, html[data-stil="mork"] body { padding-bottom: 0 !important; }
+html[data-stil="mork"] main, html[data-stil="bok"] main { margin-bottom: 0 !important; }
+html[data-stil="bok"] main:has(> footer) { padding-bottom: 0 !important; }   /* bunnteksten ligger inne i boka; ingen ekstra luft under den */
