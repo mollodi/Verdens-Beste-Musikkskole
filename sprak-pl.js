@@ -470,7 +470,8 @@ VBM_ORDBOK("pl", {
         "21 halvtoner, også kalt oktav + stor sekst": "21 półtonów, inaczej oktawa + seksta wielka",
         "22 halvtoner, også kalt oktav + liten septim": "22 półtony, inaczej oktawa + septyma mała",
         "23 halvtoner, også kalt oktav + stor septim": "23 półtony, inaczej oktawa + septyma wielka",
-        "Tips: du kan slå på fargene under Innstillinger (tannhjulet øverst).": "Wskazówka: kolory możesz włączyć w Ustawieniach (koło zębate u góry)."
+        "Tips: du kan slå på fargene under Innstillinger (tannhjulet øverst).": "Wskazówka: kolory możesz włączyć w Ustawieniach (koło zębate u góry).",
+        "Alle intervaller fra ren prim til dobbel oktav, med begge navn over oktaven.": "Wszystkie interwały od prymy czystej do podwójnej oktawy, z obiema nazwami powyżej oktawy."
       },
     "akkorder-og-intervaller.html": {
         "Den ultimate jukseboka for akkorder og intervaller": "Najlepsza ściąga z akordów i interwałów",
@@ -716,7 +717,8 @@ VBM_ORDBOK("pl", {
         "Jazz- og popakkorder har ingen faste norske navn. I noter skrives de med akkordsymboler, som C7sus4 eller Cadd9, og musikere sier symbolet. Navnene her beskriver hva akkorden består av, og symbolet står i parentes.": "Akordy jazzowe i popowe nie mają w języku norweskim stałych nazw. W nutach zapisuje się je symbolami akordów, takimi jak C7sus4 czy Cadd9, a muzycy wypowiadają symbol. Nazwy tutaj opisują, z czego składa się akord, a symbol podano w nawiasie.",
         "Innhold": "Spis treści",
         "↑ Til innholdet": "↑ Do spisu treści",
-        "Tips: du kan slå på fargene under Innstillinger (tannhjulet øverst).": "Wskazówka: kolory możesz włączyć w Ustawieniach (koło zębate u góry)."
+        "Tips: du kan slå på fargene under Innstillinger (tannhjulet øverst).": "Wskazówka: kolory możesz włączyć w Ustawieniach (koło zębate u góry).",
+        "Seks kapitler, fra treklanger til jazzakkorder, med omvendingene i et eget kapittel.": "Sześć rozdziałów, od trójdźwięków do akordów jazzowych, z przewrotami w osobnym rozdziale."
       },
     "intervaller-og-sanger.html": {
         "Intervaller & sanger: øretreningsreferanse": "Interwały i piosenki: materiał do kształcenia słuchu",
@@ -801,7 +803,8 @@ VBM_ORDBOK("pl", {
         "Spill av Stor septim nedover": "Odtwórz: septyma wielka w dół",
         "Spill av Ren oktav oppover": "Odtwórz: oktawa czysta w górę",
         "Spill av Ren oktav nedover": "Odtwórz: oktawa czysta w dół",
-        "Innstillinger": "Ustawienia"
+        "Innstillinger": "Ustawienia",
+        "Hvert intervall oppover og nedover, med eksempelsanger og Spotify-lenker.": "Każdy interwał w górę i w dół, z przykładowymi piosenkami i linkami do Spotify."
       },
     "gehorlekser-mikrointervaller.html": {
         "Gehørlekser med mikrointervaller: forberedelse til pianostemmerutdanningen": "Ćwiczenia słuchowe z mikrointerwałami: przygotowanie do nauki strojenia fortepianów",
@@ -914,7 +917,8 @@ VBM_ORDBOK("pl", {
         "Antall cent var riktig, men intervallet var for stort, ikke for lite.": "Liczba centów się zgadzała, ale interwał był za duży, a nie za mały.",
         "Antall cent var riktig, men intervallet var for lite, ikke for stort.": "Liczba centów się zgadzała, ale interwał był za mały, a nie za duży.",
         "Velg lyd nederst til høyre: overtonetone, orgel, piano eller sinustoner. Overtonetonen viser svevningene tydeligst. Bruk gjerne hodetelefoner.": "Wybierz dźwięk w prawym dolnym rogu: ton z alikwotami, organy, fortepian lub tony sinusoidalne. Ton z alikwotami najwyraźniej pokazuje dudnienia. Najlepiej użyj słuchawek.",
-        "Du hører en oktav, en kvint eller en kvart. Er intervallet rent (oktav 2:1, kvint 3:2, kvart 4:3), eller er det litt surt? Med overtonetonen, orgel og piano hører du et surt intervall som svevninger, tydeligst med overtonetonen. Med sinustoner er svevningene svake, så lytt etter om samklangen er rolig eller urolig.": "Słyszysz oktawę, kwintę albo kwartę. Czy interwał jest czysty (oktawa 2:1, kwinta 3:2, kwarta 4:3), czy trochę fałszywy? Przy tonie z alikwotami, organach i fortepianie fałszywy interwał słychać jako dudnienia, najwyraźniej przy tonie z alikwotami. Przy tonach sinusoidalnych dudnienia są słabe, więc słuchaj, czy współbrzmienie jest spokojne, czy niespokojne."
+        "Du hører en oktav, en kvint eller en kvart. Er intervallet rent (oktav 2:1, kvint 3:2, kvart 4:3), eller er det litt surt? Med overtonetonen, orgel og piano hører du et surt intervall som svevninger, tydeligst med overtonetonen. Med sinustoner er svevningene svake, så lytt etter om samklangen er rolig eller urolig.": "Słyszysz oktawę, kwintę albo kwartę. Czy interwał jest czysty (oktawa 2:1, kwinta 3:2, kwarta 4:3), czy trochę fałszywy? Przy tonie z alikwotami, organach i fortepianie fałszywy interwał słychać jako dudnienia, najwyraźniej przy tonie z alikwotami. Przy tonach sinusoidalnych dudnienia są słabe, więc słuchaj, czy współbrzmienie jest spokojne, czy niespokojne.",
+        "Seks øvelser i små forskjeller i tonehøyde, som forberedelse til pianostemmerutdanningen ved NMH.": "Sześć ćwiczeń z małych różnic wysokości dźwięku, jako przygotowanie do nauki strojenia fortepianów."
       },
     "akkordhefte.html": {
         "Akkordhefte: treklanger og diatonisk harmoni": "Zeszyt akordów: trójdźwięki i harmonia diatoniczna",
@@ -1010,7 +1014,8 @@ VBM_ORDBOK("pl", {
         "Det hevede 7. trinnet gjør to viktige ting: det skaper en forstørret treklang på <strong>III</strong> (den ene diatoniske plassen forstørrede treklanger faktisk finnes), og det gjør at <strong>v blir V</strong> (moll blir dur), som skaper en ledetone med sterkt drag mot grunntonen.": "Podwyższony VII stopień robi dwie ważne rzeczy: tworzy trójdźwięk zwiększony na <strong>III</strong> (jedyne miejsce diatoniczne, gdzie trójdźwięki zwiększone naprawdę występują), a także sprawia, że <strong>v staje się V</strong> (moll staje się durem), co tworzy dźwięk prowadzący z silnym ciążeniem do toniki.",
         "<span class=\"label\">Lytt til forskjellen</span> Sammenlign V i naturlig moll (E–G–H, moll) med V i harmonisk moll (E–Giss–H, dur). Draget mot tonika er lett å høre. Det er derfor komponister bruker harmonisk moll.": "<span class=\"label\">Posłuchaj różnicy</span> Porównaj V w molu naturalnym (E–G–H, molowy) z V w molu harmonicznym (E–G♯–H, durowy). Ciążenie do toniki łatwo usłyszeć. Dlatego kompozytorzy używają molu harmonicznego.",
         "↑ Til innholdet": "↑ Do spisu treści",
-        "Vis fasit": "Pokaż odpowiedź"
+        "Vis fasit": "Pokaż odpowiedź",
+        "Treklanger, trinnakkorder og diatonisk harmoni, med harmonisk moll.": "Trójdźwięki, akordy na stopniach skali i harmonia diatoniczna, z molem harmonicznym."
       },
     "lytteguide-septim-og-nonakkorder.html": {
         "Dominant & Major 7th & 9th Chords": "Akordy dominantowe i maj z septymą i noną",
@@ -3880,6 +3885,15 @@ VBM_ORDBOK("pl", {
         "Tre riktige på rad. Bra jobbet!": "Trzy poprawne z rzędu. Dobra robota!",
         "{r} av {t} riktige": "{r} z {t} poprawnie",
         "{r} av {t} riktige.": "Poprawnie: {r} z {t}."
+      },
+    "404.html": {
+        "Siden finnes ikke": "Strona nie istnieje",
+        "Siden <em>finnes ikke</em>": "Strona <em>nie istnieje</em>",
+        "Adressen er skrevet feil, eller siden er flyttet. Alle juksebøker, leksjoner og quizer finner du på startsiden, og i Meny øverst.": "Adres jest błędny albo strona została przeniesiona. Wszystkie ściągi, lekcje i quizy znajdziesz na stronie głównej oraz w Menu na górze.",
+        "Videre": "Dalej",
+        "Finn det du lette etter": "Znajdź to, czego szukasz",
+        "På startsiden kan du søke i alt materiellet.": "Na stronie głównej możesz przeszukać wszystkie materiały.",
+        "Til startsiden": "Do strony głównej"
       }
   }
 });

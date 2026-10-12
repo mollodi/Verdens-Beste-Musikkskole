@@ -1370,6 +1370,7 @@ html:where([data-side="index.html"]) {
 :root:where([data-side="notasjonstegn.html"]) { --vbm-verk: "K7Q4-NOTT"; }
 :root:where([data-side="quiz-notasjonstegn.html"]) { --vbm-verk: "K7Q4-2W68"; }
 :root:where([data-side="fremgang.html"]) { --vbm-verk: "K7Q4-FREM"; }
+:root:where([data-side="404.html"]) { --vbm-verk: "K7Q4-GJGA"; }
 :where(html[data-side="quiz-rytme.html"]) .gj-noter { margin-top: 6px; color: var(--text-on-paper); }
 :where(html[data-side="quiz-rytme.html"]) .gjennomgang li { flex-wrap: wrap; }
 :root:where([data-stil="ovelse"]) {

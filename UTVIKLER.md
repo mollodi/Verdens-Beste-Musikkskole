@@ -167,7 +167,7 @@ Løpende tekst bruker norske tonenavn (Ess, Fiss, Ass) med `K.tone()`. Akkordsym
 
 ## Versjonsnummer (hurtigminne)
 
-Alle felles filer lenkes med et versjonsnummer, for eksempel `felles.js?v=50` og `stil.css?v=50`, så nettleseren henter nye utgaver etter en oppdatering. Språkfilene og `materialer.js` får samme nummer automatisk (felles.js leser det fra sin egen lenke). Når en felles fil endres: søk og erstatt `?v=50` med neste nummer i alle sider, og last opp alle sidene.
+Alle felles filer lenkes med et versjonsnummer, for eksempel `felles.js?v=52` og `stil.css?v=52`, så nettleseren henter nye utgaver etter en oppdatering. Språkfilene og `materialer.js` får samme nummer automatisk (felles.js leser det fra sin egen lenke). Når en felles fil endres: søk og erstatt `?v=52` med neste nummer i alle sider, og last opp alle sidene.
 
 ## Omvendinger
 
@@ -192,3 +192,7 @@ Sidene har ingen «noindex»-linje. `felles.js` gir hver side hovedadressen (can
 ## Søk på startsiden
 
 Søkefeltet filtrerer kortene på startsiden mens du skriver, i teksten slik den står på siden (også på engelsk og polsk).
+
+## Deling og strukturerte data
+
+Hver side har Open Graph-tagger i head (tittel, beskrivelse, adresse og delebildet `delebilde.png`, 1200 x 630), så lenker som deles, vises med bilde. Delingspakken (bilde, tittel og beskrivelse) er på engelsk for alle språk, fordi delingstjenestene ikke kjører skriptet som bytter språk. Alt annet på nettstedet er på tre språk. De må stå i HTML-en, fordi Facebook og Messenger ikke kjører JavaScript. Ny side: kopier blokken fra en annen side og bytt tittel, beskrivelse og adresse. `felles.js` legger inn strukturerte data (JSON-LD) fra materialer.js: EducationalOrganization og WebSite på startsiden, LearningResource og BreadcrumbList på de andre sidene. `404.html` vises når en adresse ikke finnes.

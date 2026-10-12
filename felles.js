@@ -385,12 +385,37 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
     new MutationObserver(function(liste){ liste.forEach(function(m){ [].forEach.call(m.addedNodes, function(n){ if (n.nodeType === 1) { if (n.matches && n.matches('button')) merkSpillknapper(n.parentNode); else merkSpillknapper(n); } }); }); })
       .observe(hoved, { childList: true, subtree: true });
   }
+  /* Strukturerte data (JSON-LD) for søkemotorer: hvem som står bak nettstedet, og hva slags læringsressurs
+     hver side er (leksjon, quiz, oppslagsverk), med nivå og språk. Hentes fra materialer.js, så det står bare ett sted. */
+  var ORIGINAL_URL = 'https://verdensbestemusikkskole.no/';
+  function leggTilJsonLd(data){ var sk = document.createElement('script'); sk.type = 'application/ld+json'; sk.textContent = JSON.stringify(data); document.head.appendChild(sk); }
+  function strukturerteData(meg, M){
+    var skole = { '@type': 'EducationalOrganization', '@id': ORIGINAL_URL + '#skole', name: 'Verdens Beste Musikkskole', url: ORIGINAL_URL, logo: ORIGINAL_URL + 'apple-touch-icon.png', image: ORIGINAL_URL + 'delebilde.png' };
+    if (side === 'index.html') {
+      leggTilJsonLd({ '@context': 'https://schema.org', '@graph': [skole, { '@type': 'WebSite', '@id': ORIGINAL_URL + '#nettsted', name: 'Verdens Beste Musikkskole', url: ORIGINAL_URL, inLanguage: ['nb', 'en', 'pl'], publisher: { '@id': ORIGINAL_URL + '#skole' } }] });
+      return;
+    }
+    if (!meg) return;
+    var TYPE = { teori: 'Lesson', gehorquiz: 'Quiz', teoriquiz: 'Quiz', jukseboker: 'Reference', oretrening: 'Listening exercise', elevhefter: 'Workbook' };
+    var NIVA_EN = { grunnleggende: 'Beginner', avansert: 'Intermediate', ekspert: 'Advanced' };
+    var seksjon = null; (M.seksjoner || []).forEach(function(s){ if (s.id === meg.seksjon) seksjon = s; });
+    var url = ORIGINAL_URL + side, beskr = (document.querySelector('meta[name="description"]') || {}).content || meg.beskrivelse;
+    leggTilJsonLd({ '@context': 'https://schema.org', '@graph': [
+      { '@type': 'LearningResource', name: meg.tittel, description: beskr, url: url, inLanguage: sprak === 'no' ? 'nb' : sprak,
+        learningResourceType: TYPE[meg.seksjon] || 'Lesson', educationalLevel: NIVA_EN[meg.niva] || undefined, about: 'Music theory and ear training',
+        isAccessibleForFree: true, author: { '@id': ORIGINAL_URL + '#skole' }, publisher: skole },
+      { '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Verdens Beste Musikkskole', item: ORIGINAL_URL },
+        { '@type': 'ListItem', position: 2, name: seksjon ? seksjon.overskrift : meg.merke, item: ORIGINAL_URL + '#' + meg.seksjon },
+        { '@type': 'ListItem', position: 3, name: meg.tittel, item: url } ] } ] });
+  }
+
   function byggNivaOgRelatert(){
-    if (side === 'index.html') return;
     hentMaterialer(function(){
       var M = window.VBM || {}, alle = M.materialer || [], meg = null;
       alle.forEach(function(m){ if (!meg && m.fil.split('?')[0] === side) meg = m; });
-      if (!meg) return;
+      try { strukturerteData(meg, M); } catch(e){}
+      if (side === 'index.html' || !meg) return;
       var hero = document.querySelector('.hero, header');
       if (meg.niva && hero && !document.querySelector('.vbm-niva-linje')) {
         var linje = document.createElement('p'); linje.className = 'vbm-niva-linje';

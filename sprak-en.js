@@ -470,7 +470,8 @@ VBM_ORDBOK("en", {
         "21 halvtoner, også kalt oktav + stor sekst": "21 semitones, also called octave + major 6th",
         "22 halvtoner, også kalt oktav + liten septim": "22 semitones, also called octave + minor 7th",
         "23 halvtoner, også kalt oktav + stor septim": "23 semitones, also called octave + major 7th",
-        "Tips: du kan slå på fargene under Innstillinger (tannhjulet øverst).": "Tip: you can turn the colours on under Settings (the gear at the top)."
+        "Tips: du kan slå på fargene under Innstillinger (tannhjulet øverst).": "Tip: you can turn the colours on under Settings (the gear at the top).",
+        "Alle intervaller fra ren prim til dobbel oktav, med begge navn over oktaven.": "Every interval from unison to double octave, with both names above the octave."
       },
     "akkorder-og-intervaller.html": {
         "Den ultimate jukseboka for akkorder og intervaller": "The Ultimate Cheat Book for Chords and Intervals",
@@ -716,7 +717,8 @@ VBM_ORDBOK("en", {
         "Jazz- og popakkorder har ingen faste norske navn. I noter skrives de med akkordsymboler, som C7sus4 eller Cadd9, og musikere sier symbolet. Navnene her beskriver hva akkorden består av, og symbolet står i parentes.": "Jazz and pop chords have no fixed names in Norwegian. In sheet music they are written as chord symbols, such as C7sus4 or Cadd9, and musicians say the symbol. The names here describe what the chord is made of, and the symbol is in parentheses.",
         "Innhold": "Contents",
         "↑ Til innholdet": "↑ Back to contents",
-        "Tips: du kan slå på fargene under Innstillinger (tannhjulet øverst).": "Tip: you can turn the colours on under Settings (the gear at the top)."
+        "Tips: du kan slå på fargene under Innstillinger (tannhjulet øverst).": "Tip: you can turn the colours on under Settings (the gear at the top).",
+        "Seks kapitler, fra treklanger til jazzakkorder, med omvendingene i et eget kapittel.": "Six chapters, from triads to jazz chords, with the inversions in a chapter of their own."
       },
     "intervaller-og-sanger.html": {
         "Intervaller & sanger: øretreningsreferanse": "Intervals & songs: ear training reference",
@@ -801,7 +803,8 @@ VBM_ORDBOK("en", {
         "Spill av Stor septim nedover": "Play major 7th down",
         "Spill av Ren oktav oppover": "Play perfect octave up",
         "Spill av Ren oktav nedover": "Play perfect octave down",
-        "Innstillinger": "Settings"
+        "Innstillinger": "Settings",
+        "Hvert intervall oppover og nedover, med eksempelsanger og Spotify-lenker.": "Every interval up and down, with example songs and Spotify links."
       },
     "gehorlekser-mikrointervaller.html": {
         "Gehørlekser med mikrointervaller: forberedelse til pianostemmerutdanningen": "Ear training homework with microintervals: preparation for piano tuning studies",
@@ -914,7 +917,8 @@ VBM_ORDBOK("en", {
         "Antall cent var riktig, men intervallet var for stort, ikke for lite.": "The number of cents was right, but the interval was too large, not too small.",
         "Antall cent var riktig, men intervallet var for lite, ikke for stort.": "The number of cents was right, but the interval was too small, not too large.",
         "Velg lyd nederst til høyre: overtonetone, orgel, piano eller sinustoner. Overtonetonen viser svevningene tydeligst. Bruk gjerne hodetelefoner.": "Choose a sound at the bottom right: harmonic tone, organ, piano or sine tones. The harmonic tone shows the beats most clearly. Use headphones if you can.",
-        "Du hører en oktav, en kvint eller en kvart. Er intervallet rent (oktav 2:1, kvint 3:2, kvart 4:3), eller er det litt surt? Med overtonetonen, orgel og piano hører du et surt intervall som svevninger, tydeligst med overtonetonen. Med sinustoner er svevningene svake, så lytt etter om samklangen er rolig eller urolig.": "You hear an octave, a fifth or a fourth. Is the interval pure (octave 2:1, fifth 3:2, fourth 4:3), or is it slightly sour? With the harmonic tone, organ and piano you hear a sour interval as beats, most clearly with the harmonic tone. With sine tones the beats are weak, so listen for whether the sound is calm or restless."
+        "Du hører en oktav, en kvint eller en kvart. Er intervallet rent (oktav 2:1, kvint 3:2, kvart 4:3), eller er det litt surt? Med overtonetonen, orgel og piano hører du et surt intervall som svevninger, tydeligst med overtonetonen. Med sinustoner er svevningene svake, så lytt etter om samklangen er rolig eller urolig.": "You hear an octave, a fifth or a fourth. Is the interval pure (octave 2:1, fifth 3:2, fourth 4:3), or is it slightly sour? With the harmonic tone, organ and piano you hear a sour interval as beats, most clearly with the harmonic tone. With sine tones the beats are weak, so listen for whether the sound is calm or restless.",
+        "Seks øvelser i små forskjeller i tonehøyde, som forberedelse til pianostemmerutdanningen ved NMH.": "Six exercises in small differences in pitch, as preparation for piano tuning studies."
       },
     "akkordhefte.html": {
         "Akkordhefte: treklanger og diatonisk harmoni": "Chord Workbook: triads and diatonic harmony",
@@ -1010,7 +1014,8 @@ VBM_ORDBOK("en", {
         "Det hevede 7. trinnet gjør to viktige ting: det skaper en forstørret treklang på <strong>III</strong> (den ene diatoniske plassen forstørrede treklanger faktisk finnes), og det gjør at <strong>v blir V</strong> (moll blir dur), som skaper en ledetone med sterkt drag mot grunntonen.": "The raised 7th degree does two important things: it creates an augmented triad on <strong>III</strong> (the one diatonic place where augmented triads actually occur), and it makes <strong>v become V</strong> (minor becomes major), which creates a leading tone with a strong pull toward the tonic.",
         "<span class=\"label\">Lytt til forskjellen</span> Sammenlign V i naturlig moll (E–G–H, moll) med V i harmonisk moll (E–Giss–H, dur). Draget mot tonika er lett å høre. Det er derfor komponister bruker harmonisk moll.": "<span class=\"label\">Listen to the difference</span> Compare V in natural minor (E–G–B, minor) with V in harmonic minor (E–G♯–B, major). The pull toward the tonic is easy to hear. That is why composers use harmonic minor.",
         "↑ Til innholdet": "↑ Back to contents",
-        "Vis fasit": "Show answer"
+        "Vis fasit": "Show answer",
+        "Treklanger, trinnakkorder og diatonisk harmoni, med harmonisk moll.": "Triads, scale-degree chords and diatonic harmony, with harmonic minor."
       },
     "gehorquiz.html": {
         "Modus": "Mode",
@@ -3829,6 +3834,15 @@ VBM_ORDBOK("en", {
         "Tre riktige på rad. Bra jobbet!": "Three correct in a row. Well done!",
         "{r} av {t} riktige": "{r} of {t} correct",
         "{r} av {t} riktige.": "{r} of {t} correct."
+      },
+    "404.html": {
+        "Siden finnes ikke": "Page not found",
+        "Siden <em>finnes ikke</em>": "Page <em>not found</em>",
+        "Adressen er skrevet feil, eller siden er flyttet. Alle juksebøker, leksjoner og quizer finner du på startsiden, og i Meny øverst.": "The address is mistyped, or the page has moved. All cheat books, lessons and quizzes are on the start page, and in the Menu at the top.",
+        "Videre": "Next",
+        "Finn det du lette etter": "Find what you were looking for",
+        "På startsiden kan du søke i alt materiellet.": "On the start page you can search all the material.",
+        "Til startsiden": "To the start page"
       }
   }
 });
