@@ -147,6 +147,7 @@ VBM_ORDBOK("pl", {
     "Mørk": "Ciemny",
     "Automatisk følger innstillingen i nettleseren.": "Tryb automatyczny podąża za ustawieniem przeglądarki.",
     "Sinustoner": "Sinus",
+    "Lydopptakene kunne ikke lastes, så enkle toner brukes i stedet. Prøv å laste siden på nytt. Skjer det igjen, si gjerne fra til": "Nie udało się wczytać nagrań, więc używane są proste dźwięki. Spróbuj odświeżyć stronę. Jeśli to się powtórzy, daj znać na adres",
     "Innholdet er laget med omhu, men kan inneholde feil.": "Treści są przygotowane starannie, ale mogą zawierać błędy.",
     "Jeg tar ikke ansvar for eventuelle feil eller misvisende informasjon på nettstedet. Har du funnet en feil? Skriv gjerne til": "Nie ponoszę odpowiedzialności za ewentualne błędy ani wprowadzające w błąd informacje na tej stronie. Znalazłeś błąd? Napisz na",
     "Mer": "Więcej",
@@ -1066,7 +1067,8 @@ VBM_ORDBOK("pl", {
         "Play Gmaj9": "Odtwórz: Gmaj9",
         "Play D♭maj9": "Odtwórz: D♭maj9",
         "Play E♭maj9": "Odtwórz: E♭maj9",
-        "Settings": "Ustawienia"
+        "Settings": "Ustawienia",
+        "Seventh and ninth chords in Chopin, Debussy, Hendrix and James Brown.": "Akordy septymowe i nonowe u Chopina, Debussy’ego, Hendrixa i Jamesa Browna."
       },
     "gehorquiz.html": {
         "Modus": "Tryb",

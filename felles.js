@@ -861,6 +861,17 @@ window.VBM_VERSJON = (function(){ var s = document.currentScript && document.cur
     m.textContent = T('{instrument} når ikke så dype eller høye toner, så de spilles på piano.', { instrument: T(e.detail.instrument) });
     m.classList.add('vis'); clearTimeout(meldingTimer); meldingTimer = setTimeout(function(){ m.classList.remove('vis'); }, 4500);
   });
+  /* Melding når opptakene ikke kan lastes (for eksempel uten nett): enkle toner brukes i stedet, og man kan si fra.
+     Vises i 12 sekunder, og høyst én gang per side. */
+  var lydfeilVist = false;
+  window.addEventListener('vbm-lydfeil', function(e){
+    if (lydfeilVist) return; lydfeilVist = true;
+    var m = document.querySelector('.vbm-melding');
+    if (!m) { m = document.createElement('div'); m.className = 'vbm-melding'; m.setAttribute('role', 'status'); document.body.appendChild(m); }
+    var epost = ['wojciechhryniewicki', 'gmail.com'].join('@');
+    m.innerHTML = '<span>' + T('Lydopptakene kunne ikke lastes, så enkle toner brukes i stedet. Prøv å laste siden på nytt. Skjer det igjen, si gjerne fra til') + '</span> <a href="mailto:' + epost + '" translate="no">' + epost + '</a>.';
+    m.classList.add('vis'); clearTimeout(meldingTimer); meldingTimer = setTimeout(function(){ m.classList.remove('vis'); }, 12000);
+  });
   function tonefarger(rot){
     if (!TONEFARGER || !rot || rot.nodeType !== 1) return;
     var quiz = root.hasAttribute('data-quiz');

@@ -61,7 +61,8 @@ VBM_ORDBOK("no", {
         "Play Gmaj9": "Spill av Gmaj9",
         "Play D♭maj9": "Spill av D♭maj9",
         "Play E♭maj9": "Spill av E♭maj9",
-        "Settings": "Innstillinger"
+        "Settings": "Innstillinger",
+        "Seventh and ninth chords in Chopin, Debussy, Hendrix and James Brown.": "Septim- og nonakkorder hos Chopin, Debussy, Hendrix og James Brown."
       }
   }
 });

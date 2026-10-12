@@ -3303,3 +3303,7 @@ html body:not(:has(.vbm-instr-float)) footer[data-lyd] { padding-bottom: 28px !i
 html[data-stil="bok"] body, html[data-stil="mork"] body { padding-bottom: 0 !important; }
 html[data-stil="mork"] main, html[data-stil="bok"] main { margin-bottom: 0 !important; }
 html[data-stil="bok"] main:has(> footer) { padding-bottom: 0 !important; }   /* bunnteksten ligger inne i boka; ingen ekstra luft under den */
+
+/* Lenken i meldingen om lydopptak som ikke kunne lastes */
+.vbm-melding a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+@media (forced-colors: active) { .vbm-melding a { color: LinkText; } }

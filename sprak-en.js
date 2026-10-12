@@ -147,6 +147,7 @@ VBM_ORDBOK("en", {
     "Mørk": "Dark",
     "Automatisk følger innstillingen i nettleseren.": "Automatic follows your browser setting.",
     "Sinustoner": "Sine tones",
+    "Lydopptakene kunne ikke lastes, så enkle toner brukes i stedet. Prøv å laste siden på nytt. Skjer det igjen, si gjerne fra til": "The sound recordings could not be loaded, so simple tones are used instead. Try reloading the page. If it happens again, please let me know at",
     "Innholdet er laget med omhu, men kan inneholde feil.": "The content is made with care, but may contain mistakes.",
     "Jeg tar ikke ansvar for eventuelle feil eller misvisende informasjon på nettstedet. Har du funnet en feil? Skriv gjerne til": "I take no responsibility for any errors or misleading information on this site. Found a mistake? Please write to",
     "Mer": "More",

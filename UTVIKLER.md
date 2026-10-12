@@ -196,3 +196,7 @@ Søkefeltet filtrerer kortene på startsiden mens du skriver, i teksten slik den
 ## Deling og strukturerte data
 
 Hver side har Open Graph-tagger i head (tittel, beskrivelse, adresse og delebildet `delebilde.png`, 1200 x 630), så lenker som deles, vises med bilde. Delingspakken (bilde, tittel og beskrivelse) er på engelsk for alle språk, fordi delingstjenestene ikke kjører skriptet som bytter språk. Alt annet på nettstedet er på tre språk. De må stå i HTML-en, fordi Facebook og Messenger ikke kjører JavaScript. Ny side: kopier blokken fra en annen side og bytt tittel, beskrivelse og adresse. `felles.js` legger inn strukturerte data (JSON-LD) fra materialer.js: EducationalOrganization og WebSite på startsiden, LearningResource og BreadcrumbList på de andre sidene. `404.html` vises når en adresse ikke finnes.
+
+## Lydfilene
+
+Alle opptak ligger på nettstedet selv: `piano-*.mp3` (Salamander Grand Piano, CC BY 3.0), `strykere-*.mp3` og `orgel-*.mp3` (VSCO 2 Community Edition, CC0) og trommelydene. Ingen lyd hentes fra andre nettsteder. Kan opptakene likevel ikke lastes, spilles enkle toner, og siden viser en kort melding med e-postadressen.

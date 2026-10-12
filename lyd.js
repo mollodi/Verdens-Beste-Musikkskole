@@ -28,7 +28,6 @@
      opptak: shift = transponering i halvtoner, level = volum, cents = stemming,
      delay = forsinkelse i sekunder, range = hvor langt et opptak kan strekkes. */
   var B = window.VBM_LYD_BASE || {};
-  var CDN = 'https://cdn.jsdelivr.net/npm/';
   var pianoNotes = []; for (var m = 21; m <= 108; m += 3) pianoNotes.push(m);
   /* Strykere fra VS Chamber Orchestra Community Edition (CC0), stemt til nøyaktige halvtoner. Filene ligger på nettstedet. */
   var KB   = names('E1 Fs1 G1 As1 C2');
@@ -45,7 +44,9 @@
 
   var INSTR = {
     piano: { label: 'Piano', attack: 0.005, release: 0.35, layers: [
-      { base: B.piano || 'https://tonejs.github.io/audio/salamander/', notes: pianoNotes, level: 0.9 }
+      /* Salamander Grand Piano (CC BY 3.0). Opptakene ligger på nettstedet selv (piano-*.mp3), så lyden ikke forsvinner
+         hvis et annet nettsted fjerner dem. */
+      { base: B.piano || 'piano-', notes: pianoNotes, level: 0.9 }
     ]},
     /* Strykere med realistisk område, H0 til C7 (engelsk B0 til C7): kontrabass helt nederst (fem strenger når ned til H0),
        så celloer, bratsjer og fioliner, og en solofiolin øverst. I fiolinområdet spiller celloene med en oktav under,
@@ -147,6 +148,8 @@
     return cache[url];
   }
   function urlFor(L, s){ return L.base + nameOf(s) + '.mp3'; }
+  /* Kan ikke opptakene lastes, spilles enkle synthtoner i stedet, og siden viser en kort melding (felles.js) */
+  function lydfeil(){ try { window.dispatchEvent(new CustomEvent('vbm-lydfeil', { detail: { instrument: (INSTR[current] || {}).label || '' } })); } catch(e){} }
 
   /* ---------- fargelegging i takt med lyden ----------
      Fargene styres av lydklokken (ctx.currentTime), som sjekkes hvert 15. millisekund. Hver sjekk leser
@@ -367,6 +370,7 @@
       }), my);
     }).catch(function(){
       if (my !== token) return;
+      lydfeil();
       btn.classList.remove('loading');
       var peak = Math.min(0.20, 0.85 / Math.max(1, sekvens ? 3 : notes.length));
       finish(plan(function(m, t0, dur, chord){ synthVoice(m, t0, dur, chord ? peak * 0.9 : peak); }), my);
@@ -493,6 +497,7 @@
       finish((t - ctx.currentTime) + slutt + 0.3, my);
     }).catch(function(){
       if (my !== token) return;
+      lydfeil();
       /* Kan ikke lydfilene lastes, brukes den innebygde synthen på én tone. */
       btn.classList.remove('loading');
       var t = ctx.currentTime + 0.08, slutt = 0;
@@ -560,7 +565,7 @@
     inst.layers.forEach(function(L){ var s = nearest(L, midt + L.shift); if (s !== null) urls[urlFor(L, s)] = true; });
     var list = Object.keys(urls);
     Promise.all(list.map(load)).then(function(bufs){ var got = {}; list.forEach(function(u, i){ got[u] = bufs[i]; }); start(got); })
-      .catch(function(){ if (my !== token) return; inst = INSTR.sinus; start(null); });
+      .catch(function(){ if (my !== token) return; lydfeil(); inst = INSTR.sinus; start(null); });
   };
   window.VBM_LYD_STOPP = stopAll;
   window.__vbmLyd = { voices: function(){ return voices.length; }, instrument: function(){ return current; } };
