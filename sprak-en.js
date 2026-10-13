@@ -2983,7 +2983,10 @@ VBM_ORDBOK("en", {
         "<strong>Prim eller unison.</strong> To like toner heter ren prim på norsk og <em>unison</em> på engelsk.": "<strong>Prime or unison.</strong> Two identical notes are called a perfect prime (“ren prim”) in Norwegian and a <em>unison</em> in English.",
         "<strong>Tritonus.</strong> Noen bøker bruker tritonus bare om den forstørrede kvarten (tre heltoner), andre om både forstørret kvart og forminsket kvint.": "<strong>The tritone.</strong> Some books use the word tritone only for the augmented fourth (three whole tones), others for both the augmented fourth and the diminished fifth.",
         "<strong>Sammensatte intervaller.</strong> Norsk har egne navn (none, decim, undecim), mens engelsk bruker tall (9th, 10th, 11th). Mange bøker nøyer seg med det enkle intervallet, for eksempel «stor ters» for en stor decim, særlig i akkordsymboler som C9 og C11.": "<strong>Compound intervals.</strong> Norwegian has its own names (none, decim, undecim), while English uses numbers (9th, 10th, 11th). Many books just give the simple interval, for example “major third” for a major tenth, especially in chord symbols such as C9 and C11.",
-        "<strong>Kvarten.</strong> Om den rene kvarten er en konsonans eller en dissonans, avhenger av tradisjon og sammenheng (se kort 7).": "<strong>The fourth.</strong> Whether the perfect fourth is a consonance or a dissonance depends on tradition and context (see section 7)."
+        "<strong>Kvarten.</strong> Om den rene kvarten er en konsonans eller en dissonans, avhenger av tradisjon og sammenheng (se kort 7).": "<strong>The fourth.</strong> Whether the perfect fourth is a consonance or a dissonance depends on tradition and context (see section 7).",
+        "Fra {tone}": "From {tone}",
+        "{navn} står ikke i tabellen, men klinger som {andre} ({h} halvtoner).": "{navn} is not in the table, but sounds like {andre} ({h} semitones).",
+        " og ": " and "
       },
     "quiz-intervaller.html": {
         "ren": "perfect",

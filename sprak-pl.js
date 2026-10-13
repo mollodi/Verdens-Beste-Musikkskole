@@ -3035,7 +3035,10 @@ VBM_ORDBOK("pl", {
         "<strong>Prim eller unison.</strong> To like toner heter ren prim på norsk og <em>unison</em> på engelsk.": "<strong>Pryma czy unisono.</strong> Dwa jednakowe dźwięki to po polsku pryma czysta, a po angielsku <em>unison</em>.",
         "<strong>Tritonus.</strong> Noen bøker bruker tritonus bare om den forstørrede kvarten (tre heltoner), andre om både forstørret kvart og forminsket kvint.": "<strong>Tryton.</strong> Niektóre książki używają słowa tryton tylko dla kwarty zwiększonej (trzy całe tony), inne dla kwarty zwiększonej i kwinty zmniejszonej.",
         "<strong>Sammensatte intervaller.</strong> Norsk har egne navn (none, decim, undecim), mens engelsk bruker tall (9th, 10th, 11th). Mange bøker nøyer seg med det enkle intervallet, for eksempel «stor ters» for en stor decim, særlig i akkordsymboler som C9 og C11.": "<strong>Interwały złożone.</strong> Polski i norweski mają własne nazwy (nona, decyma, undecyma), a angielski używa liczb (9th, 10th, 11th). Wiele książek podaje tylko interwał prosty, na przykład „tercja wielka” zamiast decymy wielkiej, zwłaszcza w symbolach akordów jak C9 i C11.",
-        "<strong>Kvarten.</strong> Om den rene kvarten er en konsonans eller en dissonans, avhenger av tradisjon og sammenheng (se kort 7).": "<strong>Kwarta.</strong> To, czy kwarta czysta jest konsonansem, czy dysonansem, zależy od tradycji i kontekstu (zobacz część 7)."
+        "<strong>Kvarten.</strong> Om den rene kvarten er en konsonans eller en dissonans, avhenger av tradisjon og sammenheng (se kort 7).": "<strong>Kwarta.</strong> To, czy kwarta czysta jest konsonansem, czy dysonansem, zależy od tradycji i kontekstu (zobacz część 7).",
+        "Fra {tone}": "Od {tone}",
+        "{navn} står ikke i tabellen, men klinger som {andre} ({h} halvtoner).": "{navn} nie ma w tabeli, ale brzmi jak {andre} ({h} półtonów).",
+        " og ": " i "
       },
     "quiz-intervaller.html": {
         "ren": "czysta",

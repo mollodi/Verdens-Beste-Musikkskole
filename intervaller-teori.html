@@ -16,8 +16,8 @@
 <meta name="author" content="Verdens Beste Musikklærer">
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Intervaller</title>
-<script src="felles.js?v=53"></script>
-<link rel="stylesheet" href="stil.css?v=53">
+<script src="felles.js?v=55"></script>
+<link rel="stylesheet" href="stil.css?v=55">
 <meta name="description" content="Intervaller forklart: tell bokstavene, tell halvtonene, rene, store, små, forstørrede og forminskede intervaller, omvending, sammensatte intervaller, og konsonans og dissonans, med lyd.">
 <!-- Forhåndsvisning når lenken deles (Facebook, Messenger, Snapchat, LinkedIn og andre). På engelsk for alle språk, fordi delingstjenestene ikke kjører skriptet som bytter språk. -->
 <meta property="og:type" content="website">
@@ -99,11 +99,12 @@
       <div class="noter" id="iv-noter"></div>
     </div>
     <p class="task" id="iv-tekst" aria-live="polite"></p>
-    <table class="iv-tabell">
+    <table class="iv-tabell" aria-describedby="iv-tabell-merk">
       <caption class="label">Intervallene innen en oktav</caption>
-      <thead><tr><th scope="col">Halvtoner</th><th scope="col">Intervall</th><th scope="col">Fra C</th></tr></thead>
+      <thead><tr><th scope="col">Halvtoner</th><th scope="col">Intervall</th><th scope="col" id="iv-fra">Fra C</th></tr></thead>
       <tbody id="iv-tabell"></tbody>
     </table>
+    <p class="task iv-tabell-merk" id="iv-tabell-merk" aria-live="polite"></p>
   </section>
 
   <section class="card bred" id="enharmonisk">
@@ -229,9 +230,9 @@
 
 <footer data-lyd="alle"></footer>
 
-<script src="tonearter.js?v=53"></script>
-<script src="intervall.js?v=53"></script>
-<script src="skalaer.js?v=53"></script>
+<script src="tonearter.js?v=55"></script>
+<script src="intervall.js?v=55"></script>
+<script src="skalaer.js?v=55"></script>
 <script>/* VBM K7Q4-INTT */
 (function(){
   'use strict';
@@ -308,16 +309,27 @@
     }
     if (Math.abs(hoy.f) === 2) tekst += ' ' + T(hoy.f > 0 ? '{tone} skrives med dobbeltkryss.' : '{tone} skrives med dobbelt-b.', { tone: K.tone(hoy) });
     $('iv-tekst').textContent = tekst;
+    tegnTabell(lav, iv, x.h);
     tegnOmvending(lav, hoy, x);
   }
-  /* Tabellen over intervallene fra C */
-  var rader = '';
-  [[0, 1, 'ren'], [1, 2, 'liten'], [2, 2, 'stor'], [3, 3, 'liten'], [4, 3, 'stor'], [5, 4, 'ren'], [6, 4, 'forstørret'], [6, 5, 'forminsket'], [7, 5, 'ren'],
-   [8, 6, 'liten'], [9, 6, 'stor'], [10, 7, 'liten'], [11, 7, 'stor'], [12, 8, 'ren']].forEach(function(r){
-    var t = I.lag(C4, r[1], r[2], true);
-    rader += '<tr><td>' + r[0] + '</td><td>' + I.stor(I.tekst({ tall: r[1], kval: r[2] })) + '</td><td>C–' + K.tone(t) + '</td></tr>';
-  });
-  $('iv-tabell').innerHTML = rader;
+  /* Tabellen over intervallene innen en oktav, fra den nederste tonen som er valgt over (C, D, Fiss ...) */
+  var TABELL = [[0, 1, 'ren'], [1, 2, 'liten'], [2, 2, 'stor'], [3, 3, 'liten'], [4, 3, 'stor'], [5, 4, 'ren'], [6, 4, 'forstørret'], [6, 5, 'forminsket'], [7, 5, 'ren'],
+   [8, 6, 'liten'], [9, 6, 'stor'], [10, 7, 'liten'], [11, 7, 'stor'], [12, 8, 'ren']];
+  /* Raden for intervallet som er valgt over, markeres. Står intervallet ikke i tabellen (for eksempel forstørret kvint),
+     markeres radene med samme antall halvtoner svakere, og en setning under tabellen forklarer at de klinger likt. */
+  function tegnTabell(lav, iv, h){
+    var rader = '', navn = K.tone(lav), funnet = false, likeKlang = [];
+    TABELL.forEach(function(r){ if (r[1] === iv.tall && r[2] === iv.kval) funnet = true; });
+    TABELL.forEach(function(r){
+      var t = I.lag(lav, r[1], r[2], true), denne = r[1] === iv.tall && r[2] === iv.kval, lik = !funnet && r[0] === h;
+      if (lik) likeKlang.push(I.tekst({ tall: r[1], kval: r[2] }));
+      rader += '<tr' + (denne ? ' class="valgt" aria-current="true"' : lik ? ' class="samme-klang"' : '') + '><td>' + r[0] + '</td><td>' + I.stor(I.tekst({ tall: r[1], kval: r[2] })) + '</td><td>' + navn + '–' + K.tone(t) + '</td></tr>';
+    });
+    $('iv-tabell').innerHTML = rader;
+    $('iv-fra').textContent = T('Fra {tone}', { tone: navn });
+    $('iv-tabell-merk').textContent = funnet || !likeKlang.length ? ''
+      : T('{navn} står ikke i tabellen, men klinger som {andre} ({h} halvtoner).', { navn: I.stor(I.tekst(iv)), andre: likeKlang.join(T(' og ')), h: h });
+  }
 
   /* =================== 4. Samme klang, ulikt navn =================== */
   samklanger('en1-noter', [[C4, n(3, 1, 4)], [C4, n(4, -1, 4)]], T('Tritonus: C–Fiss og C–Gess'));
@@ -360,6 +372,6 @@
   tegn();
 })();
 </script>
-<script src="lyd.js?v=53"></script>
+<script src="lyd.js?v=55"></script>
 </body>
 </html>

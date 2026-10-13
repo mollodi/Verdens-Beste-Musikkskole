@@ -3307,3 +3307,13 @@ html[data-stil="bok"] main:has(> footer) { padding-bottom: 0 !important; }   /* 
 /* Lenken i meldingen om lydopptak som ikke kunne lastes */
 .vbm-melding a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 @media (forced-colors: active) { .vbm-melding a { color: LinkText; } }
+
+/* Intervaller: raden for intervallet som er valgt, er markert i tabellen */
+:where(html[data-side="intervaller-teori.html"]) .iv-tabell tr.valgt td { background: color-mix(in srgb, #e8b866 38%, transparent); font-weight: 700; }
+:where(html[data-side="intervaller-teori.html"]) .iv-tabell tr.valgt td:first-child { box-shadow: inset 4px 0 0 #e8b866; }
+:where(html[data-side="intervaller-teori.html"]) .iv-tabell tr.samme-klang td { background: color-mix(in srgb, #e8b866 16%, transparent); }
+:where(html[data-side="intervaller-teori.html"]) .iv-tabell-merk { font-size: 14px; margin-top: 8px; min-height: 1em; }
+@media (forced-colors: active) {
+  :where(html[data-side="intervaller-teori.html"]) .iv-tabell tr.valgt td { background: Highlight; color: HighlightText; forced-color-adjust: none; box-shadow: none; }
+  :where(html[data-side="intervaller-teori.html"]) .iv-tabell tr.samme-klang td { outline: 1px dashed CanvasText; outline-offset: -2px; }
+}
