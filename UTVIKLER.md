@@ -200,3 +200,7 @@ Hver side har Open Graph-tagger i head (tittel, beskrivelse, adresse og delebild
 ## Lydfilene
 
 Alle opptak ligger på nettstedet selv: `piano-*.mp3` (Salamander Grand Piano, CC BY 3.0), `strykere-*.mp3` og `orgel-*.mp3` (VSCO 2 Community Edition, CC0) og trommelydene. Ingen lyd hentes fra andre nettsteder. Kan opptakene likevel ikke lastes, spilles enkle toner, og siden viser en kort melding med e-postadressen.
+
+## Polsk grammatikk i maler
+
+Når et tall eller et navn settes inn i en polsk setning, må ordet bøyes riktig (1 półton, 3 półtony, 8 półtonów; 2,4 dudnienia). Slike oversettelser skrives som funksjoner i sprak-pl.js i stedet for tekst. Unngå konstruksjoner som krever annen kasus enn nominativ for navn som settes inn (skriv for eksempel «nie występuje w tabeli» i stedet for «nie ma w tabeli»).
