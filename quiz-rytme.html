@@ -17,8 +17,8 @@
 <meta name="copyright" content="© 2026 Verdens Beste Musikkskole. Alle rettigheter forbeholdt.">
 <title>Quiz: rytme</title>
 <script>window.VBM_LYD_RYTME_SIDE = true;</script>
-<script src="felles.js?v=56"></script>
-<link rel="stylesheet" href="stil.css?v=56">
+<script src="felles.js?v=57"></script>
+<link rel="stylesheet" href="stil.css?v=57">
 <meta name="description" content="Hør en rytme og finn notene, hør taktarten, eller les og tell. Velg kapitler og nivå fra Rytme og taktarter. Øvemodus og prøvemodus med 20 oppgaver.">
 <!-- Forhåndsvisning når lenken deles (Facebook, Messenger, Snapchat, LinkedIn og andre). På engelsk for alle språk, fordi delingstjenestene ikke kjører skriptet som bytter språk. -->
 <meta property="og:type" content="website">
@@ -42,6 +42,7 @@
   <h1><em>Quiz</em>: rytme</h1>
   <p class="lede">Hør en rytme og finn notene, hør hvilken taktart musikken går i, eller les en rytme og tell. Velg kapitlene du vil øve på, fra grunnleggende til ekspert.</p>
   <p class="lede">Alt er forklart i leksjonen <a href="rytme.html">Rytme og taktarter</a>. Trommer er valgt nederst til høyre, men du kan også velge piano, orgel, strykere eller sinustoner.</p>
+  <p class="lede">På trommer hører du bare når tonene begynner, ikke hvor lenge de varer. Velg orgel eller strykere hvis du vil høre lengden på hver tone også.</p>
 </header>
 
 <main>
@@ -134,7 +135,7 @@
 
 <footer data-lyd="rytme"></footer>
 
-<script src="rytme.js?v=56"></script>
+<script src="rytme.js?v=57"></script>
 <script>/* VBM K7Q4-QRTM */
 (function(){
   'use strict';
@@ -190,6 +191,10 @@
   /* Hvor like to rytmer er: andelen felles anslag (brukes for å lage gode feilsvar) */
   function anslag(takter){ var s = [], pos = 0; takter.forEach(function(t){ t.forEach(function(e){ if (!e.p) s.push(pos + (e.t ? 't' : '')); pos += e.d; }); }); return s; }
   function likhet(a, b){ var A = anslag(a), B = anslag(b), f = A.filter(function(x){ return B.indexOf(x) >= 0; }).length; return f / Math.max(A.length, B.length); }
+  /* Klinger to rytmer likt? På trommer hører man bare når tonene begynner, ikke hvor lenge de varer, og pauser høres ikke.
+     En firedel og en åttendel med åttendelspause, eller to åttendelspauser og en firedelspause, klinger derfor likt.
+     Svaralternativer som skal skilles på gehør, må derfor ha ulike anslag, ikke bare ulike notelengder eller pauser. */
+  function klingerLikt(a, b){ return anslag(a).join() === anslag(b).join(); }
   function lagOppgave(forrige){
     var typer = valg.type === 'alle' ? ['horRytme', 'horTakt', 'les', 'korreksjon', 'taktstrek'] : [valg.type];
     var type = tilfeldig(typer), kap = tilfeldig(kapitler()), takt = tilfeldig(kap.takter), o;
@@ -199,10 +204,12 @@
       for (var i = 0; i < antall; i++) riktig.push(R.lagTakt(kap, takt));
       /* Tre feilsvar som ligner mest mulig */
       var kandidater = [];
-      for (var k = 0; k < 40; k++) { var c = []; for (var j = 0; j < antall; j++) c.push(j === antall - 1 || Math.random() < 0.5 ? R.lagTakt(kap, takt) : R.kopi(riktig[j])); if (!likeTakter(c, riktig)) kandidater.push(c); }
+      for (var k = 0; k < 120; k++) { var c = []; for (var j = 0; j < antall; j++) c.push(j === antall - 1 || Math.random() < 0.5 ? R.lagTakt(kap, takt) : R.kopi(riktig[j])); if (!klingerLikt(c, riktig)) kandidater.push(c); }
       kandidater.sort(function(a, b){ return likhet(b, riktig) - likhet(a, riktig); });
       var valgte = [];
-      kandidater.forEach(function(c){ if (valgte.length < 3 && !valgte.some(function(v){ return likeTakter(v, c); })) valgte.push(c); });
+      /* Feilsvarene må klinge ulikt både fra riktig svar og fra hverandre, så bare ett alternativ passer med det man hører */
+      kandidater.forEach(function(c){ if (valgte.length < 3 && !valgte.some(function(v){ return klingerLikt(v, c); })) valgte.push(c); });
+      if (!valgte.length) return lagOppgave(forrige);   /* ingen feilsvar som klinger annerledes: lag en ny oppgave */
       var alternativer = blandet([riktig].concat(valgte));
       o = { type: type, kap: kap, takt: takt, takter: riktig, alternativer: alternativer, svar: alternativer.indexOf(riktig) };
     } else if (type === 'horTakt') {
@@ -223,9 +230,11 @@
       var skrevet = [], plass = Math.floor(Math.random() * 3), hort;
       for (var a = 0; a < 3; a++) skrevet.push(R.lagTakt(kap, takt));
       var kandK = [];
-      for (var k4 = 0; k4 < 30; k4++) { var c4 = R.lagTakt(kap, takt); if (!likeTakter([c4], [skrevet[plass]])) kandK.push(c4); }
+      /* Takten som klinger annerledes, må ha andre anslag, ikke bare andre notelengder eller pauser, ellers kan den ikke høres */
+      for (var k4 = 0; k4 < 60; k4++) { var c4 = R.lagTakt(kap, takt); if (!klingerLikt([c4], [skrevet[plass]])) kandK.push(c4); }
       kandK.sort(function(x, y){ return likhet([y], [skrevet[plass]]) - likhet([x], [skrevet[plass]]); });
-      hort = R.kopi(skrevet); hort[plass] = kandK.length ? kandK[0] : R.lagTakt(kap, takt);
+      if (!kandK.length) return lagOppgave(forrige);   /* ingen takt som klinger annerledes: lag en ny oppgave */
+      hort = R.kopi(skrevet); hort[plass] = kandK[0];
       o = { type: type, kap: kap, takt: takt, takter: skrevet, lydTakter: hort, alternativer: [0, 1, 2], svar: plass };
     } else if (type === 'taktstrek') {
       /* Sett taktstreker: samme noter, taktstrekene på ulike steder. Bare ett alternativ har riktig taktlengde. */
@@ -437,6 +446,6 @@
   visValg(); nyOvOppgave(); visFremgang();
 })();
 </script>
-<script src="lyd.js?v=56"></script>
+<script src="lyd.js?v=57"></script>
 </body>
 </html>

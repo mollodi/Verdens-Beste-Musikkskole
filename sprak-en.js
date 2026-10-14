@@ -2431,7 +2431,8 @@ VBM_ORDBOK("en", {
         "Ekspert": "Expert",
         "Hør en rytme og finn notene, hør hvilken taktart musikken går i, eller les en rytme og tell. Velg kapitlene du vil øve på, fra grunnleggende til ekspert.": "Hear a rhythm and find the notes, hear which time signature the music is in, or read a rhythm and count. Choose the chapters you want to practise, from basic to expert.",
         "<em>Quiz</em>: rytme": "<em>Quiz</em>: rhythm",
-        "Quiz: rytme": "Quiz: rhythm"
+        "Quiz: rytme": "Quiz: rhythm",
+        "På trommer hører du bare når tonene begynner, ikke hvor lenge de varer. Velg orgel eller strykere hvis du vil høre lengden på hver tone også.": "On drums you only hear when the notes start, not how long they last. Choose organ or strings if you also want to hear the length of each note."
       },
     "transponering.html": {
         "og": "and",

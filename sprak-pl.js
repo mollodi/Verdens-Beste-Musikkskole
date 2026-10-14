@@ -2483,7 +2483,8 @@ VBM_ORDBOK("pl", {
         "Ekspert": "Ekspert",
         "Hør en rytme og finn notene, hør hvilken taktart musikken går i, eller les en rytme og tell. Velg kapitlene du vil øve på, fra grunnleggende til ekspert.": "Posłuchaj rytmu i znajdź nuty, usłysz metrum muzyki albo przeczytaj rytm i policz. Wybierz rozdziały do ćwiczenia, od podstawowego do eksperckiego.",
         "<em>Quiz</em>: rytme": "<em>Quiz</em>: rytm",
-        "Quiz: rytme": "Quiz: rytm"
+        "Quiz: rytme": "Quiz: rytm",
+        "På trommer hører du bare når tonene begynner, ikke hvor lenge de varer. Velg orgel eller strykere hvis du vil høre lengden på hver tone også.": "Na perkusji słychać tylko, kiedy dźwięki się zaczynają, a nie jak długo trwają. Wybierz organy albo smyczki, jeśli chcesz usłyszeć także długość każdego dźwięku."
       },
     "transponering.html": {
         "og": "i",
